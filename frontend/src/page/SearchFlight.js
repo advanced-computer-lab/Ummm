@@ -255,22 +255,74 @@ const SearchFlight = () => {
           <h1>Search Results </h1>
 
           <br/>
-          
+          <table id="customers">
+    <thead>
+        <tr>
+            <th id="cutomers">Flight_no</th>
+            <th id="cutomers">From</th>
+            <th id="customers">To</th>
+            <th id="customers">Flight_Date</th>
+            <th id="customers">Departure</th>
+            <th id="customers">Terminal</th>
+            <th id="customers">Economy</th>
+            <th id="customers">Business</th>
+            <th id="customers">First</th>
+        </tr>
+    </thead>
+  
+
+    {Result.map(flight =>
+         
+       
+         
+   
+        
+        <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.Flight_No}</span>
+              
+            </td>
+            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.From}</span>
+                
+            </td>
+            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.To}</span>
+                
+            </td>
+            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{moment(flight.Flight_Date).format("YYYY-MM-DD")}</span>
+               
+            </td>
+            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{moment(flight.Flight_Date).format("HH:mm")}</span>
+               
+            </td>
+            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.Terminal}</span>
+           
+            </td>
+            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.Economy_Seats}</span>
+              
+            </td>
             
-          {Result.map(flight =>
-          <div className="row">
-          <p className="left-txt"> <b>Flight_No: </b> {flight.Flight_No} </p>
-         <p className="left-txt"> <b>From: </b> {flight.From} </p>
-         <p className="left-txt"> <b>To: </b> {flight.To} </p>
-          <p className="left-txt"> <b>Flight Date: </b> {moment(flight.Flight_Date).format("YYYY-MM-DD")} </p>
-         <p className="left-txt"> <b>Departure: </b> {moment(flight.Flight_Date).format("HH:mm")} </p>
-         <p className="left-txt"> <b>Terminal: </b> {flight.Terminal} </p>
-         <p className="left-txt"> <b>Economy Class: </b> {flight.Economy_Seats} </p>
-         <p className="left-txt"> <b>Business Class: </b> {flight.Business_Seats} </p>
-         <p className="left-txt"> <b>First Class: </b> {flight.First_Seats} </p>
-          </div>
-     
-            )}
+            
+            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.Business_Seats}</span>
+                
+            </td>
+            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.First_Seats}</span>
+                <span class="rounded bg-green-400 py-1 px-3 text-xs font-bold"></span>
+            </td>
+            
+        </tr>
+         )}
+ 
+</table>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
           
       </div>
     </div>
