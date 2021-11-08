@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 import 'antd/dist/antd.css'; 
 import './App.css';
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -24,7 +25,9 @@ import {
 
 const { Header, Sider, Content } = Layout;
 
+
 class HomePage extends React.Component {
+  
   
   state = {
     collapsed: true,
@@ -35,6 +38,13 @@ class HomePage extends React.Component {
       collapsed: !this.state.collapsed,
     });
   };
+
+
+  // onClick={this.logoutHandler}
+  // logoutHandler(){
+  //   console.log("outtt")
+  //  history.push('/LoginPage')
+  // };
 
   render() {
     
@@ -57,7 +67,7 @@ class HomePage extends React.Component {
             <Menu.Item key="3" icon={<BellOutlined />}>
               Notifications
             </Menu.Item>
-            <Menu.Item key="4" icon={<ImportOutlined />}> 
+            <Menu.Item key="4" icon={<ImportOutlined />} > 
               Log Out
             </Menu.Item>
           </Menu>
@@ -106,15 +116,7 @@ class HomePage extends React.Component {
 </div>
 
 
-         
-           
-           
-
-
- 
- 
-
-
+        
 
 
           </Header>
