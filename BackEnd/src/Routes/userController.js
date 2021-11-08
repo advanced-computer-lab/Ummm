@@ -96,30 +96,44 @@ Flights.find(search)
 
 
 
+// const search ={};
+
+// Object.keys(req.body).forEach(key => {
+//  if (req.body[key]!==null) {
+//     search[key] = {$regex: '^' + req.body[key],     $options: 'ix'};
+//   }
+//   else {
+//    search[key] = {$regex: '' +"    "};
+//   }
+// });
+
+
 
 exports.loginpage = (req, res) => {
 
-  const search ={};
-   Object.keys(req.body).forEach(key => {
- 
+    if(Object.keys(req.body).length === 0){    
+      return res.status(400).send();
+    }
+
+         const search ={};
+
+    Object.keys(req.body).forEach(key => {
     if (req.body[key]!==null) {
-       search[key] = {$regex: '^' + req.body[key],     $options: 'ix'};
-     }
-     else {
-      search[key] = {$regex: '' +"    "};
-     }
-   });
- 
+        search[key] = {$regex: '^' + req.body[key]};
+      }
+    });
+  
+    console.log(search)  
   Admins.find(search)
  .then(result => {
-   console.log(result);
-      if(result!=[])
+  console.log(result)  
+      if(result.length != 0){
        res.send(result);
+      }
        else 
        res.status(400).send();
-     })
+      })
      .catch(err => {
-     
       console.log(err);
      });
  };

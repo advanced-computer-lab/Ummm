@@ -10,6 +10,7 @@ import {
   Form,
   Input,
   Button,
+  message,
   Radio,
   Select,
   Cascader,
@@ -55,7 +56,7 @@ const LoginPage = () => {
    // prevent reloading the page
     axios.post('http://localhost:8000/LoginPage', criteria)
     .then(response => {
-     // setResult(response.data);
+      console.log(response.status);
       setState({
         Username: "",  
         Password: "",
@@ -64,10 +65,16 @@ const LoginPage = () => {
             pathname: '/homepage'
           });
        }).catch(error => {
-       console.log(error);
+         warning();
+        console.log(error);
     })
 
   };
+  
+  const warning = () => {
+    message.warning('Incorrect Username or Password!');
+  }
+
 
 
 
@@ -89,12 +96,12 @@ const LoginPage = () => {
           size={componentSize}
         >
     
-          <Form.Item label="From">
+          <Form.Item label="Username">
             <Input type="text" name="Username" placeholder="Username" value={Data.Username} onChange={(e) => changeHander(e)}/>
           </Form.Item>
   
   
-          <Form.Item label="To">
+          <Form.Item label="Password">
           <Input type="password" name="Password" placeholder="Password" value={Data.Password} onChange={(e) => changeHander(e)}/>
           </Form.Item>
           
