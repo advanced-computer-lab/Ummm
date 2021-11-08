@@ -1,5 +1,5 @@
 
-import './home.scss';
+//import './home.scss';
 import './App.css';
 
 import {

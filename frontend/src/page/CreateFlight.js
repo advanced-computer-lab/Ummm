@@ -26,7 +26,7 @@ import {
 
 const CreateFlight = () => {
   const [componentSize, setComponentSize] = useState('default');
-  const [form] = Form.useForm();
+ // const [form] = Form.useForm();
 
   const [Data, setState] = useState({
     Flight_No: "",
@@ -74,7 +74,7 @@ const CreateFlight = () => {
         First_Seats: ""
         })
       //  window.location.reload(false);
-      form.resetFields();
+ //     form.resetFields();
         success(); // data succ added less go
       }).catch(error => {
         warning9();
@@ -168,11 +168,10 @@ const CreateFlight = () => {
         }}
         onValuesChange={onFormLayoutChange}
         size={componentSize}
-        form={form}
+   //     form={form}
       >                     
   
   <Form.Item  
-        name="Flight_No"
         rules={[
           {
             required: true,
@@ -184,7 +183,6 @@ const CreateFlight = () => {
         
 
         <Form.Item  
-        name="From"
         rules={[
           {
             required: true,
@@ -196,7 +194,6 @@ const CreateFlight = () => {
 
 
         <Form.Item label="To"
-         name="To"
          rules={[
            {
              required: true,
@@ -208,7 +205,6 @@ const CreateFlight = () => {
         
         
         <Form.Item 
-        name="Flight Date"
         rules={[
           {
             required: true,
@@ -223,7 +219,6 @@ const CreateFlight = () => {
         </Form.Item>
 
         <Form.Item 
-        name="Terminal"
         rules={[
           {
             required: true,
@@ -240,7 +235,6 @@ const CreateFlight = () => {
         </Form.Item>
 
         <Form.Item 
-        name="Economy Seats"
         rules={[
           {
             required: true,
@@ -254,7 +248,6 @@ const CreateFlight = () => {
 
         
         <Form.Item 
-        name="Business Seats"
         rules={[
           {
             required: true,
@@ -267,7 +260,6 @@ const CreateFlight = () => {
         </Form.Item>
 
         <Form.Item 
-        name="First Seats"
         rules={[
           {
             required: true,
