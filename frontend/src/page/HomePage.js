@@ -26,7 +26,7 @@ const { Header, Sider, Content } = Layout;
 
 class HomePage extends React.Component {
   state = {
-    collapsed: false,
+    collapsed: true,
   };
 
   toggle = () => {
