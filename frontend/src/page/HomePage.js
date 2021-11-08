@@ -83,7 +83,7 @@ class HomePage extends React.Component {
          
          
              <div class="grid-item">
-            <a name ="SearchPic" href="/viewflights" target="_blank">
+            <a name ="SearchPic" href="/viewflights" target="_self">
             <img class="static"  src="https://i.ibb.co/fp106MB/giphy.jpg" />
         <img class="active"   src="https://media.giphy.com/media/gkAEM5sXCFqB465YWg/giphy.gif"/>
                  </a>
@@ -98,13 +98,8 @@ class HomePage extends React.Component {
 
             </div>
                 <div class="grid-item">
-<<<<<<< HEAD
-                <a  name ="EditPic" href="/viewflights" target="_blank">
-                <img class="static" src="https://i.ibb.co/r7b5Tcq/fraaaaaaame.gif" />
-=======
                 <a  name ="EditPic" href="/viewflights" target="_self">
                 <img class="static" src="https://i.ibb.co/VLFDBB8/fraaaaaaame.jpg" />
->>>>>>> dbf2c58d98f4197db06b5c5eb8a87a3b9f287c43
         <img class="active" src="https://media4.giphy.com/media/xTiIzscpttjBSNjMw8/giphy.gif?cid=ecf05e47cs5xh2s1q5mlyq45pm6gsqutb31voj1ejy6ki6bf&rid=giphy.gif&ct=g"/>
                 </a> 
       </div>  
