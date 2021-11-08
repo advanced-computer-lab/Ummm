@@ -15,6 +15,7 @@ exports.createflight = (req, res) => {
       console.log("added");
     })
     .catch(err => {
+      res.status(400).send();
       console.log(err);
     });
 };

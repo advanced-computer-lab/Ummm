@@ -77,19 +77,26 @@
     .grid-container {
       display: grid;
       grid-template-columns: auto auto ;
-      background-image: url('https://www.maxpixel.net/static/photo/1x/Plane-Soft-Travel-White-Airplane-Flight-Blue-Sky-4125770.jpg');
-      padding: 600px ;
+      /* background-image: url('https://www.maxpixel.net/static/photo/1x/Plane-Soft-Travel-White-Airplane-Flight-Blue-Sky-4125770.jpg'); */
+      padding: 300px ;
+      
       /* background-color: transparent ; */
       
     }
     .grid-item {
      
-    
       padding: 20px;
       font-size: 30px;
       text-align: center;
     }
   
+    .static {
+      position:absolute;
+      background: white;
+    }
     
+    .static:hover {
+      opacity:0;
+    }
     
   
