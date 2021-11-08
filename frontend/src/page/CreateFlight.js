@@ -21,42 +21,12 @@ import {
 } from 'antd';
 
 
-  const success = () => {
-    message.success('Flight Successfully Added!');
-  };
   
-  const warning = () => {
-    message.warning('Fill All Fields Please!');
-  };
-  const warning1 = () => {
-    message.warning('"Flight_No" Must be Filled!');
-  };
-
-  const warning2 = () => {
-    message.warning(' "From" Field Must Exacly be 3 Letters!');
-  };
-
-  const warning3 = () => {
-    message.warning(' "To" Field Must Exacly be 3 Letters!');
-  };
-  const warning4 = () => {
-    message.warning(' "Flight_Date" Must be Filled!');
-  };
-  const warning5 = () => {
-    message.warning(' "Economy_Seats" Must be Filled!');
-  };
-  const warning6 = () => {
-    message.warning(' "Business_Seats" Must be Filled!');
-  };
-  const warning7 = () => {
-    message.warning(' "First_Seats" Must be Filled!');
-  };
-  const warning8 = () => {
-    message.warning('"Terminal" Must be Filled!');
-  };
   
+
 const CreateFlight = () => {
   const [componentSize, setComponentSize] = useState('default');
+  const [form] = Form.useForm();
 
   const [Data, setState] = useState({
     Flight_No: "",
@@ -81,6 +51,7 @@ const CreateFlight = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();    // prevent reloading the page
+
     // Object.keys(Data).forEach(key => {
     //   if(key=='Economy_Seats' || key=='Business_Seats' || key=='First_Seats')
     //   if (Data[key]=="") {
@@ -88,11 +59,10 @@ const CreateFlight = () => {
     //      }
     //    });
     
-
-    if(Data.Flight_No.length==5 &Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date!=null &&Data.Terminal!=''&& Data.Economy_Seats!=''&& Data.First_Seats!=''&& Data.Business_Seats!='' )  {
-      success(); // data succ added less go
-    axios.post('http://localhost:8000/createflight',  Data)
+    if(Data.Flight_No.length==5 &Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date!==null &&Data.Terminal!==''&& Data.Economy_Seats!==''&& Data.First_Seats!==''&& Data.Business_Seats!=='' ){
+    axios.post('http://localhost:8000/createflight', Data)
     .then(response => {
+      console.log(response.status);
       setState({
         Flight_No: "",
         From: "",  
@@ -103,9 +73,14 @@ const CreateFlight = () => {
         Business_Seats: "",
         First_Seats: ""
         })
-       }).catch(error => {
-      console.log(error);
+      //  window.location.reload(false);
+      form.resetFields();
+        success(); // data succ added less go
+      }).catch(error => {
+        warning9();
+        console.log(error);
     })
+   
   }
 
   else if(Data.Flight_No.length<3  ){
@@ -137,10 +112,45 @@ const CreateFlight = () => {
     warning();
   }
   
-  
-
-
   };
+
+  const success = () => {
+    message.success('Flight Successfully Added!');
+  };
+
+  const warning = () => {
+    message.warning('Fill All Fields Please!');
+  };
+  const warning1 = () => {
+    message.warning('"Flight_No" Must be Filled!');
+  };
+
+  const warning2 = () => {
+    message.warning(' "From" Field Must Exacly be 3 Letters!');
+  };
+
+  const warning3 = () => {
+    message.warning(' "To" Field Must Exacly be 3 Letters!');
+  };
+  const warning4 = () => {
+    message.warning(' "Flight_Date" Must be Filled!');
+  };
+  const warning5 = () => {
+    message.warning(' "Economy_Seats" Must be Filled!');
+  };
+  const warning6 = () => {
+    message.warning(' "Business_Seats" Must be Filled!');
+  };
+  const warning7 = () => {
+    message.warning(' "First_Seats" Must be Filled!');
+  };
+  const warning8 = () => {
+    message.warning('"Terminal" Must be Filled!');
+  };
+  const warning9 = () => {
+    message.warning('Flight_No already excited!');
+  };
+  
 
 
   return (
@@ -158,6 +168,7 @@ const CreateFlight = () => {
         }}
         onValuesChange={onFormLayoutChange}
         size={componentSize}
+        form={form}
       >                     
   
   <Form.Item  
@@ -196,7 +207,6 @@ const CreateFlight = () => {
         </Form.Item>
         
         
-
         <Form.Item 
         name="Flight Date"
         rules={[
@@ -205,7 +215,8 @@ const CreateFlight = () => {
             message: 'Please Select Date!',
           },
         ]} label="Flight Date">
-<DatePicker type="date" format="DD-MM-YYYY" disabledDate={d => !d || d.isBefore(new Date())}
+          <DatePicker type="date" format="DD-MM-YYYY" value={Data.Flight_Date} format="DD-MM-YYYY, HH:mm"
+          showTime="true" disabledDate={d => d.isBefore(new Date())}
            name="FlightDate" onChange={(date) => setState(prevData => {
               return {...prevData ,Flight_Date: date}}) 
     }/>
