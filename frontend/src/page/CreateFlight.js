@@ -25,6 +25,8 @@ import {
   
 
 const CreateFlight = () => {
+  const history = useHistory();
+
   const [componentSize, setComponentSize] = useState('default');
  // const [form] = Form.useForm();
 
@@ -272,8 +274,15 @@ const CreateFlight = () => {
         </Form.Item>
 
         <Form.Item>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <Button onClick={() => history.goBack()}>Back</Button>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          <Button onClick={(e) => submitHandler(e)} >Create Flight</Button>
         </Form.Item>
+
+
 
       </Form>
     </>

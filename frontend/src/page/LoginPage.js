@@ -105,9 +105,15 @@ const LoginPage = () => {
           <Input type="password" name="Password" placeholder="Password" value={Data.Password} onChange={(e) => changeHander(e)}/>
           </Form.Item>
           
+
           <Form.Item>
-           <Button onClick={(e) => loginHandler(e)} >Log-In</Button>
-          </Form.Item>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <Button onClick={() => history.goBack()}>Back</Button>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <Button onClick={(e) => loginHandler(e)} >Log-In</Button>
+        </Form.Item>
   
         </Form>
       </>

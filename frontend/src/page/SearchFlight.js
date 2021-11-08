@@ -21,6 +21,7 @@ import {
 
 
 const SearchFlight = () => {
+ const history = useHistory();
   const [isLoading, setLoading] = useState(true);
   const [componentSize, setComponentSize] = useState('default');
   const [Result, setResult] = useState();
@@ -162,10 +163,14 @@ const SearchFlight = () => {
         </Form.Item>
   
     
-          <Form.Item>
-           <Button onClick={(e) => searchHandler(e)} >Search</Button>
-          </Form.Item>
-  
+        <Form.Item>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <Button onClick={() => history.goBack()}>Back</Button>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <Button onClick={(e) => searchHandler(e)} >Search</Button>
+        </Form.Item>
         </Form>
       </>
       
@@ -244,10 +249,16 @@ const SearchFlight = () => {
         </Form.Item>
   
     
-          <Form.Item>
-           <Button onClick={(e) => searchHandler(e)} >Search</Button>
-          </Form.Item>
+         
 
+          <Form.Item>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <Button onClick={() => history.goBack()}>Back</Button>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <Button onClick={(e) => searchHandler(e)} >Search</Button>
+        </Form.Item>
 
         <div className="">
       <div className="content">

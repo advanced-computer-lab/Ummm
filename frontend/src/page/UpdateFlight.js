@@ -21,6 +21,7 @@ import {
 
 
 const UpdateFlight = () => {
+
   const [componentSize, setComponentSize] = useState('default');
   const history = useHistory();
   const [form] = Form.useForm();
@@ -267,11 +268,16 @@ const warning9 = () => {
               return {...prevData ,First_Seats: number}}) 
           }/>
         </Form.Item>
-
-
+        
         <Form.Item>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <Button onClick={() => history.goBack()}>Back</Button>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          <Button onClick={(e) => updateHandler(e,UpFlight)} >Update Flight</Button>
         </Form.Item>
+
 
       </Form>
     </>

@@ -4,6 +4,10 @@ import axios from 'axios'
 import { Route, Redirect } from 'react-router'
 import { Link, Switch } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
+import {
+  Button,
+
+} from 'antd';
 //import {Redirect} from 'react-router-dom';
 //import LNSelect from "../LNSelect/LNSelect";
 // import Navbar from './navbar';
@@ -56,9 +60,10 @@ function App() {
     
     <div className="">
       <div className="content">
-
            <h1>All Flights </h1>
-
+           
+          
+         
           <br/>
           <table id="customers">
     <thead>
@@ -131,6 +136,9 @@ function App() {
          )}
  
 </table>
+<br/>
+&nbsp;&nbsp;&nbsp;
+<Button onClick={() => history.goBack()}>Back</Button>
 <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
 
