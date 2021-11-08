@@ -114,7 +114,6 @@ exports.loginpage = (req, res) => {
     if(Object.keys(req.body).length === 0){    
       return res.status(400).send();
     }
-
          const search ={};
 
     Object.keys(req.body).forEach(key => {
@@ -123,10 +122,8 @@ exports.loginpage = (req, res) => {
       }
     });
   
-    console.log(search)  
   Admins.find(search)
- .then(result => {
-  console.log(result)  
+ .then(result => { 
       if(result.length != 0){
        res.send(result);
       }
