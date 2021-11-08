@@ -25,6 +25,7 @@ import {
 const { Header, Sider, Content } = Layout;
 
 class HomePage extends React.Component {
+  
   state = {
     collapsed: true,
   };
@@ -78,6 +79,8 @@ class HomePage extends React.Component {
         <img class="active" src="https://media.giphy.com/media/l0ExdAn5aQzxQFkxq/giphy.gif"/>
         </a>
          </div>
+
+         
          
              <div class="grid-item">
             <a name ="SearchPic" href="/viewflights" target="_blank">
