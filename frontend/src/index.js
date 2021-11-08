@@ -26,7 +26,7 @@ ReactDOM.render(
                     <Route exact path="/SearchFlight" component={SearchFlight} />
                     <Route exact path="/HomePage" component={HomePage} />
                     <Route exact path="/LoginPage" component={LoginPage} />
-                    <Route exact path="/FlightHome" component={FlightHome} />
+                    <Route exact path="/" component={FlightHome} />
                 </Switch>
             </BrowserRouter>
 
