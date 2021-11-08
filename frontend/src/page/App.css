@@ -1,80 +1,95 @@
-.App {
-  text-align: center;
-}
+  /* body {
+  margin: 0;
+  height: 100%;
+  font-weight: 100;
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
+  background-image: url('https://www.maxpixel.net/static/photo/1x/Plane-Soft-Travel-White-Airplane-Flight-Blue-Sky-4125770.jpg');} */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .button2 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #db0000;
   }
-  to {
-    transform: rotate(360deg);
+  
+  
+   button2{
+    position: absolute;
+    border: 2px solid white;
+    background: transparent;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    width: 230px;
+    height: 56px;
+    font-size: 2em;
+    border-radius: 5px;
+    opacity: .5;
+    top: 60vh;
+    bottom: 0px;
+    left: -300px;
+    right: 20px;
+    margin:auto;
+    transition: .3s;
+    text-align: center;
   }
-}
-
-
-.desc {
-  height: 130px;
-  padding: 10px;
-}
-
-.desc h2 {
-  font-size: 1em;
-  font-weight: 400;
-}
-
-.desc h3, p {
-  font-weight: 300;
-}
-
-.desc h3 {
-  color: #6c757d;
-  font-size: 1em;
-  padding: 10px 0 10px 0;
-}
-
-
-.button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 5px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-.button1 {
-  background-color: white; 
-  color: black; 
-  border: 2px solid #4CAF50;
-}
-
-.button2 {
-  background-color: white; 
-  color: black; 
-  border: 2px solid #db0000;
-}
+  
+  button2:hover{
+    border: 2px solid #104F55;
+    background-color: rgba(365,365,365,0.5);
+    cursor: pointer;
+    color: #104F55;
+    opacity: .8;
+    transition: .3s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  button3{
+      position: absolute;
+      border: 2px solid white;
+      background: transparent;
+      font-family: 'Roboto', sans-serif;
+      color: white;
+      width: 230px;
+      height: 56px;
+      font-size: 2em;
+      border-radius: 5px;
+      opacity: .5;
+      top: 60vh;
+      bottom: 0px;
+      left: 300px;
+      right: 20px;
+      margin:auto;
+      transition: .3s;
+      text-align: center;
+    }
+    
+     button3:hover{
+      border: 2px solid #104F55;
+      background-color: rgba(365,365,365,0.5);
+      cursor: pointer;
+      color: #104F55;
+      opacity: .8;
+      transition: .3s;
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+     }
+   
+    
+  
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto ;
+      background-image: url('https://www.maxpixel.net/static/photo/1x/Plane-Soft-Travel-White-Airplane-Flight-Blue-Sky-4125770.jpg');
+      padding: 600px ;
+      /* background-color: transparent ; */
+      
+    }
+    .grid-item {
+     
+    
+      padding: 20px;
+      font-size: 30px;
+      text-align: center;
+    }
+  
+    
+    
+  

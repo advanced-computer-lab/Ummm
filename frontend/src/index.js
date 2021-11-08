@@ -8,6 +8,7 @@ import ViewFlights from './page/ViewFlights.js'
 import UpdateFlight from './page/UpdateFlight.js'
 import SearchFlight from './page/SearchFlight.js'
 import LoginPage from './page/LoginPage.js'
+import HomePage from './page/HomePage.js'
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 
 
@@ -21,6 +22,7 @@ ReactDOM.render(
                     <Route exact path="/UpdateFlight" component={UpdateFlight} />
                     <Route exact path="/CreateFlight" component={CreateFlight} />
                     <Route exact path="/SearchFlight" component={SearchFlight} />
+                    <Route exact path="/HomePage" component={HomePage} />
                     <Route exact path="/LoginPage" component={LoginPage} />
                 </Switch>
             </BrowserRouter>
