@@ -3,7 +3,23 @@
   height: 100%;
   font-weight: 100;
 
-  background-image: url('https://www.maxpixel.net/static/photo/1x/Plane-Soft-Travel-White-Airplane-Flight-Blue-Sky-4125770.jpg');} */
+  background-image: url('https://i.pinimg.com/originals/cb/56/94/cb56941995519d440681df85be384a97.gif');} */
+  @import url('https://fonts.googleapis.com/css?family=Alex+Brush|Merienda');
+  .welcome {
+    font-family: Merienda;
+    font-size: 3em;
+    color: #fff;
+    display: block;    
+  }
+  .back{
+    background-image: url('http://media.futurebutterflies.net/houston-besomeone.jpg') ;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    height: 100vh;
+     background-repeat: no-repeat	;
+}
+
 
   .button2 {
     background-color: white; 
