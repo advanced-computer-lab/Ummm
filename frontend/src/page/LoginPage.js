@@ -61,7 +61,7 @@ const LoginPage = () => {
         Password: "",
         })
         history.push({
-            pathname: '/ViewFlights'
+            pathname: '/homepage'
           });
        }).catch(error => {
        console.log(error);
