@@ -105,13 +105,21 @@ exports.loginpage = (req, res) => {
     if (req.body[key]!==null) {
        search[key] = {$regex: '^' + req.body[key],     $options: 'ix'};
      }
+     else {
+      search[key] = {$regex: '' +"    "};
+     }
    });
  
   Admins.find(search)
  .then(result => {
+   console.log(result);
+      if(result!=[])
        res.send(result);
+       else 
+       res.status(400).send();
      })
      .catch(err => {
-       console.log(err);
+     
+      console.log(err);
      });
  };
