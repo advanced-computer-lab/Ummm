@@ -102,6 +102,8 @@ class HomePage extends React.Component {
              </div>
            
 
+
+
          <div class="grid-item">
          <a   name ="DeletePic" href="/UserManageBooking" target="_self">
         <img class="static" src="https://i.ibb.co/xJx5KDR/creategifframee.jpg" />
