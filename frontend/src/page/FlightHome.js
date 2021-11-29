@@ -1,6 +1,6 @@
 
 //import './home.scss';
-import './App.css';
+import '../css/App.css';
 
 import {
     Form,
@@ -36,7 +36,7 @@ const FlightHome = () => {
                     <button2>Admin</button2>
                 </a>
                 
-                <a href="LoginPage"> 
+                <a href="UserLogin"> 
                     <button3>User</button3>
                 </a>
   

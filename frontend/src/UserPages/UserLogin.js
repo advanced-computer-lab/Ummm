@@ -11,13 +11,6 @@ import {
   Input,
   Button,
   message,
-  Radio,
-  Select,
-  Cascader,
-  DatePicker,
-  InputNumber,
-  TreeSelect,
-  Switch,
 } from 'antd';
 
 
@@ -62,7 +55,7 @@ const LoginPage = () => {
         Password: "",
         })
         history.push({
-            pathname: '/homepage'
+            pathname: '/UserHomePage' //Pass to 
           });
        }).catch(error => {
          warning();
@@ -70,7 +63,28 @@ const LoginPage = () => {
     })
 
   };
+
+
+  const createHandler = (e) => {
+      
+    e.preventDefault();  
+        history.push({
+            pathname: '/CreateUserAccount'
+          });
+  };
+
+  const GuestHandler = (e) => {
+      
+    e.preventDefault();  
+        history.push({
+            pathname: '/UserHomePage'
+          });
+  };
   
+
+
+
+
   const warning = () => {
     message.warning('Incorrect Username or Password!');
   }
@@ -96,7 +110,14 @@ const LoginPage = () => {
           size={componentSize}
         >
     
+
+     <div>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <Button onClick={() => history.goBack()}>Back</Button>
+        </div>
+
           <Form.Item label="Username">
+
             <Input type="text" name="Username" placeholder="Username" value={Data.Username} onChange={(e) => changeHander(e)}/>
           </Form.Item>
   
@@ -108,11 +129,14 @@ const LoginPage = () => {
 
           <Form.Item>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <Button onClick={() => history.goBack()}>Back</Button>
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          <Button onClick={(e) => loginHandler(e)} >Log-In</Button>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <Button onClick={(e) => createHandler(e)} >Create Account</Button>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <Button onClick={(e) => GuestHandler(e)} >Continue as Guest</Button>
         </Form.Item>
   
         </Form>

@@ -1,4 +1,4 @@
-import './App.css';
+import '../css/App.css';
 import { Component, useState,useEffect, useReducer } from 'react';
 import axios from 'axios'
 import { Route, Redirect } from 'react-router'

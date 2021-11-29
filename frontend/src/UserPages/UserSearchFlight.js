@@ -111,7 +111,7 @@ const SearchFlight = () => {
           onValuesChange={onFormLayoutChange}
           size={componentSize}
         >
-          <Form.Item label="Flight_No:">
+          <Form.Item label="USERRR SEARCH FLIGHTTT">
           <Input type="text" name="Flight_No" maxLength="5" placeholder="FNXXX" value={Data.Flight_No} onChange={(e) => changeHander(e)}/>
         </Form.Item>
     
@@ -197,7 +197,7 @@ const SearchFlight = () => {
         size={componentSize}
       >
   
-  <Form.Item label="Flight_No:">
+  <Form.Item label="USERRR SEARCH FLIGHTTT">
           <Input type="text" name="Flight_No" maxLength="5" placeholder="FNXXX" value={Data.Flight_No} onChange={(e) => changeHander(e)}/>
         </Form.Item>
     
