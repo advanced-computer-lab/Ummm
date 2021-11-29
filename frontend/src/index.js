@@ -10,6 +10,15 @@ import SearchFlight from './page/SearchFlight.js'
 import LoginPage from './page/LoginPage.js'
 import HomePage from './page/HomePage.js'
 
+import UserLogin from './UserPages/UserLogin.js'
+import UserHomePage from './UserPages/UserHomePage.js'
+import CreateUserAccount from './UserPages/CreateUserAccount'
+import UserSearchFlight from './UserPages/UserSearchFlight'
+import UserManageBooking from './UserPages/UserManageBooking'
+
+
+
+
 import FlightHome from './page/FlightHome.js'
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 
@@ -20,13 +29,23 @@ ReactDOM.render(
 
 <BrowserRouter>
                 <Switch>
+                    <Route exact path="/" component={FlightHome} />
                     <Route exact path="/ViewFlights" component={ViewFlights} />
                     <Route exact path="/UpdateFlight" component={UpdateFlight} />
                     <Route exact path="/CreateFlight" component={CreateFlight} />
                     <Route exact path="/SearchFlight" component={SearchFlight} />
                     <Route exact path="/HomePage" component={HomePage} />
                     <Route exact path="/LoginPage" component={LoginPage} />
-                    <Route exact path="/" component={FlightHome} />
+
+                    <Route exact path="/UserLogin" component={UserLogin} />
+                    <Route exact path="/UserHomePage" component={UserHomePage} />
+                    <Route exact path="/CreateUserAccount" component={CreateUserAccount} />
+                    <Route exact path="/UserSearchFlight" component={UserSearchFlight} />
+                    <Route exact path="/UserManageBooking" component={UserManageBooking} />
+
+                    
+
+                    
                 </Switch>
             </BrowserRouter>
 

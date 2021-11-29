@@ -1,6 +1,7 @@
 // #Task route solution
 const Flights = require('../models/Flights');
 const Admins = require('../models/Admins');
+const Users = require('../models/User');
 const moment = require('moment');
 const today = moment().startOf('day');
 
