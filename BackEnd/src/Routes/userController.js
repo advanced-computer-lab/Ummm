@@ -66,7 +66,19 @@ exports.searchflight = (req, res) => {
   Object.keys(req.body).forEach(key => {
 
    if (req.body[key]!==null) {
-      if(key=='Flight_Date'){
+     if(key=="Flight_Date_Depart"){
+      dd = (req.body[key]);
+      var start1 = moment(dd).startOf('day');
+      var end1 = moment(dd).endOf('day'); 
+
+      rd = (req.body[Flight_Date]);
+      var start2 = moment(rd).startOf('day');
+      var end2 = moment(rd).endOf('day'); 
+      if(end2.isSameOrAfter(end1)){
+        search[key] = { '$gte': start2,"$lt": end2};
+      }
+     }
+     else if(key=='Flight_Date'){
         dd = (req.body[key]);
         var start = moment(dd).startOf('day');
         var end = moment(dd).endOf('day'); 
