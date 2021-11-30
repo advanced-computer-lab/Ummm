@@ -51,18 +51,18 @@ const SearchFlight = () => {
   };
   const [value, setValue] = useState(1);
   const selectRadio = e => {
-   // console.log('radio checked', e.target.value);
+    console.log('radio checked', e.target.value);
     setValue(e.target.value);
   };
 
 
-
+  const cars = [];
   const [isdepart, setdepart] = useState();
 
   const departHandler = (flight) => {
     setdepart( flight )
-    console.log(flight) ;
-      
+   // console.log(flight) ;
+   
     };
     
 
@@ -70,8 +70,11 @@ const SearchFlight = () => {
 
     const returnHandler = (flight) => {
       setreturn( flight )
-      console.log(flight) ;
+      //console.log(flight) ;
+      
       };
+      
+     
   
 
   
@@ -128,47 +131,36 @@ const SearchFlight = () => {
 
     Object.keys(Data).forEach(key => {
    if (Data[key]!=="") {
-          if(key==="Flight_Date_Depart"){
-            criteria1["Flight_Date"] = Data[key];
-            criteria2["Flight_Date_Depart"] = Data[key];
-          }
-          else 
-          criteria1[key] = Data[key];
-              
-        }
-
-   if (Data[key]!=="") {
-        if(key==="From"){
+        criteria1[key] = Data[key];
+        if(key=="From"){
           criteria2[key] = Data["To"];
         }
-       else if(key==="To"){
+       else if(key=="To"){
           criteria2[key] = Data["From"];
-        }
-        else if(key==="Flight_Date_Return"){
-          criteria2["Flight_Date"] = Data[key];
         }
         else 
         criteria2[key] = Data[key];
       }
-      
     });
-    console.log(criteria1);
-     console.log(criteria2);
-
+    //console.log(criteria);
 
    // prevent reloading the page
     axios.post('http://localhost:8000/SearchFlight', criteria1)
     .then(response => {
       setResult1(response.data);
-      // / console.log(Result1);
-       }).catch(error => {
-      console.log(error);
-    })
-
-    axios.post('http://localhost:8000/SearchFlight', criteria2)
-    .then(response => {
-      setResult2(response.data);
-       console.log(Result2);
+       console.log(Result1);
+       setLoading(false);
+      setState({
+        Flight_No: "",
+        From: "",  
+        To: "",
+        Flight_Date_Depart: "", // Data type date
+        Flight_Date_Return: "", // Data type date
+        Terminal: "",
+        Economy_Seats: "",
+        Business_Seats: "",
+        First_Seats: ""
+        })
        }).catch(error => {
       console.log(error);
     })
@@ -196,12 +188,23 @@ const SearchFlight = () => {
   
   };
   
+  const testme = () => {
+    if(isdepart )
+    document.getElementById("yourButtonID").style.visibility="visable";
+  }; 
+
+  
 
 
 
   if (isLoading) {
     return (
       <>
+             
+               
+
+
+
         {/* adasdas */}
 <div class="s011" >
       <form>
@@ -343,7 +346,7 @@ const SearchFlight = () => {
 
   return (
     <>
-      
+      {/* {isdepart ? <p>Length is 1</p>:null} */}
    {/* adasdas */}
 <div class="s011" >
       <form>
@@ -495,10 +498,10 @@ const SearchFlight = () => {
         <div class="listing">
             <h4>From: {flight.From}</h4>
             <h4>To:{flight.To}</h4>
-            <h4>Flight Date:{moment(flight.Flight_Date).format("YYYY-MM-DD")}</h4>
-            <h4>Flight time:{moment(flight.Flight_Date).format("HH:mm")}</h4>
+            <h4>Flight Date:{moment(flight.Flight_Date_Depart).format("YYYY-MM-DD")}</h4>
+            <h4>Flight time:{moment(flight.Flight_Date_Depart).format("HH:mm")}</h4>
            
-            <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a>
+            <a class="pricing-button" name={flight._id}  onClick={() => departHandler()} >BOOK NOW!</a>
 
         </div>
     </div>
@@ -507,7 +510,7 @@ const SearchFlight = () => {
 
 
           )}
-
+ 
     </div>
     <label class="center">Return Flight</label>
     <div class="box g">
@@ -528,9 +531,10 @@ const SearchFlight = () => {
         <div class="listing">
             <h4>From: {flight.From}</h4>
             <h4>To:{flight.To}</h4>
-            <h4>Flight Date:{moment(flight.Flight_Date).format("YYYY-MM-DD")}</h4>
-            <h4>Flight time:{moment(flight.Flight_Date).format("HH:mm")}</h4>
-            <a href="#/" class="pricing-button">BOOK NOW!</a>
+            <h4>Flight Date:{moment(flight.Flight_Date_Return).format("YYYY-MM-DD")}</h4>
+            <h4>Flight time:{moment(flight.Flight_Date_Return).format("HH:mm")}</h4>
+           
+            <a  class="pricing-button" departHandler  name={flight._id} onClick={() => returnHandler()} >BOOK NOW!</a>
 
         </div>
     </div>
@@ -541,15 +545,20 @@ const SearchFlight = () => {
           )}
       
     </div>
+   
+    <button  class="pricing-button2"  id="yourButtonID" >BOOK NOW!</button>
+
+    
+     
 
 
   
 </div>
-
+{/* <button   class="pricing-button" id="yourButtonID"  >Confirm NOW !</button> */}
           
 
           
-        <div class="grid-container2"  >
+        <div class="grid-container2" >
         
 
 
@@ -564,11 +573,12 @@ const SearchFlight = () => {
 
 
 
-    <script src="js/extention/choices.js"></script>
+    <script src="js/extention/choices.js"> </script>
     
 
       
     </>
+    
   );
 };
 export default SearchFlight;

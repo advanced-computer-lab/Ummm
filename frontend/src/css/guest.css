@@ -176,9 +176,24 @@ figcaption p{
     text-decoration: none;
     transition: all 150ms ease-in-out;
   }
+  .pricing-button2 {
+    border: 1px solid #9dd1ff;
+    border-radius: 10px;
+    color: #348EFE;
+    display: inline-block;
+    margin: 25px 0;
+    padding: 15px 35px;
+    text-decoration: none;
+    transition: all 150ms ease-in-out;
+    visibility: hidden;
+  }
   
   .pricing-button:hover,
   .pricing-button:focus {
+    background-color: #e1f1ff;
+  }
+  .pricing-button2:hover,
+  .pricing-button2:focus {
     background-color: #e1f1ff;
   }
   
@@ -186,9 +201,17 @@ figcaption p{
     background-color: #48aaff;
     color: #fff;
   }
+  .pricing-button2.is-featured {
+    background-color: #48aaff;
+    color: #fff;
+  }
   
   .pricing-button.is-featured:hover,
   .pricing-button.is-featured:active {
+    background-color: #269aff;
+  }
+  .pricing-button2.is-featured:hover,
+  .pricing-button2.grid-item2:active {
     background-color: #269aff;
   }
 
