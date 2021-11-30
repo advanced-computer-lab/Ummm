@@ -44,7 +44,7 @@ const SearchFlight = () => {
     First_Seats: ""
   });
   
-
+  
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
@@ -54,6 +54,21 @@ const SearchFlight = () => {
     setValue(e.target.value);
   };
 
+
+
+  const [isdepart, setdepart] = useState();
+  const departHandler = (flight) => {
+    setdepart( flight )
+    console.log(flight) ;
+      
+    };
+    
+
+    const [isreturn, setreturn] = useState();
+    const returnHandler = (flight) => {
+      setreturn( flight )
+      console.log(flight) ;
+      };
   
 
   
@@ -451,7 +466,7 @@ const SearchFlight = () => {
             <h4>Flight Date:{moment(flight.Flight_Date).format("YYYY-MM-DD")}</h4>
             <h4>Flight time:{moment(flight.Flight_Date).format("HH:mm")}</h4>
            
-            <a href="#/" class="pricing-button">BOOK NOW!</a>
+            <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a>
 
         </div>
     </div>
