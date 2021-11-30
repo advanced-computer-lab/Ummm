@@ -58,6 +58,7 @@ const SearchFlight = () => {
 
 
   const [isdepart, setdepart] = useState();
+
   const departHandler = (flight) => {
     setdepart( flight )
     console.log(flight) ;
@@ -66,6 +67,7 @@ const SearchFlight = () => {
     
 
     const [isreturn, setreturn] = useState();
+
     const returnHandler = (flight) => {
       setreturn( flight )
       console.log(flight) ;
@@ -93,7 +95,14 @@ const SearchFlight = () => {
       setLoading(false);
     }
 
-  },[Result1,Result2]);
+    if(isdepart){
+      console.log("testttt")
+      document.getElementById()
+    }
+
+
+
+  },[Result1,Result2,isdepart]);
 
 
 
