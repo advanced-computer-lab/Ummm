@@ -27,10 +27,11 @@ import {
 
 const SearchFlight = () => {
  const history = useHistory();
-  const [isLoading, setLoading] = useState(true);
   const [componentSize, setComponentSize] = useState('default');
   const [Result1, setResult1] = useState();
   const [Result2, setResult2] = useState();
+  const [isLoading, setLoading] = useState(true);
+
   
   const [Data, setState] = useState({
     Flight_No: "",
@@ -81,6 +82,24 @@ const SearchFlight = () => {
   // },[]);
 
 
+  // var delayInMilliseconds = 5000; //1 second
+
+  // setTimeout(function() {
+  //   //your code to be executed after 1 second
+  // }, delayInMilliseconds);
+
+
+  useEffect(() => {
+
+    if(Result1 && Result2)
+    {
+      setLoading(false);
+    }
+
+  },[Result1,Result2]);
+
+
+
   const changeHander = (e) => {
 
 
@@ -91,6 +110,9 @@ const SearchFlight = () => {
   };
 
 
+
+
+  //TTTTTT
   const searchHandler = (e) => {
     e.preventDefault(); 
   
@@ -134,6 +156,27 @@ const SearchFlight = () => {
       console.log(error);
     })
 
+    // Object.keys(Result2).forEach(key => {
+
+    // });
+
+    console.log(Result1);
+    console.log(Result2);
+
+
+    setState({
+      Flight_No: "",
+      From: "",  
+      To: "",
+      Flight_Date_Depart: "", // Data type date
+      Flight_Date_Return: "", // Data type date
+      Terminal: "",
+      Economy_Seats: "",
+      Business_Seats: "",
+      First_Seats: ""
+      })
+
+  
   };
   
   const testme = () => {
