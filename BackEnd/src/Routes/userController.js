@@ -74,15 +74,22 @@ exports.searchflight = (req, res) => {
     //   rd = (req.body[Flight_Date]);
     //   var start2 = moment(rd).startOf('day');
     //   var end2 = moment(rd).endOf('day'); 
-    //   if(end2.isSameOrAfter(end1)){
-    //     search[key] = { '$gte': start2,"$lt": end2};
+    //   if(end2.isAfter(end1)){
+    //     console.log("testtt")
+    //     search["Flight_Date"] = { '$gte': start2,"$lt": end2};
     //   }
+      
     //  }
+    //  else
      if(key=='Flight_Date'){
         dd = (req.body[key]);
         var start = moment(dd).startOf('day');
         var end = moment(dd).endOf('day'); 
-        search[key] = { '$gte': start,"$lt": end};
+        if(search["Flight_Date"]){
+          console.log("innnnnn")
+          console.log(search["Flight_Date"])
+          search[key] = { '$gte': start,"$lt": end};
+        }
       }
       else if(key=='Economy_Seats' || key=='Business_Seats' || key=='First_Seats'){
         ss = (req.body[key]); 
@@ -100,7 +107,7 @@ exports.searchflight = (req, res) => {
 Flights.find(search)
 .then(result => {
       res.send(result);
-      console.log(result);
+      // console.log(result);
     })
     .catch(err => {
       console.log(err);
