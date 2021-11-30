@@ -128,11 +128,13 @@ const SearchFlight = () => {
 <div class="s011" >
       <form>
         <fieldset>
-          <legend>Search Hotels</legend>
+        
         </fieldset>
         <div class="inner-form">
           <header>
+          <label class="center2">Search Flight</label>
             <div class="travel-type-wrap">
+          
               <div class="item active">
                 <div class="group-icon">
                 <svg class="svg-inline--fa fa-plane fa-w-18" aria-hidden="true" data-prefix="fas" data-icon="plane" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -268,10 +270,11 @@ const SearchFlight = () => {
 <div class="s011" >
       <form>
         <fieldset>
-          <legend>Search Hotels</legend>
+       
         </fieldset>
         <div class="inner-form">
           <header>
+          <label class="center2">Search Flight</label>
             <div class="travel-type-wrap">
               <div class="item active">
                 <div class="group-icon">
