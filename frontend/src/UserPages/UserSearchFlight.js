@@ -18,6 +18,7 @@ import {
   DatePicker,
   InputNumber,
   TreeSelect,
+  message,
   Switch,
 } from 'antd';
 
@@ -122,6 +123,11 @@ console.log(isreturn);
 
     Object.keys(Data).forEach(key => {
    if (Data[key]!=="") {
+    if(key=="Flight_Date_Depart"){
+      criteria1["Flight_Date"] = Data[key];
+      // criteria2["Flight_Date_Depart"] = Data[key];
+    }
+      else
         criteria1[key] = Data[key];
         if(key=="From"){
           criteria2[key] = Data["To"];
@@ -129,18 +135,41 @@ console.log(isreturn);
        else if(key=="To"){
           criteria2[key] = Data["From"];
         }
-        else 
+        else if(key=="Flight_Date_Return"){
+          criteria2["Flight_Date"] = Data[key];
+        }
+        else
         criteria2[key] = Data[key];
       }
     });
     //console.log(criteria);
 
    // prevent reloading the page
+   console.log(Data.Flight_Date_Depart);
+   if(Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date_Depart!=="" &&Data.Flight_Date_Return!==""){
     axios.post('http://localhost:8000/SearchFlight', criteria1)
     .then(response => {
       setResult1(response.data);
        console.log(Result1);
-       setLoading(false);
+      setState({
+        Flight_No: "",
+        From: "",  
+        To: "",
+        Flight_Date_Depart: "", // Data type date
+        Flight_Date_Return: "", // Data type date
+        Terminal: "",
+        Economy_Seats: "",
+        Business_Seats: "",
+        First_Seats: ""
+        })
+       }).catch(error => {
+      console.log(error);
+    })
+
+    axios.post('http://localhost:8000/SearchFlight', criteria2)
+    .then(response => {
+      setResult2(response.data);
+       console.log(Result2);
       setState({
         Flight_No: "",
         From: "",  
@@ -176,9 +205,39 @@ console.log(isreturn);
       First_Seats: ""
       })
 
+    }
+
+      else if(Data.From.length<3 ){
+        warning1();
+      }
+      else if(Data.To.length<3 ){
+        warning2();
+      }
+      else if(Data.Flight_Date_Depart=="" ){
+        warning3();
+      }
+      else if(Data.Flight_Date_Return=="" ){
+        warning4();
+      }
   
   };
   
+
+  const warning1 = () => {
+    message.warning('Please enter departure city');
+  };
+
+  const warning2 = () => {
+    message.warning('Please enter a destination.');
+  };
+
+  const warning3 = () => {
+    message.warning('Please enter departure date.');
+  };
+  const warning4 = () => {
+    message.warning('Please enter return date.');
+  };
+
   // const testme = () => {
   //   if(isdepart )
   //   document.getElementById("yourButtonID").style.visibility="visable";
@@ -400,11 +459,19 @@ console.log(isreturn);
                   <label>DEPART</label>
                   
                   
+<<<<<<< HEAD
                   <DatePicker  type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Depart} format="DD-MM-YYYY"
           showTime="false" disabledDate={d => d.isBefore(new Date())}
              name="Depart" onChange={(date) => setState(prevData => {
                 return {...prevData ,Flight_Date_Depart: date}}) 
       }/>  
+=======
+          <DatePicker type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Depart} format="DD-MM-YYYY"
+             disabledDate={d => d.isBefore(new Date())}
+             name="FlightDate" onChange={(date) => setState(prevData => {
+                return {...prevData ,Flight_Date_Depart: date}}) 
+      }/>
+>>>>>>> bf83e957fbe0f58d504203701e02d4707c0ebcdd
         
                
               </div>
@@ -414,9 +481,15 @@ console.log(isreturn);
                 </div>
                 <div class="input-field">
                   <label>RETURN</label>
+<<<<<<< HEAD
                   <DatePicker  type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Return} format="DD-MM-YYYY"
           showTime="false" disabledDate={d => d.isBefore(new Date())}
              name="Return" onChange={(date) => setState(prevData => {
+=======
+                  <DatePicker type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Return} format="DD-MM-YYYY"
+                 disabledDate={d => d.isBefore(Data.Flight_Date_Depart)}
+             name="FlightDate" onChange={(date) => setState(prevData => {
+>>>>>>> bf83e957fbe0f58d504203701e02d4707c0ebcdd
                 return {...prevData ,Flight_Date_Return: date}}) 
       }/>
                 </div>
@@ -489,8 +562,8 @@ console.log(isreturn);
         <div class="listing">
             <h4>From: {flight.From}</h4>
             <h4>To:{flight.To}</h4>
-            <h4>Flight Date:{moment(flight.Flight_Date_Depart).format("YYYY-MM-DD")}</h4>
-            <h4>Flight time:{moment(flight.Flight_Date_Depart).format("HH:mm")}</h4>
+            <h4>Flight Date:{moment(flight.Flight_Date).format("YYYY-MM-DD")}</h4>
+            <h4>Flight time:{moment(flight.Flight_Date).format("HH:mm")}</h4>
            
             {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
             <button class="button-79" role="button" name={flight._id} onClick={() => departHandler(flight)}>BOOK NOW!</button>
@@ -507,7 +580,7 @@ console.log(isreturn);
     <div class="box g">
 
 
-    {Result1.map(flight =>
+    {Result2.map(flight =>
         
     <div class="listing-item">
         <figure class="image">
@@ -522,8 +595,8 @@ console.log(isreturn);
         <div class="listing">
             <h4>From: {flight.From}</h4>
             <h4>To:{flight.To}</h4>
-            <h4>Flight Date:{moment(flight.Flight_Date_Return).format("YYYY-MM-DD")}</h4>
-            <h4>Flight time:{moment(flight.Flight_Date_Return).format("HH:mm")}</h4>
+            <h4>Flight Date:{moment(flight.Flight_Date).format("YYYY-MM-DD")}</h4>
+            <h4>Flight time:{moment(flight.Flight_Date).format("HH:mm")}</h4>
            
             {/* <a  class=" button-79"  name={flight._id} onClick={() => returnHandler(flight)} >BOOK NOW!</a> */}
             <button class="button-79" role="button" name={flight._id} onClick={() => returnHandler(flight)}>BOOK NOW!</button>
