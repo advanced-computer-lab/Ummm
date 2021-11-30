@@ -329,7 +329,7 @@ console.log(isreturn);
                 <div class="input-field">
                   <label>RETURN</label>
                   <DatePicker  type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Return} format="DD-MM-YYYY"
-          showTime="false" disabledDate={d => d.isBefore(new Date())}
+          showTime="false" disabledDate={d => d.isBefore(Data.Flight_Date_Depart)}
              name="Return" onChange={(date) => setState(prevData => {
                 return {...prevData ,Flight_Date_Return: date}}) 
       }/>
@@ -459,19 +459,11 @@ console.log(isreturn);
                   <label>DEPART</label>
                   
                   
-<<<<<<< HEAD
-                  <DatePicker  type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Depart} format="DD-MM-YYYY"
-          showTime="false" disabledDate={d => d.isBefore(new Date())}
-             name="Depart" onChange={(date) => setState(prevData => {
-                return {...prevData ,Flight_Date_Depart: date}}) 
-      }/>  
-=======
           <DatePicker type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Depart} format="DD-MM-YYYY"
              disabledDate={d => d.isBefore(new Date())}
              name="FlightDate" onChange={(date) => setState(prevData => {
                 return {...prevData ,Flight_Date_Depart: date}}) 
       }/>
->>>>>>> bf83e957fbe0f58d504203701e02d4707c0ebcdd
         
                
               </div>
@@ -481,15 +473,9 @@ console.log(isreturn);
                 </div>
                 <div class="input-field">
                   <label>RETURN</label>
-<<<<<<< HEAD
-                  <DatePicker  type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Return} format="DD-MM-YYYY"
-          showTime="false" disabledDate={d => d.isBefore(new Date())}
-             name="Return" onChange={(date) => setState(prevData => {
-=======
                   <DatePicker type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Return} format="DD-MM-YYYY"
                  disabledDate={d => d.isBefore(Data.Flight_Date_Depart)}
              name="FlightDate" onChange={(date) => setState(prevData => {
->>>>>>> bf83e957fbe0f58d504203701e02d4707c0ebcdd
                 return {...prevData ,Flight_Date_Return: date}}) 
       }/>
                 </div>
