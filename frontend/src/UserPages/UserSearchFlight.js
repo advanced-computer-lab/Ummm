@@ -27,10 +27,11 @@ import {
 
 const SearchFlight = () => {
  const history = useHistory();
-  const [isLoading, setLoading] = useState(true);
   const [componentSize, setComponentSize] = useState('default');
   const [Result1, setResult1] = useState();
   const [Result2, setResult2] = useState();
+  const [isLoading, setLoading] = useState(true);
+
   
   const [Data, setState] = useState({
     Flight_No: "",
@@ -78,6 +79,24 @@ const SearchFlight = () => {
   // },[]);
 
 
+  // var delayInMilliseconds = 5000; //1 second
+
+  // setTimeout(function() {
+  //   //your code to be executed after 1 second
+  // }, delayInMilliseconds);
+
+
+  useEffect(() => {
+
+    if(Result1 && Result2)
+    {
+      setLoading(false);
+    }
+
+  },[Result1,Result2]);
+
+
+
   const changeHander = (e) => {
 
 
@@ -86,6 +105,8 @@ const SearchFlight = () => {
     setState( prevData => {
      return {...prevData ,[e.target.name]: e.target.value}})
   };
+
+
 
 
   //TTTTTT
@@ -143,10 +164,12 @@ const SearchFlight = () => {
       console.log(error);
     })
 
-    Object.keys(Result2).forEach(key => {
+    // Object.keys(Result2).forEach(key => {
 
-    });
+    // });
 
+    console.log(Result1);
+    console.log(Result2);
 
 
     setState({
@@ -160,8 +183,8 @@ const SearchFlight = () => {
       Business_Seats: "",
       First_Seats: ""
       })
-    setLoading(false);
 
+  
   };
   
 
@@ -481,7 +504,7 @@ const SearchFlight = () => {
     <div class="box g">
 
 
-    {Result2.map(flight =>
+    {Result1.map(flight =>
         
     <div class="listing-item">
         <figure class="image">
