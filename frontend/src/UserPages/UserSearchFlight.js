@@ -61,7 +61,7 @@ const SearchFlight = () => {
 
   const departHandler = (flight) => {
     setdepart( flight )
-   // console.log(flight) ;
+    console.log(flight) ;
    
     };
     
@@ -74,22 +74,7 @@ const SearchFlight = () => {
       
       };
       
-     
-  
-
-  
-
-  // useEffect(() => {  // Run after page loads "more usefull in get"
-
-  // },[]);
-
-
-  // var delayInMilliseconds = 5000; //1 second
-
-  // setTimeout(function() {
-  //   //your code to be executed after 1 second
-  // }, delayInMilliseconds);
-
+    
 
   useEffect(() => {
 
@@ -98,14 +83,12 @@ const SearchFlight = () => {
       setLoading(false);
     }
 
-    if(isdepart){
-      console.log("testttt")
-      document.getElementById()
+    if(isdepart && isreturn){
+     document.getElementById("yourButtonID").style.visibility="visible";
     }
 
 
-
-  },[Result1,Result2,isdepart]);
+  },[Result1,Result2,isdepart,isreturn]);
 
 
 
@@ -188,10 +171,10 @@ const SearchFlight = () => {
   
   };
   
-  const testme = () => {
-    if(isdepart )
-    document.getElementById("yourButtonID").style.visibility="visable";
-  }; 
+  // const testme = () => {
+  //   if(isdepart )
+  //   document.getElementById("yourButtonID").style.visibility="visable";
+  // }; 
 
   
 
@@ -501,7 +484,7 @@ const SearchFlight = () => {
             <h4>Flight Date:{moment(flight.Flight_Date_Depart).format("YYYY-MM-DD")}</h4>
             <h4>Flight time:{moment(flight.Flight_Date_Depart).format("HH:mm")}</h4>
            
-            <a class="pricing-button" name={flight._id}  onClick={() => departHandler()} >BOOK NOW!</a>
+            <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a>
 
         </div>
     </div>
@@ -534,7 +517,7 @@ const SearchFlight = () => {
             <h4>Flight Date:{moment(flight.Flight_Date_Return).format("YYYY-MM-DD")}</h4>
             <h4>Flight time:{moment(flight.Flight_Date_Return).format("HH:mm")}</h4>
            
-            <a  class="pricing-button" departHandler  name={flight._id} onClick={() => returnHandler()} >BOOK NOW!</a>
+            <a  class="pricing-button"  name={flight._id} onClick={() => returnHandler(flight)} >BOOK NOW!</a>
 
         </div>
     </div>
