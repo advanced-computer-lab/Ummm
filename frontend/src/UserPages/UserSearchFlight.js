@@ -6,6 +6,7 @@ import 'antd/dist/antd.css';
 import '../css/guest.css';
 import '../css/main.css';
 
+
 import moment from "moment";
 import {
   Form,
@@ -61,7 +62,7 @@ const SearchFlight = () => {
 
   const departHandler = (flight) => {
     setdepart( flight )
-    console.log(flight) ;
+    //console.log(flight) ;
    
     };
     
@@ -85,6 +86,8 @@ const SearchFlight = () => {
 
     if(isdepart && isreturn){
      document.getElementById("yourButtonID").style.visibility="visible";
+    // document.getElementById("yourButtonID").style.backgroundColor="red";
+    
     }
 
 
@@ -93,14 +96,19 @@ const SearchFlight = () => {
 
 
   const changeHander = (e) => {
-
-
     console.log(moment(Data.Flight_Date));
 
     setState( prevData => {
      return {...prevData ,[e.target.name]: e.target.value}})
   };
 
+  
+  const BookHendler = () => {
+   
+console.log(isdepart);
+console.log(isreturn);
+    
+  };
 
 
 
@@ -249,9 +257,9 @@ const SearchFlight = () => {
                   <label>DEPART</label>
                   
                   
-          <DatePicker type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Depart} format="DD-MM-YYYY"
+          <DatePicker  type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Depart} format="DD-MM-YYYY"
           showTime="false" disabledDate={d => d.isBefore(new Date())}
-             name="FlightDate" onChange={(date) => setState(prevData => {
+             name="Depart" onChange={(date) => setState(prevData => {
                 return {...prevData ,Flight_Date_Depart: date}}) 
       }/>  
               </div>
@@ -261,9 +269,9 @@ const SearchFlight = () => {
                 </div>
                 <div class="input-field">
                   <label>RETURN</label>
-                  <DatePicker type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Return} format="DD-MM-YYYY"
+                  <DatePicker  type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Return} format="DD-MM-YYYY"
           showTime="false" disabledDate={d => d.isBefore(new Date())}
-             name="FlightDate" onChange={(date) => setState(prevData => {
+             name="Return" onChange={(date) => setState(prevData => {
                 return {...prevData ,Flight_Date_Return: date}}) 
       }/>
                 </div>
@@ -392,11 +400,11 @@ const SearchFlight = () => {
                   <label>DEPART</label>
                   
                   
-          <DatePicker type="date" format="DD-MM-YYYY" value={Data.Flight_Date} format="DD-MM-YYYY"
+                  <DatePicker  type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Depart} format="DD-MM-YYYY"
           showTime="false" disabledDate={d => d.isBefore(new Date())}
-             name="FlightDate" onChange={(date) => setState(prevData => {
-                return {...prevData ,Flight_Date: date}}) 
-      }/>
+             name="Depart" onChange={(date) => setState(prevData => {
+                return {...prevData ,Flight_Date_Depart: date}}) 
+      }/>  
         
                
               </div>
@@ -406,10 +414,10 @@ const SearchFlight = () => {
                 </div>
                 <div class="input-field">
                   <label>RETURN</label>
-                  <DatePicker type="date" format="DD-MM-YYYY" value={Data.Flight_Date} format="DD-MM-YYYY"
+                  <DatePicker  type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Return} format="DD-MM-YYYY"
           showTime="false" disabledDate={d => d.isBefore(new Date())}
-             name="FlightDate" onChange={(date) => setState(prevData => {
-                return {...prevData ,Flight_Date: date}}) 
+             name="Return" onChange={(date) => setState(prevData => {
+                return {...prevData ,Flight_Date_Return: date}}) 
       }/>
                 </div>
               </div>
@@ -484,8 +492,8 @@ const SearchFlight = () => {
             <h4>Flight Date:{moment(flight.Flight_Date_Depart).format("YYYY-MM-DD")}</h4>
             <h4>Flight time:{moment(flight.Flight_Date_Depart).format("HH:mm")}</h4>
            
-            <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a>
-
+            {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
+            <button class="button-79" role="button" name={flight._id} onClick={() => departHandler(flight)}>BOOK NOW!</button>
         </div>
     </div>
    
@@ -517,7 +525,9 @@ const SearchFlight = () => {
             <h4>Flight Date:{moment(flight.Flight_Date_Return).format("YYYY-MM-DD")}</h4>
             <h4>Flight time:{moment(flight.Flight_Date_Return).format("HH:mm")}</h4>
            
-            <a  class="pricing-button"  name={flight._id} onClick={() => returnHandler(flight)} >BOOK NOW!</a>
+            {/* <a  class=" button-79"  name={flight._id} onClick={() => returnHandler(flight)} >BOOK NOW!</a> */}
+            <button class="button-79" role="button" name={flight._id} onClick={() => returnHandler(flight)}>BOOK NOW!</button>
+
 
         </div>
     </div>
@@ -528,29 +538,30 @@ const SearchFlight = () => {
           )}
       
     </div>
-   
-    <button  class="pricing-button2"  id="yourButtonID" >BOOK NOW!</button>
-
     
+          
+
+       
+   
+    <button  class="pricing-button"  id="yourButtonID" onClick={() => BookHendler()} >BOOK NOW!</button>
+
+   
+    
+    {/* <button class='active'>Active</button>
+<button class='focus'>Focus</button>
+<a href='#target1' id='target1' class='target'>Target 1</a>
+<a href='#target2' id='target2' class='target'>Target 2</a>
+<a href='#target3' id='target3' class='target'>Target 3</a> */}
      
 
 
   
 </div>
 {/* <button   class="pricing-button" id="yourButtonID"  >Confirm NOW !</button> */}
+
+
           
-
-          
-        <div class="grid-container2" >
         
-
-
-
-
-
-        
-
-</div>
 
 
 

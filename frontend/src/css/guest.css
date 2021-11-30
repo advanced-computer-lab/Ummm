@@ -175,6 +175,10 @@ figcaption p{
     padding: 15px 35px;
     text-decoration: none;
     transition: all 150ms ease-in-out;
+    visibility: hidden;
+  }
+  .pricing-button:active{
+    background-color:rgb(0, 0, 0);
   }
   .pricing-button2 {
     border: 1px solid #9dd1ff;
@@ -248,8 +252,185 @@ figcaption p{
     font-size: 150%;
 
   }
+
+  
+  
+  button:hover{background-color:#63b6ff;}
+  
+  button:focus{background-color:rgb(57, 238, 63);}
+  
+
+ 
   
   
   
   
+  
+  
+
+
+
+
+
+
+ :target {
+    color: red;
+  }
+
+  .button-79 {
+    margin:35px;
+    backface-visibility: hidden;
+    background:#269aff;
+    border: 0;
+    border-radius: .375rem;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Circular,Helvetica,sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    line-height: 1.3;
+    padding: 1rem 1.25rem;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transform: translateZ(0) scale(1);
+    transition: transform .2s;
+    
+  }
+  
+  .button-79:disabled {
+    color: #787878;
+    cursor: auto;
+  }
+  
+  .button-79:not(:disabled):hover {
+    transform: scale(1.05);
+  }
+  
+  .button-79:not(:disabled):hover:active {
+    transform: scale(1.05) translateY(.125rem);
+  }
+  
+  .button-79:focus {
+    outline: 0 solid transparent;
+  }
+  
+  .button-79:focus:before {
+    border-width: .125rem;
+    content: "";
+    left: calc(-1*.375rem);
+    pointer-events: none;
+    position: absolute;
+    top: calc(-1*.375rem);
+    transition: border-radius;
+    user-select: none;
+  }
+  
+  .button-79:focus:not(:focus-visible) {
+    outline: 0 solid transparent;
+  }
+  
+  .button-79:not(:disabled):active {
+    transform: translateY(.125rem);
+  }
+
+
+
+
+  .button-80 {
+    margin:35px;
+    backface-visibility: hidden;
+    background:#269aff;
+    border: 0;
+    border-radius: .375rem;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Circular,Helvetica,sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    line-height: 1.3;
+    padding: 1rem 1.25rem;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transform: translateZ(0) scale(1);
+    transition: transform .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-80:disabled {
+    color: #787878;
+    cursor: auto;
+  }
+  
+  .button-80:not(:disabled):hover {
+    transform: scale(1.05);
+  }
+  
+  .button-80:not(:disabled):hover:active {
+    transform: scale(1.05) translateY(.125rem);
+  }
+  
+  .button-80:focus {
+    outline: 0 solid transparent;
+  }
+  
+  .button-80:focus:before {
+    border-width: .125rem;
+    content: "";
+    left: calc(-1*.375rem);
+    pointer-events: none;
+    position: absolute;
+    top: calc(-1*.375rem);
+    transition: border-radius;
+    user-select: none;
+  }
+  
+  .button-80:focus:not(:focus-visible) {
+    outline: 0 solid transparent;
+  }
+  
+  .button-80:not(:disabled):active {
+    transform: translateY(.125rem);
+  }
+
+  .active:active {
+    color: red;
+  }
+  .focus:focus {
+    color: red;
+  }
+  :target {
+    color: red;
+  }
+
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
   
