@@ -53,7 +53,7 @@ a:link {
 }
 
 .modal {
-  width: 60rem;
+  width: 100rem;
   padding: 4rem 2rem;
   border-radius: .8rem;
 
@@ -74,17 +74,14 @@ a:link {
 }
 
 .modal__title {
-  font-size: 3.2rem;
+    letter-spacing: 15px;
+  font-size: 2.2rem;
 }
-.modal__title2 {
-    position: center;
-    font-size: 3.2rem;
-  }
 
 .modal__description {
-  margin-top: 2rem;
+  margin-top: 0.2rem;
 
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-style: italic;
 }
 
@@ -143,8 +140,9 @@ a:link {
   box-shadow: .4rem .4rem 2.4rem .2rem hsla(236, 50%, 50%, 0.3);
   border-radius: 100rem;
   padding: 1.4rem 3.2rem;
-
+    text-align:center;
   transition: .2s;
+  visibility: hidden;
 }
 
 .link-1:hover,
@@ -219,6 +217,15 @@ a:link {
   font-size: 1.6rem;
 }
   
+
+
+
+
+
+
+
+
+
 
 
 
