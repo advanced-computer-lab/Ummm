@@ -26,7 +26,7 @@ import {
 const { Header, Sider, Content } = Layout;
 
 
-class HomePage extends React.Component {
+class UserHomePage extends React.Component {
   
   
   state = {
@@ -139,4 +139,4 @@ class HomePage extends React.Component {
 }
 
 
-export default HomePage;
+export default UserHomePage;

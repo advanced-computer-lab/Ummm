@@ -25,6 +25,7 @@ import {
   
 
 const CreateUserAccount = () => {
+  
   const history = useHistory();
 
   const [componentSize, setComponentSize] = useState('default');

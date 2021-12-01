@@ -20,7 +20,17 @@ import {
 } from 'antd';
 
 
-const UpdateFlight = () => {
+const UserManageBooking = () => {
+
+  if (sessionStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
+    window.open("UserLogin", "_self");
+ }
+ const LogOutHandler = (e) => {
+  sessionStorage.clear()
+  history.push({
+    pathname: '/UserLogin'
+  });
+};
 
   const [componentSize, setComponentSize] = useState('default');
   const history = useHistory();
@@ -287,4 +297,4 @@ const warning9 = () => {
   );
 };
 
-export default UpdateFlight;
+export default UserManageBooking;

@@ -23,7 +23,7 @@ import {
 
 
 const SearchFlight = () => {
-  if (sessionStorage.getItem('AuthenticationState') === null) {
+  if (sessionStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
     window.open("LoginPage", "_self");
  }
  const LogOutHandler = (e) => {

@@ -50,6 +50,11 @@ const UserLogin = () => {
     axios.post('http://localhost:8000/userlogin', criteria)
     .then(response => {
       console.log(response.status);
+      sessionStorage.setItem("AuthenticationState", "UserAuthenticated");
+      sessionStorage.setItem("Username", criteria.Username);
+      // console.log(sessionStorage.getItem("AuthenticationState"))
+      // console.log(sessionStorage.getItem("Username"))
+
       setState({
         Username: "",  
         Password: "",

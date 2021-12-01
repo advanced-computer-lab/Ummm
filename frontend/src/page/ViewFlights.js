@@ -16,7 +16,7 @@ import { withRouter } from "react-router-dom";
 import moment from "moment";
 
 function App() {
-  if (sessionStorage.getItem('AuthenticationState') === null) {
+  if (sessionStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
     window.open("LoginPage", "_self");
  }
   const LogOutHandler = (e) => {

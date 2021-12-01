@@ -55,7 +55,7 @@ class HomePage extends React.Component {
   // };
 
   render() {
-    if (sessionStorage.getItem('AuthenticationState') === null) {
+    if (sessionStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
       window.open("LoginPage", "_self");
    }
    //Is their authentication token still valid?
