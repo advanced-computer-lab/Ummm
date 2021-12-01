@@ -61,6 +61,10 @@ const LoginPage = () => {
         Username: "",  
         Password: "",
         })
+        sessionStorage.setItem("AuthenticationState", "Authenticated");
+                
+                //This authentication key will expire in 1 hour.
+       // sessionStorage.setItem("AuthenticationExpires", Date.now.addHours(1));
         history.push({
             pathname: '/homepage'
           });

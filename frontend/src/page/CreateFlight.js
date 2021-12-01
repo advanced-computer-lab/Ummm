@@ -28,6 +28,17 @@ import {
   
 
 const CreateFlight = () => {
+  if (sessionStorage.getItem('AuthenticationState') === null) {
+    window.open("LoginPage", "_self");
+ }
+ const LogOutHandler = (e) => {
+  sessionStorage.clear()
+  history.push({
+    pathname: '/LoginPage'
+  });
+
+  
+};
   const history = useHistory();
 
   const [componentSize, setComponentSize] = useState('default');
@@ -514,7 +525,8 @@ const CreateFlight = () => {
        
 
         <Form.Item>
-        &nbsp;&nbsp;&nbsp;&nbsp;
+        <Button onClick={(e) => LogOutHandler(e)}>Log Out</Button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <Button onClick={() => history.goBack()}>Back</Button>
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

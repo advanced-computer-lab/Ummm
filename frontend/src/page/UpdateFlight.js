@@ -23,6 +23,21 @@ import {
 
 
 const UpdateFlight = () => {
+  const LogOutHandler = (e) => {
+    sessionStorage.clear()
+    history.push({
+      pathname: '/LoginPage'
+    });
+
+    
+  };
+  if (sessionStorage.getItem('AuthenticationState') === null) {
+    window.open("LoginPage", "_self");
+ }
+ //Is their authentication token still valid?
+//  else if (Date.now > new Date(sessionStorage.getItem('AuthenticationExpires'))) {
+//        window.open("AccessDenied.html", "_self");
+//  }
 
   const [componentSize, setComponentSize] = useState('default');
   const history = useHistory();
@@ -432,7 +447,8 @@ const warning9 = () => {
 
         
         <Form.Item>
-        &nbsp;&nbsp;&nbsp;&nbsp;
+        <Button onClick={(e) => LogOutHandler(e)}>Log Out</Button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <Button onClick={() => history.goBack()}>Back</Button>
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

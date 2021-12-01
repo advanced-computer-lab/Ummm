@@ -16,6 +16,21 @@ import { withRouter } from "react-router-dom";
 import moment from "moment";
 
 function App() {
+  if (sessionStorage.getItem('AuthenticationState') === null) {
+    window.open("LoginPage", "_self");
+ }
+  const LogOutHandler = (e) => {
+    sessionStorage.clear()
+    history.push({
+      pathname: '/LoginPage'
+    });
+
+    
+  };
+ //Is their authentication token still valid?
+//  else if (Date.now > new Date(sessionStorage.getItem('AuthenticationExpires'))) {
+//        window.open("AccessDenied.html", "_self");
+//  }
   const history = useHistory();
   const[flights,Setflights]=useState([]);
     
@@ -163,7 +178,8 @@ function App() {
  
 </table>
 <br/>
-&nbsp;&nbsp;&nbsp;
+<Button onClick={(e) => LogOutHandler(e)}>Log Out</Button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <Button onClick={() => history.goBack()}>Back</Button>
 <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
