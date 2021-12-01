@@ -2,6 +2,7 @@
 const Flights = require('../models/Flights');
 const Admins = require('../models/Admins');
 const Users = require('../models/User');
+const Reservation = require('../models/reservation');
 const moment = require('moment');
 const today = moment().startOf('day');
 
@@ -11,6 +12,20 @@ exports.createflight = (req, res) => {
 
   const flight = new Flights(req.body)
   flight.save()
+    .then(result => {
+      res.send(result);
+      console.log("added");
+    })
+    .catch(err => {
+      res.status(400).send();
+      console.log(err);
+    });
+};
+exports.createuseraccount = (req, res) => {
+  console.log(req.body);
+
+  const User = new Users(req.body)
+  User.save()
     .then(result => {
       res.send(result);
       console.log("added");

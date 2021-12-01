@@ -24,21 +24,19 @@ import {
   
   
 
-const CreateFlight = () => {
+const CreateUserAccount = () => {
   const history = useHistory();
 
   const [componentSize, setComponentSize] = useState('default');
  // const [form] = Form.useForm();
 
   const [Data, setState] = useState({
-    Flight_No: "",
-    From: "",  
-    To: "",
-    Flight_Date: "", // Data type date
-    Terminal: "",
-    Economy_Seats: "",
-    Business_Seats: "",
-    First_Seats: ""
+    FirstName: "",
+    LastName: "",  
+    Email: "",
+    Date_of_Birth: "", // Data type date
+    Username: "",
+    Password: "",
   });
   
 
@@ -53,62 +51,49 @@ const CreateFlight = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();    // prevent reloading the page
+   var mailformat =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+   if(Data.Email.match(mailformat)){} 
+   else{warning11()} 
 
-    // Object.keys(Data).forEach(key => {
-    //   if(key=='Economy_Seats' || key=='Business_Seats' || key=='First_Seats')
-    //   if (Data[key]=="") {
-    //        Data[key] = 0;
-    //      }
-    //    });
-    
-    if(Data.Flight_No.length==5 &Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date!==null &&Data.Terminal!==''&& Data.Economy_Seats!==''&& Data.First_Seats!==''&& Data.Business_Seats!=='' ){
-    axios.post('http://localhost:8000/createflight', Data)
+    if(Data.Date_of_Birth!==null &&Data.FirstName!==''&& Data.LastName!==''&& Data.Email!==''&& Data.Username!==''&& Data.Password!=='' ){
+    axios.post('http://localhost:8000/createuseraccount', Data)
     .then(response => {
       console.log(response.status);
       setState({
-        Flight_No: "",
-        From: "",  
-        To: "",
-        Flight_Date: "", // Data type date
-        Terminal: "",
-        Economy_Seats: "",
-        Business_Seats: "",
-        First_Seats: ""
+        FirstName: "",
+        LastName: "",  
+        Email: "",
+        Date_of_Birth: "", // Data type date
+        Username: "",
+        Password: "",
         })
-      //  window.location.reload(false);
- //     form.resetFields();
         success(); // data succ added less go
       }).catch(error => {
         warning9();
-        console.log(error);
+        //console.log(error);
     })
    
   }
 
-  else if(Data.Flight_No.length<3  ){
-    warning1();
-  }
-  else if(Data.From.length<3 ){
-    warning2();
-  }
-  else if(Data.To.length<3 ){
-    warning3();
-  }
-  else if(Data.Flight_Date=="" ){
+
+  else if(Data.FirstName=="" ){
     warning4();
   }
-  else if(Data.Terminal=="" ){
-    warning8();
-  }
-  else if(Data.Economy_Seats=='' ){
+  else if(Data.LastName=="" ){
     warning5();
   }
- 
-  else if(Data.Business_Seats==''){
+  else if(Data.Email=='' ){
     warning6();
   }
-  else if(Data.First_Seats=='' ){
+ 
+  else if(Data.Date_of_Birth==''){
     warning7();
+  }
+  else if(Data.Username=='' ){
+    warning8();
+  }
+  else if(Data.Password=='' ){
+    warning10();
   }
   else {
     warning();
@@ -117,43 +102,42 @@ const CreateFlight = () => {
   };
 
   const success = () => {
-    message.success('Flight Successfully Added!');
+    message.success('Account Successfully Created!');
   };
 
   const warning = () => {
     message.warning('Fill All Fields Please!');
   };
-  const warning1 = () => {
-    message.warning('"Flight_No" Must be Filled!');
+  const warning11 = () => {
+    message.warning('Invalid Email');
   };
 
-  const warning2 = () => {
-    message.warning(' "From" Field Must Exacly be 3 Letters!');
-  };
-
-  const warning3 = () => {
-    message.warning(' "To" Field Must Exacly be 3 Letters!');
-  };
   const warning4 = () => {
-    message.warning(' "Flight_Date" Must be Filled!');
+    message.warning(' "FirstName" Must be Filled!');
   };
   const warning5 = () => {
-    message.warning(' "Economy_Seats" Must be Filled!');
+    message.warning(' "LastName" Must be Filled!');
   };
   const warning6 = () => {
-    message.warning(' "Business_Seats" Must be Filled!');
+    message.warning(' "Email" Must be Filled!');
   };
   const warning7 = () => {
-    message.warning(' "First_Seats" Must be Filled!');
+    message.warning(' "Date_of_Birth" Must be Filled!');
   };
   const warning8 = () => {
-    message.warning('"Terminal" Must be Filled!');
+    message.warning('"Username" Must be Filled!');
+  };
+  const warning10 = () => {
+    message.warning('"Password" Must be Filled!');
   };
   const warning9 = () => {
-    message.warning('Flight_No already excited!');
+    message.warning('Username/Email already Exists!');
   };
   
 
+  var now = new Date();
+  now.setFullYear(now.getFullYear()-18);
+  var now2 =  moment().subtract(18, 'years')
 
   return (
     <>
@@ -162,7 +146,7 @@ const CreateFlight = () => {
           span: 4,
         }}
         wrapperCol={{
-          span: 14,
+          span: 13,
         }}
         layout="horizontal"
         initialValues={{
@@ -173,36 +157,28 @@ const CreateFlight = () => {
    //     form={form}
       >                     
   
-  <Form.Item  
-        rules={[
-          {
-            required: true,
-            message: 'Please Fill it With 2 Letters followed by 3 numbers!',
-          },
-        ]}label="HANA HYB2A CREATE USERRRRRR">
-          <Input type="text" name="Flight_No" maxLength="5" placeholder="FNXXX" value={Data.Flight_No} onChange={(e) => changeHander(e)}/>
-        </Form.Item>
+ 
         
 
         <Form.Item  
         rules={[
           {
             required: true,
-            message: 'Please Fill it With At Least 3 Letters!',
           },
-        ]}label="From">
-          <Input   type="text" name="From" maxLength="3" placeholder="3 letters"  value={Data.From} onChange={(e) => changeHander(e)} />
+        ]}label="First Name">
+          <Input   type="text" name="FirstName" maxLength="11"   placeholder="Enter your First Name" 
+          value={Data.FirstName} onChange={(e) => changeHander(e)} />
         </Form.Item>
 
 
-        <Form.Item label="To"
+        <Form.Item label="Last Name"
          rules={[
            {
              required: true,
-             message: 'Please Fill it With At Least 3 Letters!',
            },
          ]}>
-        <Input type="text" name="To" maxLength="3" placeholder="3 letters" value={Data.To} onChange={(e) => changeHander(e)}/>
+        <Input type="text" name="LastName" maxLength="11"  placeholder="Enter your Last Name" 
+        value={Data.LastName} onChange={(e) => changeHander(e)}/>
         </Form.Item>
         
         
@@ -212,65 +188,39 @@ const CreateFlight = () => {
             required: true,
             message: 'Please Select Date!',
           },
-        ]} label="Flight Date">
-          <DatePicker type="date" format="DD-MM-YYYY" value={Data.Flight_Date} format="DD-MM-YYYY, HH:mm"
-          showTime="true" disabledDate={d => d.isBefore(new Date())}
-           name="FlightDate" onChange={(date) => setState(prevData => {
-              return {...prevData ,Flight_Date: date}}) 
+        ]} label="Date of Birth">
+          <DatePicker type="date" format="DD-MM-YYYY" 
+defaultPickerValue={now2} disabledDate={d => d.isAfter(now)} name="Date_of_Birth" onChange={(date) => setState(prevData => {
+              return {...prevData ,Date_of_Birth: date}}) 
     }/>
         </Form.Item>
-
-        <Form.Item 
+        <Form.Item  
         rules={[
-          {
-            required: true,
-            message: 'Please Select Date!',
-          },
-        ]} label="Terminal">
-      
-          <Select type="text" name="Terminal" value={Data.Terminal} onSelect={(value) => setState(prevData => {
-    return {...prevData ,Terminal: value}})}>
-            <Select.Option value="1">Terminal 1</Select.Option>
-            <Select.Option value="2">Terminal 2</Select.Option>
-            <Select.Option value="3">Terminal 3</Select.Option>
-          </Select>
+          { type: "email",
+            required: true,          },
+        ]}label="Email">
+          <Input type= "email"  name="Email" maxLength="30" placeholder="Example@gmail.com"  
+          value={Data.Email} onChange={(e) => changeHander(e)} />
         </Form.Item>
 
-        <Form.Item 
+        <Form.Item  
         rules={[
           {
             required: true,
-            message: 'Please Fill!',
           },
-        ]} label="Economy Seats">         
-          <InputNumber type="Number" name="Economy_Seats" value={Data.Economy_Seats} max={500} placeholder="500 Max" onChange={(number) => setState(prevData => {
-              return {...prevData ,Economy_Seats: number}}) 
-          }/>
+        ]}label="Username">
+          <Input   type="text" name="Username" maxLength="11" placeholder="Enter your Username" 
+          value={Data.Username} onChange={(e) => changeHander(e)} />
         </Form.Item>
 
-        
-        <Form.Item 
+        <Form.Item  
         rules={[
           {
             required: true,
-            message: 'Please Fill!',
           },
-        ]} label="Business Seats">   
-          <InputNumber type="Number" name="Business_Seats" value={Data.Business_Seats} max={500} placeholder="500 Max" onChange={(number) => setState(prevData => {
-              return {...prevData ,Business_Seats: number}}) 
-          }/>
-        </Form.Item>
-
-        <Form.Item 
-        rules={[
-          {
-            required: true,
-            message: 'Please Fill!',
-          },
-        ]} label="First Seats">   
-          <InputNumber type="Number" name="First_Seats" value={Data.First_Seats} max={500} placeholder="500 Max" onChange={(number) => setState(prevData => {
-              return {...prevData ,First_Seats: number}}) 
-          }/>
+        ]}label="Password">
+          <Input   type="password" name="Password" placeholder="Enter your Password"  
+          value={Data.Password} onChange={(e) => changeHander(e)} />
         </Form.Item>
 
         <Form.Item>
@@ -279,13 +229,11 @@ const CreateFlight = () => {
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         <Button onClick={(e) => submitHandler(e)} >Create Flight</Button>
+         <Button onClick={(e) => submitHandler(e)} >Create User</Button>
         </Form.Item>
-
-
 
       </Form>
     </>
   );
 };
-export default CreateFlight;
+export default CreateUserAccount;
