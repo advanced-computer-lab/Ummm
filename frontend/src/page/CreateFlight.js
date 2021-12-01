@@ -12,6 +12,7 @@ import {
   Button,
   Radio,
   TimePicker,
+  Space,
   Select,
   Cascader,
   DatePicker,
@@ -39,7 +40,9 @@ const CreateFlight = () => {
     To: "",
     Flight_Date: "", // Data type date
     Terminal: "",
-    Flight_Duration: "",
+    Flight_Duration: "", //string :
+    Flight_DHour: "", //temp
+    Flight_DMin: "", //temp
     Economy_Seats: "",
     Business_Seats: "",
     First_Seats: "",
@@ -108,8 +111,21 @@ const CreateFlight = () => {
     //   console.log(Data3);
 
 
+    var Data1 = {};
 
-    axios.post('http://localhost:8000/createflight', Data)
+    Object.keys(Data).forEach(key => {
+      if(key=='Flight_DHour'){
+        Data1['Flight_Duration'] = Data.Flight_DHour + ':';
+      }
+      else if(key=='Flight_DMin'){
+        Data1['Flight_Duration'] += Data.Flight_DMin +'';
+       }
+       else if(key!=='Flight_Duration')
+       Data1[key] = Data[key];
+      });
+      console.log(Data1);
+
+    axios.post('http://localhost:8000/createflight', Data1)
     .then(response => {
       console.log(response.status);
       //  window.location.reload(false);
@@ -290,7 +306,7 @@ const CreateFlight = () => {
             required: true,
             message: 'Please Select Date!',
           },
-        ]} label="Flight Date and Dept. Time">
+        ]} label="Flight Date and Dept.Time">
           <DatePicker type="date" format="DD-MM-YYYY" value={Data.Flight_Date} format="DD-MM-YYYY, HH:mm"
           showTime="true" disabledDate={d => d.isBefore(new Date())}
            name="FlightDate" onChange={(date) => setState(prevData => {
@@ -298,20 +314,45 @@ const CreateFlight = () => {
     }/>
         </Form.Item>
 
-        <Form.Item name="Duration"
+        {/* <Form.Item name="Duration"
          rules={[
            {
              required: true,
              message: 'Please Select Set Duration!',
            },
          ]}label="Duration">
-        <TimePicker name="Duration" type="date" format="HH:mm" value={Data.Flight_Duration} format="HH:mm"
+        <TimePicker name="Duration" type="Number" format="HH:mm" value={Data.Flight_Duration} format="HH:mm"
         value={Data.Flight_Duration} format={format} 
-        onChange={(time) => setState(prevData => {
-          return {...prevData ,Flight_Duration: time}}) 
+        onChange={(number) => setState(prevData => {
+          return {...prevData ,Flight_Duration: number}}) 
         }
         />
-        </Form.Item>
+        </Form.Item> */}
+
+
+
+<Form.Item name="Duration"
+         rules={[
+           {
+             required: true,
+             message: 'Please Select Set Duration!',
+           },
+         ]}label="Duration">
+  <Space>
+    <InputNumber min={0} max={23} value={Data.Flight_DHour}   onChange={(number) => setState(prevData => {
+          return {...prevData ,Flight_DHour: number}}) 
+        } />
+    <InputNumber min={0} max={59} value={Data.Flight_DMin}   onChange={(number) => setState(prevData => {
+          return {...prevData ,Flight_DMin: number}}) 
+        }/>
+      </Space>
+
+
+
+
+ </Form.Item>
+
+
 
         <Form.Item name="Terminal"
         rules={[
@@ -382,7 +423,7 @@ const CreateFlight = () => {
             required: true,
             message: 'Please Fill!',
           },
-        ]} label="Economy allowed Baggage">         
+        ]} label="Economy Baggage">         
           <InputNumber type="Number" name="Economy_Baggage" value={Data.Economy_Baggage} max={15} placeholder="20 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,Economy_Baggage: number}}) 
           }/>
@@ -395,7 +436,7 @@ const CreateFlight = () => {
             required: true,
             message: 'Please Fill!',
           },
-        ]} label="Business allowed Baggage">   
+        ]} label="Business Baggage">   
           <InputNumber type="Number" name="Business_Baggage" value={Data.Business_Baggage} max={15} placeholder="20 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,Business_Baggage: number}}) 
           }/>
@@ -408,7 +449,7 @@ const CreateFlight = () => {
             required: true,
             message: 'Please Fill!',
           },
-        ]} label="First allowed Baggage">   
+        ]} label="First Baggage">   
           <InputNumber type="Number" name="First_Baggage" value={Data.First_Baggage} max={20} placeholder="20 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,First_Baggage: number}}) 
           }/>

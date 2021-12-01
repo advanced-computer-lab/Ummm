@@ -22,6 +22,8 @@ exports.createflight = (req, res) => {
 };
 
 
+
+
 exports.viewflights = (req,res)=>
 {
   Flights.find().then((result)=>{
@@ -29,6 +31,9 @@ exports.viewflights = (req,res)=>
         res.send(JSON.stringify(result, null, 4));
     });
 };
+
+
+
 
 
 exports.deleteflight = (req,res)=>{
@@ -58,6 +63,8 @@ exports.updateflight = (req,res)=>{
 };
 
 
+
+
 exports.searchflight = (req, res) => {
 
  const search ={};
@@ -85,13 +92,12 @@ exports.searchflight = (req, res) => {
         dd = (req.body[key]);
         var start = moment(dd).startOf('day');
         var end = moment(dd).endOf('day'); 
-        if(search["Flight_Date"]){
-          console.log("innnnnn")
-          console.log(search["Flight_Date"])
+        //  console.log(search["Flight_Date"])
           search[key] = { '$gte': start,"$lt": end};
         }
-      }
-      else if(key=='Economy_Seats' || key=='Business_Seats' || key=='First_Seats'){
+      else if(key=='Economy_Seats' || key=='Business_Seats' || key=='First_Seats'
+       || key=='Economy_Baggage' || key=='Business_Baggage' || key=='First_Baggage'
+       || key=='Economy_Price ' || key=='Business_Price' || key=='First_Price'){
         ss = (req.body[key]); 
         search[key] = ss;
       }

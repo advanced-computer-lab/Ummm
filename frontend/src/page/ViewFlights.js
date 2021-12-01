@@ -35,6 +35,10 @@ function App() {
     state: {
       data: flight}
     });
+    console.log(flight.Flight_Duration);
+    console.log(flight.Flight_Duration.substring(flight.Flight_Duration.indexOf(':')+1));
+
+
     };
 
     const deleteHandler = (flight) => {
@@ -68,16 +72,26 @@ function App() {
           <table id="customers">
     <thead>
         <tr>
-            <th id="cutomers">Flight_no</th>
-            <th id="cutomers">From</th>
+            <th id="customers">Flight_no</th>
+            <th id="customers">From</th>
             <th id="customers">To</th>
-            <th id="customers">Flight_Date</th>
-            <th id="customers">Departure</th>
+            <th id="customers">Flight&nbsp;Date</th>
+            <th id="customers">Duration</th>
             <th id="customers">Terminal</th>
-            <th id="customers">Economy</th>
-            <th id="customers">Business</th>
-            <th id="customers">First</th>
-            <th id="customers">Actions</th>
+
+            <th id="customers">Seats&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            {/* <th id="customers">Business Seats</th>
+            <th id="customers">First Seats</th> */}
+
+            <th id="customers">Baggages</th>
+            {/* <th id="customers">Business Baggage</th>
+            <th id="customers">First Baggage</th> */}
+
+            <th id="customers">Prices&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            {/* <th id="customers">Business Price</th>
+            <th id="customers">First Price</th> */}
+
+            <th id="customers"></th>
         </tr>
     </thead>
   
@@ -102,31 +116,43 @@ function App() {
                 
             </td>
             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{moment(flight.Flight_Date).format("YYYY-MM-DD")}</span>
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{moment(flight.Flight_Date).format("YYYY-MM-DD  HH:mm")}</span>
                
             </td>
             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{moment(flight.Flight_Date).format("HH:mm")}</span>
-               
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.Flight_Duration}</span>
             </td>
+            
             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                 <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.Terminal}</span>
            
             </td>
             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.Economy_Seats}</span>
-              
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Eco: {flight.Economy_Seats}</span>
+                <br></br>
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Buss: {flight.Business_Seats}</span>
+                <br></br>
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">First: {flight.First_Seats}</span>
             </td>
             
             
             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.Business_Seats}</span>
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Eco: {flight.Economy_Baggage}</span>
+                <br></br>
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Buss: {flight.Business_Baggage}</span>
+                <br></br>
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">First: {flight.First_Baggage}</span>
                 
             </td>
             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.First_Seats}</span>
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Eco: ${flight.Economy_Price}</span>
+                <br></br>
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Buss: ${flight.Business_Price}</span>
+                <br></br>
+                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">First: ${flight.First_Price}</span>
                 <span class="rounded bg-green-400 py-1 px-3 text-xs font-bold"></span>
             </td>
+          
             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                 <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
                 <button class="w3-button w3-border w3-hover-cyan" name={flight._id}  onClick={() => editHandler(flight)}> <b>Update </b>  </button>
