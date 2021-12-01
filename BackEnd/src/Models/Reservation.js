@@ -23,7 +23,11 @@ const reservationSchema = new Schema({
     type: Number,
    required: true
   },
-  Price: {
+  PriceFrom: {
+    type: Number,
+   required: true
+  },
+  PriceTo: {
     type: Number,
    required: true
   },
