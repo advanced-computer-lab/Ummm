@@ -2,7 +2,7 @@
 const Flights = require('../models/Flights');
 const Admins = require('../models/Admins');
 const Users = require('../models/User');
-const Reservation = require('../models/reservation');
+const Reservation = require('../models/Reservation');
 const moment = require('moment');
 const today = moment().startOf('day');
 
@@ -88,21 +88,6 @@ exports.searchflight = (req, res) => {
   Object.keys(req.body).forEach(key => {
 
    if (req.body[key]!==null) {
-    //  if(key=="Flight_Date_Depart"){
-    //   dd = (req.body[key]);
-    //   var start1 = moment(dd).startOf('day');
-    //   var end1 = moment(dd).endOf('day'); 
-
-    //   rd = (req.body[Flight_Date]);
-    //   var start2 = moment(rd).startOf('day');
-    //   var end2 = moment(rd).endOf('day'); 
-    //   if(end2.isAfter(end1)){
-    //     console.log("testtt")
-    //     search["Flight_Date"] = { '$gte': start2,"$lt": end2};
-    //   }
-      
-    //  }
-    //  else
      if(key=='Flight_Date'){
         dd = (req.body[key]);
         var start = moment(dd).startOf('day');
@@ -175,3 +160,30 @@ exports.loginpage = (req, res) => {
       console.log(err);
      });
  };
+
+ exports.userlogin = (req, res) => {
+
+  console.log(req.body);
+  if(Object.keys(req.body).length === 0){    
+    return res.status(400).send();
+  }
+       const search ={};
+
+  Object.keys(req.body).forEach(key => {
+  if (req.body[key]!==null) {
+      search[key] = {$regex: '^' + req.body[key]};
+    }
+  });
+
+Users.find(search)
+.then(result => { 
+    if(result.length != 0){
+     res.send(result);
+    }
+     else 
+     res.status(400).send();
+    })
+   .catch(err => {
+    console.log(err);
+   });
+};
