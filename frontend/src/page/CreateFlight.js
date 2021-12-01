@@ -3,6 +3,7 @@ import axios from 'axios'
 import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css'; 
+import { SettingOutlined } from '@ant-design/icons';
 
 import moment from "moment";
 import {
@@ -10,6 +11,7 @@ import {
   Input,
   Button,
   Radio,
+  TimePicker,
   Select,
   Cascader,
   DatePicker,
@@ -29,6 +31,7 @@ const CreateFlight = () => {
 
   const [componentSize, setComponentSize] = useState('default');
    const [form] = Form.useForm();
+   const format = 'HH:mm';
 
   const [Data, setState] = useState({
     Flight_No: "",
@@ -36,9 +39,16 @@ const CreateFlight = () => {
     To: "",
     Flight_Date: "", // Data type date
     Terminal: "",
+    Flight_Duration: "",
     Economy_Seats: "",
     Business_Seats: "",
-    First_Seats: ""
+    First_Seats: "",
+    Economy_Baggage: "",
+    Business_Baggage: "",
+    First_Baggage: "",
+    Economy_Price: "",
+    Business_Price: "",
+    First_Price: "",
   });
   
 
@@ -54,6 +64,10 @@ const CreateFlight = () => {
   const submitHandler = (e) => {
     e.preventDefault();    // prevent reloading the page
 
+
+   
+
+
     // Object.keys(Data).forEach(key => {
     //   if(key=='Economy_Seats' || key=='Business_Seats' || key=='First_Seats')
     //   if (Data[key]=="") {
@@ -61,20 +75,43 @@ const CreateFlight = () => {
     //      }
     //    });
     
-    if(Data.Flight_No.length==5 &Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date!==null &&Data.Terminal!==''&& Data.Economy_Seats!==''&& Data.First_Seats!==''&& Data.Business_Seats!=='' ){
+    // /if(Data.Flight_No.length==5 &Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date!==null &&Data.Terminal!==''&& Data.Economy_Seats!==''&& Data.First_Seats!==''&& Data.Business_Seats!=='' ){
+
+    //   const Data1 = {};
+    //   const Data2 = {};
+    //   const Data3 = {};
+      
+  
+    //   Object.keys(Data).forEach(key => {
+    //     console.log(!key.startsWith("Economy"));
+    //  if (!key.startsWith("Economy") && !key.startsWith("Business") && !key.startsWith("First")) {
+    //       Data1[key] = Data[key];
+    //       Data2[key] = Data[key];
+    //       Data3[key] = Data[key];
+    //     }
+    //     else if(key.startsWith("Economy")){
+    //       Data1[key.substring(8)] = Data[key];
+    //     }
+    //     else if(key.startsWith("Business")){
+    //       Data2[key.substring(9)] = Data[key];
+    //     }
+    //     else if(key.startsWith("First")){
+    //       Data3[key.substring(6)] = Data[key];
+    //     }
+    //   });
+    //       Data1["Cabin"] = "Economy";
+    //       Data2["Cabin"] = "Business";
+    //       Data3["Cabin"] = "First";
+
+    //   console.log(Data1);
+    //   console.log(Data2);
+    //   console.log(Data3);
+
+
+
     axios.post('http://localhost:8000/createflight', Data)
     .then(response => {
       console.log(response.status);
-      setState({
-        Flight_No: "",
-        From: "",  
-        To: "",
-        Flight_Date: "", // Data type date
-        Terminal: "",
-        Economy_Seats: "",
-        Business_Seats: "",
-        First_Seats: ""
-        })
       //  window.location.reload(false);
        form.resetFields();
         success(); // data succ added less go
@@ -82,37 +119,78 @@ const CreateFlight = () => {
         warning9();
         console.log(error);
     })
-   
-  }
 
-  else if(Data.Flight_No.length<3  ){
-    warning1();
-  }
-  else if(Data.From.length<3 ){
-    warning2();
-  }
-  else if(Data.To.length<3 ){
-    warning3();
-  }
-  else if(Data.Flight_Date=="" ){
-    warning4();
-  }
-  else if(Data.Terminal=="" ){
-    warning8();
-  }
-  else if(Data.Economy_Seats=='' ){
-    warning5();
-  }
+    // axios.post('http://localhost:8000/createflight', Data2)
+    // .then(response => {
+    //   console.log(response.status);
+    //   //  window.location.reload(false);
+    //    form.resetFields();
+    //     success(); // data succ added less go
+    //   }).catch(error => {
+    //     warning9();
+    //     console.log(error);
+    // })
+
+    // axios.post('http://localhost:8000/createflight', Data3)
+    // .then(response => {
+    //   console.log(response.status);
+    //   //  window.location.reload(false);
+    //    form.resetFields();
+    //     success(); // data succ added less go
+    //   }).catch(error => {
+    //     warning9();
+    //     console.log(error);
+    // })
+
+
+    setState({
+      Flight_No: "",
+      From: "",  
+      To: "",
+      Flight_Date: "", // Data type date
+      Terminal: "",
+      Flight_Duration: "",
+      Economy_Seats: "",
+      Business_Seats: "",
+      First_Seats: "",
+      Economy_Baggage: "",
+      Business_Baggage: "",
+      First_Baggage: "",
+      Economy_Price: "",
+      Business_Price: "",
+      First_Price: "",
+      })
+   
+  // };
+
+  // else if(Data.Flight_No.length<3  ){
+  //   warning1();
+  // }
+  // else if(Data.From.length<3 ){
+  //   warning2();
+  // }
+  // else if(Data.To.length<3 ){
+  //   warning3();
+  // }
+  // else if(Data.Flight_Date=="" ){
+  //   warning4();
+  // }
+  // else if(Data.Terminal=="" ){
+  //   warning8();
+  // }
+  // else if(Data.Economy_Seats=='' ){
+  //   warning5();
+  // }
  
-  else if(Data.Business_Seats==''){
-    warning6();
-  }
-  else if(Data.First_Seats=='' ){
-    warning7();
-  }
-  else {
-    warning();
-  }
+  // else if(Data.Business_Seats==''){
+  //   warning6();
+  // }
+  // else if(Data.First_Seats=='' ){
+  //   warning7();
+  // }
+  // else {
+  //   warning();
+  // }
   
   };
 
@@ -190,7 +268,7 @@ const CreateFlight = () => {
             required: true,
             message: 'Please Fill it With At Least 3 Letters!',
           },
-        ]}label="From">
+        ]}label="From" >
           <Input   type="text" name="From" maxLength="3" placeholder="3 letters"  value={Data.From} onChange={(e) => changeHander(e)} />
         </Form.Item>
 
@@ -212,12 +290,27 @@ const CreateFlight = () => {
             required: true,
             message: 'Please Select Date!',
           },
-        ]} label="Flight Date">
+        ]} label="Flight Date and Dept. Time">
           <DatePicker type="date" format="DD-MM-YYYY" value={Data.Flight_Date} format="DD-MM-YYYY, HH:mm"
           showTime="true" disabledDate={d => d.isBefore(new Date())}
            name="FlightDate" onChange={(date) => setState(prevData => {
               return {...prevData ,Flight_Date: date}}) 
     }/>
+        </Form.Item>
+
+        <Form.Item name="Duration"
+         rules={[
+           {
+             required: true,
+             message: 'Please Select Set Duration!',
+           },
+         ]}label="Duration">
+        <TimePicker name="Duration" type="date" format="HH:mm" value={Data.Flight_Duration} format="HH:mm"
+        value={Data.Flight_Duration} format={format} 
+        onChange={(time) => setState(prevData => {
+          return {...prevData ,Flight_Duration: time}}) 
+        }
+        />
         </Form.Item>
 
         <Form.Item name="Terminal"
@@ -236,6 +329,7 @@ const CreateFlight = () => {
           </Select>
         </Form.Item>
 
+       
         <Form.Item name="Economy_Seats"
         rules={[
           {
@@ -272,6 +366,111 @@ const CreateFlight = () => {
               return {...prevData ,First_Seats: number}}) 
           }/>
         </Form.Item>
+
+
+
+
+
+
+
+
+
+
+        <Form.Item name="Economy_Baggage"
+        rules={[
+          {
+            required: true,
+            message: 'Please Fill!',
+          },
+        ]} label="Economy allowed Baggage">         
+          <InputNumber type="Number" name="Economy_Baggage" value={Data.Economy_Baggage} max={15} placeholder="20 Max" onChange={(number) => setState(prevData => {
+              return {...prevData ,Economy_Baggage: number}}) 
+          }/>
+        </Form.Item>
+
+        
+        <Form.Item name="Business_Baggage"
+        rules={[
+          {
+            required: true,
+            message: 'Please Fill!',
+          },
+        ]} label="Business allowed Baggage">   
+          <InputNumber type="Number" name="Business_Baggage" value={Data.Business_Baggage} max={15} placeholder="20 Max" onChange={(number) => setState(prevData => {
+              return {...prevData ,Business_Baggage: number}}) 
+          }/>
+        </Form.Item>
+
+
+        <Form.Item name="First_Baggage"
+        rules={[
+          {
+            required: true,
+            message: 'Please Fill!',
+          },
+        ]} label="First allowed Baggage">   
+          <InputNumber type="Number" name="First_Baggage" value={Data.First_Baggage} max={20} placeholder="20 Max" onChange={(number) => setState(prevData => {
+              return {...prevData ,First_Baggage: number}}) 
+          }/>
+        </Form.Item>
+
+
+
+
+
+
+
+        <Form.Item name="Economy_Price"
+        rules={[
+          {
+            required: true,
+            message: 'Please Fill!',
+          },
+        ]} label="Economy Price">         
+          <InputNumber  type="Number" name="Economy_Price" value={Data.Economy_Price} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
+              return {...prevData ,Economy_Price: number}}) 
+          }/>
+        </Form.Item>
+     
+        
+        <Form.Item name="Business_Price"
+        rules={[
+          {
+            required: true,
+            message: 'Please Fill!',
+          },
+        ]} label="Business Price">   
+          <InputNumber type="Number" name="Business_Price" value={Data.Business_Price} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
+              return {...prevData ,Business_Price: number}}) 
+          }/>
+        </Form.Item>
+
+
+        <Form.Item name="First_Price"
+        rules={[
+          {
+            required: true,
+            message: 'Please Fill!',
+          },
+        ]} label="First Price">   
+          <InputNumber type="Number" name="First_Baggage" value={Data.First_Price} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
+              return {...prevData ,First_Price: number}}) 
+          }/>
+        </Form.Item>
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
 
         <Form.Item>
         &nbsp;&nbsp;&nbsp;&nbsp;
