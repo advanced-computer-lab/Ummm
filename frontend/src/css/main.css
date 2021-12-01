@@ -3,11 +3,13 @@ color: rgb(255, 255, 255);
 }
 
 html {
+  
   line-height: 1.15;
   /* 1 */
   -ms-text-size-adjust: 100%;
   /* 2 */
   -webkit-text-size-adjust: 100%;
+
   /* 2 */
 }
 
@@ -17,6 +19,7 @@ html {
  * Remove the margin in all browsers (opinionated).
  */
 body {
+  background: #ff0000;
   margin: 0;
 }
 
