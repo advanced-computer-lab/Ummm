@@ -14,7 +14,7 @@ import {
 } from 'antd';
 
 
-const LoginPage = () => {
+const UserLogin = () => {
 
   const [componentSize, setComponentSize] = useState('default');
   const history = useHistory();
@@ -47,7 +47,7 @@ const LoginPage = () => {
     });
 
    // prevent reloading the page
-    axios.post('http://localhost:8000/LoginPage', criteria)
+    axios.post('http://localhost:8000/userlogin', criteria)
     .then(response => {
       console.log(response.status);
       setState({
@@ -149,4 +149,4 @@ const LoginPage = () => {
 
         
 };
-export default LoginPage;
+export default UserLogin;

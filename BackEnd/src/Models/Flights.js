@@ -31,7 +31,7 @@ const flightsSchema = new Schema({
    required: true
   },
   Flight_Duration: {
-    type: Date,
+    type: String,
    required: true
   },
   Economy_Seats: {

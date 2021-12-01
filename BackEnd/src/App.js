@@ -36,13 +36,18 @@ app.get("/home", (req, res) => {
 
 // #Routing to usercontroller here
 
-
+//Flight and admin
 app.post('/createflight', userController.createflight)
 app.get('/viewflights',userController.viewflights)
 app.delete('/deleteflight',userController.deleteflight)
 app.put('/updateflight',userController.updateflight)
 app.post('/searchflight',userController.searchflight)
 app.post('/loginpage',userController.loginpage)
+
+//User
+app.post('/createuseraccount', userController.createuseraccount)
+app.post('/userlogin',userController.userlogin)
+
 
 
 
