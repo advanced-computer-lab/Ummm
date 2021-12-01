@@ -1652,6 +1652,9 @@ span.flatpickr-weekday {
   fill: #fff;
 }
 
+
+
+ /* adasdasd */
 .s011 form .inner-form header .travel-type-wrap .item:hover, .s011 form .inner-form header .travel-type-wrap .item:focus {
   background: #2c6ed5;
   color: #fff;
@@ -1660,7 +1663,7 @@ span.flatpickr-weekday {
 .s011 form .inner-form header .travel-type-wrap .item:hover .group-icon svg, .s011 form .inner-form header .travel-type-wrap .item:focus .group-icon svg {
   fill: #fff;
 }
-
+ /* HEEEEEEEEEEEEEEEEEEEEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE  CHNAGE THE WIDTH OF FORM THE BLACK ONE*/ 
 .s011 form .inner-form .main-form {
   background: rgba(0, 0, 0, 0.8);
   box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);

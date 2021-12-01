@@ -158,12 +158,10 @@ figcaption p{
   .center2 {
     margin: auto;
     width: 50%;
-   
-    font-size: 50px;
+    font-size: 40px;
     color: #ff8300;
     padding: 280px;
     text-align: center;
-
   }
 /* button reserve */
   .pricing-button {
