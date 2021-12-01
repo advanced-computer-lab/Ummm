@@ -190,7 +190,7 @@ const CreateUserAccount = () => {
           },
         ]} label="Date of Birth">
           <DatePicker type="date" format="DD-MM-YYYY" 
-defaultPickerValue={now2} disabledDate={d => d.isAfter(now)} name="Date_of_Birth" onChange={(date) => setState(prevData => {
+defaultPickerValue={now2} disabledDate={d => d.isAfter(now)} value={Data.Date_of_Birth} name="Date_of_Birth" onChange={(date) => setState(prevData => {
               return {...prevData ,Date_of_Birth: date}}) 
     }/>
         </Form.Item>

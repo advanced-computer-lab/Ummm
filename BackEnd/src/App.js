@@ -46,6 +46,8 @@ app.post('/loginpage',userController.loginpage)
 
 //User
 app.post('/createuseraccount', userController.createuseraccount)
+app.post('/userlogin',userController.userlogin)
+
 
 
 
