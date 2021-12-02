@@ -41,15 +41,15 @@ import {
 
 const UserManageBooking = () => {
 
-  if (sessionStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
-    window.open("UserLogin", "_self");
- }
- const LogOutHandler = (e) => {
-  sessionStorage.clear()
-  history.push({
-    pathname: '/UserLogin'
-  });
-};
+//   if (sessionStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
+//     window.open("UserLogin", "_self");
+//  }
+//  const LogOutHandler = (e) => {
+//   sessionStorage.clear()
+//   history.push({
+//     pathname: '/UserLogin'
+//   });
+// };
 
 
  const history = useHistory();
@@ -265,6 +265,8 @@ console.log(isreturn);
     message.warning('Please enter departure city');
   };
 
+  
+
   const warning2 = () => {
     message.warning('Please enter a destination.');
   };
@@ -304,7 +306,7 @@ const EditFlightHandler = event => {
 };
 const EditProfileHendler = event => {
   history.push({
-      pathname: '/homepage',
+      pathname: '/UserEditProfile',
       state: { detail: 'some_value' }
   });
 };
@@ -312,9 +314,14 @@ const EditProfileHendler = event => {
 
 
   if (isLoading) {
+
+    // if (sessionStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
+    //   window.open("UserHomePage", "_self");
+    //   warning2();
+    // }
+    
     return (
       <>
-           
              <div class="s011">
       <form>
         <fieldset>
@@ -334,7 +341,7 @@ const EditProfileHendler = event => {
                 <span>RESERVE FLIGHT</span>
               </button>
 
-              <button class="item active" onClick={(e) => ReservedFlightsHandler(e)}>
+              <button class="item active" >
                 <div class="group-icon">
                   <svg class="svg-inline--fa fa-building fa-w-14" aria-hidden="true" data-prefix="fas" data-icon="building" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path fill="currentColor" d="M436 480h-20V24c0-13.255-10.745-24-24-24H56C42.745 0 32 10.745 32 24v456H12c-6.627 0-12 5.373-12 12v20h448v-20c0-6.627-5.373-12-12-12zM128 76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76zm0 96c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40zm52 148h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12zm76 160h-64v-84c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v84zm64-172c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40z"></path>
@@ -347,7 +354,7 @@ const EditProfileHendler = event => {
               </button>
 
 
-              <button class="item" onClick={(e) => EditFlightHandler(e)}>
+              <button class="item" onClick={(e) => EditProfileHendler(e)}>
                 <div class="group-icon">
                   <svg class="svg-inline--fa fa-building fa-w-14" aria-hidden="true" data-prefix="fas" data-icon="building" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path fill="currentColor" d="M436 480h-20V24c0-13.255-10.745-24-24-24H56C42.745 0 32 10.745 32 24v456H12c-6.627 0-12 5.373-12 12v20h448v-20c0-6.627-5.373-12-12-12zM128 76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76zm0 96c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40zm52 148h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12zm76 160h-64v-84c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v84zm64-172c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40z"></path>
@@ -387,8 +394,8 @@ const EditProfileHendler = event => {
           <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
           <figcaption>
             <div class="caption">
-              <h1>asdasd</h1>
-              <p>asdasdasd</p>
+            <h1>Depart Flight</h1>
+              <p>Flight Number:</p>
               </div>
           </figcaption>
       </figure>
@@ -410,8 +417,8 @@ const EditProfileHendler = event => {
           <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
           <figcaption>
             <div class="caption">
-              <h1>asdasd</h1>
-              <p>asdasdasd</p>
+              <h1>Return Flight</h1>
+              <p>Flight Number:</p>
               </div>
           </figcaption>
       </figure>
