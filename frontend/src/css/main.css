@@ -1663,14 +1663,14 @@ span.flatpickr-weekday {
 .s011 form .inner-form header .travel-type-wrap .item:hover .group-icon svg, .s011 form .inner-form header .travel-type-wrap .item:focus .group-icon svg {
   fill: #fff;
 }
- /* HEEEEEEEEEEEEEEEEEEEEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE  CHNAGE THE WIDTH OF FORM THE BLACK ONE*/ 
+ /* HEEEEEEEEEEEEEEEEEEEEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE  CHNAGE THE WIDTH OF FORM THE BLACK*/ 
 .s011 form .inner-form .main-form {
   background: rgba(0, 0, 0, 0.8);
   box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
   border-radius: 3px;
   position: relative;
   padding: 40px;
-  position: relative;
+  
 }
 
 .s011 form .inner-form .main-form .row {

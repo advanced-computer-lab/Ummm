@@ -38,8 +38,55 @@ body{
       -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.10);
     -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.10);
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.10);
+   
 
 }
+
+.listing-item:hover,  .listing-item.active{
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+    transform: scale(1.03);
+    -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  z-index:2;
+
+}
+.listing-item .listing{
+    padding:20px;
+    position:relative;  
+}
+.listing-item .listing:before{
+    content:"";
+  position:absolute;
+  top:-15px;
+  left:-o-calc(50% - 15px);
+  left:-moz-calc(50% - 15px);
+  left:-webkit-calc(50% - 15px);
+  left:calc(50% - 15px);
+  border-bottom:20px solid #fff;
+  border-left:10px solid transparent;
+  border-right:10px solid transparent;
+}
+.listing-item {
+   display: block;
+   width:100%;
+  margin-bottom:20px;
+    float: left;
+    background: #fff;
+    border-radius:10px;
+    z-index:0;
+  cursor:pointer;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+      -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.10);
+    -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.10);
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.10);
+   
+
+}
+
 .listing-item:hover,  .listing-item.active{
   -webkit-transform: scale(1.03);
   -moz-transform: scale(1.03);
@@ -158,11 +205,15 @@ figcaption p{
   .center2 {
     margin: auto;
     width: 50%;
-    font-size: 40px;
+   
+    font-size: 50px;
     color: #ff8300;
     padding: 280px;
     text-align: center;
+
   }
+  
+  
 /* button reserve */
   .pricing-button {
     border: 1px solid #9dd1ff;
@@ -235,13 +286,30 @@ figcaption p{
     grid-column: 2;
     grid-row: 2;
   }
+
+  .d2{
+   
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr ;
+  }
+  .f2 {
+    
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .g2 {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+
   .box .box {
     background-color: #ccc;
     color: #444;
     padding: 20px;
   }
-  
-
   .box {
     background-color: #444;
     color: #fff;
@@ -276,6 +344,7 @@ figcaption p{
   }
 
   .button-79 {
+    
     margin:35px;
     backface-visibility: hidden;
     background:#269aff;
@@ -296,6 +365,7 @@ figcaption p{
     text-decoration: none;
     transform: translateZ(0) scale(1);
     transition: transform .2s;
+    text-align: center;
     
   }
   
@@ -305,6 +375,7 @@ figcaption p{
   }
   
   .button-79:not(:disabled):hover {
+    color: #fff;
     transform: scale(1.05);
   }
   
@@ -409,17 +480,43 @@ figcaption p{
   :target {
     color: red;
   }
-
-
-  
   
 
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    padding: 10px;
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .centerFlightnu {
+    text-align: center;
+   
+  }
+
   
   
   
   
   
- 
+  
+  
+  
+  
+
+
+
+
+
+
 
 
 
