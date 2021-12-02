@@ -28,7 +28,7 @@ import {
   
 
 const CreateFlight = () => {
-  if (sessionStorage.getItem('AuthenticationState') === null) {
+  if (sessionStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
     window.open("LoginPage", "_self");
  }
  const LogOutHandler = (e) => {
@@ -37,8 +37,8 @@ const CreateFlight = () => {
     pathname: '/LoginPage'
   });
 
-  
 };
+
   const history = useHistory();
 
   const [componentSize, setComponentSize] = useState('default');
@@ -63,6 +63,9 @@ const CreateFlight = () => {
     Economy_Price: "",
     Business_Price: "",
     First_Price: "",
+    Economy_Available: "",
+    Business_Available: "",
+    First_Available: "",
   });
   
 
@@ -123,6 +126,19 @@ const CreateFlight = () => {
 
 
     var Data1 = {};
+    var a = new Array(Data.Economy_Seats+1);
+    var b = new Array(Data.Business_Seats+1);
+    var c = new Array(Data.First_Seats+1);
+    a[0] = false; b[0] = false; c[0] = false;
+    for (var i = 1; i < a.length; ++i) { 
+      a[i] = true;
+     }
+     for (var i = 1; i < b.length; ++i) { 
+      b[i] = true; 
+     }
+     for (var i = 1; i < c.length; ++i) { 
+      c[i] = true;
+     }
 
     Object.keys(Data).forEach(key => {
       if(key=='Flight_DHour'){
@@ -131,6 +147,15 @@ const CreateFlight = () => {
       else if(key=='Flight_DMin'){
         Data1['Flight_Duration'] += Data.Flight_DMin +'';
        }
+       else if(key=='Economy_Available'){
+        Data1['Economy_Available'] = a;
+       }
+       else if(key=='Business_Available'){
+        Data1['Business_Available'] = b;
+      }
+      else if(key=='First_Available'){
+        Data1['First_Available'] = c;
+      }
        else if(key!=='Flight_Duration')
        Data1[key] = Data[key];
       });

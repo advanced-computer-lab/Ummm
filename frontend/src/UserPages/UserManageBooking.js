@@ -34,13 +34,24 @@ import {
 
 
 
+ 
+
 //TESTTTTTTTTT
 
 
+const UserManageBooking = () => {
+
+  if (sessionStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
+    window.open("UserLogin", "_self");
+ }
+ const LogOutHandler = (e) => {
+  sessionStorage.clear()
+  history.push({
+    pathname: '/UserLogin'
+  });
+};
 
 
-
-const SearchFlight = () => {
  const history = useHistory();
   const [componentSize, setComponentSize] = useState('default');
   const [Result1, setResult1] = useState();
@@ -719,9 +730,6 @@ const EditProfileHendler = event => {
 
   
 
-
-
-
-
 };
-export default SearchFlight;
+
+export default UserManageBooking;

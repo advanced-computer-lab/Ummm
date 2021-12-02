@@ -25,6 +25,7 @@ import {
   
 
 const CreateUserAccount = () => {
+  
   const history = useHistory();
 
   const [componentSize, setComponentSize] = useState('default');
@@ -35,6 +36,7 @@ const CreateUserAccount = () => {
     LastName: "",  
     Email: "",
     Date_of_Birth: "", // Data type date
+    PassPort_No: "",
     Username: "",
     Password: "",
   });
@@ -55,7 +57,7 @@ const CreateUserAccount = () => {
    if(Data.Email.match(mailformat)){} 
    else{warning11()} 
 
-    if(Data.Date_of_Birth!==null &&Data.FirstName!==''&& Data.LastName!==''&& Data.Email!==''&& Data.Username!==''&& Data.Password!=='' ){
+    if(Data.Date_of_Birth!==null &&Data.FirstName!==''&& Data.LastName!==''&& Data.Email!==''&& Data.Username!==''&& Data.Password!==''&&  Data.PassPort_No!==''){
     axios.post('http://localhost:8000/createuseraccount', Data)
     .then(response => {
       console.log(response.status);
@@ -64,6 +66,7 @@ const CreateUserAccount = () => {
         LastName: "",  
         Email: "",
         Date_of_Birth: "", // Data type date
+        PassPort_No: "",
         Username: "",
         Password: "",
         })
@@ -88,6 +91,9 @@ const CreateUserAccount = () => {
  
   else if(Data.Date_of_Birth==''){
     warning7();
+  }
+  else if(Data.PassPort_No==''){
+    warning12();
   }
   else if(Data.Username=='' ){
     warning8();
@@ -129,6 +135,9 @@ const CreateUserAccount = () => {
   };
   const warning10 = () => {
     message.warning('"Password" Must be Filled!');
+  };
+  const warning12 = () => {
+    message.warning('"Passport No" Must be Filled!');
   };
   const warning9 = () => {
     message.warning('Username/Email already Exists!');
@@ -190,10 +199,21 @@ const CreateUserAccount = () => {
           },
         ]} label="Date of Birth">
           <DatePicker type="date" format="DD-MM-YYYY" 
-defaultPickerValue={now2} disabledDate={d => d.isAfter(now)} value={Data.Date_of_Birth} name="Date_of_Birth" onChange={(date) => setState(prevData => {
+          defaultPickerValue={now2} disabledDate={d => d.isAfter(now)} value={Data.Date_of_Birth} name="Date_of_Birth" onChange={(date) => setState(prevData => {
               return {...prevData ,Date_of_Birth: date}}) 
     }/>
         </Form.Item>
+
+        <Form.Item label="Passport No."
+         rules={[
+           {
+             required: true,
+           },
+         ]}>
+        <Input type="text" name="PassPort_No" maxLength="11"  placeholder="Enter your Passport No." 
+        value={Data.PassPort_No} onChange={(e) => changeHander(e)}/>
+        </Form.Item>
+
         <Form.Item  
         rules={[
           { type: "email",
@@ -209,7 +229,7 @@ defaultPickerValue={now2} disabledDate={d => d.isAfter(now)} value={Data.Date_of
             required: true,
           },
         ]}label="Username">
-          <Input   type="text" name="Username" maxLength="11" placeholder="Enter your Username" 
+          <Input   type="text" name="Username" maxLength="30" placeholder="Enter your Username" 
           value={Data.Username} onChange={(e) => changeHander(e)} />
         </Form.Item>
 

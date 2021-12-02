@@ -61,7 +61,12 @@ const LoginPage = () => {
         Username: "",  
         Password: "",
         })
-        sessionStorage.setItem("AuthenticationState", "Authenticated");
+        sessionStorage.setItem("AuthenticationState", "AdminAuthenticated");
+        sessionStorage.setItem("Username", criteria.Username);
+        // console.log(sessionStorage.getItem("AuthenticationState"))
+        // console.log(sessionStorage.getItem("Username"))
+  
+
                 
                 //This authentication key will expire in 1 hour.
        // sessionStorage.setItem("AuthenticationExpires", Date.now.addHours(1));

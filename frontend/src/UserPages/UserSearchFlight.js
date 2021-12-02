@@ -33,13 +33,25 @@ import {
 
 
 const SearchFlight = () => {
+  // console.log(sessionStorage.getItem('AuthenticationState'));
+  // console.log(sessionStorage.getItem('Username'));
+
+  
  const history = useHistory();
   const [componentSize, setComponentSize] = useState('default');
   const [Result1, setResult1] = useState();
   const [Result2, setResult2] = useState();
+
+  const [Guard, setGuard] = useState();
+
   const [isLoading, setLoading] = useState(true);
   const [bothselected, setbothselected] = useState(true);
-  
+  const [isdepart, setdepart] = useState();
+  const [isreturn, setreturn] = useState();
+  const [Display1, setDisplay1] = useState([]);
+  const [Display2, setDisplay2] = useState([]);
+ 
+
   const [Data, setState] = useState({
     Flight_No: "",
         From: "",  
@@ -51,8 +63,37 @@ const SearchFlight = () => {
         Seats: "",
         Baggage: "",
         Price: "",
-    
 
+        Adults: 4,
+        Children:1,
+        CabinDepart: "First",
+        CabinReturn: "First",
+
+  });
+  const [Temp1, setTemp1] = useState({
+    Flight_No: "",
+    From: "",  
+    To: "",
+    Flight_Date: "", // Data type date
+    Terminal: "",
+    Flight_Duration:"",
+
+    Seats: "",
+    Baggage: "",
+    Price: "",
+  });
+  
+  const [Temp2, setTemp2] = useState({
+    Flight_No: "",
+    From: "",  
+    To: "",
+    Flight_Date: "", // Data type date
+    Terminal: "",
+    Flight_Duration:"",
+
+    Seats: "",
+    Baggage: "",
+    Price: "",
   });
   
   
@@ -65,32 +106,118 @@ const SearchFlight = () => {
     setValue(e.target.value);
   };
 
+  // sessionStorage.getItem("Username");
 
-  const cars = [];
-  const [isdepart, setdepart] = useState();
+  // const cars = [];
+
 
   const departHandler = (flight) => {
     setdepart( flight )
     //console.log(flight) ;
    
     };
-    
-
-    const [isreturn, setreturn] = useState();
 
     const returnHandler = (flight) => {
       setreturn( flight )
       //console.log(flight) ;
-      
       };
-      
-    
 
   useEffect(() => {
+   
+    // console.log(isdepart);
+    // console.log(isreturn);
 
-    if(Result1 && Result2)
+    if(Result1 && Result2 && Guard === true)
     {
+
+      var seatcabin = Data.CabinDepart+'_Seats';
+      var baggagecabin = Data.CabinDepart+'_Baggage';
+      var pricecabin = Data.CabinDepart+'_Price';
+      var seatsrequested = Data.Adults + Data.Children
+      const FilteredResult1 =[];
+      const FilteredResult2 =[];
+      var minFlightDate = Result1[0]['Flight_Date'];
+      console.log(minFlightDate);
+    
+      console.log(Result1)
+      console.log(Result2)
+      
+
+
+      Object.keys(Result1).forEach(AllFlights => {
+        // if(Result1[key].seatavaliable)
+        //  console.log(moment(minFlightDate).isSameOrAfter(moment(Result1[AllFlights]['Flight_Date'])))
+        if(moment(minFlightDate).isSameOrAfter(moment(Result1[AllFlights]['Flight_Date']))) {
+          minFlightDate = moment(Result1[AllFlights]['Flight_Date']);
+          // console.log(minFlightDate);
+        }
+         if(Result1[AllFlights][seatcabin]<seatsrequested){
+          return;
+         }
+          else{
+            Object.keys(Result1[AllFlights]).forEach(DetailsPerFlight => {
+              if(DetailsPerFlight in Temp1){
+                // console.log(DetailsPerFlight)
+                // console.log(DetailsPerFlight in Temp1)
+                Temp1[DetailsPerFlight] = Result1[AllFlights][DetailsPerFlight]; 
+              }
+            });
+            Temp1['Seats'] = Result1[AllFlights][seatcabin]; 
+            Temp1['Baggage'] = Result1[AllFlights][baggagecabin]; 
+            Temp1['Price'] = Result1[AllFlights][pricecabin]; 
+            var newObject = JSON.parse(JSON.stringify(Temp1));
+            FilteredResult1[AllFlights] = newObject;
+          }
+
+        });
+        setDisplay1(FilteredResult1);
+
+
+        console.log(minFlightDate);
+
+        Object.keys(Result2).forEach(AllFlights => {
+          // if(Result1[key].seatavaliable)
+          console.log(moment(Result2[AllFlights]['Flight_Date']))
+          console.log(Data.Flight_Date_Depart)
+          console.log(moment(Result2[AllFlights]['Flight_Date']).isSameOrAfter(Data.Flight_Date_Depart)
+          || moment(Result2[AllFlights]['Flight_Date']).isSameOrAfter(minFlightDate))
+           if(Result2[AllFlights][seatcabin]<seatsrequested){
+            return;
+           }
+            else if(moment(Result2[AllFlights]['Flight_Date']).isSameOrAfter(Data.Flight_Date_Depart)
+            || moment(Result2[AllFlights]['Flight_Date']).isSameOrAfter(minFlightDate)) {
+         
+              Object.keys(Result2[AllFlights]).forEach(DetailsPerFlight => {
+                if(DetailsPerFlight in Temp2){
+                  // console.log(DetailsPerFlight)
+                  // console.log(DetailsPerFlight in Temp1)
+                  Temp2[DetailsPerFlight] = Result2[AllFlights][DetailsPerFlight]; 
+                }
+              });
+              console.log("innnn");
+              Temp2['Seats'] = Result2[AllFlights][seatcabin]; 
+              Temp2['Baggage'] = Result2[AllFlights][baggagecabin]; 
+              Temp2['Price'] = Result2[AllFlights][pricecabin]; 
+              var newObject = JSON.parse(JSON.stringify(Temp2));
+              console.log(newObject)
+              FilteredResult2[AllFlights] = newObject;
+             console.log(FilteredResult2);
+          }
+          });
+          setDisplay2(FilteredResult2);
+          
+    }
+
+    if(Result1 && Result2 && Guard === true){
+      setTimeout(() => {
+        setGuard(false);
+      }, 500);
+    }
+
+    if(Display1 && Display2){
       setLoading(false);
+         console.log(Display1);
+      console.log(Display2);
     }
 
     if(isdepart && isreturn){
@@ -101,7 +228,7 @@ const SearchFlight = () => {
     }
 
 
-  },[Result1,Result2,isdepart,isreturn]);
+  },[Result1,Result2,isdepart,isreturn,Display1,Display2,Guard]);
 
 
 
@@ -126,6 +253,9 @@ console.log(isreturn);
   const searchHandler = (e) => {
     e.preventDefault(); 
   
+    /// setDisplay1([]);
+    // setDisplay2([]);
+
     const criteria1 = {};
     const criteria2 = {};
     var dd;
@@ -151,27 +281,15 @@ console.log(isreturn);
         criteria2[key] = Data[key];
       }
     });
-    //console.log(criteria);
+    console.log(criteria2);
 
    // prevent reloading the page
-   console.log(Data.Flight_Date_Depart);
+  //  console.log(Data.Flight_Date_Depart);
   //  if(Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date_Depart!=="" &&Data.Flight_Date_Return!==""){
     axios.post('http://localhost:8000/SearchFlight', criteria1)
     .then(response => {
       setResult1(response.data);
-       console.log(Result1);
-      setState({
-        Flight_No: "",
-        From: "",  
-        To: "",
-        Flight_Date_Depart: "", // Data type date
-        Flight_Date_Return: "", // Data type date
-        Terminal: "",
-        Flight_Duration:"",
-        Seats: "",
-        Baggage: "",
-        Price: "",
-        })
+      //  console.log(Result1);
        }).catch(error => {
       console.log(error);
     })
@@ -179,43 +297,36 @@ console.log(isreturn);
     axios.post('http://localhost:8000/SearchFlight', criteria2)
     .then(response => {
       setResult2(response.data);
-       console.log(Result2);
-      setState({
-        Flight_No: "",
-        From: "",  
-        To: "",
-        Flight_Date_Depart: "", // Data type date
-        Flight_Date_Return: "", // Data type date
-        Terminal: "",
-        Flight_Duration:"",
-        Seats: "",
-        Baggage: "",
-        Price: "",
-        })
+      //  console.log(Result2);
        }).catch(error => {
       console.log(error);
     })
 
-    // Object.keys(Result2).forEach(key => {
 
-    // });
+    setGuard(true);
 
-    console.log(Result1);
-    console.log(Result2);
+    // console.log(Result1);
+    // console.log(Result2);
 
 
-    setState({
-      Flight_No: "",
-        From: "",  
-        To: "",
-        Flight_Date_Depart: "", // Data type date
-        Flight_Date_Return: "", // Data type date
-        Terminal: "",
-        Flight_Duration:"",
-        Seats: "",
-        Baggage: "", 
-        Price: "",
-      })
+    // setState({
+    //   Flight_No: "",
+    //     From: "",  
+    //     To: "",
+    //     Flight_Date_Depart: "", // Data type date
+    //     Flight_Date_Return: "", // Data type date
+    //     Terminal: "",
+    //     Flight_Duration:"",
+    //     Seats: "",
+    //     Baggage: "", 
+    //     Price: "",
+
+    //     Adults: "",
+    //     Children:"",
+    //     CabinDepart: "",
+    //     CabinReturn: "",
+    //   })
+
 
     // }
 
@@ -646,7 +757,7 @@ return(
   <div class="box f">
 
 
-  {Result1.map(flight =>
+  {Display1.map(flight =>
       
   <div class="listing-item">
       <figure class="image">
@@ -679,7 +790,7 @@ return(
   <div class="box g">
 
 
-  {Result2.map(flight =>
+  {Display2.map(flight =>
       
   <div class="listing-item">
       <figure class="image">
@@ -965,7 +1076,7 @@ return (
   <div class="box f">
 
 
-  {Result1.map(flight =>
+  {Display1.map(flight =>
       
   <div class="listing-item">
       <figure class="image">
@@ -998,7 +1109,7 @@ return (
   <div class="box g">
 
 
-  {Result2.map(flight =>
+  {Display2.map(flight =>
       
   <div class="listing-item">
       <figure class="image">

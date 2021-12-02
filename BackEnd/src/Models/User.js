@@ -24,6 +24,11 @@ Date_of_Birth: {
     required: true,
 },
 
+PassPort_No: {
+    type: String,
+    required: true,
+},  
+
 Username: {
     type: String,
     required: true,
