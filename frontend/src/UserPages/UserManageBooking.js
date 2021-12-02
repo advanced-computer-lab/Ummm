@@ -11,7 +11,7 @@ import '../css/popup.css';
 
 import '../css/main.css';
 import '../css/guest.css';
-import '../css/SelectSeat.scss';
+ import '../css/SelectSeat.scss';
 
 
 
@@ -488,24 +488,29 @@ const EditProfileHendler = event => {
           <input type="checkbox" id="1B" />
           <label for="1B">1B</label>
         </li>
-        <li class="seat">
-          <input type="checkbox" id="1C" />
+        {/* <li class="seat">
+          <input type="checkbox" enabled id="1C" />
           <label for="1C">1C</label>
-        </li>
+        </li> */}
         <li class="seat">
-          <input type="checkbox" id="1D" />
+          <input type="checkbox"  id="1D" />
           <label for="1D">1D</label>
         </li>
         <li class="seat">
           <input type="checkbox" id="1E" />
           <label for="1E">1E</label>
         </li>
-        <li class="seat">
+        {/* <li class="seat">
           <input type="checkbox" id="1F" />
           <label for="1F">1F</label>
-        </li>
+        </li> */}
       </ol>
     </li>
+
+
+  <div class="exit exit--back fuselage">
+  </div>
+
     <li class="row row--2">
       <ol class="seats" type="A">
         <li class="seat">
