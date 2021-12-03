@@ -91,7 +91,7 @@ class SeatMap extends React.Component {
   render() {
     const rows = [
       [
-        { id: 1, number: 1, isSelected: true, tooltip: "Reserved by you" },
+        { id: 1, number: 1, tooltip: "Reserved by you" },
         { id: 2, number: 2, tooltip: "Cost: 15$" },
         null,
         {
@@ -143,13 +143,23 @@ class SeatMap extends React.Component {
       ],
       [
         { id: 25, number: 1, isReserved: true },
-        { id: 26, number: 2, orientation: "east" },
+        { id: 26, number: 2},
         null,
-        { id: 27, number: "3", isReserved: true },
+        { id: 27, number: "3", isReserved: true,orientation: "east" },
         { id: 28, number: "4", orientation: "west" },
         null,
         { id: 29, number: 5, tooltip: "Cost: 11$" },
         { id: 30, number: 6, isReserved: true }
+      ],
+      [
+        { id: 31, number: 1, isReserved: true },
+        { id: 32, number: 2},
+        null,
+        { id: 33, number: "3", isReserved: true,orientation: "east" },
+        { id: 34, number: "4", orientation: "west" },
+        null,
+        { id: 35, number: 5, tooltip: "Cost: 11$" },
+        { id: 36, number: 6, isReserved: true }
       ]
     ];
     const { loading } = this.state;

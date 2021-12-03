@@ -611,7 +611,7 @@ const { loading } = state;
   <SeatMap />
 </ol>
   
-    
+    <br></br>
   </div>
 
 
