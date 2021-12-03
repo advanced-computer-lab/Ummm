@@ -63,9 +63,7 @@ const CreateFlight = () => {
     Economy_Price: "",
     Business_Price: "",
     First_Price: "",
-    Economy_Available: "",
-    Business_Available: "",
-    First_Available: "",
+    Available_Seats: "",
   });
   
 
@@ -126,19 +124,38 @@ const CreateFlight = () => {
 
 
     var Data1 = {};
-    var a = new Array(Data.Economy_Seats+1);
-    var b = new Array(Data.Business_Seats+1);
-    var c = new Array(Data.First_Seats+1);
-    a[0] = false; b[0] = false; c[0] = false;
+    var a = new Array(141);
+    // var b = new Array(Data.Business_Seats+1);
+    // var c = new Array(Data.First_Seats+1);
+    a[0] = false; 
+    // b[0] = false; c[0] = false;
     for (var i = 1; i < a.length; ++i) { 
-      a[i] = true;
+      if(i<21){
+        if(i<Data.First_Seats+1)
+             a[i] = true;
+        else
+             a[i] = false;
      }
-     for (var i = 1; i < b.length; ++i) { 
-      b[i] = true; 
+     else if(i<63) {
+      if(i<Data.Business_Seats+21)
+         a[i] = true;
+      else
+         a[i] = false;
      }
-     for (var i = 1; i < c.length; ++i) { 
-      c[i] = true;
+     else {
+      if(i<Data.Economy_Seats+63)
+             a[i] = true;
+        else
+             a[i] = false;
      }
+    }
+     console.log(a);
+    //  for (var i = 1; i < b.length; ++i) { 
+    //   b[i] = true; 
+    //  }
+    //  for (var i = 1; i < c.length; ++i) { 
+    //   c[i] = true;
+    //  }
 
     Object.keys(Data).forEach(key => {
       if(key=='Flight_DHour'){
@@ -147,15 +164,15 @@ const CreateFlight = () => {
       else if(key=='Flight_DMin'){
         Data1['Flight_Duration'] += Data.Flight_DMin +'';
        }
-       else if(key=='Economy_Available'){
-        Data1['Economy_Available'] = a;
+       else if(key=='Available_Seats'){
+        Data1['Available_Seats'] = a;
        }
-       else if(key=='Business_Available'){
-        Data1['Business_Available'] = b;
-      }
-      else if(key=='First_Available'){
-        Data1['First_Available'] = c;
-      }
+      //  else if(key=='Business_Available'){
+      //   Data1['Business_Available'] = b;
+      // }
+      // else if(key=='First_Available'){
+      //   Data1['First_Available'] = c;
+      // }
        else if(key!=='Flight_Duration')
        Data1[key] = Data[key];
       });
@@ -211,6 +228,7 @@ const CreateFlight = () => {
       Economy_Price: "",
       Business_Price: "",
       First_Price: "",
+      Available_Seats: "",
       })
    
   // };
@@ -414,7 +432,7 @@ const CreateFlight = () => {
             message: 'Please Fill!',
           },
         ]} label="Economy Seats">         
-          <InputNumber type="Number" name="Economy_Seats" value={Data.Economy_Seats} max={78} placeholder="78 Max" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="Economy_Seats" value={Data.Economy_Seats} min={0} max={78} placeholder="78 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,Economy_Seats: number}}) 
           }/>
         </Form.Item>
@@ -427,7 +445,7 @@ const CreateFlight = () => {
             message: 'Please Fill!',
           },
         ]} label="Business Seats">   
-          <InputNumber type="Number" name="Business_Seats" value={Data.Business_Seats} max={42} placeholder="42 Max" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="Business_Seats" value={Data.Business_Seats} min={0} max={42} placeholder="42 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,Business_Seats: number}}) 
           }/>
         </Form.Item>
@@ -439,7 +457,7 @@ const CreateFlight = () => {
             message: 'Please Fill!',
           },
         ]} label="First Seats">   
-          <InputNumber type="Number" name="First_Seats" value={Data.First_Seats} max={20} placeholder="20 Max" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="First_Seats" value={Data.First_Seats} min={0} max={20} placeholder="20 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,First_Seats: number}}) 
           }/>
         </Form.Item>
@@ -460,7 +478,7 @@ const CreateFlight = () => {
             message: 'Please Fill!',
           },
         ]} label="Economy Baggage">         
-          <InputNumber type="Number" name="Economy_Baggage" value={Data.Economy_Baggage} max={15} placeholder="20 Max" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="Economy_Baggage" value={Data.Economy_Baggage} min={0} max={15} placeholder="15 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,Economy_Baggage: number}}) 
           }/>
         </Form.Item>
@@ -473,7 +491,7 @@ const CreateFlight = () => {
             message: 'Please Fill!',
           },
         ]} label="Business Baggage">   
-          <InputNumber type="Number" name="Business_Baggage" value={Data.Business_Baggage} max={15} placeholder="20 Max" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="Business_Baggage" value={Data.Business_Baggage} min={0} max={15} placeholder="15 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,Business_Baggage: number}}) 
           }/>
         </Form.Item>
@@ -486,7 +504,7 @@ const CreateFlight = () => {
             message: 'Please Fill!',
           },
         ]} label="First Baggage">   
-          <InputNumber type="Number" name="First_Baggage" value={Data.First_Baggage} max={20} placeholder="20 Max" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="First_Baggage" value={Data.First_Baggage} min={0} max={20} placeholder="15 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,First_Baggage: number}}) 
           }/>
         </Form.Item>
@@ -504,7 +522,7 @@ const CreateFlight = () => {
             message: 'Please Fill!',
           },
         ]} label="Economy Price">         
-          <InputNumber  type="Number" name="Economy_Price" value={Data.Economy_Price} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
+          <InputNumber  type="Number" name="Economy_Price" value={Data.Economy_Price} min={0} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
               return {...prevData ,Economy_Price: number}}) 
           }/>
         </Form.Item>
@@ -517,7 +535,7 @@ const CreateFlight = () => {
             message: 'Please Fill!',
           },
         ]} label="Business Price">   
-          <InputNumber type="Number" name="Business_Price" value={Data.Business_Price} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="Business_Price" value={Data.Business_Price} min={0} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
               return {...prevData ,Business_Price: number}}) 
           }/>
         </Form.Item>
@@ -530,7 +548,7 @@ const CreateFlight = () => {
             message: 'Please Fill!',
           },
         ]} label="First Price">   
-          <InputNumber type="Number" name="First_Baggage" value={Data.First_Price} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="First_Baggage" value={Data.First_Price} min={0} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
               return {...prevData ,First_Price: number}}) 
           }/>
         </Form.Item>

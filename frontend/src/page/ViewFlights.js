@@ -8,8 +8,8 @@ import {
   Button,
 
 } from 'antd';
-//import {Redirect} from 'react-router-dom';
-//import LNSelect from "../LNSelect/LNSelect";
+// import {Redirect} from 'react-router-dom';
+// import LNSelect from "../LNSelect/LNSelect";
 // import Navbar from './navbar';
 // import Home from './home';
 import { withRouter } from "react-router-dom";
@@ -114,10 +114,9 @@ function App() {
     {flights.map(flight =>
          
        
-         
-   
         
         <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+
             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                 <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.Flight_No}</span>
               

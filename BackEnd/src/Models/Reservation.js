@@ -15,7 +15,7 @@ const reservationSchema = new Schema({
     type: Date,
    required: true,
   },
-  PriceTotalFrom: {
+  CabinFrom: {
     type: Number,
    required: true
   },
@@ -34,7 +34,7 @@ const reservationSchema = new Schema({
     type: Date,
    required: true,
   },
-  PriceTotalTo: {
+  CabinTo: {
     type: Number,
    required: true
   },
@@ -42,13 +42,18 @@ const reservationSchema = new Schema({
 
 
 
-  Cabin: {
+  TotalPrice: {
     type: String,
    required: true
   },
-  SeatsChoosen: {
+
+  SeatsChoosenFrom: {
     type: [Number],
-    required: true,
+    
+  }, 
+  SeatsChoosenTo: {
+    type: [Number],
+    
   }, 
 
   

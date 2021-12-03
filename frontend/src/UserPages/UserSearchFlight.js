@@ -111,6 +111,27 @@ const SearchFlight = () => {
   // const cars = [];
 
 
+  const confirmHandler = () => {
+    history.push({
+      pathname: '/UserConfirmReservation',
+    state: {
+      flight1: isdepart,
+      flight2: isreturn,
+      CabinFrom: Data.CabinDepart,
+      CabinTo: Data.CabinDepart,
+      Adults: Data.Adults,
+      Children: Data.Children,
+    }
+    });
+
+    };
+
+
+
+
+
+
+
   const departHandler = (flight) => {
     setdepart( flight )
     //console.log(flight) ;

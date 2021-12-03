@@ -313,7 +313,7 @@ const warning9 = () => {
             message: 'Please Fill!',
           },
         ]} label="Economy Seats">         
-          <InputNumber type="Number" name="Economy_Seats" value={Data.Economy_Seats} max={78} placeholder="78 Max" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="Economy_Seats" value={Data.Economy_Seats} min={0} max={78} placeholder="78 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,Economy_Seats: number}}) 
           }/>
         </Form.Item>
@@ -326,7 +326,7 @@ const warning9 = () => {
             message: 'Please Fill!',
           },
         ]} label="Business Seats">   
-          <InputNumber type="Number" name="Business_Seats" value={Data.Business_Seats} max={42} placeholder="42 Max" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="Business_Seats" value={Data.Business_Seats} min={0} max={42} placeholder="42 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,Business_Seats: number}}) 
           }/>
         </Form.Item>
@@ -338,7 +338,7 @@ const warning9 = () => {
             message: 'Please Fill!',
           },
         ]} label="First Seats">   
-          <InputNumber type="Number" name="First_Seats" value={Data.First_Seats} max={20} placeholder="20 Max" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="First_Seats" value={Data.First_Seats} min={0} max={20} placeholder="20 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,First_Seats: number}}) 
           }/>
         </Form.Item>
@@ -359,7 +359,7 @@ const warning9 = () => {
             message: 'Please Fill!',
           },
         ]} label="Economy Baggage">         
-          <InputNumber type="Number" name="Economy_Baggage" value={Data.Economy_Baggage} max={15} placeholder="15 Max" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="Economy_Baggage" value={Data.Economy_Baggage}  min={0} max={15} placeholder="15 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,Economy_Baggage: number}}) 
           }/>
         </Form.Item>
@@ -372,7 +372,7 @@ const warning9 = () => {
             message: 'Please Fill!',
           },
         ]} label="Business Baggage">   
-          <InputNumber type="Number" name="Business_Baggage" value={Data.Business_Baggage} max={15} placeholder="15 Max" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="Business_Baggage" value={Data.Business_Baggage} min={0} max={15} placeholder="15 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,Business_Baggage: number}}) 
           }/>
         </Form.Item>
@@ -385,7 +385,7 @@ const warning9 = () => {
             message: 'Please Fill!',
           },
         ]} label="First Baggage">   
-          <InputNumber type="Number" name="First_Baggage" value={Data.First_Baggage} max={15} placeholder="15 Max" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="First_Baggage" value={Data.First_Baggage} min={0} max={15} placeholder="15 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,First_Baggage: number}}) 
           }/>
         </Form.Item>
@@ -403,7 +403,7 @@ const warning9 = () => {
             message: 'Please Fill!',
           },
         ]} label="Economy Price">         
-          <InputNumber  type="Number" name="Economy_Price" value={Data.Economy_Price} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
+          <InputNumber  type="Number" name="Economy_Price" value={Data.Economy_Price} min={0} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
               return {...prevData ,Economy_Price: number}}) 
           }/>
         </Form.Item>
@@ -416,7 +416,7 @@ const warning9 = () => {
             message: 'Please Fill!',
           },
         ]} label="Business Price">   
-          <InputNumber type="Number" name="Business_Price" value={Data.Business_Price} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="Business_Price" value={Data.Business_Price} min={0} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
               return {...prevData ,Business_Price: number}}) 
           }/>
         </Form.Item>
@@ -429,7 +429,7 @@ const warning9 = () => {
             message: 'Please Fill!',
           },
         ]} label="First Price">   
-          <InputNumber type="Number" name="First_Baggage" value={Data.First_Price} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="First_Baggage" value={Data.First_Price} min={0} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
               return {...prevData ,First_Price: number}}) 
           }/>
         </Form.Item>

@@ -16,6 +16,8 @@ import CreateUserAccount from './UserPages/CreateUserAccount'
 import UserSearchFlight from './UserPages/UserSearchFlight'
 import UserManageBooking from './UserPages/UserManageBooking'
 import UserEditProfile from './UserPages/UserEditProfile'
+import UserConfirmBooking from './UserPages/UserConfirmBooking'
+
 
 
 
@@ -43,6 +45,7 @@ ReactDOM.render(
                     <Route exact path="/CreateUserAccount" component={CreateUserAccount} />
                     <Route exact path="/UserSearchFlight" component={UserSearchFlight} />
                     <Route exact path="/UserManageBooking" component={UserManageBooking} />
+                    <Route exact path="/UserConfirmBooking" component={UserConfirmBooking} />
 
                     <Route exact path="/UserEditProfile" component={UserEditProfile} />
                     
