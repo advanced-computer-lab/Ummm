@@ -605,7 +605,7 @@ const { loading } = state;
   <div class="cockpit">
     <h1>Select Seats</h1>
   </div>
-  <div class="exit exit--back fuselage">
+  
 
   <ol class="cabin fuselage">
   <SeatMap />
@@ -613,7 +613,7 @@ const { loading } = state;
   
     
   </div>
-  </div>
+
 
     
 
