@@ -82,7 +82,7 @@ class SeatMap extends React.Component {
 
   render() {
 
-    const rows = new Array(26);
+    const rows = new Array(25);
   
     // document.write("Creating 2D array <br>");
       
@@ -98,16 +98,16 @@ class SeatMap extends React.Component {
      
     }
      
-    for(let i=0;i<26;i++){
+    for(let i=0;i<25;i++){
       for(let j=0;j<8;j++){
         if(j>1 && j<6 && i<6){
           rows[i][j] = null;
         }
      else if(i<6){
        if(j>5)
-        rows[i][j] = { id: ((i*4)-3+j-4), number: j+1-4, isReserved: false} ;
+        rows[i][j] = { id: ((i*4)+j-4+1), number: j+1-4, isReserved: false} ;
         else
-        rows[i][j] = { id: ((i*4)-3+j), number: j+1, isReserved: false} ;
+        rows[i][j] = { id: ((i*4)+j+1), number: j+1, isReserved: false} ;
         
     }
     else {
@@ -115,9 +115,9 @@ class SeatMap extends React.Component {
         rows[i][j] = null;
       }
    else if(j>4)
-   rows[i][j] = { id: ((20+((i-5)*6)-5+j-2)), number: j+1-2, isReserved: false} ;
+   rows[i][j] = { id: ((20+((i-5)*6)+j-2)+1), number: j+1-2, isReserved: false} ;
          else
-         rows[i][j] = { id: ((20+((i-5)*6)-5+j)), number: j+1, isReserved: false} ;
+         rows[i][j] = { id: ((20+((i-5)*6)+j)+1), number: j+1, isReserved: false} ;
     }
       }
     }

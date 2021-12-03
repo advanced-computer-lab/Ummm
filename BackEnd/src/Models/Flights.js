@@ -71,15 +71,18 @@ const flightsSchema = new Schema({
    required: true
   },
 
-  Economy_Available: {
+  Available_Seats: {
     type: [Boolean],
   },
-  Business_Available: {
-    type: [Boolean],
-  },
-  First_Available: {
-    type: [Boolean],
-  },
+  // Economy_Available: {
+  //   type: [Boolean],
+  // },
+  // Business_Available: {
+  //   type: [Boolean],
+  // },
+  // First_Available: {
+  //   type: [Boolean],
+  // },
 
 }, { timestamps: true });
 
