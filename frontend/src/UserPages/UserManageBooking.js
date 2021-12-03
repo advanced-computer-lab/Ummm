@@ -93,6 +93,10 @@ const UserManageBooking = () => {
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
+
+
+ 
+
   const [value, setValue] = useState(1);
   const selectRadio = e => {
     console.log('radio checked', e.target.value);
