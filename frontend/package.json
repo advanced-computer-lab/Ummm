@@ -25,6 +25,7 @@
     "react-tooltip": "^4.2.21",
     "sass": "^1.44.0",
     "scss": "^0.2.4",
+    "sweetalert2": "^11.2.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css'; 
 import '../css/EditUser.css';
 import '../css/EditUser1.css';
+import Swal from 'sweetalert2'
 
 import moment from "moment";
 import {
@@ -56,10 +57,19 @@ const CreateUserAccount = () => {
   const submitHandler = (e) => {
     e.preventDefault();    // prevent reloading the page
    var mailformat =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-   if(Data.Email.match(mailformat)){} 
-   else{warning11()} 
-
+   
     if(Data.Date_of_Birth!==null &&Data.FirstName!==''&& Data.LastName!==''&& Data.Email!==''&& Data.Username!==''&& Data.Password!==''&&  Data.PassPort_No!==''){
+        if(Data.FirstName.trim().includes(" ")){ // means space name of contian space between username
+          warning14();
+        }
+       else if(Data.LastName.trim().includes(" ")){ // means space name of contian space between username
+          warning15();
+        }
+        else if(Data.Username.trim().includes(" ")){ // means space name of contian space between username
+          warning13();
+        }
+ 
+else { // will post normally
     axios.post('http://localhost:8000/createuseraccount', Data)
     .then(response => {
       console.log(response.status);
@@ -73,10 +83,16 @@ const CreateUserAccount = () => {
         Password: "",
         })
         success(); // data succ added less go
+      
       }).catch(error => {
+        if(!Data.Email.match(mailformat)){
+          warning11()
+         } 
+         else
         warning9();
         //console.log(error);
     })
+  }
    
   }
 
@@ -89,50 +105,78 @@ const CreateUserAccount = () => {
   else if(Data.LastName=="" ){
     warning5();
   }
-  else if(Data.Email=='' ){
-    warning6();
-  }
- 
   else if(Data.Date_of_Birth==''){
     warning7();
   }
   else if(Data.PassPort_No==''){
     warning12();
   }
+  else if(Data.Email=='' ){
+    warning6();
+  }
+ else if(!Data.Email.match(mailformat)){
+    warning11()
+   } 
   else if(Data.Username=='' ){
     warning8();
   }
   else if(Data.Password=='' ){
     warning10();
   }
+  
   else {
     warning();
   }
   
   };
+  
 
+ 
   const success = () => {
-    message.success('Account Successfully Created!');
+    Swal.fire(
+      {
+      title: 'Account Successfully Created!',
+      text: 'continue to Log In',
+      icon: 'success',
+      confirmButtonText: 'Log In',
+      confirmButtonColor: '#ff8300',
+      // iconColor:'#ff8300' ,
+    })
+      .then((res) => {
+           if(res.isConfirmed){
+              console.log('confirm');
+               LoginHandler() ;
+          }    
+      });
   };
 
   const warning = () => {
     message.warning('Fill All Fields Please!');
   };
+  const warning13 = () => {
+    message.warning('Remove Spaces From "Username"!');
+  };
+  const warning14 = () => {
+    message.warning('Remove Spaces From "Fisrt Name"!');
+  };
+  const warning15 = () => {
+    message.warning('Remove Spaces From "Last Name"!');
+  };
   const warning11 = () => {
-    message.warning('Invalid Email');
+    message.warning('Invalid Email!');
   };
 
   const warning4 = () => {
-    message.warning(' "FirstName" Must be Filled!');
+    message.warning(' "First Name" Must be Filled!');
   };
   const warning5 = () => {
-    message.warning(' "LastName" Must be Filled!');
+    message.warning(' "Last Name" Must be Filled!');
   };
   const warning6 = () => {
     message.warning(' "Email" Must be Filled!');
   };
   const warning7 = () => {
-    message.warning(' "Date_of_Birth" Must be Filled!');
+    message.warning(' "Date Of Birth" Must be Filled!');
   };
   const warning8 = () => {
     message.warning('"Username" Must be Filled!');
@@ -154,6 +198,17 @@ const CreateUserAccount = () => {
     });
  };
 
+
+//  Swal.fire({
+//   title: 'Error!',
+//   text: 'Do you want to continue',
+//   icon: 'error',
+//   confirmButtonText: 'Cool'
+// })
+
+
+
+
   var now = new Date();
   now.setFullYear(now.getFullYear()-18);
   var now2 =  moment().subtract(18, 'years')
@@ -168,7 +223,10 @@ const CreateUserAccount = () => {
   <div class="box d2">
 
   
-  
+  <script src="sweetalert2.all.min.js"></script>
+  <script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css"/>
+
 <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
@@ -238,7 +296,7 @@ const CreateUserAccount = () => {
                   </div >
                   
                   <DatePicker   type="date" format="DD-MM-YYYY" 
-          defaultPickerValue={now2} disabledDate={d => d.isAfter(now)} value={Data.Date_of_Birth} name="Date_of_Birth" onChange={(date) => setState(prevData => {
+           defaultPickerValue={now2} disabledDate={d => d.isAfter(now)} value={Data.Date_of_Birth} name="Date_of_Birth" onChange={(date) => setState(prevData => {
               return {...prevData ,Date_of_Birth: date}}) 
     }/>
                       <span class="focus-input100" ></span>
