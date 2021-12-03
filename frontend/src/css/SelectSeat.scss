@@ -67,6 +67,7 @@
 .fuselage {
   border-right: 5px solid #d8d8d8;
   border-left: 5px solid #d8d8d8;
+  border-bottom:5px solid #d8d8d8;
   
 }
 
@@ -76,59 +77,53 @@ ol {
   margin: 0;
 }
 
-.row {
+// .row {
   
-}
+// }
 
-.seats {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;  
-}
+// .seats {
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: nowrap;
+//   justify-content: flex-start;  
+// }
 
-.seat {
-  display: flex;
-  flex: 0 0 14.28571428571429%;
-  padding: 5px;
-  position: relative;  
-  &:nth-child(3) {
-    margin-right: 14.28571428571429%;
-  }
-  input[type=checkbox] {
-    position: relative;
-    opacity: 0;
-  }
-  input[type=checkbox]:checked {
-    + label {
-      background: #bada55;      
-      -webkit-animation-name: rubberBand;
-      animation-name: rubberBand;
-      animation-duration: 300ms;
-      animation-fill-mode: both;
-    }
-  }
-  input[type=checkbox]:disabled {
-    + label {
-      background: #dddddd;
-      text-indent: -9999px;
-      overflow: hidden;
-      &:after {
-        content: "X";
-        text-indent: 0;
-        position: relative;
-        top: 4px;
-        left: 20%;
-        transform: translate(-50%, 0%);
-      }
-      &:hover {
-        box-shadow: none;
-        cursor: not-allowed;
-      }
-    }
-  }
+// .seat {
+//   display: flex;
+//   flex: 0 0 14.28571428571429%;
+//   padding: 5px;
+//   position: relative;  
+//   &:nth-child(3) {
+//     margin-right: 14.28571428571429%;
+//   }
+//   input[type=checkbox] {
+//     position: relative;
+//     opacity: 0;
+//   }
+//   input[type=checkbox]:checked {
+//     + label {
+//       background: #bada55;      
+//       -webkit-animation-name: rubberBand;
+//       animation-name: rubberBand;
+//       animation-duration: 300ms;
+//       animation-fill-mode: both;
+//     }
+//   }
+//   input[type=checkbox]:disabled {
+//     + label {
+//       background: #070801;      
+//       -webkit-animation-name: rubberBand;
+//       animation-name: rubberBand;
+//       animation-duration: 300ms;
+//       animation-fill-mode: both;
+//     }
+//       &:hover {
+//         box-shadow: none;
+//         cursor: not-allowed;
+//       }
+//   }
   
-}
+// }
 
 @-webkit-keyframes rubberBand {
   0% {
