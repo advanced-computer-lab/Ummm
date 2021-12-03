@@ -3,6 +3,7 @@ import axios from 'axios'
 import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
 import React from 'react';
+import {Link} from 'react-scroll'
 import Seatmap from 'react-seatmap';
 import SeatPicker from "react-seat-picker";
 import "./styles.css";
@@ -94,6 +95,11 @@ const UserManageBooking = () => {
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
+
+  const scrollToBottom = ({ size }) => {
+    window.scrollTo({bottom:0, behavior: "smooth"})
+   };
+
   const [value, setValue] = useState(1);
   const selectRadio = e => {
     console.log('radio checked', e.target.value);
@@ -238,11 +244,6 @@ console.log(isreturn);
        }).catch(error => {
       console.log(error);
     })
-
-    // Object.keys(Result2).forEach(key => {
-
-    // });
-
     console.log(Result1);
     console.log(Result2);
 
@@ -259,22 +260,6 @@ console.log(isreturn);
         Baggage: "",
         Price: "",
       })
-
-    // }
-
-      // else if(Data.From.length<3 ){
-      //   warning1();
-      // }
-      // else if(Data.To.length<3 ){
-      //   warning2();
-      // }
-      // else if(Data.Flight_Date_Depart=="" ){
-      //   warning3();
-      // }
-      // else if(Data.Flight_Date_Return=="" ){
-      //   warning4();
-      // }
-  
   };
 
 //   const LoginHandler = event => {
@@ -321,13 +306,9 @@ console.log(isreturn);
   const warning1 = () => {
     message.warning('Please enter departure city');
   };
-
-  
-
   const warning2 = () => {
     message.warning('Please enter a destination.');
   };
-
   const warning3 = () => {
     message.warning('Please enter departure date.');
   };
@@ -367,122 +348,6 @@ const EditProfileHendler = event => {
       state: { detail: 'some_value' }
   });
 };
-
-// const rows = [
-//   [{ number: 1 }, {number: 2}, {number: '3', isReserved: true}, null, {number: '4'}, {number: 5}, {number: 6}],
-//   [{ number: 1, isReserved: true }, {number: 2, isReserved: true}, {number: '3', isReserved: true}, null, {number: '4'}, {number: 5}, {number: 6}],
-//   [{ number: 1 }, {number: 2}, {number: 3, isReserved: true}, null, {number: '4'}, {number: 5}, {number: 6}],
-//   [{ number: 1 }, {number: 2}, {number: 3}, null, {number: '4'}, {number: 5}, {number: 6}],
-//   [{ number: 1, isReserved: true }, {number: 2}, {number: '3', isReserved: true}, null, {number: '4'}, {number: 5}, {number: 6, isReserved: true}]
-// ];
-
-
-const addSeatCallbackContinousCase = (
-  { row, number, id },
-  addCb,
-  params,
-  removeCb
-) => {
-  setMap(
-    {
-      loading: true
-    },
-    async () => {
-      if (removeCb) {
-        await new Promise(resolve => setTimeout(resolve, 750));
-        console.log(
-          `Removed seat ${params.number}, row ${params.row}, id ${params.id}`
-        );
-        removeCb(params.row, params.number);
-      }
-      await new Promise(resolve => setTimeout(resolve, 750));
-      console.log(`Added seat ${number}, row ${row}, id ${id}`);
-      const newTooltip = `tooltip for id-${id} added by callback`;
-      addCb(row, number, id, newTooltip);
-      setMap({ loading: false });
-    }
-  );
-};
-
-const removeSeatCallback = ({ row, number, id }, removeCb) => {
-  setMap(
-    {
-      loading: true
-    },
-    async () => {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      console.log(`Removed seat ${number}, row ${row}, id ${id}`);
-      // A value of null will reset the tooltip to the original while '' will hide the tooltip
-      const newTooltip = ["A", "B", "C"].includes(row) ? null : "";
-      removeCb(row, number, newTooltip);
-      setMap({ loading: false });
-    }
-  );
-};
-
-const rows = [
-  [
-    { id: 1, number: 1, isSelected: true, tooltip: "Reserved by you" },
-    { id: 2, number: 2, tooltip: "Cost: 15$" },
-    null,
-    {
-      id: 3,
-      number: "3",
-      isReserved: true,
-      orientation: "east",
-      tooltip: "Reserved by Rogger"
-    },
-    { id: 4, number: "4", orientation: "west" },
-    null,
-    { id: 5, number: 5 },
-    { id: 6, number: 6 }
-  ],
-  [
-    {
-      id: 7,
-      number: 1,
-      isReserved: true,
-      tooltip: "Reserved by Matthias Nadler"
-    },
-    { id: 8, number: 2, isReserved: true },
-    null,
-    { id: 9, number: "3", isReserved: true, orientation: "east" },
-    { id: 10, number: "4", orientation: "west" },
-    null,
-    { id: 11, number: 5 },
-    { id: 12, number: 6 }
-  ],
-  [
-    { id: 13, number: 1 },
-    { id: 14, number: 2 },
-    null,
-    { id: 15, number: 3, isReserved: true, orientation: "east" },
-    { id: 16, number: "4", orientation: "west" },
-    null,
-    { id: 17, number: 5 },
-    { id: 18, number: 6 }
-  ],
-  [
-    { id: 19, number: 1, tooltip: "Cost: 25$" },
-    { id: 20, number: 2 },
-    null,
-    { id: 21, number: 3, orientation: "east" },
-    { id: 22, number: "4", orientation: "west" },
-    null,
-    { id: 23, number: 5 },
-    { id: 24, number: 6 }
-  ],
-  [
-    { id: 25, number: 1, isReserved: true },
-    { id: 26, number: 2, orientation: "east" },
-    null,
-    { id: 27, number: "3", isReserved: true },
-    { id: 28, number: "4", orientation: "west" },
-    null,
-    { id: 29, number: 5, tooltip: "Cost: 11$" },
-    { id: 30, number: 6, isReserved: true }
-  ]
-];
 
 const { loading } = state;
 
@@ -586,7 +451,9 @@ const { loading } = state;
           <h4>Total Price:</h4>
           <h4>Booking Number:</h4>
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
-          <a href="#modal-opened" class="button-79" role="button" >SELECT SEAT</a>
+          {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
+          <Link class="button-79" role="button" to="SeatMap"  smooth={true}>SELECT SEAT</Link>
+
       </div>
   </div>
   <div class="listing-item">
@@ -610,7 +477,10 @@ const { loading } = state;
           <h4>Booking Number:</h4>
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a href="#modal-opened" class="link-1" id="modal-closed">Reserve Flight</a> */}
-          <a href="#modal-opened" class="button-79" role="button" >SELECT SEAT</a>
+          {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
+          {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
+          {/* spy={true} */}
+          <Link class="button-79" role="button" to="SeatMap"  smooth={true}>SELECT SEAT</Link>
   
       </div>
   </div>
@@ -655,8 +525,10 @@ const { loading } = state;
   </div>
   
 
-  <ol class="cabin fuselage">
-  <SeatMap />
+  <ol id = 'SeatMap' class="cabin fuselage">
+  <SeatMap>
+   </SeatMap>
+ 
 </ol>
   
     <br></br>
