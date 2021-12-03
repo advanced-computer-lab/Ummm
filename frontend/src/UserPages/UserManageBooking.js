@@ -3,6 +3,7 @@ import axios from 'axios'
 import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
 import React from 'react';
+import {Link} from 'react-scroll'
 import Seatmap from 'react-seatmap';
 import SeatPicker from "react-seat-picker";
 import "./styles.css";
@@ -94,8 +95,9 @@ const UserManageBooking = () => {
     setComponentSize(size);
   };
 
-
- 
+  const scrollToBottom = ({ size }) => {
+    window.scrollTo({bottom:0, behavior: "smooth"})
+   };
 
   const [value, setValue] = useState(1);
   const selectRadio = e => {
@@ -411,7 +413,9 @@ const { loading } = state;
           <h4>Total Price:</h4>
           <h4>Booking Number:</h4>
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
-          <a href="#modal-opened" class="button-79" role="button" >SELECT SEAT</a>
+          {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
+          <Link class="button-79" role="button" to="SeatMap"  smooth={true}>SELECT SEAT</Link>
+
       </div>
   </div>
   <div class="listing-item">
@@ -435,7 +439,10 @@ const { loading } = state;
           <h4>Booking Number:</h4>
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a href="#modal-opened" class="link-1" id="modal-closed">Reserve Flight</a> */}
-          <a href="#modal-opened" class="button-79" role="button" >SELECT SEAT</a>
+          {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
+          {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
+          {/* spy={true} */}
+          <Link class="button-79" role="button" to="SeatMap"  smooth={true}>SELECT SEAT</Link>
   
       </div>
   </div>
@@ -479,7 +486,7 @@ const { loading } = state;
   </div>
   
 
-  <ol class="cabin fuselage">
+  <ol id = 'SeatMap' class="cabin fuselage">
   <SeatMap>
    </SeatMap>
  
