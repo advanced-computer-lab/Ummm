@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css'; 
 import '../css/App.css';
+import Swal from 'sweetalert2' ;
+
 
 import moment from "moment";
 import {
@@ -46,6 +48,7 @@ const UserLogin = () => {
       }
     });
 
+    if(Data.Username!==''&& Data.Password!==''){
    // prevent reloading the page
     axios.post('http://localhost:8000/userlogin', criteria)
     .then(response => {
@@ -62,16 +65,25 @@ const UserLogin = () => {
         history.push({
             pathname: '/usersearchflight' //Pass to 
           });
+
+          success(Data.Username);
        }).catch(error => {
          warning();
         console.log(error);
     })
-
+  }
+  else if(Data.Username=='' ){
+    warning1();
+  }
+  else if(Data.Password=='' ){
+    warning2();
+  } 
   };
 
 
   const createHandler = (e) => {
-      
+   
+   
     e.preventDefault();  
         history.push({
             pathname: '/CreateUserAccount'
@@ -79,7 +91,8 @@ const UserLogin = () => {
   };
 
   const GuestHandler = (e) => {
-      
+    success('Guest');
+    warning3();
     e.preventDefault();  
         history.push({
             pathname: '/usersearchflight'
@@ -88,11 +101,30 @@ const UserLogin = () => {
   
 
 
+  const success = (e) => {
+    message.success('Welcome To Fly Nawwwwww '.concat(e));
+  }
+
+
 
 
   const warning = () => {
     message.warning('Incorrect Username or Password!');
   }
+
+  const warning1 = () => {
+    message.warning('"Username" Must be Filled!');
+  };
+  const warning2 = () => {
+    message.warning(' "Password" Must be Filled!');
+  };
+
+  const warning3 = () => {
+    
+    message.warning('Remember You Must Log In to Manage Flights Or Edit Profile!');
+  };
+  
+  
 
 
 
