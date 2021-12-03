@@ -5,7 +5,6 @@ import ReactDOM from "react-dom";
 import SeatPicker from "react-seat-picker";
 
 import "./styles.css";
-
 function ___$insertStyle(css) {
   if (!css) {
     return;
@@ -22,29 +21,20 @@ function ___$insertStyle(css) {
   return css;
 }
 
+var css =".blank {\n  height: 25px;\n  width: 25px;\n}\n\n.loader {\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  display: flex;\n  background: rgba(240, 240, 240, 0.9);\n  z-index: \"2\";\n  justify-content: center;\n  align-items: center;\n}\n\n.seat {\n  background-color: #4FC3F7;\n  height: 50px;\n  width: 50px;\n  color: #fff;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.seat__number {\n  font-size: 15px;\n}\n.seat--north {\n  border-top-left-radius: 8px;\n  border-top-right-radius: 8px;\n}\n.seat--south {\n  border-bottom-left-radius: 8px;\n  border-bottom-right-radius: 8px;\n}\n.seat--east {\n  border-top-left-radius: 8px;\n  border-bottom-left-radius: 8px;\n}\n.seat--west {\n  border-top-right-radius: 8px;\n  border-bottom-right-radius: 8px;\n}\n.seat--enabled {\n  cursor: pointer;\n}\n.seat--enabled:hover {\n  background-color: #03A9F4;\n}\n.seat--selected {\n  cursor: pointer;\n  background-color: #4CAF50;\n}\n.seat--reserved {\n  cursor: not-allowed;\n  background-color: #E0E0E0;\n}\n\n.seat-content {\n  position: relative;\n  overflow: hidden;\n  margin: 0 auto;\n}\n\n.seat-picker {\n  display: flex;\n  flex-direction: column;\n  text-align: center;\n  justify-content: center;\n  align-items: center;\n  width: max-content;\n}\n.seat-picker > *:not(:last-child) {\n  margin-bottom: 2px;\n}\n.seat-picker__row {\n  display: flex;\n  align-items: center;\n  justify-items: center;\n}\n.seat-picker__row > *:not(:last-child) {\n  margin-right: 2px;\n}\n.seat-picker__row__number {\n  font-weight: normal;\n  height: 28px;\n  width: 28px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  text-align: center;\n  color: #9E9E9E;\n}\n.seat-picker__row--enabled:hover {\n  background-color: #F5F5F5;\n}\n.seat-picker__row--selected {\n  background-color: #F5F5F5;\n}\n.seat-picker__row--enabled:hover > .seat-picker__row__number {\n  font-weight: 600;\n}\n.seat-picker__row--selected > .seat-picker__row__number {\n  font-weight: 600;\n}";   
 
-___$insertStyle(".blank {\n  height: 28px;\n  width: 28px;\n}\n\n.loader {\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  display: flex;\n  background: rgba(240, 240, 240, 0.9);\n  z-index: \"2\";\n  justify-content: center;\n  align-items: center;\n}\n\n.seat {\n  background-color: #4FC3F7;\n  height: 50px;\n  width: 50px;\n  color: #fff;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.seat__number {\n  font-size: 10px;\n}\n.seat--north {\n  border-top-left-radius: 8px;\n  border-top-right-radius: 8px;\n}\n.seat--south {\n  border-bottom-left-radius: 8px;\n  border-bottom-right-radius: 8px;\n}\n.seat--east {\n  border-top-left-radius: 8px;\n  border-bottom-left-radius: 8px;\n}\n.seat--west {\n  border-top-right-radius: 8px;\n  border-bottom-right-radius: 8px;\n}\n.seat--enabled {\n  cursor: pointer;\n}\n.seat--enabled:hover {\n  background-color: #03A9F4;\n}\n.seat--selected {\n  cursor: pointer;\n  background-color: #4CAF50;\n}\n.seat--reserved {\n  cursor: not-allowed;\n  background-color: #E0E0E0;\n}\n\n.seat-content {\n  position: relative;\n  overflow: hidden;\n  margin: 0 auto;\n}\n\n.seat-picker {\n  display: flex;\n  flex-direction: column;\n  text-align: center;\n  justify-content: center;\n  align-items: center;\n  width: max-content;\n}\n.seat-picker > *:not(:last-child) {\n  margin-bottom: 2px;\n}\n.seat-picker__row {\n  display: flex;\n  align-items: center;\n  justify-items: center;\n}\n.seat-picker__row > *:not(:last-child) {\n  margin-right: 2px;\n}\n.seat-picker__row__number {\n  font-weight: normal;\n  height: 28px;\n  width: 28px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  text-align: center;\n  color: #9E9E9E;\n}\n.seat-picker__row--enabled:hover {\n  background-color: #F5F5F5;\n}\n.seat-picker__row--selected {\n  background-color: #F5F5F5;\n}\n.seat-picker__row--enabled:hover > .seat-picker__row__number {\n  font-weight: 600;\n}\n.seat-picker__row--selected > .seat-picker__row__number {\n  font-weight: 600;\n}");   
+___$insertStyle(css);
 
 class SeatMap extends React.Component {
   state = {
     loading: false
   };
+  //  changeHander = (e) => {
+  //   document.getElementById(e).style.tooltip="yayyyyy";
+  //  console.log("yayyyyyyyyyy")
+  //  console.log(e)
 
-  // addSeatCallback = ({ row, number, id }, addCb) => {
-  //   this.setState(
-  //     {
-  //       loading: true
-  //     },
-  //     async () => {
-  //       await new Promise(resolve => setTimeout(resolve, 1500));
-  //       console.log(`Added seat ${number}, row ${row}, id ${id}`);
-  //       const newTooltip = `tooltip for id-${id} added by callback`;
-  //       addCb(row, number, id, newTooltip);
-  //       this.setState({ loading: false });
-  //     }
-  //   );
   // };
-
   addSeatCallbackContinousCase = (
     { row, number, id },
     addCb,
@@ -67,6 +57,7 @@ class SeatMap extends React.Component {
         console.log(`Added seat ${number}, row ${row}, id ${id}`);
         const newTooltip = `tooltip for id-${id} added by callback`;
         addCb(row, number, id, newTooltip);
+        //this.changeHander(id);
         this.setState({ loading: false });
       }
     );
@@ -87,24 +78,41 @@ class SeatMap extends React.Component {
       }
     );
   };
+  
 
   render() {
     const rows = [
       [
         { id: 1, number: 1, tooltip: "Reserved by you" },
-        { id: 2, number: 2, tooltip: "Cost: 15$" },
-        null,
+        { id: 2, number: 2, tooltip: "Cost: 15$"},
+         null,
+         null,
+         null,
+         null,
         {
           id: 3,
           number: "3",
           isReserved: true,
-          orientation: "east",
           tooltip: "Reserved by Rogger"
         },
-        { id: 4, number: "4", orientation: "west" },
-        null,
-        { id: 5, number: 5 },
-        { id: 6, number: 6 }
+        { id: 4, number: "4" },
+
+      ],
+      [
+        { id: 41, number: 1, tooltip: "Reserved by you" },
+        { id: 42, number: 2, tooltip: "Cost: 15$"},
+         null,
+         null,
+         null,
+         null,
+        {
+          id: 43,
+          number: "3",
+          isReserved: true,
+          tooltip: "Reserved by Rogger"
+        },
+        { id: 44, number: "4" },
+
       ],
       [
         {
@@ -162,24 +170,10 @@ class SeatMap extends React.Component {
         { id: 36, number: 6, isReserved: true }
       ]
     ];
+    
     const { loading } = this.state;
     return (
       <div>
-        {/* <h1>Seat Picker</h1>
-        <div style={{ marginTop: "100px" }}>
-          <SeatPicker
-            addSeatCallback={this.addSeatCallback}
-            removeSeatCallback={this.removeSeatCallback}
-            rows={rows}
-            maxReservableSeats={3}
-            alpha
-            visible
-            selectedByDefault
-            loading={loading}
-            tooltipProps={{ multiline: true }}
-          />
-        </div> */}
-        {/* <h1>Seat Picker Continuous Case</h1> */}
         <div style={
             { display: 'flex',  justifyContent:'center', alignItems:'center', height: '50vh' }
     
