@@ -43,6 +43,7 @@ const UpdateFlight = () => {
   const history = useHistory();
   const [form] = Form.useForm();
   const format = 'HH:mm';
+  
   const UpFlight = history.location.state?.data
 
 

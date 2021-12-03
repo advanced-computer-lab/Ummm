@@ -3,6 +3,8 @@ import axios from 'axios'
 import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css'; 
+import '../css/EditUser.css';
+import '../css/EditUser1.css';
 
 import moment from "moment";
 import {
@@ -78,6 +80,8 @@ const CreateUserAccount = () => {
    
   }
 
+  
+
 
   else if(Data.FirstName=="" ){
     warning4();
@@ -143,6 +147,12 @@ const CreateUserAccount = () => {
     message.warning('Username/Email already Exists!');
   };
   
+  const LoginHandler = event => {
+    history.push({
+        pathname: '/UserLogin',
+      
+    });
+ };
 
   var now = new Date();
   now.setFullYear(now.getFullYear()-18);
@@ -150,109 +160,204 @@ const CreateUserAccount = () => {
 
   return (
     <>
-      <Form
-        labelCol={{
-          span: 4,
-        }}
-        wrapperCol={{
-          span: 13,
-        }}
-        layout="horizontal"
-        initialValues={{
-          size: componentSize,
-        }}
-        onValuesChange={onFormLayoutChange}
-        size={componentSize}
-   //     form={form}
-      >                     
+    
+        
+                          
   
  
-        
+  <div class="box d2">
 
-        <Form.Item  
-        rules={[
-          {
-            required: true,
-          },
-        ]}label="First Name">
-          <Input   type="text" name="FirstName" maxLength="11"   placeholder="Enter your First Name" 
-          value={Data.FirstName} onChange={(e) => changeHander(e)} />
-        </Form.Item>
+  
+  
+<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css"/>
+<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css"/>
+<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css"/>
+<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css"/>
+<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css"/>
+<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css"/>
+<link rel="stylesheet" type="text/css" href="css/util.css"/>
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+
+  <div class="limiter">
+  <div class="container-login100" >
+    <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+      <form class="login100-form validate-form">
+        <span class="login100-form-title p-b-49">
+         Create Account 
+        </span>
+
+                  <div class="wrap-input100 validate-input m-b-23" data-validate = "FirstName is reauired">
+                     <div class="grid-container-EditUser">
+          
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+</svg>     
+                      <span >
+        First Name
+        </span>
+                  </div >
+                  
+          <input class="input100"  name="FirstName" placeholder="Type your FirstName" value={Data.FirstName} onChange={(e) => changeHander(e)}></input>
+                      <span class="focus-input100" ></span>
+        </div>
 
 
-        <Form.Item label="Last Name"
-         rules={[
-           {
-             required: true,
-           },
-         ]}>
-        <Input type="text" name="LastName" maxLength="11"  placeholder="Enter your Last Name" 
-        value={Data.LastName} onChange={(e) => changeHander(e)}/>
-        </Form.Item>
-        
-        
-        <Form.Item 
-        rules={[
-          {
-            required: true,
-            message: 'Please Select Date!',
-          },
-        ]} label="Date of Birth">
-          <DatePicker type="date" format="DD-MM-YYYY" 
+
+
+
+                  <div class="wrap-input100 validate-input m-b-23" data-validate = "LastName is reauired">
+                  <div class="grid-container-EditUser">
+          
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+</svg>
+                     
+          <span >
+        Last Name
+        </span>
+                  </div >
+          <input class="input100"  name="LastName" placeholder="Type your LastName" value={Data.LastName} onChange={(e) => changeHander(e)}></input>
+                      <span class="focus-input100" ></span>
+        </div>
+
+
+
+
+                  <div class="wrap-input100 validate-input m-b-23" data-validate = "date of Birth is reauired">
+                  <div class="grid-container-EditUser">
+          
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-calendar2-week-fill" viewBox="0 0 16 16">
+<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zm9.954 3H2.545c-.3 0-.545.224-.545.5v1c0 .276.244.5.545.5h10.91c.3 0 .545-.224.545-.5v-1c0-.276-.244-.5-.546-.5zM8.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM3 10.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
+</svg>  
+<span >
+         Date Of Birth
+        </span>
+                  </div >
+                  
+                  <DatePicker   type="date" format="DD-MM-YYYY" 
           defaultPickerValue={now2} disabledDate={d => d.isAfter(now)} value={Data.Date_of_Birth} name="Date_of_Birth" onChange={(date) => setState(prevData => {
               return {...prevData ,Date_of_Birth: date}}) 
     }/>
-        </Form.Item>
+                      <span class="focus-input100" ></span>
+        </div>
 
-        <Form.Item label="Passport No."
-         rules={[
-           {
-             required: true,
-           },
-         ]}>
-        <Input type="text" name="PassPort_No" maxLength="11"  placeholder="Enter your Passport No." 
-        value={Data.PassPort_No} onChange={(e) => changeHander(e)}/>
-        </Form.Item>
 
-        <Form.Item  
-        rules={[
-          { type: "email",
-            required: true,          },
-        ]}label="Email">
-          <Input type= "email"  name="Email" maxLength="30" placeholder="Example@gmail.com"  
-          value={Data.Email} onChange={(e) => changeHander(e)} />
-        </Form.Item>
 
-        <Form.Item  
-        rules={[
-          {
-            required: true,
-          },
-        ]}label="Username">
-          <Input   type="text" name="Username" maxLength="30" placeholder="Enter your Username" 
-          value={Data.Username} onChange={(e) => changeHander(e)} />
-        </Form.Item>
 
-        <Form.Item  
-        rules={[
-          {
-            required: true,
-          },
-        ]}label="Password">
-          <Input   type="password" name="Password" placeholder="Enter your Password"  
-          value={Data.Password} onChange={(e) => changeHander(e)} />
-        </Form.Item>
+                  <div class="wrap-input100 validate-input m-b-23" data-validate = "Passport Number is reauired">
+                  <div class="grid-container-EditUser">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-credit-card-2-front-fill" viewBox="0 0 16 16">
+<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+</svg>
+<span >
+         Passport No
+        </span>
+                  </div >   
+          <input class="input100"  name="PassPort_No" placeholder="Type your Passport Number"    value={Data.PassPort_No} onChange={(e) => changeHander(e)}></input>
+                      <span class="focus-input100" ></span>
+        </div>
 
-        <Form.Item>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <Button onClick={() => history.goBack()}>Back</Button>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         <Button onClick={(e) => submitHandler(e)} >Create User</Button>
-        </Form.Item>
 
-      </Form>
+
+
+                  <div class="wrap-input100 validate-input m-b-23" data-validate = "Email is reauired">
+                  <div class="grid-container-EditUser">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+<path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+</svg>
+<span >
+         Email
+        </span>
+                  </div>
+          <input class="input100"  name="Email" placeholder="Type your Email" value={Data.Email} onChange={(e) => changeHander(e)}></input>
+                      <span class="focus-input100" ></span>
+        </div>
+
+
+
+
+        <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                  <div class="grid-container-EditUser">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+</svg>
+<span >
+         Username
+        </span>
+                  </div>
+          <input class="input100"  name="Username" placeholder="Type your Username" value={Data.Username} onChange={(e) => changeHander(e)}></input>
+                      <span class="focus-input100" ></span>
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
+
+                  <div class="grid-container-EditUser"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
+<path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+</svg>
+<span >
+         Password
+        </span>
+                  </div>
+          <input class="input100" type="password" name="Password" placeholder="Type your Password" value={Data.Password} onChange={(e) => changeHander(e)}></input>
+          <span class="focus-input100" ></span>
+        </div>
+        
+        
+
+                  
+
+
+        
+                  <a class="button-60 center20" role="button" onClick={(e) => submitHandler(e)}>Create Account</a>
+                  <a  class="button-60 center20" role="button" onClick={() => LoginHandler()}>Log In</a>
+                 
+        <div class="txt1 text-center p-t-54 p-b-20">
+          
+        </div>
+
+        
+
+        <div class="flex-col-c p-t-155">
+          
+
+          
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div id="dropDownSelect1"></div>
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="vendor/animsition/js/animsition.min.js"></script>
+<script src="vendor/bootstrap/js/popper.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendor/select2/select2.min.js"></script>
+<script src="vendor/daterangepicker/moment.min.js"></script>
+<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<script src="vendor/countdowntime/countdowntime.js"></script>
+<script src="js/main.js"></script>
+</div>
+
+
+
+        
+        
+        
+
+       
+
+      
+
+      
+
+
+     
     </>
   );
 };
