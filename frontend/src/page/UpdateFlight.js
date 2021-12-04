@@ -46,7 +46,6 @@ const UpdateFlight = () => {
   
   const UpFlight = history.location.state?.data
 
-
   const [Data, setState] = useState({
     Flight_No: UpFlight.Flight_No,
     From: UpFlight.From,  
@@ -66,6 +65,7 @@ const UpdateFlight = () => {
     Business_Price: UpFlight.Business_Price,
     First_Price: UpFlight.First_Price,
   });
+
 
   // useEffect(() => {
 
