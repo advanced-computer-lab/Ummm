@@ -57,11 +57,11 @@ const UserEditProfile = () => {
 
   const history = useHistory();
   const[userinfo,Setuserinfo]=useState([]);
-  
+  const criteria = {};
   const [Guard, setGuard] = useState(true);
+  criteria["Username"]= sessionStorage.getItem("Username");
  // const getusername = sessionStorage.getItem("username");
-   const criteria = {};
-   criteria["Username"] = "aaaa";
+  
    const [Data, setState] = useState({
     FirstName:"",
     LastName: userinfo.LastName,  
@@ -107,7 +107,7 @@ const UserEditProfile = () => {
     if( Result1 && Guard === true){
       setTimeout(() => {
         setGuard(false);
-      }, 500);
+      }, 1000);
     }
 
   },[Result1,Guard]);

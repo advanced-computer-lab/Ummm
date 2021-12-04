@@ -55,6 +55,7 @@ const UserLogin = () => {
       console.log(response.status);
       sessionStorage.setItem("AuthenticationState", "UserAuthenticated");
       sessionStorage.setItem("Username", criteria.Username);
+      console.log(sessionStorage.getItem("Username"));
       // console.log(sessionStorage.getItem("AuthenticationState"))
       // console.log(sessionStorage.getItem("Username"))
 

@@ -476,15 +476,16 @@ swalWithBootstrapButtons.fire({
 ,
 
 
-      imageWidth: 1200,
+        imageWidth: 1200,
         imageHeight: 700,
         customClass: 'swal-wide',
         imageAlt: 'A tall image',
-
+         cancelButtonColor:'#ff2626' ,
         showCancelButton: true,
-        confirmButtonText: 'Confirm Choosen Flight!',
-  cancelButtonText: 'Cancel!',
-  reverseButtons: true,
+        cancelButtonText: 'Cancel!',
+        confirmButtonText: 'Confirm Choosen Reservation!',
+  
+  reverseButtons: false,
   confirmButtonColor: '#ff8300',
   // confirmButtonColor: '#00D100', //GREEN WALA ORANGEEE ?
 

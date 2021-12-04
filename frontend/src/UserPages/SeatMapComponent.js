@@ -355,7 +355,7 @@ class SeatMap extends React.Component {
     return (
       <div>
         <div style={
-            { display: 'flex',  justifyContent:'center', alignItems:'center', height: '260vh' }
+            { display: 'flex',  justifyContent:'center', alignItems:'center', height: '200vh' }
     
     }>
           <SeatPicker
