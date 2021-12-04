@@ -135,14 +135,21 @@ else { // will post normally
 
  
   const success = () => {
-   
-    Swal.fire({
-      imageWidth: 1200,
-      imageHeight: 1000,
-      customClass: 'swal-wide',
-      imageAlt: 'A tall image'
+    Swal.fire(
+      {
+      title: 'Account Successfully Created!',
+      text: 'continue to Log In',
+      icon: 'success',
+      confirmButtonText: 'Log In',
+      confirmButtonColor: '#ff8300',
+      // iconColor:'#ff8300' ,
     })
-
+      .then((res) => {
+           if(res.isConfirmed){
+              console.log('confirm');
+               LoginHandler() ;
+          }    
+      });
   };
 
   const warning = () => {

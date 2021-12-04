@@ -36,34 +36,35 @@ const UserConfirmBooking = () => {
  const history = useHistory();
   const [componentSize, setComponentSize] = useState('default');
 
-//   const Flight1 = history.location.state?.flight1;
-//   const Flight2 = history.location.state?.flight2;
-//   const Adults = history.location.state?.Adults;
-//   const Children = history.location.state?.Children;
+  const Flight1 = history.location.state?.flight1;
+  const Flight2 = history.location.state?.flight2;
+  const Adults = history.location.state?.Adults;
+  const Children = history.location.state?.Children;
 
 
-//   const [Data, setState] = useState({
-//     Username: "sessionStorage.getItem('Username')",
-//     Email: "",
+  const [Data, setState] = useState({
+    Username: sessionStorage.getItem('Username'),
+    Email: "",
 
-//     Flight_IDFrom: Flight1._id,
-//     Flight_NoFrom: Flight1.Flight_No,
-//     Flight_DateFrom: Flight1.Flight_Date,
-//     CabinFrom: history.location.state?.CabinFrom,
-//     SeatsChoosenFrom: "",
+    Flight_IDFrom: Flight1._id,
+    Flight_NoFrom: Flight1.Flight_No,
+    Flight_DateFrom: Flight1.Flight_Date,
+    CabinFrom: history.location.state?.CabinFrom,
+    SeatsChoosenFrom: "",
 
-//     Flight_IDTo: Flight2._id,
-//     Flight_NoTo: Flight2.Flight_No,
-//     Flight_DateTo: Flight2.Flight_Date,
-//     CabinTo: history.location.state?.CabinTo,
-//     SeatsChoosenTo: "",
+    Flight_IDTo: Flight2._id,
+    Flight_NoTo: Flight2.Flight_No,
+    Flight_DateTo: Flight2.Flight_Date,
+    CabinTo: history.location.state?.CabinTo,
+    SeatsChoosenTo: "",
 
-//     Adults: Adults,
-//     Children: Children,
+    Adults: Adults,
+    Children: Children,
 
-//     TotalPrice: (Flight1.Price * Adults) + (Flight1.Price * Children * 0.8) + (Flight2.Price * Adults) + (Flight2.Price * Children * 0.8),
-//   });
-
+    TotalPrice: (Flight1.Price * Adults) + (Flight1.Price * Children * 0.8) + (Flight2.Price * Adults) + (Flight2.Price * Children * 0.8),
+  });
+ 
+  console.log(Data);
  
 
 

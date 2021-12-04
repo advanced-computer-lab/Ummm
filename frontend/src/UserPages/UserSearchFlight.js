@@ -188,6 +188,8 @@ const SearchFlight = () => {
             Temp1['Seats'] = Result1[AllFlights][seatcabin]; 
             Temp1['Baggage'] = Result1[AllFlights][baggagecabin]; 
             Temp1['Price'] = Result1[AllFlights][pricecabin]; 
+            // console.log(Result1[AllFlights]['_id'])
+            Temp1['_id'] = Result1[AllFlights]['_id']; 
             var newObject = JSON.parse(JSON.stringify(Temp1));
             FilteredResult1[AllFlights] = newObject;
           }
@@ -221,6 +223,7 @@ const SearchFlight = () => {
               Temp2['Seats'] = Result2[AllFlights][seatcabin]; 
               Temp2['Baggage'] = Result2[AllFlights][baggagecabin]; 
               Temp2['Price'] = Result2[AllFlights][pricecabin]; 
+              Temp2['_id'] = Result1[AllFlights]['_id']; 
               var newObject = JSON.parse(JSON.stringify(Temp2));
               console.log(newObject)
               FilteredResult2[AllFlights] = newObject;
@@ -311,8 +314,29 @@ console.log(isreturn);
       imageWidth: 1200,
       imageHeight: 1000,
       customClass: 'swal-wide',
-      imageAlt: 'A tall image'
+      imageAlt: 'A tall image',
+      // confirmButtonText: 'Log In',
+      confirmButtonColor: '#ff8300',
+      // iconColor:'#ff8300' ,
     })
+      .then((res) => {
+           if(res.isConfirmed){
+            history.push({
+              pathname: '/UserConfirmBooking',
+            state: {
+              flight1: isdepart,
+              flight2: isreturn,
+              CabinFrom: Data.CabinDepart,
+              CabinTo: Data.CabinDepart,
+              Adults: Data.Adults,
+              Children: Data.Children,
+            }
+            });
+              // console.log('confirm');
+              //  LoginHandler() ;
+
+          }    
+      });
 
   };
 
@@ -884,7 +908,7 @@ return(
 
 
 
-  <a href="#modal-opened" id="yourButtonID" class="link-1" onClick={() => success()}>Reserve Flight </a>
+  <a id="yourButtonID" class="link-1" onClick={() => success()}>Reserve Flight </a>
 
   < div class="modal-container" id="modal-opened">
    <div class="modal">
@@ -1193,8 +1217,8 @@ return (
         )}
     
   </div>
-
-  <a href="#modal-opened" class="link-1" id="modal-closed" onClick={() => success()}>Reserve Flight</a>
+{/* href="#modal-opened" */}
+  <a  class="link-1" id="modal-closed" onClick={() => success()}>Reserve Flight</a>
 
   {/* <a href="#modal-opened" id="yourButtonID" class="link-1" onClick={() => success()} >Reserve Flight </a> */}
 
