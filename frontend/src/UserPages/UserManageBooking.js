@@ -166,6 +166,12 @@ const UserManageBooking = () => {
     // document.getElementById("yourButtonID").style.backgroundColor="red";
     
     }
+
+    var x=document.getElementsByClassName("seat-picker__row seat-picker__row--enabled");
+    // console.log(x[4].style.margin);  // Find the elements
+    x[4].style.marginBottom = "34px"; 
+    x[11].style.marginBottom = "34px"; 
+    
     
 
 
@@ -293,14 +299,41 @@ console.log(isreturn);
     // var x = document.getElementsByClassName("seat-picker__row__number").innerText = "F";
     // x.innerText = "";
 
-    var x=document.getElementsByClassName("seat-picker__row__number");  // Find the elements
-    x[5].innerText=""; 
-    x[11].innerText=""; 
+
+  //   const linkContainers = document.querySelectorAll('.seat-picker');
+  //   console.log(linkContainers);
+  //   linkContainers.forEach(container => {
+  //     if (container.childElementCount === 2) {
+  //       for (let i=0; i < container.children.length; i++) {
+  //         container.children[i].style.height = '59.5px';
+  //       }
+  //     }
+  //   });
+
+  //   const linkContainers = document.querySelectorAll('.seat-picker');
+  //   console.log(linkContainers);
+  // linkContainers.forEach(container => {
+  //   // if (container.childElementCount === 26) {
+  //     for (let i=0; i < container.children.length; i++) {
+  //       container.children[i].style.paddingBottom="1";
+  //     }
+  //   // }
+  // });
+
+    // document.getElementsByClassName("seat-picker__row seat-picker__row--enabled")[0].style.marginBottom = "1px";
+
+  
+    
+   
+
+
+
+    // x[11].innerText=""; 
     // for(var i = 6; i < x.length; i++){
       // x[6].innerText="F";
   //  }
    
-    console.log(x)
+    // console.log(x)
     Swal.fire(
       {
       title: 'Delete Reservation Number '.concat(ReservationNumber).concat(' ?'),
@@ -388,8 +421,7 @@ const { loading } = state;
     //   window.open("UserHomePage", "_self");
     //   warning2();
     // }
-    
-
+   
     return(
       <>
              <div class="s011">
@@ -574,11 +606,11 @@ const { loading } = state;
        
       </>
      
-    
+     
     );
     
+   
 
-    
 
   }
 

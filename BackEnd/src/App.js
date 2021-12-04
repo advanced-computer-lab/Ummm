@@ -49,7 +49,8 @@ app.post('/createuseraccount', userController.createuseraccount)
 app.post('/userlogin',userController.userlogin)
 app.post('/createnewReservation',userController.createnewReservation)
 app.post('/GetUserInfo',userController.GetUserInfo)
-
+app.post('/userinfo',userController.userinfo)
+app.put('/updateuser',userController.updateuser)
 
 
 

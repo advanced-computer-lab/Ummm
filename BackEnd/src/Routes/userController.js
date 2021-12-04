@@ -86,7 +86,18 @@ Users.find(search)
 
 
 
-
+exports.userinfo = (req,res)=>
+{   const key2="Username"
+   const search ={};
+  search[key2]= {$regex: '^' + req.body[key2],$options: 'ix'};
+  Users.find(search).then(result => {
+    res.send(result);
+    console.log(result)
+  })
+  .catch(err => {
+    console.log(err);
+  });
+};
 
 
 
@@ -117,8 +128,6 @@ exports.deleteflight = (req,res)=>{
 
 exports.updateflight = (req,res)=>{
   var id = req.body.data.var1;
-  console.log(req.body.data.var1);
-  console.log(req.body.data.var2);
   Flights.findOneAndUpdate({'_id':id},req.body.data.var2).exec().then(result =>{
       res.status(200).send("Flight updated ");
       console.log('The Flight is Updated successfully !');
@@ -127,8 +136,36 @@ exports.updateflight = (req,res)=>{
     });
 
 };
+exports.updateuser = (req,res)=>{
 
+  var username = req.body.data.var1;
+  var mail =req.body.data.var3;
+  console.log(username)
+  console.log(mail)
 
+  if(username===req.body.data.var2.Username && mail===req.body.data.var2.Email){
+  Users.findOneAndUpdate({'Username':username},req.body.data.var2).exec().then(result =>{
+      res.status(200).send("User updated ");
+      console.log('The User is Updated successfully !');
+  }).catch(err => {
+      console.log(err);
+    });
+
+}
+else{
+  Users.findOneAndUpdate({'Username':username},req.body.data.var2).exec().then(result =>{
+    res.status(200).send("User updated ");
+    console.log('The User is Updated successfully !');
+}).catch(err => {
+    console.log(err);
+  });
+  Reservations.findOneAndUpdate({'Username':username},req.body.data.var2).exec().then(result =>{
+    res.status(200).send("User updated ");
+    console.log('The Reservation data is Updated successfully !');
+}).catch(err => {
+    console.log("You don't have Reservations ");
+  });
+}};
 
 
 exports.searchflight = (req, res) => {

@@ -1068,6 +1068,7 @@ return(
          
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           <button class="button-79" role="button" name={flight._id} onClick={() => departHandler(flight)}>BOOK NOW!</button>
+          <br></br>
       </div>
   </div>
  
