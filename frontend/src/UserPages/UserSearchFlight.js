@@ -300,33 +300,180 @@ console.log(isreturn);
 swalWithBootstrapButtons.fire({
 
       html:
-      '<div class="grid-container-Swal" > ' +
-      '<div class="modal__details" > ' +
-      ' <h4 class="modal__title">Depart Flight Details</h4> ' +
-      '<p class="modal__description"> Flight Number:  '+isdepart.Flight_No+   '</p>' +
-      '<p class="modal__description"> Duration:'+isdepart.Flight_Duration+' </p>' +
-      '<p class="modal__description"> From : '+isdepart.From+'  </p>' +
-      '<p class="modal__description">  To:'+isdepart.To+'    </p>' +
-      '<p class="modal__description"> Date: '+moment(isdepart.Flight_Date).format("YYYY-MM-DD")+' </p>' +
-      '<p class="modal__description"> Departure Time:'+moment(isdepart.Flight_Date).format("HH:mm")+'    </p>' +
-      '<p class="modal__description"> Price :'+isdepart.Price+'  </p>' +
-      '<p  class="modal__description">  Baggage:'+isdepart.Baggage+'  </p>' +
-      '<p class="modal__description">  Cabin: First       </p>' +   
-      '  </div>' +
+		'<div class="card qr-theme">'+
+      '<div class="card_heading">'+
+					'<div class="card_logo">'+
+						'<img src="http://logok.org/wp-content/uploads/2015/03/Qatar-Airways-logo-logotype-1024x768.png" class="qatar"></img>'+
+					'</div>'+
+					'<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/281813/SIN.jpg" />'+
+					'<div class="card_divider">'+
+            '<div class="divider_left divider_hole">'+
+            '</div>'+
+            '<div class="divider">'+
+            '</div>'+
+            '<div class="divider_right divider_hole">'+
+            '</div>'+
+        '</div>'+
+					'<h2>Departure Flight</h2>'+
+          '<div class="inner"></div>'+
+        '</div>'+
+        '<div class="card_trip">'+
+            '<div class="trip_from">'+
+                '<h1>'+ isdepart.From+'</h1>'+       
+            '</div>'+
+            '<div class="trip_icon">'+
+                '<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/553328/From.png" />'+
+            '</div>'+
+            '<div class="trip_to">'+
+                '<h1>'+isdepart.To+'</h1>'+
+            '</div>'+
+        '</div>'+
+        '<div class="card_divider">'+
+            '<div class="divider_left divider_hole">'+
+            '</div>'+
+            '<div class="divider">'+
+            '</div>'+
+            '<div class="divider_right divider_hole">'+
+            '</div>'+
+        '</div>'+
+      '<div class="card_flight_details">'+
+        '<div class="card_seating">'+
+            '<div class="seating_passenger">'+
+                '<h2>Flight Number</h2>'+
+                '<h3>'+isdepart.Flight_No+'</h3>'+
+            '</div>'+
+            '<div class="seating_passenger_dos">'+
+                '<h2>Passenger</h2>'+
+                '<h3>Leonardo Restrepo</h3>'+
+            '</div>'+
+            '<div class="seating_seat">'+
+                '<h2>Seat</h2>'+
+                '<h3>'+'---'+'</h3>'+
+            '</div>'+
+        '</div>'+
+        '<div class="card_details">'+
+            '<div class="details_flight">'+
+                '<h2>Depart Date</h2>'+
+                '<h3> '+moment(isdepart.Flight_Date).format("YYYY-MM-DD")+'</h3>'+
+            '</div>'+
+            '<div class="details_date">'+
+                '<h2>Depart Time</h2>'+
+                '<h3>'+moment(isdepart.Flight_Date).format("HH:mm")+'</h3>'+
+            '</div>'+
+            '<div class="details_time">'+
+                 '<h2>Duration</h2>'+
+                 '<h3 class="countdown">'+isdepart.Flight_Duration +'</h3>'+
+             '</div>'+
+        '</div>'+
+        '<div class="card_details_continued">'+
+              '<div class="details_flight">'+
+                  '<h2>Price</h2>'+
+                  '<h3>'+isdepart.Price+'$'+' </h3>'+
+              '</div>'+
+              '<div class="details_date">'+
+                  '<h2>Buggage </h2>'+
+                  '<h3>'+isdepart.Baggage+'</h3>'+
+              '</div>'+
+              '<div class="details_time">'+
+                  '<h2>Terminal</h2>'+
+                  '<h3>'+isdepart.Terminal+'</h3>'+
+              '</div>'+
+          '</div>'+
+      '</div>'+
+    '</div>'+		
+    '<div class="card qr-theme">'+
+    '<div class="card_heading">'+
+        '<div class="card_logo">'+
+          '<img src="http://logok.org/wp-content/uploads/2015/03/Qatar-Airways-logo-logotype-1024x768.png" class="qatar"></img>'+
+        '</div>'+
+        '<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/281813/SIN.jpg" />'+
+        '<div class="card_divider">'+
+          '<div class="divider_left divider_hole">'+
+          '</div>'+
+          '<div class="divider">'+
+          '</div>'+
+          '<div class="divider_right divider_hole">'+
+          '</div>'+
+      '</div>'+
 
-      '<div class="modal__details" > ' +
-      ' <h4 class="modal__title">Return Flight Details</h4> ' +
-      '<p class="modal__description"> Flight Number:  '+isreturn.Flight_No+   '</p>' +
-      '<p class="modal__description"> Duration:'+isreturn.Flight_Duration+' </p>' +
-      '<p class="modal__description"> From : '+isreturn.From+'  </p>' +
-      '<p class="modal__description">  To:'+isreturn.To+'    </p>' +
-      '<p class="modal__description"> Date: '+moment(isreturn.Flight_Date).format("YYYY-MM-DD")+' </p>' +
-      '<p class="modal__description"> Departure Time:'+moment(isreturn.Flight_Date).format("HH:mm")+'    </p>' +
-      '<p class="modal__description"> Price :'+isreturn.Price+'  </p>' +
-      '<p  class="modal__description">  Baggage:'+isreturn.Baggage+'  </p>' +
-      '<p class="modal__description">  Cabin: First       </p>' +   
-      '  </div>' +
-      '  </div>',
+
+
+
+        '<h2>Return Flight</h2>'+
+        '<div class="inner"></div>'+
+      '</div>'+     
+      '<div class="card_trip">'+
+          '<div class="trip_from">'+
+              '<h1>'+ isreturn.From+'</h1>'+       
+          '</div>'+
+          '<div class="trip_icon">'+
+              '<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/553328/From.png" />'+
+          '</div>'+
+          '<div class="trip_to">'+
+              '<h1>'+isreturn.To+'</h1>'+
+           
+          '</div>'+
+      '</div>'+
+      '<div class="card_divider">'+
+          '<div class="divider_left divider_hole">'+
+          '</div>'+
+          '<div class="divider">'+
+          '</div>'+
+          '<div class="divider_right divider_hole">'+
+          '</div>'+
+      '</div>'+
+    '<div class="card_flight_details">'+
+      '<div class="card_seating">'+
+          '<div class="seating_passenger">'+
+              '<h2>Flight Number</h2>'+
+              '<h3>'+isreturn.Flight_No+'</h3>'+
+          '</div>'+
+          '<div class="seating_passenger_dos">'+
+              '<h2>Passenger</h2>'+
+              '<h3>Leonardo Restrepo</h3>'+
+          '</div>'+
+          '<div class="seating_seat">'+
+              '<h2>Seat</h2>'+
+              '<h3>'+'---'+'</h3>'+
+          '</div>'+
+      '</div>'+
+      '<div class="card_details">'+
+          '<div class="details_flight">'+
+              '<h2>Depart Date</h2>'+
+              '<h3> '+moment(isreturn.Flight_Date).format("YYYY-MM-DD")+'</h3>'+
+          '</div>'+
+          '<div class="details_date">'+
+              '<h2>Depart Time</h2>'+
+              '<h3>'+moment(isreturn.Flight_Date).format("HH:mm")+'</h3>'+
+          '</div>'+
+          '<div class="details_time">'+
+               '<h2>Duration</h2>'+
+               '<h3 class="countdown">'+isreturn.Flight_Duration +'</h3>'+
+           '</div>'+
+      '</div>'+
+      '<div class="card_details_continued">'+
+            '<div class="details_flight">'+
+                '<h2>Price</h2>'+
+                '<h3>'+isreturn.Price+'$'+' </h3>'+
+            '</div>'+
+            '<div class="details_date">'+
+                '<h2>Buggage </h2>'+
+                '<h3>'+isreturn.Baggage+'</h3>'+
+            '</div>'+
+            '<div class="details_time">'+
+                '<h2>Terminal</h2>'+
+                '<h3>'+isreturn.Terminal+'</h3>'+
+            '</div>'+
+        '</div>'+
+    '</div>'+
+  '</div>'
+
+
+
+
+
+
+,
 
 
       imageWidth: 1200,
@@ -558,6 +705,7 @@ if (isLoading) {
   return (
     <>
 
+
     
            
            <div class="s011">
@@ -721,17 +869,9 @@ if (isLoading) {
 }
 if(bothselected){
 return(
-
-
-
-
-
-
-
-
-
-  
  <>
+
+ 
     {/* {isdepart ? <p>Length is 1</p>:null} */}
  {/* adasdas */}
  <div class="s011">

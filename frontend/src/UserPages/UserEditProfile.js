@@ -16,6 +16,8 @@ import '../css/EditUser.css';
 import '../css/EditUser1.css';
 import Swal from 'sweetalert2'
 
+import '../css/BoardingPass.scss';
+
 
 
 
@@ -543,10 +545,95 @@ else { // will post normally
         </div>
       </form>
     </div>
-
+    
   
-   
 
+
+<body>
+		<div class="card qr-theme">
+        <div class="card_heading">
+					<div class="card_logo">
+						<img src="http://logok.org/wp-content/uploads/2015/03/Qatar-Airways-logo-logotype-1024x768.png" class="qatar"></img>
+					</div>
+					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/281813/SIN.jpg" />
+					<div class="card_divider">
+            <div class="divider_left divider_hole">
+            </div>
+            <div class="divider">
+            </div>
+            <div class="divider_right divider_hole">
+            </div>
+        </div>
+					<h2>Boarding Pass</h2>
+          <div class="inner"></div>
+        </div>
+        <div class="card_trip">
+            <div class="trip_from">
+                <h1>MIA</h1>
+                <h2>Miami</h2>
+            </div>
+            <div class="trip_icon">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/553328/From.png" />
+            </div>
+            <div class="trip_to">
+                <h1>SIN</h1>
+                <h2>Singapore</h2>
+            </div>
+        </div>
+        <div class="card_divider">
+            <div class="divider_left divider_hole">
+            </div>
+            <div class="divider">
+            </div>
+            <div class="divider_right divider_hole">
+            </div>
+        </div>
+      <div class="card_flight_details">
+        <div class="card_seating">
+            <div class="seating_passenger">
+                <h2>Passenger</h2>
+                <h3>Deven Blackburn</h3>
+            </div>
+            <div class="seating_passenger_dos">
+                <h2>Passenger</h2>
+                <h3>Leonardo Restrepo</h3>
+            </div>
+            <div class="seating_seat">
+                <h2>Seat</h2>
+                <h3>1A/1B</h3>
+            </div>
+        </div>
+        <div class="card_details">
+            <div class="details_flight">
+                <h2>Depart on</h2>
+                <h3>22 April, 16</h3>
+            </div>
+            <div class="details_date">
+                <h2>Depart at</h2>
+                <h3>20:30 pm</h3>
+            </div>
+            <div class="details_time">
+                 <h2>Departs in</h2>
+                 <h3 class="countdown">----</h3>
+             </div>
+        </div>
+        <div class="card_details_continued">
+              <div class="details_flight">
+                  <h2>Flight</h2>
+                  <h3>QR778</h3>
+              </div>
+              <div class="details_date">
+                  <h2>Confirmation </h2>
+                  <h3>b1ty45</h3>
+              </div>
+              <div class="details_time">
+                  <h2>Gate</h2>
+                  <h3>b12</h3>
+              </div>
+          </div>
+      </div>
+    </div>		
+  </body>
        
        
       </>
