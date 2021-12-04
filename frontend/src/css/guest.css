@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 body{
-  background: #5D3F6A;
+  background: #ffffff;
   font-family: 'Source Sans Pro', sans-serif;
 }
 #title{
@@ -718,12 +718,13 @@ figcaption p{
   
 
 
-  .grid-container {
+  .grid-container-Swal {
     display: grid;
     grid-template-columns: auto auto auto;
-    background-color: #2196F3;
+    background-color: #ffffff;
     padding: 10px;
   }
+
 
   .grid-container-EditUser {
     display: grid;

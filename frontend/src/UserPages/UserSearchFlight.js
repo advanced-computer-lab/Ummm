@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css'; 
 import '../css/popup.css';
+import '../css/swal.css';
+import Swal from 'sweetalert2'
 
 import '../css/main.css';
 import '../css/guest.css';
@@ -269,11 +271,56 @@ console.log(isreturn);
   };
 
 
+  const success = () => {
+   
+    Swal.fire({
+      // imageUrl: 'https://placeholder.pics/svg/1200x500',
+      html:
+      'You can use <b>bold text</b>, ' +
+      '<a href="//sweetalert2.github.io">links</a> ' +
+      'and other HTML tags',
+
+      html:
+      '<div class="grid-container-Swal" > ' +
+      '<div class="modal__details" > ' +
+      ' <h4 class="modal__title">Depart Flight Details</h4> ' +
+      '<p class="modal__description"> Flight Number:  '+isdepart.Flight_No+   '</p>' +
+      '<p class="modal__description"> Duration:'+isdepart.Flight_Duration+' </p>' +
+      '<p class="modal__description"> From : '+isdepart.From+'  </p>' +
+      '<p class="modal__description">  To:'+isdepart.To+'    </p>' +
+      '<p class="modal__description"> Date: '+moment(isdepart.Flight_Date).format("YYYY-MM-DD")+' </p>' +
+      '<p class="modal__description"> Departure Time:'+moment(isdepart.Flight_Date).format("HH:mm")+'    </p>' +
+      '<p class="modal__description"> Price :'+isdepart.Price+'  </p>' +
+      '<p  class="modal__description">  Baggage:'+isdepart.Baggage+'  </p>' +
+      '<p class="modal__description">  Cabin: First       </p>' +   
+      '  </div>' +
+
+      '<div class="modal__details" > ' +
+      ' <h4 class="modal__title">Return Flight Details</h4> ' +
+      '<p class="modal__description"> Flight Number:  '+isreturn.Flight_No+   '</p>' +
+      '<p class="modal__description"> Duration:'+isreturn.Flight_Duration+' </p>' +
+      '<p class="modal__description"> From : '+isreturn.From+'  </p>' +
+      '<p class="modal__description">  To:'+isreturn.To+'    </p>' +
+      '<p class="modal__description"> Date: '+moment(isreturn.Flight_Date).format("YYYY-MM-DD")+' </p>' +
+      '<p class="modal__description"> Departure Time:'+moment(isreturn.Flight_Date).format("HH:mm")+'    </p>' +
+      '<p class="modal__description"> Price :'+isreturn.Price+'  </p>' +
+      '<p  class="modal__description">  Baggage:'+isreturn.Baggage+'  </p>' +
+      '<p class="modal__description">  Cabin: First       </p>' +   
+      '  </div>' +
+      '  </div>',
+      imageWidth: 1200,
+      imageHeight: 1000,
+      customClass: 'swal-wide',
+      imageAlt: 'A tall image'
+    })
+
+  };
+
 
   //TTTTTT
   const searchHandler = (e) => {
     e.preventDefault(); 
-  
+   
     /// setDisplay1([]);
     // setDisplay2([]);
 
@@ -837,7 +884,7 @@ return(
 
 
 
-  <a href="#modal-opened" id="yourButtonID" class="link-1" >Reserve Flight </a>
+  <a href="#modal-opened" id="yourButtonID" class="link-1" onClick={() => success()}>Reserve Flight </a>
 
   < div class="modal-container" id="modal-opened">
    <div class="modal">
@@ -1147,14 +1194,14 @@ return (
     
   </div>
 
+  <a href="#modal-opened" class="link-1" id="modal-closed" onClick={() => success()}>Reserve Flight</a>
 
-
-  <a href="#modal-opened" class="link-1" id="modal-closed">Reserve Flight</a>
+  {/* <a href="#modal-opened" id="yourButtonID" class="link-1" onClick={() => success()} >Reserve Flight </a> */}
 
   < div class="modal-container" id="modal-opened">
    <div class="modal">
 
-      <div>
+  <div>
       <div class="modal__details">
       <h4 class="modal__title">Depart Flight Details</h4>
       <p class="modal__description">  Flight Number: {isdepart.Flight_No}     Duration:{isdepart.To}    </p>
@@ -1181,21 +1228,16 @@ return (
      
        
 
-      
+        </div>
+        </div>
      </div>
 
     
-     
-   
-   
-      
-     </div>
-  
-          
+ 
 
-     
 
-</div>
+
+
 </div>
 
 

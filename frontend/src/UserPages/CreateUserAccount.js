@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css'; 
 import '../css/EditUser.css';
 import '../css/EditUser1.css';
+import '../css/swal.css';
 import Swal from 'sweetalert2'
 
 import moment from "moment";
@@ -55,6 +56,7 @@ const CreateUserAccount = () => {
 
 
   const submitHandler = (e) => {
+    success();
     e.preventDefault();    // prevent reloading the page
    var mailformat =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
    
@@ -82,7 +84,7 @@ else { // will post normally
         Username: "",
         Password: "",
         })
-        success(); // data succ added less go
+        // data succ added less go
       
       }).catch(error => {
         if(!Data.Email.match(mailformat)){
@@ -133,21 +135,14 @@ else { // will post normally
 
  
   const success = () => {
-    Swal.fire(
-      {
-      title: 'Account Successfully Created!',
-      text: 'continue to Log In',
-      icon: 'success',
-      confirmButtonText: 'Log In',
-      confirmButtonColor: '#ff8300',
-      // iconColor:'#ff8300' ,
+   
+    Swal.fire({
+      imageWidth: 1200,
+      imageHeight: 1000,
+      customClass: 'swal-wide',
+      imageAlt: 'A tall image'
     })
-      .then((res) => {
-           if(res.isConfirmed){
-              console.log('confirm');
-               LoginHandler() ;
-          }    
-      });
+
   };
 
   const warning = () => {

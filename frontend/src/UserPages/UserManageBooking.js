@@ -271,7 +271,17 @@ console.log(isreturn);
 
 
   const ConfirmDelete = (ReservationNumber,RefundedAmount) => { // e will contain the reservation number 
-    
+    // var x = document.getElementsByClassName("seat-picker__row__number").innerText = "F";
+    // x.innerText = "";
+
+    var x=document.getElementsByClassName("seat-picker__row__number");  // Find the elements
+    x[5].innerText=""; 
+    x[11].innerText=""; 
+    // for(var i = 6; i < x.length; i++){
+      // x[6].innerText="F";
+  //  }
+   
+    console.log(x)
     Swal.fire(
       {
       title: 'Delete Reservation Number '.concat(ReservationNumber).concat(' ?'),
@@ -528,7 +538,6 @@ const { loading } = state;
   <ol id = 'SeatMap' class="cabin fuselage">
   <SeatMap>
    </SeatMap>
- 
 </ol>
   
     <br></br>
