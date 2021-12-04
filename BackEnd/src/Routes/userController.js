@@ -2,7 +2,7 @@
 const Flights = require('../models/Flights');
 const Admins = require('../models/Admins');
 const Users = require('../models/User');
-const Reservation = require('../models/Reservation');
+const Reservations = require('../models/Reservation');
 const moment = require('moment');
 const today = moment().startOf('day');
 
@@ -21,6 +21,23 @@ exports.createflight = (req, res) => {
       console.log(err);
     });
 };
+
+
+exports.createnewReservation = (req, res) => {
+  console.log(req.body);
+
+  const Reservation = new Reservations(req.body)
+  Reservation.save()
+    .then(result => {
+      res.send(result);
+      console.log("added");
+    })
+    .catch(err => {
+      res.status(400).send();
+      console.log(err);
+    });
+};
+
 exports.createuseraccount = (req, res) => {
   console.log(req.body);
 
@@ -35,6 +52,40 @@ exports.createuseraccount = (req, res) => {
       console.log(err);
     });
 };
+
+
+exports.GetUserInfo = (req, res) => {
+  if(Object.keys(req.body).length === 0){   
+    console.log(req.body) 
+    return res.status(400).send();
+  }
+       const search ={};
+
+  Object.keys(req.body).forEach(key => {
+  if (req.body[key]!==null) {
+      search[key] = {$regex: '^' + req.body[key]};
+    }
+  });
+  console.log(search)
+
+Users.find(search)
+.then(result => { 
+    if(result.length != 0){
+      console.log(result)
+     res.send(result);
+    }
+     else 
+     res.status(400).send();
+    //  console.log(result)
+    })
+   .catch(err => {
+    console.log(err);
+   });
+};
+
+
+
+
 
 
 
@@ -160,6 +211,7 @@ exports.loginpage = (req, res) => {
       console.log(err);
      });
  };
+
 
  exports.userlogin = (req, res) => {
 

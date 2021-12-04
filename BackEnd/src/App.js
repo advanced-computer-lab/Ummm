@@ -47,6 +47,9 @@ app.post('/loginpage',userController.loginpage)
 //User
 app.post('/createuseraccount', userController.createuseraccount)
 app.post('/userlogin',userController.userlogin)
+app.post('/createnewReservation',userController.createnewReservation)
+app.post('/GetUserInfo',userController.GetUserInfo)
+
 
 
 

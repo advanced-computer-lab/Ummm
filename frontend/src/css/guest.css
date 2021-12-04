@@ -720,6 +720,7 @@ figcaption p{
 
   .grid-container-Swal {
     display: grid;
+    grid-template-rows: 220px 220px;
     grid-template-columns: auto auto auto;
     background-color: #ffffff;
     padding: 10px;

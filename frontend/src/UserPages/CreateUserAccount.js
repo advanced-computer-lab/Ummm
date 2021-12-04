@@ -148,6 +148,9 @@ else { // will post normally
            if(res.isConfirmed){
               console.log('confirm');
                LoginHandler() ;
+
+
+               
           }    
       });
   };

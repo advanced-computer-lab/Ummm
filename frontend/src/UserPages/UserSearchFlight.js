@@ -274,14 +274,30 @@ console.log(isreturn);
   };
 
 
-  const success = () => {
+
+
+  const swalWithBootstrapButtons = Swal.mixin({
+    // customClass: {
+    //   confirmButton: 'btn btn-success',
+    //   cancelButton: 'btn btn-danger'
+    // },
+    // buttonsStyling: false
+  })
+  
+
+
+
+  const Login = () => {
    
-    Swal.fire({
-      // imageUrl: 'https://placeholder.pics/svg/1200x500',
-      html:
-      'You can use <b>bold text</b>, ' +
-      '<a href="//sweetalert2.github.io">links</a> ' +
-      'and other HTML tags',
+  };
+
+
+  const success = () => {
+
+
+
+
+swalWithBootstrapButtons.fire({
 
       html:
       '<div class="grid-container-Swal" > ' +
@@ -311,35 +327,84 @@ console.log(isreturn);
       '<p class="modal__description">  Cabin: First       </p>' +   
       '  </div>' +
       '  </div>',
+
+
       imageWidth: 1200,
-      imageHeight: 1000,
-      customClass: 'swal-wide',
-      imageAlt: 'A tall image',
-      // confirmButtonText: 'Log In',
+        imageHeight: 700,
+        customClass: 'swal-wide',
+        imageAlt: 'A tall image',
+
+        showCancelButton: true,
+        confirmButtonText: 'Confirm Choosen Flight!',
+  cancelButtonText: 'Cancel!',
+  reverseButtons: true,
+  confirmButtonColor: '#ff8300',
+  // confirmButtonColor: '#00D100', //GREEN WALA ORANGEEE ?
+
+
+    
+         
+
+        // confirmButtonText: 'Log In',
+        // iconColor:'#ff8300' ,
+
+  // title: 'Are you sure?',
+  // text: "You won't be able to revert this!",
+  // icon: 'warning',
+  // showCancelButton: true,
+  // confirmButtonText: 'Log In!',
+  // cancelButtonText: 'Cancel!',
+  // reverseButtons: true
+
+
+
+}).then((result) => {
+  if (result.isConfirmed) {
+
+    if (sessionStorage.getItem('AuthenticationState') === "UserAuthenticated") {
+                history.push({
+                  pathname: '/UserConfirmBooking',
+                state: {
+                  flight1: isdepart,
+                  flight2: isreturn,
+                  CabinFrom: Data.CabinDepart,
+                  CabinTo: Data.CabinDepart,
+                  Adults: Data.Adults,
+                  Children: Data.Children,
+                }
+                });
+             }
+        
+else{
+    swalWithBootstrapButtons.fire(
+      {
+      title: 'Please Log In to continue',
+      // text: 'Please Log In to continue',
+      icon: 'warning',
+      confirmButtonText: 'Log In',
       confirmButtonColor: '#ff8300',
       // iconColor:'#ff8300' ,
     })
       .then((res) => {
            if(res.isConfirmed){
-            history.push({
-              pathname: '/UserConfirmBooking',
-            state: {
-              flight1: isdepart,
-              flight2: isreturn,
-              CabinFrom: Data.CabinDepart,
-              CabinTo: Data.CabinDepart,
-              Adults: Data.Adults,
-              Children: Data.Children,
-            }
-            });
-              // console.log('confirm');
-              //  LoginHandler() ;
-
+              console.log('confirm');
+              window.open("UserLogin", "_self");
+               
           }    
       });
+    }
+  } 
+  else if (
+    /* Read more about handling dismissals below */
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+   
+  }
+})
+
 
   };
-
+   
 
   //TTTTTT
   const searchHandler = (e) => {
@@ -1213,14 +1278,14 @@ return (
 
   
 
-
         )}
     
   </div>
 {/* href="#modal-opened" */}
-  <a  class="link-1" id="modal-closed" onClick={() => success()}>Reserve Flight</a>
+  {/* <a  class="link-1" id="modal-closed" onClick={() => success()}>Reserve Flight</a> */}
 
   {/* <a href="#modal-opened" id="yourButtonID" class="link-1" onClick={() => success()} >Reserve Flight </a> */}
+  <a id="yourButtonID" class="link-1" onClick={() => success()}>Reserve Flight </a>
 
   < div class="modal-container" id="modal-opened">
    <div class="modal">

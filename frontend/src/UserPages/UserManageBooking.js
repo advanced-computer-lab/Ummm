@@ -52,9 +52,8 @@ import {
 
 
 const UserManageBooking = () => {
-
 //   if (sessionStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
-//     window.open("UserLogin", "_self");
+//     Login();
 //  }
 //  const LogOutHandler = (e) => {
 //   sessionStorage.clear()
@@ -115,6 +114,26 @@ const UserManageBooking = () => {
     //console.log(flight) ;
    
     };
+
+
+    // const Login = () => {
+    //   Swal.fire(
+    //     {
+    //     title: 'You are one step Away!',
+    //     text: 'Please Log In to continue',
+    //     icon: 'warning',
+    //     confirmButtonText: 'Log In',
+    //     confirmButtonColor: '#ff8300',
+    //     // iconColor:'#ff8300' ,
+    //   })
+    //     .then((res) => {
+    //          if(res.isConfirmed){
+    //             console.log('confirm');
+    //             window.open("UserLogin", "_self");
+                 
+    //         }    
+    //     });
+    // };
 
 
     const [isSeat, setSeat] = useState();
