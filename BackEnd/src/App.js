@@ -1,6 +1,7 @@
 
 // External variables
 const express = require("express");
+const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
 const userController = require('./Routes/userController');
 const cors = require('cors')
@@ -30,12 +31,46 @@ mongoose.connect(MongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 .catch(err => console.log(err));
 
 
+
+var transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+      user:"user62kk@gmail.com", 
+      pass:"192837192837"
+  }
+});
+
+var mailoptions={
+to: 'ahmed.eltawel35@gmail.com',
+subject: "Reservation Cancellation",
+text: "Email Test Has Passed"
+}
+
+// transporter.sendMail(mailoptions, function (error, info, callback){
+// if(error){
+//   console.log(error);
+// }else{
+//   console.log('Message sent: ' + info.response);
+// }
+// });
+
 app.get("/home", (req, res) => {
     res.status(200).send("You have everything installed !");
   });
 
-// #Routing to usercontroller here
+  app.post("/sendmail", (req, res) => {
+    console.log("we have reached hereeee")
+    mailoptions.to=req.body.data.var2
+    mailoptions.text='Hello Dear Customer,\nYour Reservation has been successfully cancelled and you will be refunded with $'.concat(req.body.data.var1)+'\nHope to see you fly with us again,\nFly Nawww.';
+    transporter.sendMail(mailoptions, function (error, info, callback){
+      if(error){
+        console.log(error);
+      }else{
+        console.log('Message sent: ' + info.response);
+      }
+      });
 
+  });
 //Flight and admin
 app.post('/createflight', userController.createflight)
 app.get('/viewflights',userController.viewflights)
