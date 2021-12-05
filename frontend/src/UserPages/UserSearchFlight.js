@@ -69,10 +69,10 @@ const SearchFlight = () => {
         Baggage: "",
         Price: "",
 
-        Adults: 4,
-        Children:1,
-        CabinDepart: "First",
-        CabinReturn: "First",
+        Adults: "",
+        Children:"",
+        CabinDepart: "",
+        CabinReturn: "",
 
   });
   const [Temp1, setTemp1] = useState({
@@ -160,11 +160,15 @@ const SearchFlight = () => {
       var seatcabin = Data.CabinDepart+'_Seats';
       var baggagecabin = Data.CabinDepart+'_Baggage';
       var pricecabin = Data.CabinDepart+'_Price';
+      // console.log(Data.CabinDepart+'_Price');
       var seatsrequested = Data.Adults + Data.Children
       const FilteredResult1 =[];
       const FilteredResult2 =[];
+      console.log(Result1);
+
       var minFlightDate = Result1[0]['Flight_Date'];
-      console.log(minFlightDate);
+      //var minFlightDate = new Date();
+
     
       console.log(Result1)
       console.log(Result2)
@@ -227,7 +231,7 @@ const SearchFlight = () => {
               Temp2['Seats'] = Result2[AllFlights][seatcabin]; 
               Temp2['Baggage'] = Result2[AllFlights][baggagecabin]; 
               Temp2['Price'] = Result2[AllFlights][pricecabin]; 
-              Temp2['_id'] = Result1[AllFlights]['_id']; 
+              Temp2['_id'] = Result2[AllFlights]['_id']; 
               var newObject = JSON.parse(JSON.stringify(Temp2));
               console.log(newObject)
               FilteredResult2[AllFlights] = newObject;
@@ -487,7 +491,7 @@ swalWithBootstrapButtons.fire({
          cancelButtonColor:'#ff2626' ,
         showCancelButton: true,
         cancelButtonText: 'Cancel!',
-        confirmButtonText: 'Continue To Payment!',
+        confirmButtonText: 'Confirm Choosen Reservation!',
   
   reverseButtons: false,
   confirmButtonColor: '#ff8300',
@@ -560,7 +564,6 @@ else{
 
   //TTTTTT
   const searchHandler = (e) => {
-    
     e.preventDefault(); 
    
     /// setDisplay1([]);
@@ -569,6 +572,9 @@ else{
     const criteria1 = {};
     const criteria2 = {};
     var dd;
+
+
+    console.log(Data);
 
     Object.keys(Data).forEach(key => {
    if (Data[key]!=="") {
@@ -689,12 +695,7 @@ else{
         state: { detail: 'some_value' }
     });
  };
- const LogOutHandler = () => {
-  sessionStorage.clear()
-  window.open("UserLogin", "_self");
 
-
-};
 const EditProfileHendler = event => {
   history.push({
       pathname: '/UserEditProfile',
@@ -813,7 +814,7 @@ if (isLoading) {
             <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
             <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
             <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
-            <li><a onClick={() => LogOutHandler()}><span>Log Out</span></a></li>
+            <li><a href="contact.html"><span>Log Out</span></a></li>
 
           </ul>
         </nav>
@@ -970,7 +971,7 @@ if (isLoading) {
               <div class="row">
 								<div class="col-md-4">
 									<div class="form-group">
-										<select class="form-control" required>
+										<select class="form-control" required  name="CabinDepart"  value={Data.CabinDepart}  onChange={(e) => changeHander(e)}>
                    
 											<option  value={Data.CabinDepart} selected hidden>Select Depart Cabin</option>
                       <option>First</option>
@@ -983,7 +984,7 @@ if (isLoading) {
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<select class="form-control" required>
+										<select class="form-control" name="CabinReturn" required value={Data.CabinReturn} onChange={(e) => changeHander(e)}>
 											<option value={Data.CabinReturn}  selected hidden>Select Return Cabin</option>
 											<option>First</option>
 											<option>Business</option>
@@ -1298,20 +1299,20 @@ return(
               <div class="row">
 								<div class="col-md-4">
 									<div class="form-group">
-										<select class="form-control" required>
+										<select class="form-control" name="CabinDepart" required  value={Data.CabinDepart} onChange={(e) => changeHander(e)}>
                    
 											<option  value={Data.CabinDepart} selected hidden>Select Depart Cabin</option>
                       <option>First</option>
 											<option>Business</option>
 											<option>Economy</option>
-										</select>
+										</select> 
 										<span class="select-arrow"></span>
 										<span class="date-form">Depart Cabin</span>
 									</div>
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<select class="form-control" required>
+										<select class="form-control"  name="CabinReturn" required value={Data.CabinReturn} onChange={(e) => changeHander(e)}>
 											<option value={Data.CabinReturn}  selected hidden>Select Return Cabin</option>
 											<option>First</option>
 											<option>Business</option>
@@ -1442,7 +1443,7 @@ return(
           <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
           <figcaption>
             <div class="caption">
-              <h1>{flight.Price}</h1>
+              <h1>${flight.Price}</h1>
               <p>{flight.To }</p>
               </div>
           </figcaption>
@@ -1476,7 +1477,7 @@ return(
           <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
           <figcaption>
             <div class="caption">
-              <h1>{flight.Price}</h1>
+              <h1>${flight.Price}</h1>
               <p>{flight.To}</p>
               </div>
           </figcaption>
@@ -1743,8 +1744,7 @@ return (
       }}type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Return} format="DD-MM-YYYY"
     showTime="false" disabledDate={d => d.isBefore(Data.Flight_Date_Depart)}
        name="Return" onChange={(date) => setState(prevData => {
-          return {...prevData ,Flight_Date_Return: date}}) 
-}/>
+          return {...prevData ,Flight_Date_Return: date}}) } />
 </div>
             
               </div>
@@ -1754,9 +1754,9 @@ return (
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <select class="form-control" required>
+                <select class="form-control" name="CabinDepart" required  value={Data.CabinDepart} onChange={(e) => changeHander(e)} >
                
-                  <option  value={Data.CabinDepart} selected hidden>Select Depart Cabin</option>
+                  <option  selected hidden>Select Depart Cabin</option>
                   <option>First</option>
                   <option>Business</option>
                   <option>Economy</option>
@@ -1767,8 +1767,8 @@ return (
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <select class="form-control" required>
-                  <option value={Data.CabinReturn}  selected hidden>Select Return Cabin</option>
+                <select class="form-control"  name="CabinReturn" value={Data.CabinReturn} onChange={(e) => changeHander(e)} >
+                  <option  selected hidden>Select Return Cabin</option>
                   <option>First</option>
                   <option>Business</option>
                   <option>Economy</option>
