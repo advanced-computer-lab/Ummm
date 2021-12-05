@@ -12,6 +12,8 @@ import '../css/main.css';
 import '../css/guest.css';
 import '../css/SelectSeat.scss';
 import '../css/header.css';
+import swal from 'sweetalert2'
+import '../css/BoardingPass.scss';
 import moment from "moment";
 import {
   Form,
@@ -38,8 +40,12 @@ const UserManageBooking = () => {
   const criteria1 = {};
   const [Reservations, setallReservation] = useState();
   const [mapped, setmapped] = useState(false);
+  const [Available, setAvailable] = useState();
+  const [reserv, setreserv] = useState();
+
   const [flight1, setflight1] = useState();
   const [flight2, setflight2] = useState();
+
 
   // const [allReservation, setReservation] = useState({
   //   FirstName:"",
@@ -74,6 +80,36 @@ const UserManageBooking = () => {
       setTimeout(() => {
         setGuard(false);
       }, 1000)};
+
+
+        if(Available && reserv && mapped === false){
+         
+          // setTimeout(() => {
+          //   console.log("AAAAAAAA")
+            senddata(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)
+          // }, 500)
+          
+
+          setTimeout(() => {
+            console.log("MMMMMMM")
+            setmapped(true);
+          }, 250)
+          // setTimeout(() => {
+          //   ScrollToBottom();
+          // }, 250)
+         
+
+        };
+
+
+      // if(GoSet){
+      //   setTimeout(() => {
+      //     set
+      //   }, 750)};
+
+        // !mapped = false -> NO DOWNNN
+        //  !mapped = true -> DOWNNN
+
     // var x=document.getElementsByClassName("seat-picker__row seat-picker__row--enabled");
     // x[4].style.marginBottom = "30px"; 
     // x[11].style.marginBottom = "30px"; 
@@ -81,7 +117,7 @@ const UserManageBooking = () => {
     
 
 
-  },[Reservations,Guard]);
+  },[Reservations,Guard,mapped,Available,reserv]);
 
 
 
@@ -97,7 +133,53 @@ const UserManageBooking = () => {
   })};
 
 
+  const AboutUs = () => { // e will contain the reservation number 
+    Swal.fire({
+      title: 'Fly Nawww is a Saudi Arabian leading low-cost carrier with a fleet of 34 aircrafts, operating more than 1500 weekly flights to 35 domestic and international destinations.',
+      confirmButtonText: 'Hmm.. Ok',
+      confirmButtonColor: '#ff8300',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })
+  };
 
+
+  const Vision = () => { // e will contain the reservation number 
+    Swal.fire({
+      title: 'To act responsibly in developing the market, evolving our employees, supporting our partners and local communities.',
+      confirmButtonText: 'Hmm.. Ok',
+      confirmButtonColor: '#ff8300',
+      showClass: {
+        popup: 'animateanimated animatefadeInDown'
+      },
+      hideClass: {
+        popup: 'animateanimated animatefadeOutUp'
+      }
+    })
+  };
+  const ContactUs = () => { // e will contain the reservation number 
+    Swal.fire({
+      title: 'Call:011414656668',
+      confirmButtonText: 'Hmm.. Ok',
+      confirmButtonColor: '#ff8300',
+      showClass: {
+        popup: 'animateanimated animatefadeInDown'
+      },
+      hideClass: {
+        popup: 'animateanimated animatefadeOutUp'
+      }
+    })
+  };
+  const LogOutHandler = () => {
+    sessionStorage.clear()
+    window.open("UserLogin", "_self");
+  
+  
+  };
 
 
   const ConfirmDelete = (Reservationid,RefundedAmount,Useremail) => { // e will contain the reservation number 
@@ -121,8 +203,8 @@ const UserManageBooking = () => {
                       }).catch(error => {
               console.log(error); //Handle Flight_No excite 
             })
-         
-            
+
+
 
 
 
@@ -149,7 +231,6 @@ const UserManageBooking = () => {
         }
       });
   };
-  
 
   const warning1 = () => {
     message.warning('Please enter departure city');
@@ -177,62 +258,244 @@ const EditProfileHendler = event => {
   });
 };
 
-const AboutUs = () => { // e will contain the reservation number 
-  Swal.fire({
-    title: 'Fly Nawww is an Egyptian leading low-cost carrier with a fleet of 34 aircrafts, operating more than 1500 weekly flights to 35 domestic and international destinations.',
-    confirmButtonText: 'Hmm.. Ok',
-    confirmButtonColor: '#ff8300',
-    showClass: {
-      popup: 'animate__animated animate__fadeInDown'
-    },
-    hideClass: {
-      popup: 'animate__animated animate__fadeOutUp'
+
+const senddata = (e,f,g,from,date) => {
+  console.log(Available)
+
+    const rows = new Array(26);
+   
+    for (var i = 0; i < rows.length; i++) {
+      if(i<6){
+        rows[i] = new Array(4);
+      }
+      else{
+        rows[i] = new Array(6);
+      }
+     
     }
-  })
-};
-const Vision = () => { // e will contain the reservation number 
-  Swal.fire({
-    title: 'To act responsibly in developing the market, evolving our employees, supporting our partners and local communities.',
-    confirmButtonText: 'Hmm.. Ok',
-    confirmButtonColor: '#ff8300',
-    showClass: {
-      popup: 'animate__animated animate__fadeInDown'
-    },
-    hideClass: {
-      popup: 'animate__animated animate__fadeOutUp'
+     
+    for(let i=0;i<26;i++){
+      for(let j=0;j<8;j++){
+        if(j>1 && j<6 && i<5){
+          rows[i][j] = null;
+        }
+     else if(i<5){
+       if(j>5)
+        rows[i][j] = { id: ((i*4)+j-4+1), number: j+1-4, isReserved: Available[((i*4)+j-4+1)]} ;
+        else
+        rows[i][j] = { id: ((i*4)+j+1), number: j+1, isReserved:  Available[((i*4)+j+1)]} ;
     }
-  })
-};
-const ContactUs = () => { // e will contain the reservation number 
-  Swal.fire({
-    title: 'Call:011414656668',
-    confirmButtonText: 'Hmm.. Ok',
-    confirmButtonColor: '#ff8300',
-    showClass: {
-      popup: 'animate__animated animate__fadeInDown'
-    },
-    hideClass: {
-      popup: 'animate__animated animate__fadeOutUp'
+    else {
+      if(j>2 && j<5){
+        rows[i][j] = null;
+      }
+   else if(j>4)
+   rows[i][j] = { id: ((20+((i-5)*6)+j-2)+1), number: j+1-2, isReserved:  Available[((20+((i-5)*6)+j-2)+1)]} ;
+         else
+         rows[i][j] = { id: ((20+((i-5)*6)+j)+1), number: j+1, isReserved:  Available[((20+((i-5)*6)+j)+1)]} ;
     }
-  })
-};
-const LogOutHandler = () => {
-  sessionStorage.clear()
-  window.open("UserLogin", "_self");
+      }
+  }
+    
+console.log(rows)
+
+  setData({e,f,g,from,date,rows});
+
+  // setGuard(true);
+}
 
   
-};
+// const ScrollToBottom = () => {
+//   window.scrollTo(0,document.body.scrollHeight);
+// }
 
-const parentToChild = (e,f,g,from,date) => {
-  setData({e,f,g,from,date});
-  if(mapped===false)
-  setmapped(true);
-  else{
-    setmapped(false);
 
-  }
+const parentToChild = (reserv,e,f,g,from,date) => {
+  setmapped(false);
 
+  axios.post('http://localhost:8000/flightmap',{data: {var1 : g} })
+  .then((result)=> {
+      setAvailable(result.data[0].Available_Seats);
+      console.log(Available)
+    })
+    setreserv(reserv);
+
+   
+
+  // setmapped(true);
 }
+
+const swalWithBootstrapButtons = Swal.mixin({
+  // customClass: {
+  //   confirmButton: 'btn btn-success',
+  //   cancelButton: 'btn btn-danger'
+  // },
+  // buttonsStyling: false
+})
+
+const success = () => {
+
+
+
+
+  swalWithBootstrapButtons.fire({
+  
+        html:
+      
+        '<div class="wrapper">'+
+        '<div class="qr">'+
+          '<div class="title">boarding pass</div>'+
+          '<div class="qr-wrapper">'+
+            '<div class="qr-image"></div>'+
+          '</div>'+
+          '<a>expand</a>'+
+        '</div>'+
+        '<div class="inner-wrapper">'+
+          '<div class="details">'+
+            '<div class="date">Aug 31 2016</div>'+
+            '<div class="city">'+
+              '<div class="from loc">'+
+                '<div class="name">pnq <span>pune</span></div>'+
+                '<div class="weather">'+
+                  '<div class="icon">'+
+                    '<div class="drop1 drop"></div>'+
+                    '<div class="drop2 drop"></div>'+
+                    '<div class="drop3 drop"></div>'+
+                  '</div>'+
+                '</div>'+
+              '</div>'+
+              '<div class="to loc">'+
+                '<div class="name">del <span>delhi</span></div>'+
+                '<div class="weather">'+
+                  '<div class="icon">'+
+                    '<div class="sunrays ray1"></div>'+
+                    '<div class="sunrays ray2"></div>'+
+                    '<div class="sunrays ray3"></div>'+
+                  '</div>'+
+                '</div>'+
+              '</div>'+
+            '</div>'+
+            '<div class="plane"></div>'+
+            '<div class="content">'+
+              '<div class="gate">2B <span>gate</span></div>'+
+              '<div class="gate">16B <span>seat</span></div>'+
+              '<div class="gate">12:50PM <span>departure</span></div>'+
+            '</div>'+
+          '</div>'+
+          '<div class="seat-layout">'+
+            '<div class="content">'+
+              '<div class="close"><i class="fa fa-remove fa-2x"></i></div>'+
+              '<div class="gate">2B <span>gate</span></div>'+
+              '<div class="seat">16B <span>seat</span></div>'+
+              '<div class="boarding">12:20PM <span>boarding</span></div>'+
+              '<div class="departure">12:50PM <span>departure</span></div>'+
+              '<div class="flight">GO181 <span>flight</span></div>'+
+            '</div>'+
+           
+           
+          '</div>'+
+        '</div>'+
+        '</div>'
+        
+  
+  
+  
+  
+  
+  ,
+  
+  
+          imageWidth: 1200,
+          imageHeight: 700,
+          customClass: 'swal-wide',
+          imageAlt: 'A tall image',
+           cancelButtonColor:'#ff2626' ,
+          showCancelButton: true,
+          cancelButtonText: 'Cancel!',
+          confirmButtonText: 'Confirm Choosen Reservation!',
+    
+    reverseButtons: false,
+    confirmButtonColor: '#ff8300',
+    // confirmButtonColor: '#00D100', //GREEN WALA ORANGEEE ?
+  
+  
+      
+           
+  
+          // confirmButtonText: 'Log In',
+          // iconColor:'#ff8300' ,
+  
+    // title: 'Are you sure?',
+    // text: "You won't be able to revert this!",
+    // icon: 'warning',
+    // showCancelButton: true,
+    // confirmButtonText: 'Log In!',
+    // cancelButtonText: 'Cancel!',
+    // reverseButtons: true
+  
+  
+  
+  }).then((result) => {
+    // if (result.isConfirmed) {
+  
+    //   if (sessionStorage.getItem('AuthenticationState') === "UserAuthenticated") {
+    //               history.push({
+    //                 pathname: '/UserConfirmBooking',
+    //               state: {
+    //                 flight1: isdepart,
+    //                 flight2: isreturn,
+    //                 CabinFrom: Data.CabinDepart,
+    //                 CabinTo: Data.CabinDepart,
+    //                 Adults: Data.Adults,
+    //                 Children: Data.Children,
+    //               }
+    //               });
+    //            }
+          
+  // else{
+  //     swalWithBootstrapButtons.fire(
+  //       {
+  //       title: 'Please Log In to continue',
+  //       // text: 'Please Log In to continue',
+  //       icon: 'warning',
+  //       confirmButtonText: 'Log In',
+  //       confirmButtonColor: '#ff8300',
+  //       // iconColor:'#ff8300' ,
+  //     })
+  //       .then((res) => {
+  //            if(res.isConfirmed){
+  //               console.log('confirm');
+  //               window.open("UserLogin", "_self");
+                 
+  //           }    
+  //       });
+  //     }
+  //   } 
+    // else if (
+    //   /* Read more about handling dismissals below */
+    //   result.dismiss === Swal.DismissReason.cancel
+    // ) {
+     
+    // }
+  })
+  
+  
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   if (Reservations) {
@@ -353,7 +616,7 @@ const parentToChild = (e,f,g,from,date) => {
     {/* //loop will be created here inside the box f2 :D*/}
 
 
-  <div class="listing-item">
+  <div class="listing-item100">
       <figure class="image">
           <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
           <figcaption>
@@ -373,12 +636,12 @@ const parentToChild = (e,f,g,from,date) => {
           <h4>Booking Number:{reserv._id}</h4>
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
-          <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
+          <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv,reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
 
       </div>
   </div>
  
-  <div class="listing-item">
+  <div class="listing-item100">
       <figure class="image">
           <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
           <figcaption>
@@ -401,7 +664,7 @@ const parentToChild = (e,f,g,from,date) => {
           {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
           {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
           {/* spy={true} */}
-          <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
+          <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv,reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
   
       </div>
   </div>
@@ -418,8 +681,23 @@ const parentToChild = (e,f,g,from,date) => {
   Cancel Reservation
      </button>
      
+     
 
      </div>
+     <div class="listing-item99">
+  <button  type="button"  onClick={() => success()} class="button-100" > 
+  <div class="center">
+  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-ticket-detailed-fill" viewBox="0 0 16 16">
+  <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5Zm4 1a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5Zm0 5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5ZM4 8a1 1 0 0 0 1 1h6a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1Z"/>
+</svg>
+</div>
+    Show Boardingpass
+     </button>
+     
+     
+
+     </div>
+     
      </div>
  
  )}
@@ -706,12 +984,12 @@ const parentToChild = (e,f,g,from,date) => {
   }
 return (<h1></h1>)
   
-  
 
 
   
 
 };
+
 {/* <div id="app"></div> 
   ReactDOM.render(<UserManageBooking />, document.querySelector("#app")); */}
 
