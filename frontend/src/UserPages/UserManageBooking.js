@@ -14,6 +14,7 @@ import '../css/SelectSeat.scss';
 import '../css/header.css';
 import swal from 'sweetalert2'
 import '../css/BoardingPass.scss';
+import '../css/pass.scss';
 import moment from "moment";
 import {
   Form,
@@ -342,6 +343,61 @@ const success = () => {
   
         html:
       
+        '<div class="wrapper">'+
+        '<div class="qr">'+
+          '<div class="title">boarding pass</div>'+
+          '<div class="qr-wrapper">'+
+            '<div class="qr-image"></div>'+
+          '</div>'+
+          '<a>expand</a>'+
+        '</div>'+
+        '<div class="inner-wrapper">'+
+          '<div class="details">'+
+            '<div class="date">Aug 31 2016</div>'+
+            '<div class="city">'+
+              '<div class="from loc">'+
+                '<div class="name">pnq <span>pune</span></div>'+
+                '<div class="weather">'+
+                  '<div class="icon">'+
+                    '<div class="drop1 drop"></div>'+
+                    '<div class="drop2 drop"></div>'+
+                    '<div class="drop3 drop"></div>'+
+                  '</div>'+
+                '</div>'+
+              '</div>'+
+              '<div class="to loc">'+
+                '<div class="name">del <span>delhi</span></div>'+
+                '<div class="weather">'+
+                  '<div class="icon">'+
+                    '<div class="sunrays ray1"></div>'+
+                    '<div class="sunrays ray2"></div>'+
+                    '<div class="sunrays ray3"></div>'+
+                  '</div>'+
+                '</div>'+
+              '</div>'+
+            '</div>'+
+            '<div class="plane"></div>'+
+            '<div class="content">'+
+              '<div class="gate">2B <span>gate</span></div>'+
+              '<div class="gate">16B <span>seat</span></div>'+
+              '<div class="gate">12:50PM <span>departure</span></div>'+
+            '</div>'+
+          '</div>'+
+          '<div class="seat-layout">'+
+            '<div class="content">'+
+              '<div class="close"><i class="fa fa-remove fa-2x"></i></div>'+
+              '<div class="gate">2B <span>gate</span></div>'+
+              '<div class="seat">16B <span>seat</span></div>'+
+              '<div class="boarding">12:20PM <span>boarding</span></div>'+
+              '<div class="departure">12:50PM <span>departure</span></div>'+
+              '<div class="flight">GO181 <span>flight</span></div>'+
+            '</div>'+
+           
+           
+          '</div>'+
+        '</div>'+
+        '</div>'
+  +
         '<div class="wrapper">'+
         '<div class="qr">'+
           '<div class="title">boarding pass</div>'+
