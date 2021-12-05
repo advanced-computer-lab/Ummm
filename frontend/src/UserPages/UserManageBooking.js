@@ -300,7 +300,7 @@ console.log(rows)
   // setGuard(true);
 }
 
-  }
+  
 // const ScrollToBottom = () => {
 //   window.scrollTo(0,document.body.scrollHeight);
 // }
@@ -982,9 +982,10 @@ return (<h1></h1>)
   
 
 
-  
-
 };
+
+
+
 {/* <div id="app"></div> 
   ReactDOM.render(<UserManageBooking />, document.querySelector("#app")); */}
 
