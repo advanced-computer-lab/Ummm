@@ -157,9 +157,13 @@ const SearchFlight = () => {
     {
     
 
-      var seatcabin = Data.CabinDepart+'_Seats';
-      var baggagecabin = Data.CabinDepart+'_Baggage';
-      var pricecabin = Data.CabinDepart+'_Price';
+      var seatcabin1 = Data.CabinDepart+'_Seats';
+      var baggagecabin1 = Data.CabinDepart+'_Baggage';
+      var pricecabin1 = Data.CabinDepart+'_Price';
+
+      var seatcabin2 = Data.CabinReturn+'_Seats';
+      var baggagecabin2 = Data.CabinReturn+'_Baggage';
+      var pricecabin2 = Data.CabinReturn+'_Price';
       // console.log(Data.CabinDepart+'_Price');
       var seatsrequested = Data.Adults + Data.Children
       const FilteredResult1 =[];
@@ -182,7 +186,7 @@ const SearchFlight = () => {
           minFlightDate = moment(Result1[AllFlights]['Flight_Date']);
           // console.log(minFlightDate);
         }
-         if(Result1[AllFlights][seatcabin]<seatsrequested){
+         if(Result1[AllFlights][seatcabin1]<seatsrequested){
           return;
          }
           else{
@@ -193,9 +197,9 @@ const SearchFlight = () => {
                 Temp1[DetailsPerFlight] = Result1[AllFlights][DetailsPerFlight]; 
               }
             });
-            Temp1['Seats'] = Result1[AllFlights][seatcabin]; 
-            Temp1['Baggage'] = Result1[AllFlights][baggagecabin]; 
-            Temp1['Price'] = Result1[AllFlights][pricecabin]; 
+            Temp1['Seats'] = Result1[AllFlights][seatcabin1]; 
+            Temp1['Baggage'] = Result1[AllFlights][baggagecabin1]; 
+            Temp1['Price'] = Result1[AllFlights][pricecabin1]; 
             // console.log(Result1[AllFlights]['_id'])
             Temp1['_id'] = Result1[AllFlights]['_id']; 
             var newObject = JSON.parse(JSON.stringify(Temp1));
@@ -214,7 +218,7 @@ const SearchFlight = () => {
           console.log(Data.Flight_Date_Depart)
           console.log(moment(Result2[AllFlights]['Flight_Date']).isSameOrAfter(Data.Flight_Date_Depart)
           || moment(Result2[AllFlights]['Flight_Date']).isSameOrAfter(minFlightDate))
-           if(Result2[AllFlights][seatcabin]<seatsrequested){
+           if(Result2[AllFlights][seatcabin2]<seatsrequested){
             return;
            }
             else if(moment(Result2[AllFlights]['Flight_Date']).isSameOrAfter(Data.Flight_Date_Depart)
@@ -228,9 +232,9 @@ const SearchFlight = () => {
                 }
               });
               console.log("innnn");
-              Temp2['Seats'] = Result2[AllFlights][seatcabin]; 
-              Temp2['Baggage'] = Result2[AllFlights][baggagecabin]; 
-              Temp2['Price'] = Result2[AllFlights][pricecabin]; 
+              Temp2['Seats'] = Result2[AllFlights][seatcabin2]; 
+              Temp2['Baggage'] = Result2[AllFlights][baggagecabin2]; 
+              Temp2['Price'] = Result2[AllFlights][pricecabin2]; 
               Temp2['_id'] = Result2[AllFlights]['_id']; 
               var newObject = JSON.parse(JSON.stringify(Temp2));
               console.log(newObject)
@@ -1756,7 +1760,7 @@ return (
               <div class="form-group">
                 <select class="form-control" name="CabinDepart" required  value={Data.CabinDepart} onChange={(e) => changeHander(e)} >
                
-                  <option  selected hidden>Select Depart Cabin</option>
+                  <option  value={Data.CabinDepart}  selected hidden>Select Depart Cabin</option>
                   <option>First</option>
                   <option>Business</option>
                   <option>Economy</option>
