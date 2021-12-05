@@ -689,7 +689,12 @@ else{
         state: { detail: 'some_value' }
     });
  };
+ const LogOutHandler = () => {
+  sessionStorage.clear()
+  window.open("UserLogin", "_self");
 
+
+};
 const EditProfileHendler = event => {
   history.push({
       pathname: '/UserEditProfile',
@@ -808,7 +813,7 @@ if (isLoading) {
             <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
             <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
             <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
-            <li><a href="contact.html"><span>Log Out</span></a></li>
+            <li><a onClick={() => LogOutHandler()}><span>Log Out</span></a></li>
 
           </ul>
         </nav>
