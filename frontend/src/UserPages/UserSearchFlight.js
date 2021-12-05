@@ -9,6 +9,9 @@ import Swal from 'sweetalert2'
 
 import '../css/main.css';
 import '../css/guest.css';
+import '../css/newSearch.css';
+
+import '../css/header.css';
 
 
 
@@ -152,6 +155,7 @@ const SearchFlight = () => {
 
     if(Result1 && Result2 && Guard === true)
     {
+    
 
       var seatcabin = Data.CabinDepart+'_Seats';
       var baggagecabin = Data.CabinDepart+'_Baggage';
@@ -305,7 +309,7 @@ swalWithBootstrapButtons.fire({
 					'<div class="card_logo">'+
 						'<img src="https://i.ibb.co/d5rQGGf/streached-removebg-preview.png" class="qatar"></img>'+
 					'</div>'+
-					'<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/281813/SIN.jpg" />'+
+					'<img src="https://static.onecms.io/wp-content/uploads/sites/28/2021/09/14/berlin-germany-aerial-lead-BERLINTG0921.jpg" />'+
 					'<div class="card_divider">'+
             '<div class="divider_left divider_hole">'+
             '</div>'+
@@ -384,9 +388,9 @@ swalWithBootstrapButtons.fire({
     '<div class="card qr-theme">'+
     '<div class="card_heading">'+
         '<div class="card_logo">'+
-          '<img src="https://i.ibb.co/t8JZKXz/new-finalllllll-removebg-preview.png" class="qatar"></img>'+
+          '<img src="https://i.ibb.co/d5rQGGf/streached-removebg-preview.png" class="qatar"></img>'+
         '</div>'+
-        '<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/281813/SIN.jpg" />'+
+        '<img src="https://www.planetware.com/wpimages/2020/11/united-arab-emirates-abu-dhabi-to-dubai-best-ways-to-get-there-by-car.jpg" />'+
         '<div class="card_divider">'+
           '<div class="divider_left divider_hole">'+
           '</div>'+
@@ -556,6 +560,7 @@ else{
 
   //TTTTTT
   const searchHandler = (e) => {
+    
     e.preventDefault(); 
    
     /// setDisplay1([]);
@@ -606,7 +611,9 @@ else{
        }).catch(error => {
       console.log(error);
     })
-
+    // console.log("woooooooooow")
+    // console.log(Result1.Adults)
+    // console.log(Result1.Children)
 
     setGuard(true);
 
@@ -690,6 +697,81 @@ const EditProfileHendler = event => {
   });
 };
 
+const AboutUs = () => { // e will contain the reservation number 
+  Swal.fire({
+    title: 'Fly Nawww is a Saudi Arabian leading low-cost carrier with a fleet of 34 aircrafts, operating more than 1500 weekly flights to 35 domestic and international destinations.',
+    confirmButtonText: 'Hmm.. Ok',
+    confirmButtonColor: '#ff8300',
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown'
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp'
+    }
+  })
+};
+const Vision = () => { // e will contain the reservation number 
+  Swal.fire({
+    title: 'To act responsibly in developing the market, evolving our employees, supporting our partners and local communities.',
+    confirmButtonText: 'Hmm.. Ok',
+    confirmButtonColor: '#ff8300',
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown'
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp'
+    }
+  })
+};
+
+const ContactUs = () => { // e will contain the reservation number 
+  Swal.fire({
+    title: 'Call:011414656668',
+    confirmButtonText: 'Hmm.. Ok',
+    confirmButtonColor: '#ff8300',
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown'
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp'
+    }
+  })
+};
+
+
+
+// function displayNextImage() {
+//   x = (x === images.length - 1) ? 0 : x + 1;
+//   document.getElementById("img").src = images[x];
+// }
+
+// function displayPreviousImage() {
+//   x = (x <= 0) ? images.length - 1 : x - 1;
+//   document.getElementById("img").src = images[x];
+// }
+
+// function startTimer() {
+//   setInterval(displayNextImage, 3000);
+// }
+
+// var images = [], x = -1;
+// images[0] = "https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg";
+// images[1] = "'http://media.futurebutterflies.net/houston-besomeone.jpg";
+
+// function changeImage(){
+//   var image="";
+//    var randInt = Math.random(3)+1;
+//   switch(randInt){
+//   case 1 :
+//       image = "http://media.futurebutterflies.net/houston-besomeone.jpg";
+//       break;
+//   case 2 :
+//       image = "https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg";
+//       break;
+  
+//   }
+//   document.getElememtById("image_container").innerHTML = "Asdasdasd";
+// }
 
 
   
@@ -698,19 +780,59 @@ if (isLoading) {
 
   return (
     <>
+    <div class="site-mobile-menu">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close mt-3">
+      <span class="icon-close2 js-menu-toggle"></span>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
+
+<header class="site-navbar" role="banner">
+
+  <div class="container">
+    <div class=" align-items-center row">
+      
+      <div class="col-11 col-xl-2">
+      <img src='https://i.ibb.co/0q5z6Jv/e0f7973e78414b2bb23ad01e5f3a88bb-removebg-preview.png' alt='Visit Computer Hope'></img>
+        {/* <h1 class="mb-0 site-logo"><a href="index.html" class="text-white mb-0">Brand</a></h1> */}
+      </div>
+      <div class="col-12 col-md-10 d-none d-xl-block">
+        <nav class="site-navigation position-relative text-right" role="navigation">
+
+          <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+            <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+            
+       
+            <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
+            <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
+            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
+            <li><a href="contact.html"><span>Log Out</span></a></li>
+
+          </ul>
+        </nav>
+      </div>
+
+
+      <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" ><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+      </div>
+
+    </div>
+
+  </header>
 
 
     
-           
-           <div class="s011">
+<div class="s011">
     <form>
+      <fieldset>
       
-      <label class="center2">Search Flight</label>
-     
-       
+      </fieldset>
       <div class="inner-form">
         <header>
-     
+        <label class="center2">Search Flight</label>
         <div class="travel-type-wrap">
            
            <button type="button" class="item active"  >
@@ -759,90 +881,211 @@ if (isLoading) {
         </header>
 
         {/* SDD    THE MAIN FORM THAT MUST BE REPLACED EACH TIME*/}
-        <div class="main-form" id="main-form">     sdasdas
+        <div class="main-form-search" id="main-form">     
+      
+	
+	
+		
+			
+					<div class="booking-form">
+						<div class="form-header">
+							<h1>Make your reservation</h1>
+						</div>
+						<form>
+						
 
-        <div class="row">
+              <div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input class="form-control" type="text" name="From" maxLength="3"  placeholder="Select Depart Flight" value={Data.From} onChange={(e) => changeHander(e)} />
+										<span class="form-label">From</span>
+									</div>
+								</div>
+                <div class="col-md-6">
+									<div class="form-group">
+										<input class="form-control" type="text" name="To" maxLength="3" required placeholder="Select Destination Flight" value={Data.To} onChange={(e) => changeHander(e)}/>
+										<span class="form-label">To</span>
+									</div>
+								</div>
+							</div>
+		
 
-<div class="input-wrap">
-<div class="icon-wrap">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
-  </svg>
-</div>
-<div class="input-field">
-  <label> FROM</label>
-  <Form.Item >
-<Input type="text" name="From" maxLength="3"  value={Data.From} onChange={(e) => changeHander(e)}/>
-</Form.Item>
-</div>
-</div>
-
-<div class="input-wrap">
-<div class="icon-wrap">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
-  </svg>
-</div>
-<div class="input-field">
-<label> TO</label>
-<Form.Item >
-<Input type="text" name="To" maxLength="3"  value={Data.To} onChange={(e) => changeHander(e)}/>
-</Form.Item>
-</div>
-</div>
-
-</div>
-
-
-<div class="row second">
-            <div class="input-wrap2">
-              <div class="icon-wrap">
-             
-              </div>
-                <label>DEPART</label>
-                
-                
-        <DatePicker  type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Depart} format="DD-MM-YYYY"
-        showTime="false" disabledDate={d => d.isBefore(new Date())}
-           name="Depart" onChange={(date) => setState(prevData => {
-              return {...prevData ,Flight_Date_Depart: date}}) 
-    }/>  
-            </div>
-            <div class="input-wrap2">
-              <div class="icon-wrap">
-                
-              </div>
-              <div class="input-field">
-                <label>RETURN</label>
-                <DatePicker  type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Return} format="DD-MM-YYYY"
+              <div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+                    <div class="form-control" type="text" required>
+                    <span class="date-form">Depart Date</span>
+                  <DatePicker  style={{ 
+                    borderTopColor:"transparent",
+                    borderBottomColor:"transparent",
+                    borderLeftColor:"transparent",
+                    borderRightColor:"transparent",
+                    // forcedColorAdjust:"red",
+                    // stopColor: "#ccc",
+                    // stopColor: "rgb(255, 255, 255)",
+                minWidth:"290px",
+                imageWidth:"250px",
+            marginTop: "25px", 
+            backgroundColor:"transparent",
+            Color:"white",    
+          }} format="DD-MM-YYYY" value={Data.Flight_Date_Depart} format="DD-MM-YYYY"
+          showTime="false" disabledDate={d => d.isBefore(new Date())}
+             name="Depart" onChange={(date) => setState(prevData => {
+                return {...prevData ,Flight_Date_Depart: date}}) 
+      }/>
+    </div>
+								
+									</div>
+								</div>
+                <div class="col-md-6">
+									<div class="form-group">
+                    <div class="form-control" type="text" required>
+                    <span class="date-form">Return Date</span>
+                  <DatePicker  style={{  
+                     borderTopColor:"transparent",
+                     borderBottomColor:"transparent",
+                     borderLeftColor:"transparent",
+                     borderRightColor:"transparent",
+                     minWidth:"290px", 
+                     marginTop: "25px",
+                    backgroundColor:"transparent",
+                    Color:"white",
+            
+          }}type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Return} format="DD-MM-YYYY"
         showTime="false" disabledDate={d => d.isBefore(Data.Flight_Date_Depart)}
            name="Return" onChange={(date) => setState(prevData => {
               return {...prevData ,Flight_Date_Return: date}}) 
     }/>
-              </div>
-            </div>
-            <div class="input-wrap">
-              <div class="icon-wrap">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                  <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
-                </svg>
-              </div>
-              <div class="input-field">
-                <label>TRAVELERS</label>
-                <Form.Item > 
-        <InputNumber type="Number" name="Economy_Seats" value={Data.Economy_Seats} max={500} min={1} placeholder="500 Max" onChange={(number) => setState(prevData => {
-            return {...prevData ,Economy_Seats: number}}) 
+    </div>
+								
+									</div>
+								</div>
+                
+							</div>
+              <div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<select class="form-control" required>
+                   
+											<option  value={Data.CabinDepart} selected hidden>Select Depart Cabin</option>
+                      <option>First</option>
+											<option>Business</option>
+											<option>Economy</option>
+										</select>
+										<span class="select-arrow"></span>
+										<span class="date-form">Depart Cabin</span>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<select class="form-control" required>
+											<option value={Data.CabinReturn}  selected hidden>Select Return Cabin</option>
+											<option>First</option>
+											<option>Business</option>
+											<option>Economy</option>
+										</select>
+										<span class="select-arrow"></span>
+										<span class="date-form" >Return Cabin</span>
+									</div>
+								</div>
+								
+							</div>
+
+
+
+
+							<div class="row">
+								
+              <div class="col-md-6">
+									<div class="form-group">
+
+                  <div class="form-control" type="text" required>
+                	<span class="date-form">Adults</span>
+                  <Form.Item > 
+        <InputNumber atePicker  style={{  
+                     borderTopColor:"transparent",
+                     borderBottomColor:"transparent",
+                     borderLeftColor:"transparent",
+                     borderRightColor:"transparent",
+                     minWidth:"290px", 
+                     marginTop: "25px",
+                    backgroundColor:"transparent",
+                    Color:"white",
+                    textAlign:"center",
+                           
+            
+          }}type="Number" name="Adults" value={Data.Adults} max={500} min={0} placeholder="No Of Adults" onChange={(number) => setState(prevData => {
+            return {...prevData ,Adults: number}}) 
         }/>
       </Form.Item>
-              </div>
-            </div>
-          </div>
+    </div>
+                   
+									
+                  
+									</div>
+								</div>
+                <div class="col-md-6">
+									<div class="form-group">
+
+                  <div class="form-control" type="text" required>
+                	<span class="date-form">Children</span>
+                  <Form.Item > 
+        <InputNumber atePicker  style={{  
+                     borderTopColor:"transparent",
+                     borderBottomColor:"transparent",
+                     borderLeftColor:"transparent",
+                     borderRightColor:"transparent",
+                     minWidth:"290px", 
+                     marginTop: "25px",
+                    backgroundColor:"transparent",
+                    Color:"white",
+                    textAlign:"center",
+            
+          }}type="Number" name="Children" value={Data.Children} max={500} min={0} placeholder="No Of Children" onChange={(number) => setState(prevData => {
+            return {...prevData ,Children: number}}) 
+        }/>
+      </Form.Item>
+    </div>
+                   
+									
+                  
+									</div>
+								</div>
+							</div>
+						
+						
+						</form>
+				
+			
+            
+	</div>
+  <div class="form-btn">
+  {/* <button  class="submit-btn" onClick={(e) => searchHandler(e)}>Search Now</button> */}
+                  <button onClick={(e) => searchHandler(e)}  class="btn-search" type="button">Search</button>
+							</div>
+		
+	<script src="js/jquery.min.js"></script>
+	{/* <script>
+		$('.form-control').each(function () {
+			floatedLabel($(this));
+		});
+
+		$('.form-control').on('input', function () {
+			floatedLabel($(this));
+		});
+
+		function floatedLabel(input) {
+			var $field = input.closest('.form-group');
+			if (input.val()) {
+				$field.addClass('input-not-empty');
+			} else {
+				$field.removeClass('input-not-empty');
+			}
+		}
+	</script> */}
 
 
-         
-          <div class="row last">
-            <button onClick={(e) => searchHandler(e)}  class="btn-search" type="button">Search</button>
-          </div>
+       
         </div>
       </div>
     </form>
@@ -864,6 +1107,48 @@ if (isLoading) {
 if(bothselected){
 return(
  <>
+  <div class="site-mobile-menu">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close mt-3">
+      <span class="icon-close2 js-menu-toggle"></span>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
+
+<header class="site-navbar" role="banner">
+
+  <div class="container">
+    <div class=" align-items-center row">
+      
+      <div class="col-11 col-xl-2">
+      <img src='https://i.ibb.co/0q5z6Jv/e0f7973e78414b2bb23ad01e5f3a88bb-removebg-preview.png' alt='Visit Computer Hope'></img>
+        {/* <h1 class="mb-0 site-logo"><a href="index.html" class="text-white mb-0">Brand</a></h1> */}
+      </div>
+      <div class="col-12 col-md-10 d-none d-xl-block">
+        <nav class="site-navigation position-relative text-right" role="navigation">
+
+          <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+            <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+            
+       
+            <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
+            <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
+            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
+            <li><a href="contact.html"><span>Log Out</span></a></li>
+
+          </ul>
+        </nav>
+      </div>
+
+
+      <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" ><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+      </div>
+
+    </div>
+
+  </header>
 
  
     {/* {isdepart ? <p>Length is 1</p>:null} */}
@@ -924,98 +1209,211 @@ return(
         </header>
 
         {/* SDD    THE MAIN FORM THAT MUST BE REPLACED EACH TIME*/}
-        <div class="main-form" id="main-form">     sdasdas
+        <div class="main-form-search" id="main-form">     
+      
+	
+	
+		
+			
+					<div class="booking-form">
+						<div class="form-header">
+							<h1>Make your reservation</h1>
+						</div>
+						<form>
+						
 
-        <div class="row">
+              <div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input class="form-control" type="text" name="From" maxLength="3"  placeholder="Select Depart Flight" value={Data.From} onChange={(e) => changeHander(e)} />
+										<span class="form-label">From</span>
+									</div>
+								</div>
+                <div class="col-md-6">
+									<div class="form-group">
+										<input class="form-control" type="text" name="To" maxLength="3" required placeholder="Select Destination Flight" value={Data.To} onChange={(e) => changeHander(e)}/>
+										<span class="form-label">To</span>
+									</div>
+								</div>
+							</div>
+		
 
-<div class="input-wrap">
-<div class="icon-wrap">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
-  </svg>
-</div>
-<div class="input-field">
-  <label> FROM</label>
-  <Form.Item >
-<Input type="text" name="From" maxLength="3"  value={Data.From} onChange={(e) => changeHander(e)}/>
-</Form.Item>
-</div>
-</div>
-
-<div class="input-wrap">
-<div class="icon-wrap">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
-  </svg>
-</div>
-<div class="input-field">
-<label> TO</label>
-<Form.Item >
-<Input type="text" name="To" maxLength="3"  value={Data.To} onChange={(e) => changeHander(e)}/>
-</Form.Item>
-</div>
-</div>
-
-</div>
-
-
-<div class="row second">
-            <div class="input-wrap2">
-              <div class="icon-wrap">
-             
-              </div>
-                <label>DEPART</label>
-                
-                
-        <DatePicker  type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Depart} format="DD-MM-YYYY"
-        showTime="false" disabledDate={d => d.isBefore(new Date())}
-           name="Depart" onChange={(date) => setState(prevData => {
-              return {...prevData ,Flight_Date_Depart: date}}) 
-    }/>  
-            </div>
-            <div class="input-wrap2">
-              <div class="icon-wrap">
-                
-              </div>
-              <div class="input-field">
-                <label>RETURN</label>
-                <DatePicker  type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Return} format="DD-MM-YYYY"
+              <div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+                    <div class="form-control" type="text" required>
+                    <span class="date-form">Depart Date</span>
+                  <DatePicker  style={{ 
+                    borderTopColor:"transparent",
+                    borderBottomColor:"transparent",
+                    borderLeftColor:"transparent",
+                    borderRightColor:"transparent",
+                    // forcedColorAdjust:"red",
+                    // stopColor: "#ccc",
+                    // stopColor: "rgb(255, 255, 255)",
+                minWidth:"290px",
+                imageWidth:"250px",
+            marginTop: "25px", 
+            backgroundColor:"transparent",
+            Color:"white",    
+          }} format="DD-MM-YYYY" value={Data.Flight_Date_Depart} format="DD-MM-YYYY"
+          showTime="false" disabledDate={d => d.isBefore(new Date())}
+             name="Depart" onChange={(date) => setState(prevData => {
+                return {...prevData ,Flight_Date_Depart: date}}) 
+      }/>
+    </div>
+								
+									</div>
+								</div>
+                <div class="col-md-6">
+									<div class="form-group">
+                    <div class="form-control" type="text" required>
+                    <span class="date-form">Return Date</span>
+                  <DatePicker  style={{  
+                     borderTopColor:"transparent",
+                     borderBottomColor:"transparent",
+                     borderLeftColor:"transparent",
+                     borderRightColor:"transparent",
+                     minWidth:"290px", 
+                     marginTop: "25px",
+                    backgroundColor:"transparent",
+                    Color:"white",
+            
+          }}type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Return} format="DD-MM-YYYY"
         showTime="false" disabledDate={d => d.isBefore(Data.Flight_Date_Depart)}
            name="Return" onChange={(date) => setState(prevData => {
               return {...prevData ,Flight_Date_Return: date}}) 
     }/>
-              </div>
-            </div>
-            <div class="input-wrap">
-              <div class="icon-wrap">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                  <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
-                </svg>
-              </div>
-              <div class="input-field">
-                <label>TRAVELERS</label>
-                <Form.Item > 
-        <InputNumber type="Number" name="Economy_Seats" value={Data.Economy_Seats} max={500} min={1} placeholder="500 Max" onChange={(number) => setState(prevData => {
-            return {...prevData ,Economy_Seats: number}}) 
+    </div>
+								
+									</div>
+								</div>
+                
+							</div>
+              <div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<select class="form-control" required>
+                   
+											<option  value={Data.CabinDepart} selected hidden>Select Depart Cabin</option>
+                      <option>First</option>
+											<option>Business</option>
+											<option>Economy</option>
+										</select>
+										<span class="select-arrow"></span>
+										<span class="date-form">Depart Cabin</span>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<select class="form-control" required>
+											<option value={Data.CabinReturn}  selected hidden>Select Return Cabin</option>
+											<option>First</option>
+											<option>Business</option>
+											<option>Economy</option>
+										</select>
+										<span class="select-arrow"></span>
+										<span class="date-form" >Return Cabin</span>
+									</div>
+								</div>
+								
+							</div>
+
+
+
+
+							<div class="row">
+								
+              <div class="col-md-6">
+									<div class="form-group">
+
+                  <div class="form-control" type="text" required>
+                	<span class="date-form">Adults</span>
+                  <Form.Item > 
+        <InputNumber atePicker  style={{  
+                     borderTopColor:"transparent",
+                     borderBottomColor:"transparent",
+                     borderLeftColor:"transparent",
+                     borderRightColor:"transparent",
+                     minWidth:"290px", 
+                     marginTop: "25px",
+                    backgroundColor:"transparent",
+                    Color:"white",
+                    textAlign:"center",
+                           
+            
+          }}type="Number" name="Adults" value={Data.Adults} max={500} min={0} placeholder="No Of Adults" onChange={(number) => setState(prevData => {
+            return {...prevData ,Adults: number}}) 
         }/>
       </Form.Item>
-              </div>
-            </div>
-          </div>
+    </div>
+                   
+									
+                  
+									</div>
+								</div>
+                <div class="col-md-6">
+									<div class="form-group">
+
+                  <div class="form-control" type="text" required>
+                	<span class="date-form">Children</span>
+                  <Form.Item > 
+        <InputNumber atePicker  style={{  
+                     borderTopColor:"transparent",
+                     borderBottomColor:"transparent",
+                     borderLeftColor:"transparent",
+                     borderRightColor:"transparent",
+                     minWidth:"290px", 
+                     marginTop: "25px",
+                    backgroundColor:"transparent",
+                    Color:"white",
+                    textAlign:"center",
+            
+          }}type="Number" name="Children" value={Data.Children} max={500} min={0} placeholder="No Of Children" onChange={(number) => setState(prevData => {
+            return {...prevData ,Children: number}}) 
+        }/>
+      </Form.Item>
+    </div>
+                   
+									
+                  
+									</div>
+								</div>
+							</div>
+						
+						
+						</form>
+				
+			
+            
+	</div>
+  <div class="form-btn">
+  {/* <button  class="submit-btn" onClick={(e) => searchHandler(e)}>Search Now</button> */}
+                  <button onClick={(e) => searchHandler(e)}  class="btn-search" type="button">Search</button>
+							</div>
+		
+	<script src="js/jquery.min.js"></script>
+	{/* <script>
+		$('.form-control').each(function () {
+			floatedLabel($(this));
+		});
+
+		$('.form-control').on('input', function () {
+			floatedLabel($(this));
+		});
+
+		function floatedLabel(input) {
+			var $field = input.closest('.form-group');
+			if (input.val()) {
+				$field.addClass('input-not-empty');
+			} else {
+				$field.removeClass('input-not-empty');
+			}
+		}
+	</script> */}
 
 
-         <div class="row third"    >
-          <Radio.Group onChange={selectRadio} value={value} >
-    <Radio  value={1} >  <label class="radiolabel"> Economy</label></Radio>
-   
-    <Radio value={2}>  <label class="radiolabel"> Business</label></Radio>
-    <Radio value={3}><label class="radiolabel"> First</label></Radio>
-   
-  </Radio.Group>
-          </div>
-          <div class="row last">
-            <button onClick={(e) => searchHandler(e)}  class="btn-search" type="button">Search</button>
-          </div>
+       
         </div>
       </div>
     </form>
@@ -1025,16 +1423,6 @@ return(
   {/* asdasdas */}
         
 
-        
-
-
-       
-
-       
-
-      
-      
-  
  
 
 <div class="box d">
@@ -1177,6 +1565,48 @@ return(
 
 return (
   <>
+   <div class="site-mobile-menu">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close mt-3">
+      <span class="icon-close2 js-menu-toggle"></span>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
+
+<header class="site-navbar" role="banner">
+
+  <div class="container">
+    <div class=" align-items-center row">
+      
+      <div class="col-11 col-xl-2">
+      <img src='https://i.ibb.co/0q5z6Jv/e0f7973e78414b2bb23ad01e5f3a88bb-removebg-preview.png' alt='Visit Computer Hope'></img>
+        {/* <h1 class="mb-0 site-logo"><a href="index.html" class="text-white mb-0">Brand</a></h1> */}
+      </div>
+      <div class="col-12 col-md-10 d-none d-xl-block">
+        <nav class="site-navigation position-relative text-right" role="navigation">
+
+          <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+            <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+            
+       
+            <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
+            <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
+            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
+            <li><a href="contact.html"><span>Log Out</span></a></li>
+
+          </ul>
+        </nav>
+      </div>
+
+
+      <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" ><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+      </div>
+
+    </div>
+
+  </header>
     {/* {isdepart ? <p>Length is 1</p>:null} */}
  {/* adasdas */}
  <div class="s011">
@@ -1235,99 +1665,212 @@ return (
         </header>
 
         {/* SDD    THE MAIN FORM THAT MUST BE REPLACED EACH TIME*/}
-        <div class="main-form" id="main-form">     sdasdas
-
-        <div class="row">
-
-<div class="input-wrap">
-<div class="icon-wrap">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
-  </svg>
-</div>
-<div class="input-field">
-  <label> FROM</label>
-  <Form.Item >
-<Input type="text" name="From" maxLength="3"  value={Data.From} onChange={(e) => changeHander(e)}/>
-</Form.Item>
-</div>
-</div>
-
-<div class="input-wrap">
-<div class="icon-wrap">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
-  </svg>
-</div>
-<div class="input-field">
-<label> TO</label>
-<Form.Item >
-<Input type="text" name="To" maxLength="3"  value={Data.To} onChange={(e) => changeHander(e)}/>
-</Form.Item>
-</div>
-</div>
-
-</div>
-
-
-<div class="row second">
-            <div class="input-wrap2">
-              <div class="icon-wrap">
-             
-              </div>
-                <label>DEPART</label>
-                
-                
-        <DatePicker  type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Depart} format="DD-MM-YYYY"
-        showTime="false" disabledDate={d => d.isBefore(new Date())}
-           name="Depart" onChange={(date) => setState(prevData => {
-              return {...prevData ,Flight_Date_Depart: date}}) 
-    }/>  
-            </div>
-            <div class="input-wrap2">
-              <div class="icon-wrap">
-                
-              </div>
-              <div class="input-field">
-                <label>RETURN</label>
-                <DatePicker  type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Return} format="DD-MM-YYYY"
-        showTime="false" disabledDate={d => d.isBefore(Data.Flight_Date_Depart)}
-           name="Return" onChange={(date) => setState(prevData => {
-              return {...prevData ,Flight_Date_Return: date}}) 
-    }/>
-              </div>
-            </div>
-            <div class="input-wrap">
-              <div class="icon-wrap">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                  <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
-                </svg>
-              </div>
-              <div class="input-field">
-                <label>TRAVELERS</label>
-                <Form.Item > 
-        <InputNumber type="Number" name="Economy_Seats" value={Data.Economy_Seats} max={500} min={1} placeholder="500 Max" onChange={(number) => setState(prevData => {
-            return {...prevData ,Economy_Seats: number}}) 
-        }/>
-      </Form.Item>
-              </div>
-            </div>
-          </div>
-
-
-         <div class="row third"    >
-          <Radio.Group onChange={selectRadio} value={value} >
-    <Radio  value={1} >  <label class="radiolabel"> Economy</label></Radio>
-   
-    <Radio value={2}>  <label class="radiolabel"> Business</label></Radio>
-    <Radio value={3}><label class="radiolabel"> First</label></Radio>
-   
-  </Radio.Group>
-          </div>
-          <div class="row last">
-            <button onClick={(e) => searchHandler(e)}  class="btn-search" type="button">Search</button>
-          </div>
+        <div class="main-form-search" id="main-form">     
+      
+	
+	
+		
+			
+      <div class="booking-form">
+        <div class="form-header">
+          <h1>Make your reservation</h1>
         </div>
+        <form>
+        
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input class="form-control" type="text" name="From" maxLength="3"  placeholder="Select Depart Flight" value={Data.From} onChange={(e) => changeHander(e)} />
+                <span class="form-label">From</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input class="form-control" type="text" name="To" maxLength="3" required placeholder="Select Destination Flight" value={Data.To} onChange={(e) => changeHander(e)}/>
+                <span class="form-label">To</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="form-control" type="text" required>
+                <span class="date-form">Depart Date</span>
+              <DatePicker  style={{ 
+                borderTopColor:"transparent",
+                borderBottomColor:"transparent",
+                borderLeftColor:"transparent",
+                borderRightColor:"transparent",
+                // forcedColorAdjust:"red",
+                // stopColor: "#ccc",
+                // stopColor: "rgb(255, 255, 255)",
+            minWidth:"290px",
+            imageWidth:"250px",
+        marginTop: "25px", 
+        backgroundColor:"transparent",
+        Color:"white",    
+      }} format="DD-MM-YYYY" value={Data.Flight_Date_Depart} format="DD-MM-YYYY"
+      showTime="false" disabledDate={d => d.isBefore(new Date())}
+         name="Depart" onChange={(date) => setState(prevData => {
+            return {...prevData ,Flight_Date_Depart: date}}) 
+  }/>
+</div>
+            
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="form-control" type="text" required>
+                <span class="date-form">Return Date</span>
+              <DatePicker  style={{  
+                 borderTopColor:"transparent",
+                 borderBottomColor:"transparent",
+                 borderLeftColor:"transparent",
+                 borderRightColor:"transparent",
+                 minWidth:"290px", 
+                 marginTop: "25px",
+                backgroundColor:"transparent",
+                Color:"white",
+        
+      }}type="date" format="DD-MM-YYYY" value={Data.Flight_Date_Return} format="DD-MM-YYYY"
+    showTime="false" disabledDate={d => d.isBefore(Data.Flight_Date_Depart)}
+       name="Return" onChange={(date) => setState(prevData => {
+          return {...prevData ,Flight_Date_Return: date}}) 
+}/>
+</div>
+            
+              </div>
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <select class="form-control" required>
+               
+                  <option  value={Data.CabinDepart} selected hidden>Select Depart Cabin</option>
+                  <option>First</option>
+                  <option>Business</option>
+                  <option>Economy</option>
+                </select>
+                <span class="select-arrow"></span>
+                <span class="date-form">Depart Cabin</span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <select class="form-control" required>
+                  <option value={Data.CabinReturn}  selected hidden>Select Return Cabin</option>
+                  <option>First</option>
+                  <option>Business</option>
+                  <option>Economy</option>
+                </select>
+                <span class="select-arrow"></span>
+                <span class="date-form" >Return Cabin</span>
+              </div>
+            </div>
+            
+          </div>
+
+
+
+
+          <div class="row">
+            
+          <div class="col-md-6">
+              <div class="form-group">
+
+              <div class="form-control" type="text" required>
+              <span class="date-form">Adults</span>
+              <Form.Item > 
+    <InputNumber atePicker  style={{  
+                 borderTopColor:"transparent",
+                 borderBottomColor:"transparent",
+                 borderLeftColor:"transparent",
+                 borderRightColor:"transparent",
+                 minWidth:"290px", 
+                 marginTop: "25px",
+                backgroundColor:"transparent",
+                Color:"white",
+                textAlign:"center",
+                       
+        
+      }}type="Number" name="Adults" value={Data.Adults} max={500} min={0} placeholder="No Of Adults" onChange={(number) => setState(prevData => {
+        return {...prevData ,Adults: number}}) 
+    }/>
+  </Form.Item>
+</div>
+               
+              
+              
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+
+              <div class="form-control" type="text" required>
+              <span class="date-form">Children</span>
+              <Form.Item > 
+    <InputNumber atePicker  style={{  
+                 borderTopColor:"transparent",
+                 borderBottomColor:"transparent",
+                 borderLeftColor:"transparent",
+                 borderRightColor:"transparent",
+                 minWidth:"290px", 
+                 marginTop: "25px",
+                backgroundColor:"transparent",
+                Color:"white",
+                textAlign:"center",
+        
+      }}type="Number" name="Children" value={Data.Children} max={500} min={0} placeholder="No Of Children" onChange={(number) => setState(prevData => {
+        return {...prevData ,Children: number}}) 
+    }/>
+  </Form.Item>
+</div>
+               
+              
+              
+              </div>
+            </div>
+          </div>
+        
+        
+        </form>
+    
+  
+        
+</div>
+<div class="form-btn">
+{/* <button  class="submit-btn" onClick={(e) => searchHandler(e)}>Search Now</button> */}
+              <button onClick={(e) => searchHandler(e)}  class="btn-search" type="button">Search</button>
+          </div>
+
+<script src="js/jquery.min.js"></script>
+{/* <script>
+$('.form-control').each(function () {
+  floatedLabel($(this));
+});
+
+$('.form-control').on('input', function () {
+  floatedLabel($(this));
+});
+
+function floatedLabel(input) {
+  var $field = input.closest('.form-group');
+  if (input.val()) {
+    $field.addClass('input-not-empty');
+  } else {
+    $field.removeClass('input-not-empty');
+  }
+}
+</script> */}
+
+
+   
+    </div>
       </div>
     </form>
   </div>
@@ -1400,7 +1943,7 @@ return (
       </figure>
       <div class="listing">
           <h4>From: {flight.From}</h4>
-          <h4>To:{flight.To}</h4>
+          <h4>To:{flight.To}</h4> 
           <h4>Flight Date:{moment(flight.Flight_Date).format("YYYY-MM-DD")}</h4>
           <h4>Flight time:{moment(flight.Flight_Date).format("HH:mm")}</h4>
          
@@ -1416,45 +1959,9 @@ return (
         )}
     
   </div>
-{/* href="#modal-opened" */}
-  {/* <a  class="link-1" id="modal-closed" onClick={() => success()}>Reserve Flight</a> */}
 
-  {/* <a href="#modal-opened" id="yourButtonID" class="link-1" onClick={() => success()} >Reserve Flight </a> */}
-  <a id="yourButtonID" class="link-1" onClick={() => success()}>Reserve Flight </a>
 
-  < div class="modal-container" id="modal-opened">
-   <div class="modal">
-
-  <div>
-      <div class="modal__details">
-      <h4 class="modal__title">Depart Flight Details</h4>
-      <p class="modal__description">  Flight Number: {isdepart.Flight_No}     Duration:{isdepart.To}    </p>
-      <p class="modal__description"> From : {isdepart.From}     To:{isdepart.To}    </p>
-      <p class="modal__description">  Date:{moment(isdepart.Flight_Date).format("YYYY-MM-DD")}  Departure Time:{moment(isdepart.Flight_Date).format("HH:mm")}    </p>
-      <p class="modal__description">  Price : {isdepart.Price}      Baggage:{isdepart.Baggage}    </p>
-      <p class="modal__description">  Cabin: {"First"}       </p>   
-      </div>
-
-      <div class="modal__details">
-     
-      <h1 class="modal__title"  >Return Flight Details</h1>
-      <p class="modal__description">  Flight Number: {isreturn.Flight_No}     Duration:{isreturn.To}    </p>
-      <p class="modal__description"> From : {isreturn.From}     To:{isreturn.To}    </p>
-      <p class="modal__description">  Date:{moment(isreturn.Flight_Date).format("YYYY-MM-DD")}  Departure Time:{moment(isdepart.Flight_Date).format("HH:mm")}    </p>
-      <p class="modal__description">  Price : {isreturn.Price}      Baggage:{isreturn.Baggage}    </p>
-      <p class="modal__description">  Cabin: {"First"}      </p>   
-    
-      <button class="modal__btn">Confirm &rarr;</button>
-     <a href="#modal-closed" class="link-2"></a>
-     </div>
-      
-
-     
-       
-
-        </div>
-        </div>
-     </div>
+ 
 
     
  
@@ -1463,8 +1970,10 @@ return (
 
 
 </div>
+<div class="box d20">
+<button id="yourButtonID" class="btn-search2" onClick={() => success()}>Reserve Flights </button>
 
-
+</div>
   
         
   {/* <button  class="pricing-button"  id="yourButtonID" onClick={() => BookHendler()} >BOOK NOW!</button> */}
@@ -1493,9 +2002,16 @@ return (
 {/* <button   class="pricing-button" id="yourButtonID"  >Confirm NOW !</button> */}
 
 
-        
+{/* <body onload = "startTimer()">
+       <img id="img" src="startpicture.jpg"/>
       
-
+       <button type="button" onclick={() =>displayPreviousImage()}>Previous</button>
+       <button type="button" onclick={() =>displayNextImage()}>Next</button>
+   </body> */}
+      
+      {/* <div id="image_container"></div>
+      <br/>
+<div onClick={() =>changeImage()}>CLICK ME!</div> */}
 
 
 
