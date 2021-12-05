@@ -37,6 +37,7 @@ const UserManageBooking = () => {
   criteria["Username"]= sessionStorage.getItem("Username");
   const criteria1 = {};
   const [Reservations, setallReservation] = useState();
+  const [mapped, setmapped] = useState(false);
   const [flight1, setflight1] = useState();
   const [flight2, setflight2] = useState();
 
@@ -84,13 +85,15 @@ const UserManageBooking = () => {
 
 
 
- var AvailableSeats = [];
+  const [data1, setData] = useState([]);
+
    const flightmapHandler = (id) => {
-    axios.post('http://localhost:8000/flightmap', {data: {var1:id}}).then((result)=>
+     console.log("your id")
+     console.log(id)
+
+    axios.post('http://localhost:8000/flightmap',{data: {var1 : id} }).then((result)=>
     {    
-      console.log("ssss")
-      AvailableSeats=result.data.Available_Seats;
-     console.log(AvailableSeats);
+      // setData2(result.data[0].Available_Seats);
   })};
 
 
@@ -197,16 +200,21 @@ const ContactUs = () => { // e will contain the reservation number
 };
 
 
+const parentToChild = (e,f,g,from,date) => {
+  setData({e,f,g,from,date});
+  if(mapped===false)
+  setmapped(true);
+  else{
+    setmapped(false);
 
+  }
+
+}
 
 
   if (Reservations) {
 
-    // if (sessionStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
-    //   window.open("UserHomePage", "_self");
-    //   warning2();
-    // }
-   
+    if(!mapped){
     return(
       <>
 <div class="site-mobile-menu">
@@ -317,8 +325,8 @@ const ContactUs = () => { // e will contain the reservation number
 <label class="center">All Reserved Flights</label>
 
   <div class="box f2">
-  {Reservations.map(reserv =>
-  <div>
+    {Reservations.map(reserv =>
+        <div>
     {/* //loop will be created here inside the box f2 :D*/}
 
 
@@ -342,7 +350,7 @@ const ContactUs = () => { // e will contain the reservation number
           <h4>Booking Number:{reserv._id}</h4>
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
-          <Link class="button-79" role="button" to="SeatMap"  onClick={() => flightmapHandler(reserv.Flight_IDFrom)} smooth={true}>Select Seat</Link>
+          <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
 
       </div>
   </div>
@@ -353,7 +361,7 @@ const ContactUs = () => { // e will contain the reservation number
           <figcaption>
             <div class="caption">
               <h1>Return Flight</h1>
-              <p>Flight Number:</p>
+              <p>Flight Number:{reserv.Flight_NoTo}</p>
               </div>
           </figcaption>
       </figure>
@@ -370,7 +378,7 @@ const ContactUs = () => { // e will contain the reservation number
           {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
           {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
           {/* spy={true} */}
-          <Link class="button-79" role="button" to="SeatMap" onClick={() => flightmapHandler(reserv.Flight_IDTo)}  smooth={true}>Select Seat</Link>
+          <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
   
       </div>
   </div>
@@ -414,6 +422,7 @@ const ContactUs = () => { // e will contain the reservation number
        <script src="js/extention/choices.js"></script>   
 
    
+   
 
    <div class="plane">
   <div class="cockpit">
@@ -421,10 +430,10 @@ const ContactUs = () => { // e will contain the reservation number
   </div>
   
 
-  <ol id = 'SeatMap' class="cabin fuselage">
-  <SeatMap>
-   </SeatMap>
-</ol>
+<div> <ol class="cabin fuselage">
+  <SeatMap parentToChild={data1}/>
+  </ol>
+ </div>
   
     <br></br>
   </div>
@@ -442,10 +451,7 @@ const ContactUs = () => { // e will contain the reservation number
       </>
      
      
-    );
-    
-   
-
+    );}
 
   }
 return (<h1></h1>)

@@ -126,14 +126,14 @@ exports.deleteflight = (req,res)=>{
 };
 
 exports.flightmap = (req,res)=>{
-  var ID = req.body.var1;
-  ID.trim();
- Flights.findOne({'_id':ID}).exec().then(result =>{
-  res.send(result);
-     console.log('The Flight available seats !');
- }).catch(err => {
-     console.log(err);
-   });
+  var ID = req.body.data.var1;
+  console.log(ID)
+
+Flights.find({'_id':ID}).exec().then(result =>{
+  res.send(result)
+}).catch(err => {
+    console.log(err);
+  });
 
 };
 
@@ -141,13 +141,68 @@ exports.flightmap = (req,res)=>{
 exports.updateflight = (req,res)=>{
   var id = req.body.data.var1;
   Flights.findOneAndUpdate({'_id':id},req.body.data.var2).exec().then(result =>{
-      res.status(200).send("Flight updated ");
+      res.status(200).send("Flight Updated ");
       console.log('The Flight is Updated successfully !');
   }).catch(err => {
       console.log(err);
     });
 
 };
+exports.updateseats = (req,res)=>{
+  var id = req.body.data.var1;
+  var seats =req.body.data.var2;
+  console.log(seats)
+  Flights.findOneAndUpdate({'_id':id},{$set:{Available_Seats:seats}}).exec().then(result =>{
+      res.status(200).send("Flight Seats Updated ");
+      console.log('The Flight Seats are Updated successfully !');
+  }).catch(err => {
+      console.log(err);
+    });
+
+};
+exports.updatereservationseats = (req,res)=>{
+  var id = req.body.data.var1;
+  var seats =req.body.data.var2;
+  var username=req.body.data.var3;
+  var checker = req.body.data.var4;
+  var date = req.body.data.var5;
+  var dd
+  const search ={};
+
+  if(checker){
+    dd = date
+    var start = moment(dd).startOf('day');
+    var end = moment(dd).endOf('day'); 
+      search['Flight_DateFrom'] = { '$gte': start,"$lt": end};
+    }
+  else{ dd = date
+    var start = moment(dd).startOf('day');
+    var end = moment(dd).endOf('day'); 
+      search['Flight_DateTo'] = { '$gte': start,"$lt": end};}
+  console.log(id);
+  console.log(seats);
+  console.log(username);
+  console.log(checker);
+
+  if(checker){
+  Reservations.findOneAndUpdate({'Flight_IDFrom':id,'Username':username,'Flight_DateFrom':search['Flight_DateFrom']}
+  ,{$set:{SeatsChoosenFrom:seats}}).exec().then(result =>{
+      res.status(200).send("From Reservation Seats Updated ");
+      console.log('The From Reservation Seats are Updated successfully !');
+  }).catch(err => {
+      console.log(err);
+    });}
+ else{
+    Reservations.findOneAndUpdate({'Flight_IDTo':id,'Username':username,'Flight_DateTo':search['Flight_DateTo']}
+    ,{$set:{SeatsChoosenTo:seats}}).exec().then(result =>{
+          res.status(200).send("To Flight Seats Updated ");
+          console.log('The To Reservation Seats are Updated successfully !');
+      }).catch(err => {
+          console.log(err);
+        });}
+
+};
+
 exports.updateuser = (req,res)=>{
 
   var username = req.body.data.var1;
@@ -294,27 +349,6 @@ exports.reservationinfo = (req,res)=>{
   const search ={};
  search[key2]= {$regex: '^' + req.body[key2],$options: 'ix'};
   Reservations.find(search).then(result =>{
-      console.log(result);
-      res.send(result);
-  }).catch(err => {
-      console.log(err);
-    });
-
-}
-exports.flightinfo = (req,res)=>{
-
-  var Flightid1 = req.body.data.var1;
-  var Flightid2 = req.body.data.var1;
-  console.log(Flightid1)
-
-
-  Flights.find({'_id':Flightid1}).exec().then(result =>{
-      console.log(result);
-      res.send(result);
-  }).catch(err => {
-      console.log(err);
-    });
-  Flights.find({'_id':Flightid2}).exec().then(result =>{
       console.log(result);
       res.send(result);
   }).catch(err => {
