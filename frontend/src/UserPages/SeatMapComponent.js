@@ -165,7 +165,8 @@ class SeatMap extends React.Component {
 
 
   componentDidMount() {
-    const data=this.props.parentToChild;
+    
+     const data=this.props.parentToChild;
 
     if(data){
      var seats = data["e"] + data["f"]
@@ -175,7 +176,7 @@ class SeatMap extends React.Component {
         const Available = result.data[0].Available_Seats;
         console.log(Available)
 
-        this.setState({ seats: seats,data: Available });
+        this.setState({ seats: seats,data: Available,track: []});
       })}
   }
   render() {
