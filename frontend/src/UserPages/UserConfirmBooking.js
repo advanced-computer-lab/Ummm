@@ -47,6 +47,7 @@ const UserConfirmBooking = () => {
   const Flight1 = history.location.state?.flight1;
   const Flight2 = history.location.state?.flight2;
   const Adults = history.location.state?.Adults;
+  console.log()
   const Children = history.location.state?.Children;
 
 
@@ -58,7 +59,7 @@ const UserConfirmBooking = () => {
     Flight_NoFrom: Flight1.Flight_No,
     Flight_DateFrom: Flight1.Flight_Date,
     Flight_From: Flight1.From,
-    CabinFrom: history.location.state?.CabinFrom,
+    CabinFrom: Flight1.CabinFrom,
     SeatsChoosenFrom: "",
     SeatsChoosenFromID: "",
 
@@ -67,7 +68,7 @@ const UserConfirmBooking = () => {
     Flight_NoTo: Flight2.Flight_No,
     Flight_DateTo: Flight2.Flight_Date,
     Flight_To: Flight1.To,
-    CabinTo: history.location.state?.CabinTo,
+    CabinTo: Flight2.CabinTo,
     SeatsChoosenTo: "",
     SeatsChoosenToID: "",
 
@@ -151,6 +152,7 @@ const UserConfirmBooking = () => {
       //  form.resetFields();
       //   success(); // data succ added less go
       }).catch(error => {
+        console.log("asdfasfsafdsafsadf")
         console.log(error);
     })
 

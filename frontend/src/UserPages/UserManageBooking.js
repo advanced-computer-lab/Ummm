@@ -1030,7 +1030,6 @@ const swalWithBootstrapButtons = Swal.mixin({
        
        
       );}
-
   }
 return (<h1></h1>)
   
