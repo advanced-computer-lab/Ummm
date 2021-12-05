@@ -123,7 +123,7 @@ const SearchFlight = () => {
       flight1: isdepart,
       flight2: isreturn,
       CabinFrom: Data.CabinDepart,
-      CabinTo: Data.CabinDepart,
+      CabinTo: Data.CabinReturn,
       Adults: Data.Adults,
       Children: Data.Children,
     }
@@ -528,7 +528,7 @@ swalWithBootstrapButtons.fire({
                   flight1: isdepart,
                   flight2: isreturn,
                   CabinFrom: Data.CabinDepart,
-                  CabinTo: Data.CabinDepart,
+                  CabinTo: Data.CabinReturn,
                   Adults: Data.Adults,
                   Children: Data.Children,
                 }

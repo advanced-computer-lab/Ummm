@@ -47,7 +47,6 @@ const UserConfirmBooking = () => {
   const Flight1 = history.location.state?.flight1;
   const Flight2 = history.location.state?.flight2;
   const Adults = history.location.state?.Adults;
-  console.log()
   const Children = history.location.state?.Children;
 
 
@@ -59,7 +58,7 @@ const UserConfirmBooking = () => {
     Flight_NoFrom: Flight1.Flight_No,
     Flight_DateFrom: Flight1.Flight_Date,
     Flight_From: Flight1.From,
-    CabinFrom: Flight1.CabinFrom,
+    CabinFrom: history.location.state?.CabinFrom,
     SeatsChoosenFrom: "",
     SeatsChoosenFromID: "",
 
@@ -68,7 +67,7 @@ const UserConfirmBooking = () => {
     Flight_NoTo: Flight2.Flight_No,
     Flight_DateTo: Flight2.Flight_Date,
     Flight_To: Flight1.To,
-    CabinTo: Flight2.CabinTo,
+    CabinTo: history.location.state?.CabinTo,
     SeatsChoosenTo: "",
     SeatsChoosenToID: "",
 
@@ -146,7 +145,7 @@ const UserConfirmBooking = () => {
 
     axios.post('http://localhost:8000/createnewReservation', Data)
     .then(response => {
-      console.log(response.status);
+      console.log(Data);
       success();
       //  window.location.reload(false);
       //  form.resetFields();
