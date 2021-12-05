@@ -12,6 +12,8 @@ import '../css/main.css';
 import '../css/guest.css';
 import '../css/SelectSeat.scss';
 import '../css/header.css';
+import swal from 'sweetalert2'
+import '../css/BoardingPass.scss';
 import moment from "moment";
 import {
   Form,
@@ -208,8 +210,178 @@ const parentToChild = (e,f,g,from,date) => {
     setmapped(false);
 
   }
-
 }
+
+const swalWithBootstrapButtons = Swal.mixin({
+  // customClass: {
+  //   confirmButton: 'btn btn-success',
+  //   cancelButton: 'btn btn-danger'
+  // },
+  // buttonsStyling: false
+})
+
+const success = () => {
+
+
+
+
+  swalWithBootstrapButtons.fire({
+  
+        html:
+      
+        '<div class="wrapper">'+
+        '<div class="qr">'+
+          '<div class="title">boarding pass</div>'+
+          '<div class="qr-wrapper">'+
+            '<div class="qr-image"></div>'+
+          '</div>'+
+          '<a>expand</a>'+
+        '</div>'+
+        '<div class="inner-wrapper">'+
+          '<div class="details">'+
+            '<div class="date">Aug 31 2016</div>'+
+            '<div class="city">'+
+              '<div class="from loc">'+
+                '<div class="name">pnq <span>pune</span></div>'+
+                '<div class="weather">'+
+                  '<div class="icon">'+
+                    '<div class="drop1 drop"></div>'+
+                    '<div class="drop2 drop"></div>'+
+                    '<div class="drop3 drop"></div>'+
+                  '</div>'+
+                '</div>'+
+              '</div>'+
+              '<div class="to loc">'+
+                '<div class="name">del <span>delhi</span></div>'+
+                '<div class="weather">'+
+                  '<div class="icon">'+
+                    '<div class="sunrays ray1"></div>'+
+                    '<div class="sunrays ray2"></div>'+
+                    '<div class="sunrays ray3"></div>'+
+                  '</div>'+
+                '</div>'+
+              '</div>'+
+            '</div>'+
+            '<div class="plane"></div>'+
+            '<div class="content">'+
+              '<div class="gate">2B <span>gate</span></div>'+
+              '<div class="gate">16B <span>seat</span></div>'+
+              '<div class="gate">12:50PM <span>departure</span></div>'+
+            '</div>'+
+          '</div>'+
+          '<div class="seat-layout">'+
+            '<div class="content">'+
+              '<div class="close"><i class="fa fa-remove fa-2x"></i></div>'+
+              '<div class="gate">2B <span>gate</span></div>'+
+              '<div class="seat">16B <span>seat</span></div>'+
+              '<div class="boarding">12:20PM <span>boarding</span></div>'+
+              '<div class="departure">12:50PM <span>departure</span></div>'+
+              '<div class="flight">GO181 <span>flight</span></div>'+
+            '</div>'+
+           
+           
+          '</div>'+
+        '</div>'+
+        '</div>'
+        
+  
+  
+  
+  
+  
+  ,
+  
+  
+          imageWidth: 1200,
+          imageHeight: 700,
+          customClass: 'swal-wide',
+          imageAlt: 'A tall image',
+           cancelButtonColor:'#ff2626' ,
+          showCancelButton: true,
+          cancelButtonText: 'Cancel!',
+          confirmButtonText: 'Confirm Choosen Reservation!',
+    
+    reverseButtons: false,
+    confirmButtonColor: '#ff8300',
+    // confirmButtonColor: '#00D100', //GREEN WALA ORANGEEE ?
+  
+  
+      
+           
+  
+          // confirmButtonText: 'Log In',
+          // iconColor:'#ff8300' ,
+  
+    // title: 'Are you sure?',
+    // text: "You won't be able to revert this!",
+    // icon: 'warning',
+    // showCancelButton: true,
+    // confirmButtonText: 'Log In!',
+    // cancelButtonText: 'Cancel!',
+    // reverseButtons: true
+  
+  
+  
+  }).then((result) => {
+    // if (result.isConfirmed) {
+  
+    //   if (sessionStorage.getItem('AuthenticationState') === "UserAuthenticated") {
+    //               history.push({
+    //                 pathname: '/UserConfirmBooking',
+    //               state: {
+    //                 flight1: isdepart,
+    //                 flight2: isreturn,
+    //                 CabinFrom: Data.CabinDepart,
+    //                 CabinTo: Data.CabinDepart,
+    //                 Adults: Data.Adults,
+    //                 Children: Data.Children,
+    //               }
+    //               });
+    //            }
+          
+  // else{
+  //     swalWithBootstrapButtons.fire(
+  //       {
+  //       title: 'Please Log In to continue',
+  //       // text: 'Please Log In to continue',
+  //       icon: 'warning',
+  //       confirmButtonText: 'Log In',
+  //       confirmButtonColor: '#ff8300',
+  //       // iconColor:'#ff8300' ,
+  //     })
+  //       .then((res) => {
+  //            if(res.isConfirmed){
+  //               console.log('confirm');
+  //               window.open("UserLogin", "_self");
+                 
+  //           }    
+  //       });
+  //     }
+  //   } 
+    // else if (
+    //   /* Read more about handling dismissals below */
+    //   result.dismiss === Swal.DismissReason.cancel
+    // ) {
+     
+    // }
+  })
+  
+  
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   if (Reservations) {
@@ -330,7 +502,7 @@ const parentToChild = (e,f,g,from,date) => {
     {/* //loop will be created here inside the box f2 :D*/}
 
 
-  <div class="listing-item">
+  <div class="listing-item100">
       <figure class="image">
           <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
           <figcaption>
@@ -355,7 +527,7 @@ const parentToChild = (e,f,g,from,date) => {
       </div>
   </div>
  
-  <div class="listing-item">
+  <div class="listing-item100">
       <figure class="image">
           <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
           <figcaption>
@@ -395,8 +567,23 @@ const parentToChild = (e,f,g,from,date) => {
   Cancel Reservation
      </button>
      
+     
 
      </div>
+     <div class="listing-item99">
+  <button  type="button"  onClick={() => success()} class="button-100" > 
+  <div class="center">
+  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-ticket-detailed-fill" viewBox="0 0 16 16">
+  <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5Zm4 1a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5Zm0 5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5ZM4 8a1 1 0 0 0 1 1h6a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1Z"/>
+</svg>
+</div>
+    Show Boardingpass
+     </button>
+     
+     
+
+     </div>
+     
      </div>
  
  )}
@@ -457,7 +644,6 @@ const parentToChild = (e,f,g,from,date) => {
 
   }
 return (<h1></h1>)
-  
   
 
 

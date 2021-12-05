@@ -23,7 +23,7 @@ const FlightHome = () => {
         
   <div class="back">
     <div class="welcome">Welcome to</div><br></br>
-    <h9>Fly Nawwwwww</h9>
+    <h9>Fly Nawww</h9>
   </div>
   <div class="shade"></div>
   <div>
