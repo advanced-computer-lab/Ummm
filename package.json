@@ -25,6 +25,7 @@
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "mongoose": "^6.0.13",
-    "mongose": "0.0.2-security"
+    "mongose": "0.0.2-security",
+    "nodemailer": "^6.7.2"
   }
 }

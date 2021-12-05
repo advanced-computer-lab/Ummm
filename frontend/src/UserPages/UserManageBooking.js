@@ -100,7 +100,7 @@ const UserManageBooking = () => {
 
 
 
-  const ConfirmDelete = (Reservationid,RefundedAmount) => { // e will contain the reservation number 
+  const ConfirmDelete = (Reservationid,RefundedAmount,Useremail) => { // e will contain the reservation number 
     Swal.fire(
       {
       title: 'Delete Reservation',
@@ -129,7 +129,7 @@ const UserManageBooking = () => {
           Swal.fire(
              {
             title:'Reservation Successfully Deleted!',
-            text:'Amount Of Price Refunded Is: '.concat(RefundedAmount),
+            text:'You will be Refunded with: $'.concat(RefundedAmount),
             icon:'success',
             showConfirmButton: false,
              }
@@ -139,7 +139,11 @@ const UserManageBooking = () => {
             window.location.reload()
           }, 4000);
 
-         
+          var Refund = RefundedAmount;
+          var mail = "ahmed.eltawel35@gmail.com";
+          axios.post("http://localhost:8000/sendmail", {data: {var1:Refund,var2:mail}}).then(response => {
+          }).catch(error => {
+})
 
 
         }
@@ -404,7 +408,7 @@ const parentToChild = (e,f,g,from,date) => {
   
   {/* on click will send reservation number + total price refunded */}
   <div class="listing-item99">
-  <button  type="button" onClick={() => ConfirmDelete(reserv._id,reserv.TotalPrice)} class="button-70" > 
+  <button  type="button" onClick={() => ConfirmDelete(reserv._id,reserv.TotalPrice,reserv.Email)} class="button-70" > 
   <div class="center">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -629,7 +633,7 @@ const parentToChild = (e,f,g,from,date) => {
     
     {/* on click will send reservation number + total price refunded */}
     <div class="listing-item99">
-    <button  type="button" onClick={() =>ConfirmDelete(reserv._id,reserv.TotalPrice)} class="button-70" > 
+    <button  type="button" onClick={() =>ConfirmDelete(reserv._id,reserv.TotalPrice,reserv.Email)} class="button-70" > 
     <div class="center">
       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
