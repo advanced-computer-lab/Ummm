@@ -118,6 +118,7 @@ class SeatMap extends React.Component {
 
   }
   UpdateAll(){
+    if(this.state.seats===this.state.track.length){
     const data1=this.props.parentToChild;
     var n = this.state.seats;
     for(var i=0;i<n;i++){
@@ -126,6 +127,9 @@ class SeatMap extends React.Component {
     if(data1){
       var id=data1["g"]
       var seats=this.state.data;
+      var tracker=this.state.track;
+      var username=sessionStorage.getItem("Username")
+      var date=data1["date"]
       console.log(seats);
       console.log(id);
     axios.put('http://localhost:8000/updateseats',{data: {var1 : id, var2 : seats} })
@@ -133,8 +137,30 @@ class SeatMap extends React.Component {
               console.log("Successful")
     
         }).catch(error => {
-        console.log(error);
-      })}
+        console.log(error); })
+    
+    if(data1["from"]==true){
+      axios.put('http://localhost:8000/updatereservationseats',{data: {var1 : id, var2 : tracker,var3:username,var4:true,var5:date} })
+    .then((result)=> {
+              console.log("Successful")
+    
+        }).catch(error => {
+        console.log(error); })
+
+    }
+    else{
+      axios.put('http://localhost:8000/updatereservationseats',{data: {var1 : id, var2 : tracker,var3:username,var4:false,var5:date} })
+      .then((result)=> {
+                console.log("Successful")
+      
+          }).catch(error => {
+          console.log(error); })
+  
+    }
+    
+    }
+
+    }
     }
 
 

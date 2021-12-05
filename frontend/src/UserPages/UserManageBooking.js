@@ -157,9 +157,8 @@ const EditProfileHendler = event => {
   });
 };
 
-const parentToChild = (e,f,g) => {
-  setData({e,f,g});
-  console.log(data1)
+const parentToChild = (e,f,g,from,date) => {
+  setData({e,f,g,from,date});
   setmapped(true);
 }
 
@@ -259,7 +258,7 @@ const parentToChild = (e,f,g) => {
           <h4>Booking Number:{reserv._id}</h4>
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
-          <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDFrom)} smooth={true}>Select Seat</Link>
+          <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
 
       </div>
   </div>
@@ -287,7 +286,7 @@ const parentToChild = (e,f,g) => {
           {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
           {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
           {/* spy={true} */}
-          <Link class="button-79" role="button" to="SeatMap" onClick={() => flightmapHandler(reserv.Flight_IDTo)}  smooth={true}>Select Seat</Link>
+          <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
   
       </div>
   </div>
@@ -440,7 +439,7 @@ const parentToChild = (e,f,g) => {
           <h4>Booking Number:{reserv._id}</h4>
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
-          <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv.Flight_IDFrom)} smooth={true}>Select Seat</Link>
+          <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
 
       </div>
   </div>
@@ -468,7 +467,7 @@ const parentToChild = (e,f,g) => {
           {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
           {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
           {/* spy={true} */}
-          <Link class="button-79" role="button" to="SeatMap" onClick={() => flightmapHandler(reserv.Flight_IDTo)}  smooth={true}>Select Seat</Link>
+          <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
   
       </div>
   </div>
@@ -512,19 +511,20 @@ const parentToChild = (e,f,g) => {
    
    
 
-   {/* <div class="plane">
+   <div class="plane">
   <div class="cockpit">
     <h1>Select Seats</h1>
   </div>
-   */}
+  
 
-<div> 
+<div> <ol class="cabin fuselage">
   <SeatMap parentToChild={data1}/>
+  </ol>
  </div>
-{/*   
+  
     <br></br>
   </div>
- */}
+
 
     
 

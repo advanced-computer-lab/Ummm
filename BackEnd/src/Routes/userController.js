@@ -160,6 +160,49 @@ exports.updateseats = (req,res)=>{
     });
 
 };
+exports.updatereservationseats = (req,res)=>{
+  var id = req.body.data.var1;
+  var seats =req.body.data.var2;
+  var username=req.body.data.var3;
+  var checker = req.body.data.var4;
+  var date = req.body.data.var5;
+  var dd
+  const search ={};
+
+  if(checker){
+    dd = date
+    var start = moment(dd).startOf('day');
+    var end = moment(dd).endOf('day'); 
+      search['Flight_DateFrom'] = { '$gte': start,"$lt": end};
+    }
+  else{ dd = date
+    var start = moment(dd).startOf('day');
+    var end = moment(dd).endOf('day'); 
+      search['Flight_DateTo'] = { '$gte': start,"$lt": end};}
+  console.log(id);
+  console.log(seats);
+  console.log(username);
+  console.log(checker);
+
+  if(checker){
+  Reservations.findOneAndUpdate({'Flight_IDFrom':id,'Username':username,'Flight_DateFrom':search['Flight_DateFrom']}
+  ,{$set:{SeatsChoosenFrom:seats}}).exec().then(result =>{
+      res.status(200).send("From Reservation Seats Updated ");
+      console.log('The From Reservation Seats are Updated successfully !');
+  }).catch(err => {
+      console.log(err);
+    });}
+ else{
+    Reservations.findOneAndUpdate({'Flight_IDTo':id,'Username':username,'Flight_DateTo':search['Flight_DateTo']}
+    ,{$set:{SeatsChoosenTo:seats}}).exec().then(result =>{
+          res.status(200).send("To Flight Seats Updated ");
+          console.log('The To Reservation Seats are Updated successfully !');
+      }).catch(err => {
+          console.log(err);
+        });}
+
+};
+
 exports.updateuser = (req,res)=>{
 
   var username = req.body.data.var1;
