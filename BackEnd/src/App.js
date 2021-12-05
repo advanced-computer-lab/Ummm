@@ -51,7 +51,9 @@ app.post('/createnewReservation',userController.createnewReservation)
 app.post('/GetUserInfo',userController.GetUserInfo)
 app.post('/userinfo',userController.userinfo)
 app.put('/updateuser',userController.updateuser)
-
+app.post('/reservationinfo',userController.reservationinfo)
+app.post('/flightinfo',userController.flightinfo)
+app.post('/flightmap',userController.flightmap)
 
 
 

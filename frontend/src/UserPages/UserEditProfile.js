@@ -79,18 +79,6 @@ const UserEditProfile = () => {
        console.log("ssss")
      console.log(result.data[0])
      setResult(result.data[0]);
-      console.log("ssss")
-
-      // setState(
-      //   {
-      //   ["FirstName"] : result.body.FirstName, 
-      //   ["LastName"]: userinfo.LastName,
-      //   ["Email"]: userinfo.Email,
-      //   // ["Date_of_Birth"]:moment(userinfo.Date_of_Birth), // Data type date
-      //   ["PassPort_No"]: userinfo.PassPort_No,
-      //   ["Username"]: userinfo.Username,
-      //   ["Password"]: userinfo.Password,  })
-  
       } )};
    
      if(Result1){ 

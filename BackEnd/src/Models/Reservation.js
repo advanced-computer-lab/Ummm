@@ -11,6 +11,14 @@ const reservationSchema = new Schema({
     type: String,
     required: true,
   },
+  Flight_From: {
+    type: String,
+    required: true,
+  },
+  Flight_To: {
+    type: String,
+    required: true,
+  },
   Flight_DateFrom: {
     type: Date,
    required: true,
@@ -19,9 +27,6 @@ const reservationSchema = new Schema({
     type: String,
    required: true
   },
-
-
-
   Flight_IDTo: {
     type: String,
     required: true,
@@ -38,25 +43,16 @@ const reservationSchema = new Schema({
     type: String,
    required: true
   },
-
-
-
-
   TotalPrice: {
     type: Number,
    required: true
   },
-
   SeatsChoosenFrom: {
     type: [String],
-    
   }, 
   SeatsChoosenTo: {
     type: [String],
-    
   }, 
-
-
   SeatsChoosenFromID: {
     type: [Number],
     
@@ -66,8 +62,6 @@ const reservationSchema = new Schema({
     
   }, 
 
-  
-
   Children: {
     type: Number,
    required: true
@@ -76,8 +70,6 @@ const reservationSchema = new Schema({
     type: Number,
    required: true
   },
-
-
   
   Username: {
     type: String,

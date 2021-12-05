@@ -125,6 +125,18 @@ exports.deleteflight = (req,res)=>{
 
 };
 
+exports.flightmap = (req,res)=>{
+  var ID = req.body.var1;
+  ID.trim();
+ Flights.findOne({'_id':ID}).exec().then(result =>{
+  res.send(result);
+     console.log('The Flight available seats !');
+ }).catch(err => {
+     console.log(err);
+   });
+
+};
+
 
 exports.updateflight = (req,res)=>{
   var id = req.body.data.var1;
@@ -276,3 +288,37 @@ Users.find(search)
     console.log(err);
    });
 };
+
+exports.reservationinfo = (req,res)=>{
+  const key2="Username"
+  const search ={};
+ search[key2]= {$regex: '^' + req.body[key2],$options: 'ix'};
+  Reservations.find(search).then(result =>{
+      console.log(result);
+      res.send(result);
+  }).catch(err => {
+      console.log(err);
+    });
+
+}
+exports.flightinfo = (req,res)=>{
+
+  var Flightid1 = req.body.data.var1;
+  var Flightid2 = req.body.data.var1;
+  console.log(Flightid1)
+
+
+  Flights.find({'_id':Flightid1}).exec().then(result =>{
+      console.log(result);
+      res.send(result);
+  }).catch(err => {
+      console.log(err);
+    });
+  Flights.find({'_id':Flightid2}).exec().then(result =>{
+      console.log(result);
+      res.send(result);
+  }).catch(err => {
+      console.log(err);
+    });
+
+}

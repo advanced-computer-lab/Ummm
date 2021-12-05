@@ -56,6 +56,7 @@ const UserConfirmBooking = () => {
     Flight_IDFrom: Flight1._id,
     Flight_NoFrom: Flight1.Flight_No,
     Flight_DateFrom: Flight1.Flight_Date,
+    Flight_From: Flight1.From,
     CabinFrom: history.location.state?.CabinFrom,
     SeatsChoosenFrom: "",
     SeatsChoosenFromID: "",
@@ -64,6 +65,7 @@ const UserConfirmBooking = () => {
     Flight_IDTo: Flight2._id,
     Flight_NoTo: Flight2.Flight_No,
     Flight_DateTo: Flight2.Flight_Date,
+    Flight_To: Flight1.To,
     CabinTo: history.location.state?.CabinTo,
     SeatsChoosenTo: "",
     SeatsChoosenToID: "",
@@ -139,9 +141,6 @@ const UserConfirmBooking = () => {
   
   const BookFlightHandler = (e) => {
     e.preventDefault();    // prevent reloading the page
-
-
-    console.log(Data.Email)
 
     axios.post('http://localhost:8000/createnewReservation', Data)
     .then(response => {
