@@ -487,7 +487,7 @@ swalWithBootstrapButtons.fire({
          cancelButtonColor:'#ff2626' ,
         showCancelButton: true,
         cancelButtonText: 'Cancel!',
-        confirmButtonText: 'Confirm Choosen Reservation!',
+        confirmButtonText: 'Continue To Payment!',
   
   reverseButtons: false,
   confirmButtonColor: '#ff8300',
