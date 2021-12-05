@@ -37,8 +37,12 @@ const UserManageBooking = () => {
   const criteria1 = {};
   const [Reservations, setallReservation] = useState();
   const [mapped, setmapped] = useState(false);
+  const [Available, setAvailable] = useState();
+  const [reserv, setreserv] = useState();
+
   const [flight1, setflight1] = useState();
   const [flight2, setflight2] = useState();
+
 
   // const [allReservation, setReservation] = useState({
   //   FirstName:"",
@@ -73,6 +77,36 @@ const UserManageBooking = () => {
       setTimeout(() => {
         setGuard(false);
       }, 1000)};
+
+
+        if(Available && reserv && mapped === false){
+         
+          // setTimeout(() => {
+          //   console.log("AAAAAAAA")
+            senddata(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)
+          // }, 500)
+          
+
+          setTimeout(() => {
+            console.log("MMMMMMM")
+            setmapped(true);
+          }, 250)
+          // setTimeout(() => {
+          //   ScrollToBottom();
+          // }, 250)
+         
+
+        };
+
+
+      // if(GoSet){
+      //   setTimeout(() => {
+      //     set
+      //   }, 750)};
+
+        // !mapped = false -> NO DOWNNN
+        //  !mapped = true -> DOWNNN
+
     // var x=document.getElementsByClassName("seat-picker__row seat-picker__row--enabled");
     // x[4].style.marginBottom = "30px"; 
     // x[11].style.marginBottom = "30px"; 
@@ -80,7 +114,7 @@ const UserManageBooking = () => {
     
 
 
-  },[Reservations,Guard]);
+  },[Reservations,Guard,mapped,Available,reserv]);
 
 
 
@@ -157,10 +191,72 @@ const EditProfileHendler = event => {
   });
 };
 
-const parentToChild = (e,f,g,from,date) => {
-  setData({e,f,g,from,date});
-  setmapped(true);
+
+const senddata = (e,f,g,from,date) => {
+  console.log(Available)
+
+    const rows = new Array(26);
+   
+    for (var i = 0; i < rows.length; i++) {
+      if(i<6){
+        rows[i] = new Array(4);
+      }
+      else{
+        rows[i] = new Array(6);
+      }
+     
+    }
+     
+    for(let i=0;i<26;i++){
+      for(let j=0;j<8;j++){
+        if(j>1 && j<6 && i<5){
+          rows[i][j] = null;
+        }
+     else if(i<5){
+       if(j>5)
+        rows[i][j] = { id: ((i*4)+j-4+1), number: j+1-4, isReserved: Available[((i*4)+j-4+1)]} ;
+        else
+        rows[i][j] = { id: ((i*4)+j+1), number: j+1, isReserved:  Available[((i*4)+j+1)]} ;
+    }
+    else {
+      if(j>2 && j<5){
+        rows[i][j] = null;
+      }
+   else if(j>4)
+   rows[i][j] = { id: ((20+((i-5)*6)+j-2)+1), number: j+1-2, isReserved:  Available[((20+((i-5)*6)+j-2)+1)]} ;
+         else
+         rows[i][j] = { id: ((20+((i-5)*6)+j)+1), number: j+1, isReserved:  Available[((20+((i-5)*6)+j)+1)]} ;
+    }
+      }
+  }
+    
+console.log(rows)
+
+  setData({e,f,g,from,date,rows});
+
+  // setGuard(true);
 }
+
+// const ScrollToBottom = () => {
+//   window.scrollTo(0,document.body.scrollHeight);
+// }
+
+
+const parentToChild = (reserv,e,f,g,from,date) => {
+  setmapped(false);
+
+  axios.post('http://localhost:8000/flightmap',{data: {var1 : g} })
+  .then((result)=> {
+      setAvailable(result.data[0].Available_Seats);
+      console.log(Available)
+    })
+    setreserv(reserv);
+
+   
+
+  // setmapped(true);
+}
+
 
 
   if (Reservations) {
@@ -258,7 +354,7 @@ const parentToChild = (e,f,g,from,date) => {
           <h4>Booking Number:{reserv._id}</h4>
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
-          <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
+          <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv,reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
 
       </div>
   </div>
@@ -286,7 +382,7 @@ const parentToChild = (e,f,g,from,date) => {
           {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
           {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
           {/* spy={true} */}
-          <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
+          <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv,reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
   
       </div>
   </div>
@@ -439,7 +535,7 @@ const parentToChild = (e,f,g,from,date) => {
           <h4>Booking Number:{reserv._id}</h4>
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
-          <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
+          <Link class="button-79" role="button" to="SeatMap"  onClick={() =>  parentToChild(reserv,reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
 
       </div>
   </div>
@@ -467,7 +563,7 @@ const parentToChild = (e,f,g,from,date) => {
           {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
           {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
           {/* spy={true} */}
-          <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
+          <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv,reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
   
       </div>
   </div>
