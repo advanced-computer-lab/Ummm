@@ -56,7 +56,8 @@ const reservationSchema = new Schema({
   SeatsChoosenFromID: {
     type: [Number],
     
-  }, 
+  },
+   
   SeatsChoosenToID: {
     type: [Number],
     

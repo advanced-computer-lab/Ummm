@@ -126,14 +126,14 @@ exports.deleteflight = (req,res)=>{
 };
 
 exports.flightmap = (req,res)=>{
-  var ID = req.body.var1;
-  ID.trim();
- Flights.findOne({'_id':ID}).exec().then(result =>{
-  res.send(result);
-     console.log('The Flight available seats !');
- }).catch(err => {
-     console.log(err);
-   });
+  var ID = req.body.data.var1;
+  console.log(ID)
+
+Flights.find({'_id':ID}).exec().then(result =>{
+  res.send(result)
+}).catch(err => {
+    console.log(err);
+  });
 
 };
 
@@ -141,8 +141,20 @@ exports.flightmap = (req,res)=>{
 exports.updateflight = (req,res)=>{
   var id = req.body.data.var1;
   Flights.findOneAndUpdate({'_id':id},req.body.data.var2).exec().then(result =>{
-      res.status(200).send("Flight updated ");
+      res.status(200).send("Flight Updated ");
       console.log('The Flight is Updated successfully !');
+  }).catch(err => {
+      console.log(err);
+    });
+
+};
+exports.updateseats = (req,res)=>{
+  var id = req.body.data.var1;
+  var seats =req.body.data.var2;
+  console.log(seats)
+  Flights.findOneAndUpdate({'_id':id},{$set:{Available_Seats:seats}}).exec().then(result =>{
+      res.status(200).send("Flight Seats Updated ");
+      console.log('The Flight Seats are Updated successfully !');
   }).catch(err => {
       console.log(err);
     });
@@ -294,27 +306,6 @@ exports.reservationinfo = (req,res)=>{
   const search ={};
  search[key2]= {$regex: '^' + req.body[key2],$options: 'ix'};
   Reservations.find(search).then(result =>{
-      console.log(result);
-      res.send(result);
-  }).catch(err => {
-      console.log(err);
-    });
-
-}
-exports.flightinfo = (req,res)=>{
-
-  var Flightid1 = req.body.data.var1;
-  var Flightid2 = req.body.data.var1;
-  console.log(Flightid1)
-
-
-  Flights.find({'_id':Flightid1}).exec().then(result =>{
-      console.log(result);
-      res.send(result);
-  }).catch(err => {
-      console.log(err);
-    });
-  Flights.find({'_id':Flightid2}).exec().then(result =>{
       console.log(result);
       res.send(result);
   }).catch(err => {
