@@ -55,8 +55,7 @@ app.post('/reservationinfo',userController.reservationinfo)
 app.post('/flightmap',userController.flightmap)
 app.put('/updateseats',userController.updateseats)
 app.put('/updatereservationseats',userController.updatereservationseats)
-
-
+app.delete('/deletereservation',userController.deletereservation)
 
 
 

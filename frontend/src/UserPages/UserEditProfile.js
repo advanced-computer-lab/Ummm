@@ -18,6 +18,8 @@ import Swal from 'sweetalert2'
 
 import '../css/BoardingPass.scss';
 
+import '../css/header.css';
+
 
 
 
@@ -200,9 +202,104 @@ const UserEditProfile = () => {
     //   window.open("UserHomePage", "_self");
     //   warning2();
     // }
+    const AboutUs = () => { // e will contain the reservation number 
+      Swal.fire({
+        title: 'Fly Nawww is a Saudi Arabian leading low-cost carrier with a fleet of 34 aircrafts, operating more than 1500 weekly flights to 35 domestic and international destinations.',
+        confirmButtonText: 'Hmm.. Ok',
+        confirmButtonColor: '#ff8300',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
+    };
+    const Vision = () => { // e will contain the reservation number 
+      Swal.fire({
+        title: 'To act responsibly in developing the market, evolving our employees, supporting our partners and local communities.',
+        confirmButtonText: 'Hmm.. Ok',
+        confirmButtonColor: '#ff8300',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
+    };
+
+    const ContactUs = () => { // e will contain the reservation number 
+      Swal.fire({
+        title: 'Call:011414656668',
+        confirmButtonText: 'Hmm.. Ok',
+        confirmButtonColor: '#ff8300',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
+    };
+    
+    
+    
     
     return (
       <>
+
+<div></div>
+
+
+<div class="site-mobile-menu">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close mt-3">
+      <span class="icon-close2 js-menu-toggle"></span>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
+
+<header class="site-navbar" role="banner">
+
+  <div class="container">
+    <div class=" align-items-center row">
+      
+      <div class="col-11 col-xl-2">
+      <img src='https://i.ibb.co/0q5z6Jv/e0f7973e78414b2bb23ad01e5f3a88bb-removebg-preview.png' alt='Visit Computer Hope'></img>
+        {/* <h1 class="mb-0 site-logo"><a href="index.html" class="text-white mb-0">Brand</a></h1> */}
+      </div>
+      <div class="col-12 col-md-10 d-none d-xl-block">
+        <nav class="site-navigation position-relative text-right" role="navigation">
+
+          <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+            <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+            
+       
+            <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
+            <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
+            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
+            <li><a href="contact.html"><span>Log Out</span></a></li>
+
+          </ul>
+        </nav>
+      </div>
+
+
+      <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" ><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+
+
+
+
              <div class="s011">
       <form>
         <fieldset>
@@ -399,7 +496,7 @@ const UserEditProfile = () => {
                     
 
 
-					
+                      
                     <a type="button"class="button-60" role="button"  onClick={(e) => updateHandler(e,Result1)}>Update</a>
 
 					<div class="txt1 text-center p-t-54 p-b-20">
@@ -453,6 +550,17 @@ const UserEditProfile = () => {
     </div>
     
   
+    {/* <script type="text/javascript">
+var images = [],
+index = 0;
+images[0] = "<a href = 'https://www.computerhope.com/'><img src='https://www.computerhope.com/banners/banner.gif' alt='Visit Computer Hope'></img></a>";
+images[1] = "<a href = 'https://www.computerhope.com/history'><img src='https://www.computerhope.com/banners/banner2.gif' alt='Computer History'></img></a>";
+images[2] = "<a href = 'https://www.computerhope.com/'><img src='https://www.computerhope.com/banners/banner3.gif' alt='Visit Computer Hope'></img></a>";
+index = Math.floor(Math.random() * images.length);
+document.write(images[index]);
+
+</script> */}
+
 
 
 

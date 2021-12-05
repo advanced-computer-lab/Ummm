@@ -174,7 +174,7 @@ class SeatMap extends React.Component {
         const Available = result.data[0].Available_Seats;
         console.log(Available)
 
-        this.setState({ seats: seats,data: Available });
+        this.setState({ seats: seats,data: Available,track: []});
       })}
   }
 

@@ -67,7 +67,7 @@ function App() {
           .then(response => {
               console.log(response);
                }).catch(error => {
-              console.log(error); //Handle Flight_No excite 
+              console.log(error); //Handle Flight_No exsit 
             })
            window.location.reload(false);
         }

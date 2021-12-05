@@ -125,6 +125,17 @@ exports.deleteflight = (req,res)=>{
 
 };
 
+exports.deletereservation = (req,res)=>{
+  var del = req.body.var1;
+  del.trim();
+ Reservations.findOneAndDelete({'_id':del}).exec().then(result =>{
+     console.log('The Reservation is Deleted successfully !');
+ }).catch(err => {
+     console.log(err);
+   });
+
+};
+
 exports.flightmap = (req,res)=>{
   var ID = req.body.data.var1;
   console.log(ID)
