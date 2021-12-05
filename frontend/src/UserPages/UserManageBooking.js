@@ -131,7 +131,53 @@ const UserManageBooking = () => {
   })};
 
 
+  const AboutUs = () => { // e will contain the reservation number 
+    Swal.fire({
+      title: 'Fly Nawww is a Saudi Arabian leading low-cost carrier with a fleet of 34 aircrafts, operating more than 1500 weekly flights to 35 domestic and international destinations.',
+      confirmButtonText: 'Hmm.. Ok',
+      confirmButtonColor: '#ff8300',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })
+  };
 
+
+  const Vision = () => { // e will contain the reservation number 
+    Swal.fire({
+      title: 'To act responsibly in developing the market, evolving our employees, supporting our partners and local communities.',
+      confirmButtonText: 'Hmm.. Ok',
+      confirmButtonColor: '#ff8300',
+      showClass: {
+        popup: 'animateanimated animatefadeInDown'
+      },
+      hideClass: {
+        popup: 'animateanimated animatefadeOutUp'
+      }
+    })
+  };
+  const ContactUs = () => { // e will contain the reservation number 
+    Swal.fire({
+      title: 'Call:011414656668',
+      confirmButtonText: 'Hmm.. Ok',
+      confirmButtonColor: '#ff8300',
+      showClass: {
+        popup: 'animateanimated animatefadeInDown'
+      },
+      hideClass: {
+        popup: 'animateanimated animatefadeOutUp'
+      }
+    })
+  };
+  const LogOutHandler = () => {
+    sessionStorage.clear()
+    window.open("UserLogin", "_self");
+  
+  
+  };
 
 
   const ConfirmDelete = (Reservationid,RefundedAmount) => { // e will contain the reservation number 
@@ -155,8 +201,8 @@ const UserManageBooking = () => {
                       }).catch(error => {
               console.log(error); //Handle Flight_No excite 
             })
-         
-            
+
+
 
 
 
@@ -173,13 +219,12 @@ const UserManageBooking = () => {
             window.location.reload()
           }, 4000);
 
-         
+          // transporter.sendmail(mailoptions);
 
 
         }
       });
   };
-  
 
   const warning1 = () => {
     message.warning('Please enter departure city');
