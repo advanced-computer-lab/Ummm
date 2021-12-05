@@ -812,12 +812,12 @@ if (isLoading) {
         <nav class="site-navigation position-relative text-right" role="navigation">
 
           <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-            {/* <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li> */}
+            <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
             
        
-            {/* <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
+            <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
             <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
-            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li> */}
+            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
             <li><a href="contact.html"><span>Log Out</span></a></li>
 
           </ul>
@@ -1139,12 +1139,12 @@ return(
         <nav class="site-navigation position-relative text-right" role="navigation">
 
           <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-            {/* <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li> */}
+            <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
             
        
-            {/* <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
+            <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
             <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
-            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li> */}
+            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
             <li><a href="contact.html"><span>Log Out</span></a></li>
 
           </ul>
@@ -1597,12 +1597,12 @@ return (
         <nav class="site-navigation position-relative text-right" role="navigation">
 
           <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-            {/* <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li> */}
+            <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
             
        
-            {/* <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
+            <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
             <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
-            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li> */}
+            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
             <li><a href="contact.html"><span>Log Out</span></a></li>
 
           </ul>
