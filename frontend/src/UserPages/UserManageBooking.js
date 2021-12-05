@@ -1038,11 +1038,6 @@ return (<h1></h1>)
 
 };
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 86f7d3f5740885d0feab53cd6dfe2b6511067ed7
 {/* <div id="app"></div> 
   ReactDOM.render(<UserManageBooking />, document.querySelector("#app")); */}
 
