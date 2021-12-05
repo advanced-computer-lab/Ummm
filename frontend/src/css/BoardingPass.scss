@@ -66,16 +66,17 @@ h3 {
 	&_logo {
 	  background: #ffffff;
 		border-radius: 20px 20px 0 0;
-
+    
 		img.qatar {
-			margin: -50px;
+		
 			text-align: center;
-			width: 70%;
+			width: 60%;
 		}
     img.tigerair {
 			margin-top: 10px;
 			text-align: center;
 			width: 45%;
+     
 		}
     img.airasia {
 			margin: -10px;
@@ -353,23 +354,25 @@ h3 {
   background: #b26a07;
   
   .card_logo {
+   
     border-top: 5px solid #F69E25;
   }
 }
 
 .aa-theme {
-  background: #961a14;
-  
-  .card_logo {
-    border-top: 5px solid #DA251D;
-  }
-}
-
-.qr-theme {
   background: #72274D;
   
   .card_logo {
     border-top: 5px solid #72274D;
+  }
+}
+
+.qr-theme {
+  background: #1b2f6e;
+  //23419b
+  
+  .card_logo {
+    border-top: 5px solid #23419b;
   }
 
   
