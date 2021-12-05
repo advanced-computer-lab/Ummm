@@ -159,7 +159,13 @@ const EditProfileHendler = event => {
 
 const parentToChild = (e,f,g,from,date) => {
   setData({e,f,g,from,date});
+  if(mapped===false)
   setmapped(true);
+  else{
+    setmapped(false);
+
+  }
+
 }
 
 
