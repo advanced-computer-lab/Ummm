@@ -384,6 +384,7 @@ const parentToChild = (e,f,g,from,date) => {
   </div>
   
   {/* on click will send reservation number + total price refunded */}
+  <div class="listing-item99">
   <button  type="button" onClick={() => ConfirmDelete('1','100$')} class="button-70" > 
   <div class="center">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -395,6 +396,7 @@ const parentToChild = (e,f,g,from,date) => {
      </button>
      
 
+     </div>
      </div>
  
  )}
