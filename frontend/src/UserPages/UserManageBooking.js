@@ -561,12 +561,12 @@ const swalWithBootstrapButtons = Swal.mixin({
         <nav class="site-navigation position-relative text-right" role="navigation">
 
           <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-            <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+            {/* <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li> */}
             
        
-            <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
+            {/* <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
             <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
-            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
+            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li> */}
             <li><a onClick={() => LogOutHandler()} ><span>Log Out</span></a></li>
 
           </ul>
@@ -807,7 +807,7 @@ const swalWithBootstrapButtons = Swal.mixin({
               <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
               <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
               <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
-              <li><a href="contact.html"><span>Log Out</span></a></li>
+              <li><a onClick={() => LogOutHandler()} ><span>Log Out</span></a></li>
   
             </ul>
           </nav>
@@ -892,7 +892,7 @@ const swalWithBootstrapButtons = Swal.mixin({
       {/* //loop will be created here inside the box f2 :D*/}
   
   
-    <div class="listing-item">
+    <div class="listing-item100">
         <figure class="image">
             <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
             <figcaption>
@@ -912,12 +912,12 @@ const swalWithBootstrapButtons = Swal.mixin({
             <h4>Booking Number:{reserv._id}</h4>
             {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
             {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
-            <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
+            <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv,reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
   
         </div>
     </div>
    
-    <div class="listing-item">
+    <div class="listing-item100">
         <figure class="image">
             <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
             <figcaption>
@@ -940,14 +940,14 @@ const swalWithBootstrapButtons = Swal.mixin({
             {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
             {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
             {/* spy={true} */}
-            <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
+            <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv,reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
     
         </div>
     </div>
     
     {/* on click will send reservation number + total price refunded */}
     <div class="listing-item99">
-    <button  type="button" onClick={() =>ConfirmDelete(reserv._id,reserv.TotalPrice,reserv.Email)} class="button-70" > 
+    <button  type="button" onClick={() => ConfirmDelete(reserv._id,reserv.TotalPrice,reserv.Email)} class="button-70" > 
     <div class="center">
       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -957,8 +957,23 @@ const swalWithBootstrapButtons = Swal.mixin({
     Cancel Reservation
        </button>
        
+       
   
        </div>
+       <div class="listing-item99">
+    <button  type="button" onClick={() => Showboarding(reserv.Flight_DateFrom,reserv.Flight_DateTo,reserv.Flight_From,reserv.Flight_To,reserv.CabinFrom,reserv.CabinTo)} class="button-100" > 
+    <div class="center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-ticket-detailed-fill" viewBox="0 0 16 16">
+    <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5Zm4 1a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5Zm0 5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5ZM4 8a1 1 0 0 0 1 1h6a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1Z"/>
+  </svg>
+  </div>
+      Show Boardingpass
+       </button>
+       
+       
+  
+       </div>
+       
        </div>
    
    )}
@@ -986,9 +1001,8 @@ const swalWithBootstrapButtons = Swal.mixin({
          <script src="js/extention/choices.js"></script>   
   
      
-     
   
-     <div class="plane">
+         <div class="plane">
     <div class="cockpit">
       <h1>Select Seats</h1>
     </div>
