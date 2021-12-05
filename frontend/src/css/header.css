@@ -39,7 +39,8 @@
       left: 0;
       font-size: 24px !important; }
     .site-navbar .site-navigation .site-menu {
-      margin-bottom: 0; }
+        margin-Top: -400px;
+      margin-left: 1390px; }
       .site-navbar .site-navigation .site-menu .active > a span {
         background: #007bff;
         color: #fff;
@@ -306,19 +307,38 @@
                 /* margin-bottom: -20px; */
                 grid-gap: 62px;
                 gap: 270px;
-                box-shadow: rgb(0 0 0 / 80%) 0px 2px 20px;
+                /* box-shadow: rgb(0 0 0 / 80%) 0px 2px 20px; */
                 max-height: 50%;
                 
               }
-              .container {
+              /* .container {
                 min-width: 992px !important;
-                background-image: linear-gradient(to bottom right, white, #2c6ed5);
+                /* background-image: linear-gradient(to bottom right, white, #2c6ed5); */
                 /* background-image: url("https://i.ibb.co/SVCqvPG/background.png"); */
                
               
                 /* background-image: url("https://i.ibb.co/YTrCKh4/backgroundneww.png"); */
-                 background-image: url("https://i.ibb.co/X74PhCj/grayback.png");
-                max-height: 50%;
+                 /* background-image: url("https://i.ibb.co/X74PhCj/grayback.png"); */
+                 
+                 /* background-image: url("https://images.pexels.com/photos/1379627/pexels-photo-1379627.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); */
+                /* max-height: 50%; */
+              /* } */ 
+
+              .container {
+                position: fixed;
+                width: 100%;
+                text-align: center;
+                color: white;
+                transition: 0.4s;
+                max-width: 10%;
+                max-height: 10%;
+              }
+
+              .container:hover {
+            
+                background: transparent;
+                color: #000;
+
               }
               .site-navbar .site-navigation .site-menu > li > a > span {
                   margin-bottom:-24px ;
@@ -340,8 +360,8 @@
                     
                 }
                 .col-11 {
-                  margin-top: 15px;
-                  margin-left: 7px;
+                  margin-top: 38px;
+                  margin-left: 11px;
                   
                   }
                 
