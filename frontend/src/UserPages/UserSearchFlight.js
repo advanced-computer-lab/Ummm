@@ -683,13 +683,6 @@ else{
     });
  };
 
- const EditFlightHandler = event => {
-  history.push({
-      pathname: '/UserHomePage',
-      state: { detail: 'some_value' }
-  });
-};
-
 const EditProfileHendler = event => {
   history.push({
       pathname: '/UserEditProfile',

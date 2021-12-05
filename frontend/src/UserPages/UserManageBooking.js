@@ -1,30 +1,16 @@
 import { Component, useState,useEffect, useReducer } from 'react';
 import axios from 'axios'
-import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
 import React from 'react';
 import {Link} from 'react-scroll'
-import Seatmap from 'react-seatmap';
-import SeatPicker from "react-seat-picker";
 import "./styles.css";
 import Swal from 'sweetalert2'
-
-
-
-import $ from 'jquery';
-
 import SeatMap from './SeatMapComponent.js';
-
 import 'antd/dist/antd.css'; 
 import '../css/popup.css';
-
 import '../css/main.css';
 import '../css/guest.css';
 import '../css/SelectSeat.scss';
-
-
-
-
 import moment from "moment";
 import {
   Form,
@@ -40,300 +26,77 @@ import {
   Switch,
 } from 'antd';
 
-
-
-
-
-
-
- 
-
-//TESTTTTTTTTT
-
-
 const UserManageBooking = () => {
-//   if (sessionStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
-//     Login();
-//  }
-//  const LogOutHandler = (e) => {
-//   sessionStorage.clear()
-//   history.push({
-//     pathname: '/UserLogin'
-//   });
-// };
-
 
  const history = useHistory();
-  const [componentSize, setComponentSize] = useState('default');
-  const [Result1, setResult1] = useState();
-  const [Result2, setResult2] = useState();
-  const [isLoading, setLoading] = useState(true);
-  const [bothselected, setbothselected] = useState(true);
+ const [isLoading, setLoading] = useState(true);
 
- 
-  const [state, setMap] = useState({
-    loading: false
-  });
+  const criteria = {};
+  const [Guard, setGuard] = useState(true);
+  criteria["Username"]= sessionStorage.getItem("Username");
+  const criteria1 = {};
+  const [Reservations, setallReservation] = useState();
+  const [flight1, setflight1] = useState();
+  const [flight2, setflight2] = useState();
 
-  const [Data, setState] = useState({
-    Flight_No: "",
-        From: "",  
-        To: "",
-        Flight_Date_Depart: "", // Data type date
-        Flight_Date_Return: "", // Data type date
-        Terminal: "",
-        Flight_Duration:"",
-        Seats: "",
-        Baggage: "",
-        Price: "",
-    
-
-  });
-  
-  
-  const onFormLayoutChange = ({ size }) => {
-    setComponentSize(size);
-  };
-
-  const scrollToBottom = ({ size }) => {
-    window.scrollTo({bottom:0, behavior: "smooth"})
-   };
-
-  const [value, setValue] = useState(1);
-  const selectRadio = e => {
-    console.log('radio checked', e.target.value);
-    setValue(e.target.value);
-  };
-
-
-  const cars = [];
-  const [isdepart, setdepart] = useState();
-
-  const departHandler = (flight) => {
-    setdepart( flight )
-    //console.log(flight) ;
-   
-    };
-
-
-    // const Login = () => {
-    //   Swal.fire(
-    //     {
-    //     title: 'You are one step Away!',
-    //     text: 'Please Log In to continue',
-    //     icon: 'warning',
-    //     confirmButtonText: 'Log In',
-    //     confirmButtonColor: '#ff8300',
-    //     // iconColor:'#ff8300' ,
-    //   })
-    //     .then((res) => {
-    //          if(res.isConfirmed){
-    //             console.log('confirm');
-    //             window.open("UserLogin", "_self");
-                 
-    //         }    
-    //     });
-    // };
-
-
-    const [isSeat, setSeat] = useState();
-
-    const seatHandler = (flight) => {
-      setSeat( flight )
-      };
-    
-
-    const [isreturn, setreturn] = useState();
-
-    const returnHandler = (flight) => {
-      setreturn( flight )
-      //console.log(flight) ;
-      
-      };
-      
-    
+  // const [allReservation, setReservation] = useState({
+  //   FirstName:"",
+  //   LastName: userinfo.LastName,  
+  //   Email: userinfo.Email,
+  //   Date_of_Birth: userinfo.Date_of_Birth, // Data type date
+  //   PassPort_No: userinfo.PassPort_No,
+  //   Username: userinfo.Username,
+  //   Password: userinfo.Password,
+  // });
 
   useEffect(() => {
 
-    if(Result1 && Result2)
-    {
-      setLoading(false);
-    }
+    if(Guard === true){
+      axios.post('http://localhost:8000/reservationinfo',criteria).then((result)=>
+      {    
+        console.log("ssss")
+       setallReservation(result.data);
+       console.log(Reservations);
+        } )
+      };
+      if(Reservations){ 
 
-    if(isdepart && isreturn){
-     document.getElementById("yourButtonID").style.visibility="visible";
-     setbothselected(false);
-    // document.getElementById("yourButtonID").style.backgroundColor="red";
-    
-    }
-
-    var x=document.getElementsByClassName("seat-picker__row seat-picker__row--enabled");
-    // console.log(x[4].style.margin);  // Find the elements
-    x[4].style.marginBottom = "34px"; 
-    x[11].style.marginBottom = "34px"; 
-    
-    
+        console.log(Reservations);
 
 
-  },[Result1,Result2,isdepart,isreturn,state]);
-
-
-
-  const changeHander = (e) => {
-    console.log(moment(Data.Flight_Date));
-
-    setState( prevData => {
-     return {...prevData ,[e.target.name]: e.target.value}})
-  };
-
-  
-  const BookHendler = () => {
-   
-console.log(isdepart);
-console.log(isreturn);
-    
-  };
-
-
-
-  //TTTTTT
-  const searchHandler = (e) => {
-    e.preventDefault(); 
-  
-    const criteria1 = {};
-    const criteria2 = {};
-    var dd;
-
-    Object.keys(Data).forEach(key => {
-   if (Data[key]!=="") {
-    if(key=="Flight_Date_Depart"){
-      criteria1["Flight_Date"] = Data[key];
-      // criteria2["Flight_Date_Depart"] = Data[key];
-    }
-      else
-        criteria1[key] = Data[key];
-        if(key=="From"){
-          criteria2[key] = Data["To"];
-        }
-       else if(key=="To"){
-          criteria2[key] = Data["From"];
-        }
-        else if(key=="Flight_Date_Return"){
-          criteria2["Flight_Date"] = Data[key];
-        }
-        else
-        criteria2[key] = Data[key];
       }
-    });
-    //console.log(criteria);
-
-   // prevent reloading the page
-   console.log(Data.Flight_Date_Depart);
-  //  if(Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date_Depart!=="" &&Data.Flight_Date_Return!==""){
-    axios.post('http://localhost:8000/SearchFlight', criteria1)
-    .then(response => {
-      setResult1(response.data);
-       console.log(Result1);
-      setState({
-        Flight_No: "",
-        From: "",  
-        To: "",
-        Flight_Date_Depart: "", // Data type date
-        Flight_Date_Return: "", // Data type date
-        Terminal: "",
-        Flight_Duration:"",
-        Seats: "",
-        Baggage: "",
-        Price: "",
-        })
-       }).catch(error => {
-      console.log(error);
-    })
-
-    axios.post('http://localhost:8000/SearchFlight', criteria2)
-    .then(response => {
-      setResult2(response.data);
-       console.log(Result2);
-      setState({
-        Flight_No: "",
-        From: "",  
-        To: "",
-        Flight_Date_Depart: "", // Data type date
-        Flight_Date_Return: "", // Data type date
-        Terminal: "",
-        Flight_Duration:"",
-        Seats: "",
-        Baggage: "",
-        Price: "",
-        })
-       }).catch(error => {
-      console.log(error);
-    })
-    console.log(Result1);
-    console.log(Result2);
 
 
-    setState({
-      Flight_No: "",
-        From: "",  
-        To: "",
-        Flight_Date_Depart: "", // Data type date
-        Flight_Date_Return: "", // Data type date
-        Terminal: "",
-        Flight_Duration:"",
-        Seats: "",
-        Baggage: "",
-        Price: "",
-      })
-  };
 
-//   const LoginHandler = event => {
-//     history.push({
-//         pathname: '/UserManageBoooking',
-      
-//     });
-//  };
+       if( Reservations && Guard === true){
+      setTimeout(() => {
+        setGuard(false);
+      }, 1000)};
+    // var x=document.getElementsByClassName("seat-picker__row seat-picker__row--enabled");
+    // x[4].style.marginBottom = "30px"; 
+    // x[11].style.marginBottom = "30px"; 
+    
+    
+
+
+  },[Reservations,Guard]);
+
+
+
+ var AvailableSeats = [];
+   const flightmapHandler = (id) => {
+    axios.post('http://localhost:8000/flightmap', {data: {var1:id}}).then((result)=>
+    {    
+      console.log("ssss")
+      AvailableSeats=result.data.Available_Seats;
+     console.log(AvailableSeats);
+  })};
+
+
+
 
 
   const ConfirmDelete = (ReservationNumber,RefundedAmount) => { // e will contain the reservation number 
-    // var x = document.getElementsByClassName("seat-picker__row__number").innerText = "F";
-    // x.innerText = "";
-
-
-  //   const linkContainers = document.querySelectorAll('.seat-picker');
-  //   console.log(linkContainers);
-  //   linkContainers.forEach(container => {
-  //     if (container.childElementCount === 2) {
-  //       for (let i=0; i < container.children.length; i++) {
-  //         container.children[i].style.height = '59.5px';
-  //       }
-  //     }
-  //   });
-
-  //   const linkContainers = document.querySelectorAll('.seat-picker');
-  //   console.log(linkContainers);
-  // linkContainers.forEach(container => {
-  //   // if (container.childElementCount === 26) {
-  //     for (let i=0; i < container.children.length; i++) {
-  //       container.children[i].style.paddingBottom="1";
-  //     }
-  //   // }
-  // });
-
-    // document.getElementsByClassName("seat-picker__row seat-picker__row--enabled")[0].style.marginBottom = "1px";
-
-  
-    
-   
-
-
-
-    // x[11].innerText=""; 
-    // for(var i = 6; i < x.length; i++){
-      // x[6].innerText="F";
-  //  }
-   
-    // console.log(x)
     Swal.fire(
       {
       title: 'Delete Reservation Number '.concat(ReservationNumber).concat(' ?'),
@@ -377,11 +140,6 @@ console.log(isreturn);
   const warning4 = () => {
     message.warning('Please enter return date.');
   };
-
-  // const testme = () => {
-  //   if(isdepart )
-  //   document.getElementById("yourButtonID").style.visibility="visable";
-  // }; 
   const SearchFlightHandler = event => {
     history.push({
         pathname: '/UserSearchFlight',
@@ -389,21 +147,6 @@ console.log(isreturn);
     });
  };
 
-
-
- const ReservedFlightsHandler = event => {
-  history.push({
-      pathname: '/UserManageBooking',   //this one for resrved flightsss
-      state: { detail: 'some_value' }
-  });
-};
-
-const EditFlightHandler = event => {
-  history.push({
-      pathname: '/UserHomePage',
-      state: { detail: 'some_value' }
-  });
-};
 const EditProfileHendler = event => {
   history.push({
       pathname: '/UserEditProfile',
@@ -411,11 +154,10 @@ const EditProfileHendler = event => {
   });
 };
 
-const { loading } = state;
 
 
 
-  if (isLoading) {
+  if (Reservations) {
 
     // if (sessionStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
     //   window.open("UserHomePage", "_self");
@@ -487,36 +229,37 @@ const { loading } = state;
 
 <div class="box d2">
 <label class="center">All Reserved Flights</label>
+{Reservations.map(reserv =>
   <div class="box f2">
     
     {/* //loop will be created here inside the box f2 :D*/}
 
-    <div class="center"> RESERVATION 1</div>
+
   <div class="listing-item">
       <figure class="image">
           <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
           <figcaption>
             <div class="caption">
             <h1>Depart Flight</h1>
-              <p>Flight Number:</p>
+              <p>Flight Number:{reserv.Flight_NoFrom}</p>
               </div>
           </figcaption>
       </figure>
       <div class="listing">
-          <h4>From: </h4>
-          <h4>To:</h4>
-          <h4>Flight Date:</h4>
-          <h4>Flight Time:</h4>
-          <h4>Cabin:</h4>
-          <h4>Seat:</h4>
-          <h4>Total Price:</h4>
-          <h4>Booking Number:</h4>
+          <h4>From:{reserv.Flight_From} </h4>
+          <h4>To:{reserv.Flight_To}</h4>
+          <h4>Flight Date:{reserv.Flight_DateFrom}</h4>
+          <h4>Flight Time:{reserv.Flight_DateFrom}</h4>
+          <h4>Cabin:{reserv.CabinFrom}</h4>
+          <h4>Seat:{reserv.SeatsChoosenFrom}</h4>
+          <h4>Booking Number:{reserv._id}</h4>
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
-          <Link class="button-79" role="button" to="SeatMap"  smooth={true}>SELECT SEAT</Link>
+          <Link class="button-79" role="button" to="SeatMap"  onClick={() => flightmapHandler(reserv.Flight_IDFrom)} smooth={true}>Select Seat</Link>
 
       </div>
   </div>
+ 
   <div class="listing-item">
       <figure class="image">
           <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
@@ -528,23 +271,23 @@ const { loading } = state;
           </figcaption>
       </figure>
       <div class="listing">
-          <h4>From: </h4>
-          <h4>To:</h4>
-          <h4>Flight Date:</h4>
-          <h4>Flight Time:</h4>
-          <h4>Cabin:</h4>
-          <h4>Seat:</h4>
-          <h4>Total Price:</h4>
-          <h4>Booking Number:</h4>
+         <h4>From:{reserv.Flight_To} </h4>
+          <h4>To:{reserv.Flight_From}</h4>
+          <h4>Flight Date:{reserv.Flight_DateTo}</h4>
+          <h4>Flight Time:{reserv.Flight_DateTo}</h4>
+          <h4>Cabin:{reserv.CabinTo}</h4>
+          <h4>Seat:{reserv.SeatsChoosenTo}</h4>
+          <h4>Booking Number:{reserv._id}</h4>
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a href="#modal-opened" class="link-1" id="modal-closed">Reserve Flight</a> */}
           {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
           {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
           {/* spy={true} */}
-          <Link class="button-79" role="button" to="SeatMap"  smooth={true}>SELECT SEAT</Link>
+          <Link class="button-79" role="button" to="SeatMap" onClick={() => flightmapHandler(reserv.Flight_IDTo)}  smooth={true}>Select Seat</Link>
   
       </div>
   </div>
+  
   {/* on click will send reservation number + total price refunded */}
   <button  type="button" onClick={() => ConfirmDelete('1','100$')} class="button-70" > 
   <div class="center">
@@ -555,11 +298,13 @@ const { loading } = state;
 </div>
   Cancel Reservation
      </button>
+     
 
      
  {/* //loop will be created here inside the box f2 :D*/}
  
   </div>
+   )}
   
 
   
@@ -613,7 +358,7 @@ const { loading } = state;
 
 
   }
-
+return (<h1></h1>)
   
   
 
