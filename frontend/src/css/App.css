@@ -10,14 +10,18 @@
     font-size: 3em;
     color: #fff;
     display: block;    
+    
   }
   .back{
-    background-image: url('http://media.futurebutterflies.net/houston-besomeone.jpg') ;
+    background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb') ;
     display: flex;
     align-items: center; 
     justify-content: center;
-    height: 100vh;
+      height: 100vh;
      background-repeat: no-repeat	;
+     position: center;
+     background-size: cover;
+  
 }
 
 
@@ -49,10 +53,10 @@
   }
   
   button2:hover{
-    border: 2px solid #104F55;
+    border: 2px solid #e35e0a;
     background-color: rgba(365,365,365,0.5);
     cursor: pointer;
-    color: #104F55;
+    color: #e35e0a;
     opacity: .8;
     transition: .3s;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -79,10 +83,10 @@
     }
     
      button3:hover{
-      border: 2px solid #104F55;
+      border: 2px solid #e35e0a;
       background-color: rgba(365,365,365,0.5);
       cursor: pointer;
-      color: #104F55;
+      color: #e35e0a;
       opacity: .8;
       transition: .3s;
       box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -332,10 +336,11 @@
     
   
     h9 {
-        font-family: 'Alex Brush';
+        font-family: 'Lucida Handwriting';
         color: #fff;
         font-size: 9em;
          text-shadow: 5px 4px 7px rgba(#000, .4);
          display: block;
+         animation: glow 1s ease-in-out infinite alternate;
         }
       
