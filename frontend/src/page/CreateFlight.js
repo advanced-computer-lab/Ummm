@@ -3,6 +3,7 @@ import axios from 'axios'
 import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css'; 
+import { SettingOutlined } from '@ant-design/icons';
 
 import moment from "moment";
 import {
@@ -10,6 +11,8 @@ import {
   Input,
   Button,
   Radio,
+  TimePicker,
+  Space,
   Select,
   Cascader,
   DatePicker,
@@ -25,10 +28,22 @@ import {
   
 
 const CreateFlight = () => {
+  if (sessionStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
+    window.open("LoginPage", "_self");
+ }
+ const LogOutHandler = (e) => {
+  sessionStorage.clear()
+  history.push({
+    pathname: '/LoginPage'
+  });
+
+};
+
   const history = useHistory();
 
   const [componentSize, setComponentSize] = useState('default');
- // const [form] = Form.useForm();
+   const [form] = Form.useForm();
+   const format = 'HH:mm';
 
   const [Data, setState] = useState({
     Flight_No: "",
@@ -36,9 +51,19 @@ const CreateFlight = () => {
     To: "",
     Flight_Date: "", // Data type date
     Terminal: "",
+    Flight_Duration: "", //string :
+    Flight_DHour: "", //temp
+    Flight_DMin: "", //temp
     Economy_Seats: "",
     Business_Seats: "",
-    First_Seats: ""
+    First_Seats: "",
+    Economy_Baggage: "",
+    Business_Baggage: "",
+    First_Baggage: "",
+    Economy_Price: "",
+    Business_Price: "",
+    First_Price: "",
+    Available_Seats: "",
   });
   
 
@@ -54,6 +79,10 @@ const CreateFlight = () => {
   const submitHandler = (e) => {
     e.preventDefault();    // prevent reloading the page
 
+
+   
+
+
     // Object.keys(Data).forEach(key => {
     //   if(key=='Economy_Seats' || key=='Business_Seats' || key=='First_Seats')
     //   if (Data[key]=="") {
@@ -61,58 +90,177 @@ const CreateFlight = () => {
     //      }
     //    });
     
-    if(Data.Flight_No.length==5 &Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date!==null &&Data.Terminal!==''&& Data.Economy_Seats!==''&& Data.First_Seats!==''&& Data.Business_Seats!=='' ){
-    axios.post('http://localhost:8000/createflight', Data)
+    // /if(Data.Flight_No.length==5 &Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date!==null &&Data.Terminal!==''&& Data.Economy_Seats!==''&& Data.First_Seats!==''&& Data.Business_Seats!=='' ){
+
+    //   const Data1 = {};
+    //   const Data2 = {};
+    //   const Data3 = {};
+      
+  
+    //   Object.keys(Data).forEach(key => {
+    //     console.log(!key.startsWith("Economy"));
+    //  if (!key.startsWith("Economy") && !key.startsWith("Business") && !key.startsWith("First")) {
+    //       Data1[key] = Data[key];
+    //       Data2[key] = Data[key];
+    //       Data3[key] = Data[key];
+    //     }
+    //     else if(key.startsWith("Economy")){
+    //       Data1[key.substring(8)] = Data[key];
+    //     }
+    //     else if(key.startsWith("Business")){
+    //       Data2[key.substring(9)] = Data[key];
+    //     }
+    //     else if(key.startsWith("First")){
+    //       Data3[key.substring(6)] = Data[key];
+    //     }
+    //   });
+    //       Data1["Cabin"] = "Economy";
+    //       Data2["Cabin"] = "Business";
+    //       Data3["Cabin"] = "First";
+
+    //   console.log(Data1);
+    //   console.log(Data2);
+    //   console.log(Data3);
+
+
+    var Data1 = {};
+    var a = new Array(141);
+    // var b = new Array(Data.Business_Seats+1);
+    // var c = new Array(Data.First_Seats+1);
+    a[0] = false; 
+    // b[0] = false; c[0] = false;
+    for (var i = 1; i < a.length; ++i) { 
+      if(i<21){
+        if(i<Data.First_Seats+1)
+             a[i] = true;
+        else
+             a[i] = false;
+     }
+     else if(i<63) {
+      if(i<Data.Business_Seats+21)
+         a[i] = true;
+      else
+         a[i] = false;
+     }
+     else {
+      if(i<Data.Economy_Seats+63)
+             a[i] = true;
+        else
+             a[i] = false;
+     }
+    }
+     console.log(a);
+    //  for (var i = 1; i < b.length; ++i) { 
+    //   b[i] = true; 
+    //  }
+    //  for (var i = 1; i < c.length; ++i) { 
+    //   c[i] = true;
+    //  }
+
+    Object.keys(Data).forEach(key => {
+      if(key=='Flight_DHour'){
+        Data1['Flight_Duration'] = Data.Flight_DHour + ':';
+      }
+      else if(key=='Flight_DMin'){
+        Data1['Flight_Duration'] += Data.Flight_DMin +'';
+       }
+       else if(key=='Available_Seats'){
+        Data1['Available_Seats'] = a;
+       }
+      //  else if(key=='Business_Available'){
+      //   Data1['Business_Available'] = b;
+      // }
+      // else if(key=='First_Available'){
+      //   Data1['First_Available'] = c;
+      // }
+       else if(key!=='Flight_Duration')
+       Data1[key] = Data[key];
+      });
+      console.log(Data1);
+
+    axios.post('http://localhost:8000/createflight', Data1)
     .then(response => {
       console.log(response.status);
-      setState({
-        Flight_No: "",
-        From: "",  
-        To: "",
-        Flight_Date: "", // Data type date
-        Terminal: "",
-        Economy_Seats: "",
-        Business_Seats: "",
-        First_Seats: ""
-        })
       //  window.location.reload(false);
- //     form.resetFields();
+       form.resetFields();
         success(); // data succ added less go
       }).catch(error => {
         warning9();
         console.log(error);
     })
-   
-  }
 
-  else if(Data.Flight_No.length<3  ){
-    warning1();
-  }
-  else if(Data.From.length<3 ){
-    warning2();
-  }
-  else if(Data.To.length<3 ){
-    warning3();
-  }
-  else if(Data.Flight_Date=="" ){
-    warning4();
-  }
-  else if(Data.Terminal=="" ){
-    warning8();
-  }
-  else if(Data.Economy_Seats=='' ){
-    warning5();
-  }
+    // axios.post('http://localhost:8000/createflight', Data2)
+    // .then(response => {
+    //   console.log(response.status);
+    //   //  window.location.reload(false);
+    //    form.resetFields();
+    //     success(); // data succ added less go
+    //   }).catch(error => {
+    //     warning9();
+    //     console.log(error);
+    // })
+
+    // axios.post('http://localhost:8000/createflight', Data3)
+    // .then(response => {
+    //   console.log(response.status);
+    //   //  window.location.reload(false);
+    //    form.resetFields();
+    //     success(); // data succ added less go
+    //   }).catch(error => {
+    //     warning9();
+    //     console.log(error);
+    // })
+
+
+    setState({
+      Flight_No: "",
+      From: "",  
+      To: "",
+      Flight_Date: "", // Data type date
+      Terminal: "",
+      Flight_Duration: "",
+      Economy_Seats: "",
+      Business_Seats: "",
+      First_Seats: "",
+      Economy_Baggage: "",
+      Business_Baggage: "",
+      First_Baggage: "",
+      Economy_Price: "",
+      Business_Price: "",
+      First_Price: "",
+      Available_Seats: "",
+      })
+   
+  // };
+
+  // else if(Data.Flight_No.length<3  ){
+  //   warning1();
+  // }
+  // else if(Data.From.length<3 ){
+  //   warning2();
+  // }
+  // else if(Data.To.length<3 ){
+  //   warning3();
+  // }
+  // else if(Data.Flight_Date=="" ){
+  //   warning4();
+  // }
+  // else if(Data.Terminal=="" ){
+  //   warning8();
+  // }
+  // else if(Data.Economy_Seats=='' ){
+  //   warning5();
+  // }
  
-  else if(Data.Business_Seats==''){
-    warning6();
-  }
-  else if(Data.First_Seats=='' ){
-    warning7();
-  }
-  else {
-    warning();
-  }
+  // else if(Data.Business_Seats==''){
+  //   warning6();
+  // }
+  // else if(Data.First_Seats=='' ){
+  //   warning7();
+  // }
+  // else {
+  //   warning();
+  // }
   
   };
 
@@ -170,10 +318,10 @@ const CreateFlight = () => {
         }}
         onValuesChange={onFormLayoutChange}
         size={componentSize}
-   //     form={form}
+       form={form}
       >                     
   
-  <Form.Item  
+  <Form.Item  name="Flight_No"
         rules={[
           {
             required: true,
@@ -184,35 +332,35 @@ const CreateFlight = () => {
         </Form.Item>
         
 
-        <Form.Item  
+        <Form.Item  name="From"
         rules={[
           {
             required: true,
             message: 'Please Fill it With At Least 3 Letters!',
           },
-        ]}label="From">
+        ]}label="From" >
           <Input   type="text" name="From" maxLength="3" placeholder="3 letters"  value={Data.From} onChange={(e) => changeHander(e)} />
         </Form.Item>
 
 
-        <Form.Item label="To"
+        <Form.Item name="To"
          rules={[
            {
              required: true,
              message: 'Please Fill it With At Least 3 Letters!',
            },
-         ]}>
+         ]}label="To">
         <Input type="text" name="To" maxLength="3" placeholder="3 letters" value={Data.To} onChange={(e) => changeHander(e)}/>
         </Form.Item>
         
         
-        <Form.Item 
+        <Form.Item name="FlightDate"
         rules={[
           {
             required: true,
             message: 'Please Select Date!',
           },
-        ]} label="Flight Date">
+        ]} label="Flight Date and Dept.Time">
           <DatePicker type="date" format="DD-MM-YYYY" value={Data.Flight_Date} format="DD-MM-YYYY, HH:mm"
           showTime="true" disabledDate={d => d.isBefore(new Date())}
            name="FlightDate" onChange={(date) => setState(prevData => {
@@ -220,7 +368,47 @@ const CreateFlight = () => {
     }/>
         </Form.Item>
 
-        <Form.Item 
+        {/* <Form.Item name="Duration"
+         rules={[
+           {
+             required: true,
+             message: 'Please Select Set Duration!',
+           },
+         ]}label="Duration">
+        <TimePicker name="Duration" type="Number" format="HH:mm" value={Data.Flight_Duration} format="HH:mm"
+        value={Data.Flight_Duration} format={format} 
+        onChange={(number) => setState(prevData => {
+          return {...prevData ,Flight_Duration: number}}) 
+        }
+        />
+        </Form.Item> */}
+
+
+
+<Form.Item name="Duration"
+         rules={[
+           {
+             required: true,
+             message: 'Please Select Set Duration!',
+           },
+         ]}label="Duration">
+  <Space>
+    <InputNumber min={0} max={23} value={Data.Flight_DHour}   onChange={(number) => setState(prevData => {
+          return {...prevData ,Flight_DHour: number}}) 
+        } />
+    <InputNumber min={0} max={59} value={Data.Flight_DMin}   onChange={(number) => setState(prevData => {
+          return {...prevData ,Flight_DMin: number}}) 
+        }/>
+      </Space>
+
+
+
+
+ </Form.Item>
+
+
+
+        <Form.Item name="Terminal"
         rules={[
           {
             required: true,
@@ -236,45 +424,152 @@ const CreateFlight = () => {
           </Select>
         </Form.Item>
 
-        <Form.Item 
+       
+        <Form.Item name="Economy_Seats"
         rules={[
           {
             required: true,
             message: 'Please Fill!',
           },
         ]} label="Economy Seats">         
-          <InputNumber type="Number" name="Economy_Seats" value={Data.Economy_Seats} max={500} placeholder="500 Max" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="Economy_Seats" value={Data.Economy_Seats} min={0} max={78} placeholder="78 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,Economy_Seats: number}}) 
           }/>
         </Form.Item>
 
         
-        <Form.Item 
+        <Form.Item name="Business_Seats"
         rules={[
           {
             required: true,
             message: 'Please Fill!',
           },
         ]} label="Business Seats">   
-          <InputNumber type="Number" name="Business_Seats" value={Data.Business_Seats} max={500} placeholder="500 Max" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="Business_Seats" value={Data.Business_Seats} min={0} max={42} placeholder="42 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,Business_Seats: number}}) 
           }/>
         </Form.Item>
 
-        <Form.Item 
+        <Form.Item name="First_Seats"
         rules={[
           {
             required: true,
             message: 'Please Fill!',
           },
         ]} label="First Seats">   
-          <InputNumber type="Number" name="First_Seats" value={Data.First_Seats} max={500} placeholder="500 Max" onChange={(number) => setState(prevData => {
+          <InputNumber type="Number" name="First_Seats" value={Data.First_Seats} min={0} max={20} placeholder="20 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,First_Seats: number}}) 
           }/>
         </Form.Item>
 
+
+
+
+
+
+
+
+
+
+        <Form.Item name="Economy_Baggage"
+        rules={[
+          {
+            required: true,
+            message: 'Please Fill!',
+          },
+        ]} label="Economy Baggage">         
+          <InputNumber type="Number" name="Economy_Baggage" value={Data.Economy_Baggage} min={0} max={15} placeholder="15 Max" onChange={(number) => setState(prevData => {
+              return {...prevData ,Economy_Baggage: number}}) 
+          }/>
+        </Form.Item>
+
+        
+        <Form.Item name="Business_Baggage"
+        rules={[
+          {
+            required: true,
+            message: 'Please Fill!',
+          },
+        ]} label="Business Baggage">   
+          <InputNumber type="Number" name="Business_Baggage" value={Data.Business_Baggage} min={0} max={15} placeholder="15 Max" onChange={(number) => setState(prevData => {
+              return {...prevData ,Business_Baggage: number}}) 
+          }/>
+        </Form.Item>
+
+
+        <Form.Item name="First_Baggage"
+        rules={[
+          {
+            required: true,
+            message: 'Please Fill!',
+          },
+        ]} label="First Baggage">   
+          <InputNumber type="Number" name="First_Baggage" value={Data.First_Baggage} min={0} max={20} placeholder="15 Max" onChange={(number) => setState(prevData => {
+              return {...prevData ,First_Baggage: number}}) 
+          }/>
+        </Form.Item>
+
+
+
+
+
+
+
+        <Form.Item name="Economy_Price"
+        rules={[
+          {
+            required: true,
+            message: 'Please Fill!',
+          },
+        ]} label="Economy Price">         
+          <InputNumber  type="Number" name="Economy_Price" value={Data.Economy_Price} min={0} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
+              return {...prevData ,Economy_Price: number}}) 
+          }/>
+        </Form.Item>
+     
+        
+        <Form.Item name="Business_Price"
+        rules={[
+          {
+            required: true,
+            message: 'Please Fill!',
+          },
+        ]} label="Business Price">   
+          <InputNumber type="Number" name="Business_Price" value={Data.Business_Price} min={0} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
+              return {...prevData ,Business_Price: number}}) 
+          }/>
+        </Form.Item>
+
+
+        <Form.Item name="First_Price"
+        rules={[
+          {
+            required: true,
+            message: 'Please Fill!',
+          },
+        ]} label="First Price">   
+          <InputNumber type="Number" name="First_Baggage" value={Data.First_Price} min={0} max={5000} placeholder="$" onChange={(number) => setState(prevData => {
+              return {...prevData ,First_Price: number}}) 
+          }/>
+        </Form.Item>
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
         <Form.Item>
-        &nbsp;&nbsp;&nbsp;&nbsp;
+        <Button onClick={(e) => LogOutHandler(e)}>Log Out</Button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <Button onClick={() => history.goBack()}>Back</Button>
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

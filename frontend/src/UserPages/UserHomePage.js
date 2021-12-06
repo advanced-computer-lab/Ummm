@@ -26,16 +26,8 @@ import {
 const { Header, Sider, Content } = Layout;
 
 
-
-class HomePage extends React.Component {
-
-   LogOutHandler = () => {
-    sessionStorage.clear()
-    window.open("LoginPage", "_self");
-
-    
-  };
-
+class UserHomePage extends React.Component {
+  
   
   state = {
     collapsed: true,
@@ -55,13 +47,7 @@ class HomePage extends React.Component {
   // };
 
   render() {
-    if (sessionStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
-      window.open("LoginPage", "_self");
-   }
-   //Is their authentication token still valid?
-  //  else if (Date.now > new Date(sessionStorage.getItem('AuthenticationExpires'))) {
-  //        window.open("AccessDenied.html", "_self");
-  //  }
+    
     return (
         
         
@@ -82,7 +68,7 @@ class HomePage extends React.Component {
               Notifications
             </Menu.Item>
             <Menu.Item key="4" icon={<ImportOutlined />} > 
-            <Button onClick={this.LogOutHandler}>Log Out</Button>
+              Log Out
             </Menu.Item>
           </Menu>
           
@@ -95,10 +81,12 @@ class HomePage extends React.Component {
               onClick: this.toggle,
             })}
             
+            <h1>HANA HYB2A USER HOME PAGEEE</h1>
             <div class="grid-container"  >
-        <div class="grid-item"> 
-        
-        <a name ="SearchPic" href="/SearchFlight" target="_self">
+
+    
+        <div class="grid-item">         
+        <a name ="SearchPic" href="/UserSearchFlight" target="_self">
         <img class="static" src="https://i.ibb.co/b6q5BR1/fig1frame2.jpg" />
         <img class="active" src="https://media.giphy.com/media/l0ExdAn5aQzxQFkxq/giphy.gif"/>
         </a>
@@ -107,22 +95,24 @@ class HomePage extends React.Component {
          
          
              <div class="grid-item">
-            <a name ="SearchPic" href="/viewflights" target="_self">
+            <a name ="SearchPic" href="/UserManageBooking" target="_self">
             <img class="static"  src="https://i.ibb.co/fp106MB/giphy.jpg" />
         <img class="active"   src="https://media.giphy.com/media/gkAEM5sXCFqB465YWg/giphy.gif"/>
                  </a>
              </div>
            
 
+
+
          <div class="grid-item">
-         <a   name ="DeletePic" href="/CreateFlight" target="_self">
+         <a   name ="DeletePic" href="/UserManageBooking" target="_self">
         <img class="static" src="https://i.ibb.co/xJx5KDR/creategifframee.jpg" />
            <img class="active" src="  https://i.giphy.com/media/3o6nV8OYdUhiuKja1i/giphy.webp"/>
                   </a> 
 
             </div>
                 <div class="grid-item">
-                <a  name ="EditPic" href="/viewflights" target="_self">
+                <a  name ="EditPic" href="/UserManageBooking" target="_self">
                 <img class="static" src="https://i.ibb.co/r7b5Tcq/fraaaaaaame.gif" />
         <img class="active" src="https://media4.giphy.com/media/xTiIzscpttjBSNjMw8/giphy.gif?cid=ecf05e47cs5xh2s1q5mlyq45pm6gsqutb31voj1ejy6ki6bf&rid=giphy.gif&ct=g"/>
                 </a> 
@@ -149,4 +139,4 @@ class HomePage extends React.Component {
 }
 
 
-export default HomePage;
+export default UserHomePage;

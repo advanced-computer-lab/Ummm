@@ -1,6 +1,10 @@
 
 //import './home.scss';
+<<<<<<< HEAD
 import './App.css';
+=======
+import '../css/App.css';
+>>>>>>> fd86f7b21554bb498349975741d95e00695903f1
 
 import {
     Form,
@@ -23,7 +27,11 @@ const FlightHome = () => {
         
   <div class="back">
     <div class="welcome">Welcome to</div><br></br>
+<<<<<<< HEAD
     <h9>Fly Nawwwwww</h9>
+=======
+    <h9>Fly Nawww</h9>
+>>>>>>> fd86f7b21554bb498349975741d95e00695903f1
   </div>
   <div class="shade"></div>
   <div>
@@ -36,7 +44,11 @@ const FlightHome = () => {
                     <button2>Admin</button2>
                 </a>
                 
+<<<<<<< HEAD
                 <a href="LoginPage"> 
+=======
+                <a href="UserLogin"> 
+>>>>>>> fd86f7b21554bb498349975741d95e00695903f1
                     <button3>User</button3>
                 </a>
   
