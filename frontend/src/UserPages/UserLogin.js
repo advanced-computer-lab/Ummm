@@ -244,4 +244,8 @@ const UserLogin = () => {
 
         
 };
+<<<<<<< HEAD
 export default UserLogin;
+=======
+export default UserLogin;
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa

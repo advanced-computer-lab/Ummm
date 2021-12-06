@@ -31,12 +31,16 @@ import {
 } from 'antd';
 
 const UserManageBooking = () => {
+<<<<<<< HEAD
   const LogOutHandler = (e) => {
     sessionStorage.clear()
     history.push({
       pathname: '/UserLogin'
     });
   };
+=======
+
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
  const history = useHistory();
  const [isLoading, setLoading] = useState(true);
 
@@ -46,6 +50,13 @@ const UserManageBooking = () => {
   const criteria1 = {};
   const [Reservations, setallReservation] = useState();
   const [mapped, setmapped] = useState(false);
+<<<<<<< HEAD
+=======
+  // const [Available, setAvailable] = useState();
+  const [reserv, setreserv] = useState();
+  const [data1, setData] = useState();
+
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
 
   const [flight1, setflight1] = useState();
   const [flight2, setflight2] = useState();
@@ -63,6 +74,7 @@ const UserManageBooking = () => {
 
   useEffect(() => {
 
+<<<<<<< HEAD
     if(Guard === true){
       axios.post('http://localhost:8000/reservationinfo',criteria).then((result)=>
       {    
@@ -88,6 +100,255 @@ const UserManageBooking = () => {
 
   const [data1, setData] = useState([]);
 
+=======
+    // if(Guard === true){
+      axios.post('http://localhost:8000/reservationinfo',criteria).then((result)=>
+      {    
+        // console.log("ssss")
+       setallReservation(result.data);
+      //  console.log(Reservations);
+        } )
+      // };
+
+
+
+      //  if( Reservations && Guard === true){
+      // setTimeout(() => {
+      //   setGuard(false);
+      // }, 1000)};
+
+
+        // if(Available && reserv && mapped === false){
+         
+        //   // setTimeout(() => {
+        //   //   console.log("AAAAAAAA")
+        //   console.log(Available);
+        //   console.log(reserv);
+
+        //     senddata(reserv);
+        //   // }, 500)
+          
+
+        //   setTimeout(() => {
+        //     console.log("MMMMMMM")
+        //     setmapped(true);
+        //   }, 250)
+        //   // setTimeout(() => {
+        //   //   ScrollToBottom();
+        //   // }, 250)
+         
+
+        // };
+
+
+      // if(GoSet){
+      //   setTimeout(() => {
+      //     set
+      //   }, 750)};
+
+        // !mapped = false -> NO DOWNNN
+        //  !mapped = true -> DOWNNN
+
+    // var x=document.getElementsByClassName("seat-picker__row seat-picker__row--enabled");
+    // x[4].style.marginBottom = "30px"; 
+    // x[11].style.marginBottom = "30px"; 
+    
+    
+
+
+  },[]);
+
+
+
+  useEffect(() => {
+
+    if(reserv){
+    console.log(reserv)
+    console.log(reserv['Available'])
+    var date;
+    var ID;
+    var from = reserv['from'];
+    var myreserv = reserv['reserv'];
+    var Cabin;
+    
+    if(reserv['from']==true){
+      date = reserv['reserv'].Flight_DateFrom
+      ID = reserv['reserv'].Flight_IDFrom
+      Cabin = reserv['reserv'].CabinFrom
+    }
+    else{
+      date = reserv['reserv'].Flight_DateTo
+      ID = reserv['reserv'].Flight_IDTo
+      Cabin = reserv['reserv'].CabinTo
+    }
+    var Adults_No = reserv['reserv'].Adults;
+    var Children_No = reserv['reserv'].Children;
+    const Available = reserv['Available'];
+
+    if(reserv['from']==true){
+      var array = reserv['reserv'].SeatsChoosenFromID
+      console.log(array)
+      for(var i=0 ;i<array.length;i++){
+        Available[array[i]] = true;
+        // var r = array[i].substring(0,1);
+        // r = r.charCodeAt(0) - 65 ;
+        // var n = parseInt(array[i].substring(1));
+        // rows[r][n] = true;
+      }
+    }
+    else{
+      var array = reserv['reserv'].SeatsChoosenToID
+      console.log(array)
+      for(var i=0 ;i<array.length;i++){
+        Available[array[i]] = true;
+    }
+  }
+
+    const rows = new Array(26);
+   
+    for (var i = 0; i < rows.length; i++) {
+      if(i<6){
+        rows[i] = new Array(4);
+      }
+      else{
+        rows[i] = new Array(6);
+      }
+     
+    }
+     
+    for(let i=0;i<26;i++){
+      for(let j=0;j<8;j++){
+        if(j>1 && j<6 && i<5){
+          rows[i][j] = null;
+        }
+     else if(i<5){
+       if(j>5){
+         if(Cabin=='First')
+            rows[i][j] = { id: ((i*4)+j-4+1), number: j+1-4, isReserved: !Available[((i*4)+j-4+1)]} ;
+        else
+            rows[i][j] = { id: ((i*4)+j-4+1), number: j+1-4, isReserved: true} ;
+       }
+        else{
+        if(Cabin=='First')
+           rows[i][j] = { id: ((i*4)+j+1), number: j+1, isReserved:  !Available[((i*4)+j+1)]} ;
+        else
+        rows[i][j] = { id: ((i*4)+j+1), number: j+1, isReserved:  true} ;
+
+        }
+        // console.log(Available[((i*4)+j-4+1)]);
+    }
+
+    else {
+
+  if(Cabin=='Business' && i<12){
+      if(j>2 && j<5){
+        rows[i][j] = null;
+      }
+     else if(j>4)
+        rows[i][j] = { id: ((20+((i-5)*6)+j-2)+1), number: j+1-2, isReserved:  !Available[((20+((i-5)*6)+j-2)+1)]} ;
+         else
+         rows[i][j] = { id: ((20+((i-5)*6)+j)+1), number: j+1, isReserved:  !Available[((20+((i-5)*6)+j)+1)]} ;
+  }
+  else if(i<12){
+    if(j>2 && j<5){
+      rows[i][j] = null;
+    }
+    else if(j>4 )
+      rows[i][j] = { id: ((20+((i-5)*6)+j-2)+1), number: j+1-2, isReserved: true} ;
+       else
+       rows[i][j] = { id: ((20+((i-5)*6)+j)+1), number: j+1, isReserved: true} ;
+}
+
+if(Cabin=='Economy' && i>11){
+  if(j>2 && j<5){
+    rows[i][j] = null;
+  }
+ else if(j>4)
+    rows[i][j] = { id: ((20+((i-5)*6)+j-2)+1), number: j+1-2, isReserved:  !Available[((20+((i-5)*6)+j-2)+1)]} ;
+     else
+     rows[i][j] = { id: ((20+((i-5)*6)+j)+1), number: j+1, isReserved:  !Available[((20+((i-5)*6)+j)+1)]} ;
+}
+else if(i>11){
+if(j>2 && j<5){
+  rows[i][j] = null;
+}
+else if(j>4)
+  rows[i][j] = { id: ((20+((i-5)*6)+j-2)+1), number: j+1-2, isReserved: true} ;
+   else
+   rows[i][j] = { id: ((20+((i-5)*6)+j)+1), number: j+1, isReserved: true} ;
+}
+
+  // choosenseatsID.length;i++){
+  //   const newTooltip = `Seat number `+row+number+' is selected!';
+  //   console.log(this.state.choosenseats[i])
+  //   var r = this.state.choosenseats[i].substring(0,1);
+  //   var n = parseInt(this.state.choosenseats[i].substring(1));
+  //   console.log(r)
+  //   console.log(n)
+  //   addCb(r, n, this.state.choosenseatsID[i], newTooltip);
+  
+
+
+    }
+      }
+  }
+
+
+ 
+    
+    
+console.log(rows)
+
+
+// for(let i=0;i<26;i++){
+//   for(let j=0;j<8;j++){
+//     if(Cabin == "First"){
+
+//     }
+//     rows[i][j]
+//   }
+// }
+
+// console.log(Available)
+
+
+
+
+  setData({myreserv,Adults_No,Children_No,ID,from,date,rows,Available});
+
+    }
+
+  },[reserv]);
+
+  useEffect(() => {
+
+    if(data1){
+      console.log(data1)
+    setmapped(true);
+   
+    }
+  },[data1]);
+
+
+  useEffect(() => {
+    if(mapped===true){
+      var x=document.getElementsByClassName("seat-picker__row seat-picker__row--enabled");
+      x[4].style.marginBottom = "30px"; 
+      x[11].style.marginBottom = "30px"; 
+    }
+  },[mapped]);
+
+
+
+   const flightmapHandler = (id) => {
+     console.log("your id")
+     console.log(id)
+
+    axios.post('http://localhost:8000/flightmap',{data: {var1 : id} }).then((result)=>
+    {    
+      // setData2(result.data[0].Available_Seats);
+  })};
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
 
 
   const AboutUs = () => { // e will contain the reservation number 
@@ -131,7 +392,16 @@ const UserManageBooking = () => {
       }
     })
   };
+<<<<<<< HEAD
 
+=======
+  const LogOutHandler = () => {
+    sessionStorage.clear()
+    window.open("UserLogin", "_self");
+  
+  
+  };
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
 
 
   const ConfirmDelete = (Reservationid,RefundedAmount,Useremail) => { // e will contain the reservation number 
@@ -211,12 +481,48 @@ const EditProfileHendler = event => {
 };
 
 
+<<<<<<< HEAD
 const parentToChild = (e,f,g,from,date) => {
   setData({e,f,g,from,date});
   if(mapped==false){
   setmapped(true);}
   else{setmapped(false);}
 }
+=======
+const senddata = (reserv) => {
+
+  
+  // setGuard(true);
+}
+
+  
+// const ScrollToBottom = () => {
+//   window.scrollTo(0,document.body.scrollHeight);
+// }
+
+
+const parentToChild = (res,from) => {
+  console.log(from);
+   setmapped(false);
+  var ID;
+  if(from==true)
+    ID = res.Flight_IDFrom
+ else
+   ID = res.Flight_IDTo
+ 
+
+  axios.post('http://localhost:8000/flightmap',{data: {var1 : ID} })
+  .then((result)=> {
+    setreserv({reserv: res,from: from, Available:result.data[0].Available_Seats});
+      // setAvailable(result.data[0].Available_Seats);
+      // console.log(Available)
+    })
+
+   
+  // setmapped(true);
+}
+
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
 const swalWithBootstrapButtons = Swal.mixin({
   // customClass: {
   //   confirmButton: 'btn btn-success',
@@ -345,10 +651,13 @@ const swalWithBootstrapButtons = Swal.mixin({
         '</div>'
         
   
+<<<<<<< HEAD
   
   
   
   
+=======
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
   ,
   
   
@@ -411,6 +720,23 @@ const swalWithBootstrapButtons = Swal.mixin({
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
   if (Reservations) {
 
     if(!mapped){
@@ -438,12 +764,20 @@ const swalWithBootstrapButtons = Swal.mixin({
         <nav class="site-navigation position-relative text-right" role="navigation">
 
           <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+<<<<<<< HEAD
             {/* <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+=======
+            <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
             
        
             <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
             <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
+<<<<<<< HEAD
             <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li> */}
+=======
+            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
             <li><a onClick={() => LogOutHandler()} ><span>Log Out</span></a></li>
 
           </ul>
@@ -534,12 +868,17 @@ const swalWithBootstrapButtons = Swal.mixin({
           <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
           <figcaption>
             <div class="caption">
+<<<<<<< HEAD
             <h1>Depart Flight</h1>
+=======
+            <h1>Outbound Flight</h1>
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
               <p>Flight Number:{reserv.Flight_NoFrom}</p>
               </div>
           </figcaption>
       </figure>
       <div class="listing">
+<<<<<<< HEAD
           <h4>From:{reserv.Flight_From} </h4>
           <h4>To:{reserv.Flight_To}</h4>
           <h4>Flight Date:{reserv.Flight_DateFrom}</h4>
@@ -550,6 +889,18 @@ const swalWithBootstrapButtons = Swal.mixin({
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
           <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
+=======
+          <h4>From: {reserv.Flight_From} </h4>
+          <h4>To: {reserv.Flight_To}</h4>
+          <h4>Flight Date: {moment(reserv.Flight_DateFrom).format("DD-MM-YYYY")}</h4>
+          <h4>Depart Time: {moment(reserv.Flight_DateFrom).format("HH:mm")}</h4>
+          <h4>Cabin: {reserv.CabinFrom}</h4>
+          <h4>Seat: {reserv.SeatsChoosenFrom}</h4>
+          <h4>Booking Number: {reserv._id}</h4>
+          {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
+          {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
+          <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv,true)} smooth={true}>Select Seat</Link>
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
 
       </div>
   </div>
@@ -565,6 +916,7 @@ const swalWithBootstrapButtons = Swal.mixin({
           </figcaption>
       </figure>
       <div class="listing">
+<<<<<<< HEAD
          <h4>From:{reserv.Flight_To} </h4>
           <h4>To:{reserv.Flight_From}</h4>
           <h4>Flight Date:{reserv.Flight_DateTo}</h4>
@@ -572,12 +924,25 @@ const swalWithBootstrapButtons = Swal.mixin({
           <h4>Cabin:{reserv.CabinTo}</h4>
           <h4>Seat:{reserv.SeatsChoosenTo}</h4>
           <h4>Booking Number:{reserv._id}</h4>
+=======
+         <h4>From: {reserv.Flight_To} </h4>
+          <h4>To: {reserv.Flight_From}</h4>
+          <h4>Flight Date: {moment(reserv.Flight_DateTo).format("DD-MM-YYYY")}</h4>
+          <h4>Depart Time: {moment(reserv.Flight_DateTo).format("HH:mm")}</h4>
+          <h4>Cabin: {reserv.CabinTo}</h4>
+          <h4>Seat: {reserv.SeatsChoosenTo}</h4>
+          <h4>Booking Number: {reserv._id}</h4>
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a href="#modal-opened" class="link-1" id="modal-closed">Reserve Flight</a> */}
           {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
           {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
           {/* spy={true} */}
+<<<<<<< HEAD
           <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
+=======
+          <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv,false)}  smooth={true}>Select Seat</Link>
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
   
       </div>
   </div>
@@ -678,12 +1043,20 @@ const swalWithBootstrapButtons = Swal.mixin({
           <nav class="site-navigation position-relative text-right" role="navigation">
   
             <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+<<<<<<< HEAD
               {/* <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+=======
+              <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
               
          
               <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
               <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
+<<<<<<< HEAD
               <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li> */}
+=======
+              <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
               <li><a onClick={() => LogOutHandler()} ><span>Log Out</span></a></li>
   
             </ul>
@@ -774,12 +1147,17 @@ const swalWithBootstrapButtons = Swal.mixin({
             <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
             <figcaption>
               <div class="caption">
+<<<<<<< HEAD
               <h1>Depart Flight</h1>
+=======
+              <h1>Outboard Flight</h1>
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
                 <p>Flight Number:{reserv.Flight_NoFrom}</p>
                 </div>
             </figcaption>
         </figure>
         <div class="listing">
+<<<<<<< HEAD
             <h4>From:{reserv.Flight_From} </h4>
             <h4>To:{reserv.Flight_To}</h4>
             <h4>Flight Date:{reserv.Flight_DateFrom}</h4>
@@ -790,6 +1168,18 @@ const swalWithBootstrapButtons = Swal.mixin({
             {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
             {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
             <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
+=======
+            <h4>From: {reserv.Flight_From} </h4>
+            <h4>To: {reserv.Flight_To}</h4>
+            <h4>Flight Date: {moment(reserv.Flight_DateFrom).format("DD-MM-YYYY")}</h4>
+            <h4>Depart Time: {moment(reserv.Flight_DateFrom).format("HH:mm")}</h4>
+            <h4>Cabin: {reserv.CabinFrom}</h4>
+            <h4>Seat: {reserv.SeatsChoosenFrom}</h4>
+            <h4>Booking Number: {reserv._id}</h4>
+            {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
+            {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
+            <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv,true)} smooth={true}>Select Seat</Link>
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
   
         </div>
     </div>
@@ -805,6 +1195,7 @@ const swalWithBootstrapButtons = Swal.mixin({
             </figcaption>
         </figure>
         <div class="listing">
+<<<<<<< HEAD
            <h4>From:{reserv.Flight_To} </h4>
             <h4>To:{reserv.Flight_From}</h4>
             <h4>Flight Date:{reserv.Flight_DateTo}</h4>
@@ -812,12 +1203,25 @@ const swalWithBootstrapButtons = Swal.mixin({
             <h4>Cabin:{reserv.CabinTo}</h4>
             <h4>Seat:{reserv.SeatsChoosenTo}</h4>
             <h4>Booking Number:{reserv._id}</h4>
+=======
+           <h4>From: {reserv.Flight_To} </h4>
+            <h4>To: {reserv.Flight_From}</h4>
+            <h4>Flight Date: {moment(reserv.Flight_DateTo).format("DD-MM-YYYY")}</h4>
+            <h4>Depart Time: {moment(reserv.Flight_DateTo).format("HH:mm")}</h4>
+            <h4>Cabin: {reserv.CabinTo}</h4>
+            <h4>Seat: {reserv.SeatsChoosenTo}</h4>
+            <h4>Booking Number: {reserv._id}</h4>
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
             {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
             {/* <a href="#modal-opened" class="link-1" id="modal-closed">Reserve Flight</a> */}
             {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
             {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
             {/* spy={true} */}
+<<<<<<< HEAD
             <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
+=======
+            <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv,false)}  smooth={true}>Select Seat</Link>
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
     
         </div>
     </div>
@@ -917,9 +1321,16 @@ return (<h1></h1>)
 
 };
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
 {/* <div id="app"></div> 
   ReactDOM.render(<UserManageBooking />, document.querySelector("#app")); */}
 
 export default UserManageBooking;
+<<<<<<< HEAD
+=======
+
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa

@@ -16,11 +16,17 @@ import CreateUserAccount from './UserPages/CreateUserAccount'
 import UserSearchFlight from './UserPages/UserSearchFlight'
 import UserManageBooking from './UserPages/UserManageBooking'
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import UserEditProfile from './UserPages/UserEditProfile'
 import UserConfirmBooking from './UserPages/UserConfirmBooking'
 
 >>>>>>> 7129a27b4a47b50d4a3d7e01a389fabc7d79edeb
+=======
+import UserEditProfile from './UserPages/UserEditProfile'
+import UserConfirmBooking from './UserPages/UserConfirmBooking'
+
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
 
 
 
@@ -49,15 +55,21 @@ ReactDOM.render(
                     <Route exact path="/UserSearchFlight" component={UserSearchFlight} />
                     <Route exact path="/UserManageBooking" component={UserManageBooking} />
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                     
 
 =======
+=======
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
                     <Route exact path="/UserConfirmBooking" component={UserConfirmBooking} />
 
                     <Route exact path="/UserEditProfile" component={UserEditProfile} />
                     
+<<<<<<< HEAD
 >>>>>>> 7129a27b4a47b50d4a3d7e01a389fabc7d79edeb
+=======
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
                     
                 </Switch>
             </BrowserRouter>

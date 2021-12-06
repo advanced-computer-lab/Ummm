@@ -139,4 +139,8 @@ class UserHomePage extends React.Component {
 }
 
 
+<<<<<<< HEAD
 export default UserHomePage;
+=======
+export default UserHomePage;
+>>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
