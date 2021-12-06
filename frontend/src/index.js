@@ -15,6 +15,12 @@ import UserHomePage from './UserPages/UserHomePage.js'
 import CreateUserAccount from './UserPages/CreateUserAccount'
 import UserSearchFlight from './UserPages/UserSearchFlight'
 import UserManageBooking from './UserPages/UserManageBooking'
+<<<<<<< HEAD
+=======
+import UserEditProfile from './UserPages/UserEditProfile'
+import UserConfirmBooking from './UserPages/UserConfirmBooking'
+
+>>>>>>> 7129a27b4a47b50d4a3d7e01a389fabc7d79edeb
 
 
 
@@ -42,9 +48,16 @@ ReactDOM.render(
                     <Route exact path="/CreateUserAccount" component={CreateUserAccount} />
                     <Route exact path="/UserSearchFlight" component={UserSearchFlight} />
                     <Route exact path="/UserManageBooking" component={UserManageBooking} />
+<<<<<<< HEAD
 
                     
 
+=======
+                    <Route exact path="/UserConfirmBooking" component={UserConfirmBooking} />
+
+                    <Route exact path="/UserEditProfile" component={UserEditProfile} />
+                    
+>>>>>>> 7129a27b4a47b50d4a3d7e01a389fabc7d79edeb
                     
                 </Switch>
             </BrowserRouter>
@@ -57,3 +70,8 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+
+
+

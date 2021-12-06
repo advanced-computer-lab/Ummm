@@ -26,8 +26,16 @@ import {
 const { Header, Sider, Content } = Layout;
 
 
+
 class HomePage extends React.Component {
-  
+
+   LogOutHandler = () => {
+    sessionStorage.clear()
+    window.open("LoginPage", "_self");
+
+    
+  };
+
   
   state = {
     collapsed: true,
@@ -47,7 +55,13 @@ class HomePage extends React.Component {
   // };
 
   render() {
-    
+    if (sessionStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
+      window.open("LoginPage", "_self");
+   }
+   //Is their authentication token still valid?
+  //  else if (Date.now > new Date(sessionStorage.getItem('AuthenticationExpires'))) {
+  //        window.open("AccessDenied.html", "_self");
+  //  }
     return (
         
         
@@ -68,7 +82,7 @@ class HomePage extends React.Component {
               Notifications
             </Menu.Item>
             <Menu.Item key="4" icon={<ImportOutlined />} > 
-              Log Out
+            <Button onClick={this.LogOutHandler}>Log Out</Button>
             </Menu.Item>
           </Menu>
           

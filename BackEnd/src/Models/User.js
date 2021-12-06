@@ -16,20 +16,26 @@ LastName: {
 Email: {
     type: String,
     required: true,
+    unique: true
 },  
 
-DateOfBirth: {
-    type: String,
+Date_of_Birth: {
+    type: Date,
     required: true,
 },
 
-  Username: {
+PassPort_No: {
+    type: String,
+    required: true,
+},  
+
+Username: {
     type: String,
     required: true,
     unique: true
   },
 
-  Password: {
+Password: {
     type: String,
     required: true,
   },
