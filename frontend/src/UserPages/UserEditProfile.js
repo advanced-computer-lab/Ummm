@@ -49,12 +49,12 @@ const UserEditProfile = () => {
 //   if (sessionStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
 //     window.open("UserLogin", "_self");
 //  }
-//  const LogOutHandler = (e) => {
-//   sessionStorage.clear()
-//   history.push({
-//     pathname: '/UserLogin'
-//   });
-// };
+ const LogOutHandler = (e) => {
+  sessionStorage.clear()
+  history.push({
+    pathname: '/UserLogin'
+  });
+};
   const [componentSize, setComponentSize] = useState('default');
 
   const history = useHistory();
@@ -281,7 +281,7 @@ const UserEditProfile = () => {
             <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
             <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
             */}
-             <li><a href="contact.html"><span>Log Out</span></a></li> 
+             <li><a onClick={() => LogOutHandler()}><span>Log Out</span></a></li> 
 
           </ul>
         </nav>

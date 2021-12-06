@@ -40,7 +40,12 @@ import {
 const SearchFlight = () => {
   // console.log(sessionStorage.getItem('AuthenticationState'));
   // console.log(sessionStorage.getItem('Username'));
-
+  const LogOutHandler = (e) => {
+    sessionStorage.clear()
+    history.push({
+      pathname: '/UserLogin'
+    });
+  };
   
  const history = useHistory();
   const [componentSize, setComponentSize] = useState('default');
@@ -812,13 +817,13 @@ if (isLoading) {
         <nav class="site-navigation position-relative text-right" role="navigation">
 
           <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-            <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+            {/* <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
             
        
             <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
             <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
-            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
-            <li><a href="contact.html"><span>Log Out</span></a></li>
+            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li> */}
+            <li><a onClick={() => LogOutHandler()}><span>Log Out</span></a></li>
 
           </ul>
         </nav>
@@ -977,11 +982,11 @@ if (isLoading) {
 									<div class="form-group">
 										<select class="form-control" required  name="CabinDepart"  value={Data.CabinDepart}  onChange={(e) => changeHander(e)}>
                    
-											<option  value={Data.CabinDepart} selected hidden>Select Depart Cabin</option>
-                      <option>First</option>
-											<option>Business</option>
-											<option>Economy</option>
+                      <option  value={"First"}>First</option>
+											<option value={"Business"}>Business</option>
+											<option value={"Economy"}>Economy</option>
 										</select>
+    
 										<span class="select-arrow"></span>
 										<span class="date-form">Depart Cabin</span>
 									</div>
@@ -989,10 +994,11 @@ if (isLoading) {
 								<div class="col-md-4">
 									<div class="form-group">
 										<select class="form-control" name="CabinReturn" required value={Data.CabinReturn} onChange={(e) => changeHander(e)}>
-											<option value={Data.CabinReturn}  selected hidden>Select Return Cabin</option>
-											<option>First</option>
-											<option>Business</option>
-											<option>Economy</option>
+											{/* <option value={Data.CabinReturn}  selected hidden>Select Return Cabin</option> */}
+
+											<option  value={"First"}>First</option>
+											<option value={"Business"}>Business</option>
+											<option value={"Economy"}>Economy</option>
 										</select>
 										<span class="select-arrow"></span>
 										<span class="date-form" >Return Cabin</span>
@@ -1139,13 +1145,13 @@ return(
         <nav class="site-navigation position-relative text-right" role="navigation">
 
           <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-            <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+            {/* <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
             
        
             <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
             <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
-            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
-            <li><a href="contact.html"><span>Log Out</span></a></li>
+            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li> */}
+            <li><a onClick={() => LogOutHandler()} ><span>Log Out</span></a></li>
 
           </ul>
         </nav>
@@ -1305,10 +1311,9 @@ return(
 									<div class="form-group">
 										<select class="form-control" name="CabinDepart" required  value={Data.CabinDepart} onChange={(e) => changeHander(e)}>
                    
-											<option  value={Data.CabinDepart} selected hidden>Select Depart Cabin</option>
-                      <option>First</option>
-											<option>Business</option>
-											<option>Economy</option>
+                      <option  value={"First"}>First</option>
+											<option value={"Business"}>Business</option>
+											<option value={"Economy"}>Economy</option>
 										</select> 
 										<span class="select-arrow"></span>
 										<span class="date-form">Depart Cabin</span>
@@ -1316,11 +1321,12 @@ return(
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<select class="form-control"  name="CabinReturn" required value={Data.CabinReturn} onChange={(e) => changeHander(e)}>
-											<option value={Data.CabinReturn}  selected hidden>Select Return Cabin</option>
-											<option>First</option>
-											<option>Business</option>
-											<option>Economy</option>
+													<select class="form-control" name="CabinReturn" required value={Data.CabinReturn} onChange={(e) => changeHander(e)}>
+											{/* <option value={Data.CabinReturn}  selected hidden>Select Return Cabin</option> */}
+
+											<option  value={"First"}>First</option>
+											<option value={"Business"}>Business</option>
+											<option value={"Economy"}>Economy</option>
 										</select>
 										<span class="select-arrow"></span>
 										<span class="date-form" >Return Cabin</span>
@@ -1597,13 +1603,13 @@ return (
         <nav class="site-navigation position-relative text-right" role="navigation">
 
           <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-            <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+            {/* <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
             
        
             <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
             <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
-            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
-            <li><a href="contact.html"><span>Log Out</span></a></li>
+            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li> */}
+            <li><a onClick={() => LogOutHandler()}><span>Log Out</span></a></li>
 
           </ul>
         </nav>
@@ -1760,10 +1766,9 @@ return (
               <div class="form-group">
                 <select class="form-control" name="CabinDepart" required  value={Data.CabinDepart} onChange={(e) => changeHander(e)} >
                
-                  <option  value={Data.CabinDepart}  selected hidden>Select Depart Cabin</option>
-                  <option>First</option>
-                  <option>Business</option>
-                  <option>Economy</option>
+                <option  value={"First"}>First</option>
+											<option value={"Business"}>Business</option>
+											<option value={"Economy"}>Economy</option>
                 </select>
                 <span class="select-arrow"></span>
                 <span class="date-form">Depart Cabin</span>
@@ -1771,12 +1776,13 @@ return (
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <select class="form-control"  name="CabinReturn" value={Data.CabinReturn} onChange={(e) => changeHander(e)} >
-                  <option  selected hidden>Select Return Cabin</option>
-                  <option>First</option>
-                  <option>Business</option>
-                  <option>Economy</option>
-                </select>
+              <select class="form-control" name="CabinReturn" required value={Data.CabinReturn} onChange={(e) => changeHander(e)}>
+											{/* <option value={Data.CabinReturn}  selected hidden>Select Return Cabin</option> */}
+
+											<option  value={"First"}>First</option>
+											<option value={"Business"}>Business</option>
+											<option value={"Economy"}>Economy</option>
+										</select>
                 <span class="select-arrow"></span>
                 <span class="date-form" >Return Cabin</span>
               </div>

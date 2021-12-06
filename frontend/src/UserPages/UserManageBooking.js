@@ -31,7 +31,12 @@ import {
 } from 'antd';
 
 const UserManageBooking = () => {
-
+  const LogOutHandler = (e) => {
+    sessionStorage.clear()
+    history.push({
+      pathname: '/UserLogin'
+    });
+  };
  const history = useHistory();
  const [isLoading, setLoading] = useState(true);
 
@@ -41,8 +46,6 @@ const UserManageBooking = () => {
   const criteria1 = {};
   const [Reservations, setallReservation] = useState();
   const [mapped, setmapped] = useState(false);
-  const [Available, setAvailable] = useState();
-  const [reserv, setreserv] = useState();
 
   const [flight1, setflight1] = useState();
   const [flight2, setflight2] = useState();
@@ -75,63 +78,16 @@ const UserManageBooking = () => {
 
       }
 
-
-
        if( Reservations && Guard === true){
       setTimeout(() => {
         setGuard(false);
       }, 1000)};
-
-
-        if(Available && reserv && mapped === false){
-         
-          // setTimeout(() => {
-          //   console.log("AAAAAAAA")
-            senddata(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)
-          // }, 500)
-          
-
-          setTimeout(() => {
-            console.log("MMMMMMM")
-            setmapped(true);
-          }, 250)
-          // setTimeout(() => {
-          //   ScrollToBottom();
-          // }, 250)
-         
-
-        };
-
-
-      // if(GoSet){
-      //   setTimeout(() => {
-      //     set
-      //   }, 750)};
-
-        // !mapped = false -> NO DOWNNN
-        //  !mapped = true -> DOWNNN
-
-    // var x=document.getElementsByClassName("seat-picker__row seat-picker__row--enabled");
-    // x[4].style.marginBottom = "30px"; 
-    // x[11].style.marginBottom = "30px"; 
-    
-    
-
-
-  },[Reservations,Guard,mapped,Available,reserv]);
+  },[Reservations,Guard]);
 
 
 
   const [data1, setData] = useState([]);
 
-   const flightmapHandler = (id) => {
-     console.log("your id")
-     console.log(id)
-
-    axios.post('http://localhost:8000/flightmap',{data: {var1 : id} }).then((result)=>
-    {    
-      // setData2(result.data[0].Available_Seats);
-  })};
 
 
   const AboutUs = () => { // e will contain the reservation number 
@@ -175,12 +131,7 @@ const UserManageBooking = () => {
       }
     })
   };
-  const LogOutHandler = () => {
-    sessionStorage.clear()
-    window.open("UserLogin", "_self");
-  
-  
-  };
+
 
 
   const ConfirmDelete = (Reservationid,RefundedAmount,Useremail) => { // e will contain the reservation number 
@@ -260,72 +211,12 @@ const EditProfileHendler = event => {
 };
 
 
-const senddata = (e,f,g,from,date) => {
-  console.log(Available)
-
-    const rows = new Array(26);
-   
-    for (var i = 0; i < rows.length; i++) {
-      if(i<6){
-        rows[i] = new Array(4);
-      }
-      else{
-        rows[i] = new Array(6);
-      }
-     
-    }
-     
-    for(let i=0;i<26;i++){
-      for(let j=0;j<8;j++){
-        if(j>1 && j<6 && i<5){
-          rows[i][j] = null;
-        }
-     else if(i<5){
-       if(j>5)
-        rows[i][j] = { id: ((i*4)+j-4+1), number: j+1-4, isReserved: Available[((i*4)+j-4+1)]} ;
-        else
-        rows[i][j] = { id: ((i*4)+j+1), number: j+1, isReserved:  Available[((i*4)+j+1)]} ;
-    }
-    else {
-      if(j>2 && j<5){
-        rows[i][j] = null;
-      }
-   else if(j>4)
-   rows[i][j] = { id: ((20+((i-5)*6)+j-2)+1), number: j+1-2, isReserved:  Available[((20+((i-5)*6)+j-2)+1)]} ;
-         else
-         rows[i][j] = { id: ((20+((i-5)*6)+j)+1), number: j+1, isReserved:  Available[((20+((i-5)*6)+j)+1)]} ;
-    }
-      }
-  }
-    
-console.log(rows)
-
-  setData({e,f,g,from,date,rows});
-
-  // setGuard(true);
+const parentToChild = (e,f,g,from,date) => {
+  setData({e,f,g,from,date});
+  if(mapped==false){
+  setmapped(true);}
+  else{setmapped(false);}
 }
-
-  
-// const ScrollToBottom = () => {
-//   window.scrollTo(0,document.body.scrollHeight);
-// }
-
-
-const parentToChild = (reserv,e,f,g,from,date) => {
-  setmapped(false);
-
-  axios.post('http://localhost:8000/flightmap',{data: {var1 : g} })
-  .then((result)=> {
-      setAvailable(result.data[0].Available_Seats);
-      console.log(Available)
-    })
-    setreserv(reserv);
-
-   
-
-  // setmapped(true);
-}
-
 const swalWithBootstrapButtons = Swal.mixin({
   // customClass: {
   //   confirmButton: 'btn btn-success',
@@ -520,20 +411,6 @@ const swalWithBootstrapButtons = Swal.mixin({
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   if (Reservations) {
 
     if(!mapped){
@@ -561,12 +438,12 @@ const swalWithBootstrapButtons = Swal.mixin({
         <nav class="site-navigation position-relative text-right" role="navigation">
 
           <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-            <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+            {/* <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
             
        
             <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
             <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
-            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
+            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li> */}
             <li><a onClick={() => LogOutHandler()} ><span>Log Out</span></a></li>
 
           </ul>
@@ -672,7 +549,7 @@ const swalWithBootstrapButtons = Swal.mixin({
           <h4>Booking Number:{reserv._id}</h4>
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
-          <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv,reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
+          <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
 
       </div>
   </div>
@@ -700,7 +577,7 @@ const swalWithBootstrapButtons = Swal.mixin({
           {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
           {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
           {/* spy={true} */}
-          <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv,reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
+          <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
   
       </div>
   </div>
@@ -801,12 +678,12 @@ const swalWithBootstrapButtons = Swal.mixin({
           <nav class="site-navigation position-relative text-right" role="navigation">
   
             <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-              <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+              {/* <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
               
          
               <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
               <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
-              <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
+              <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li> */}
               <li><a onClick={() => LogOutHandler()} ><span>Log Out</span></a></li>
   
             </ul>
@@ -912,7 +789,7 @@ const swalWithBootstrapButtons = Swal.mixin({
             <h4>Booking Number:{reserv._id}</h4>
             {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
             {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
-            <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv,reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
+            <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
   
         </div>
     </div>
@@ -940,7 +817,7 @@ const swalWithBootstrapButtons = Swal.mixin({
             {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
             {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
             {/* spy={true} */}
-            <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv,reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
+            <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
     
         </div>
     </div>
@@ -1039,6 +916,8 @@ return (<h1></h1>)
   
 
 };
+
+
 
 {/* <div id="app"></div> 
   ReactDOM.render(<UserManageBooking />, document.querySelector("#app")); */}

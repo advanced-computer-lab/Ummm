@@ -182,16 +182,43 @@ class SeatMap extends React.Component {
   
   render() {
      
-    const data=this.props.parentToChild;
 
-    var rows = new Array(26);
-    if(data){
-    console.log(data['rows']);
-    rows = data['rows'];
-    console.log(rows);
+    const rows = new Array(26);
+   
+  for (var i = 0; i < rows.length; i++) {
+    if(i<6){
+      rows[i] = new Array(4);
     }
-  
-  console.log(rows)
+    else{
+      rows[i] = new Array(6);
+    }
+   
+  }
+   
+  for(let i=0;i<26;i++){
+    for(let j=0;j<8;j++){
+      if(j>1 && j<6 && i<5){
+        rows[i][j] = null;
+      }
+   else if(i<5){
+     if(j>5)
+      rows[i][j] = { id: ((i*4)+j-4+1), number: j+1-4, isReserved:  this.state.data[((i*4)+j-4+1)]} ;
+      else
+      rows[i][j] = { id: ((i*4)+j+1), number: j+1, isReserved:  this.state.data[((i*4)+j+1)]} ;
+      console.log(  this.state.data[((i*4)+j-4+1)]);    
+  }
+  else {
+    if(j>2 && j<5){
+      rows[i][j] = null;
+    }
+ else if(j>4)
+ rows[i][j] = { id: ((20+((i-5)*6)+j-2)+1), number: j+1-2, isReserved:  this.state.data[((20+((i-5)*6)+j-2)+1)]} ;
+       else
+       rows[i][j] = { id: ((20+((i-5)*6)+j)+1), number: j+1, isReserved:  this.state.data[((20+((i-5)*6)+j)+1)]} ;
+  }
+    }
+}
+
     const { loading } = this.state;
     return ( 
     <>
