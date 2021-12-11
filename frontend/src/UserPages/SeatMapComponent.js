@@ -34,10 +34,13 @@ class SeatMap extends React.Component {
   this.state = {
     loading: false,
 <<<<<<< HEAD
+<<<<<<< HEAD
     data:[],
     seats: 0,
     track:[],
 =======
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
 
     flightID:'',
 
@@ -49,7 +52,10 @@ class SeatMap extends React.Component {
     choosenseatsID: [],
     choosenseats: [],
     maxSeats: 0,
+<<<<<<< HEAD
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
     };
     this.UpdateAll = this.UpdateAll.bind(this);}
 
@@ -62,10 +68,15 @@ class SeatMap extends React.Component {
 
   // };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+
+
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
   addSeatCallbackContinousCase = (
     { row, number, id },
     addCb,
@@ -78,21 +89,28 @@ class SeatMap extends React.Component {
       },
       async () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (removeCb) {
           await new Promise(resolve => setTimeout(resolve, 250));
 =======
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
 
 
 
 
         if (removeCb) {
           await new Promise(resolve => setTimeout(resolve, 750));
+<<<<<<< HEAD
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
           console.log(
             `Removed seat ${params.number}, row ${params.row}, id ${params.id}`
           );
           removeCb(params.row, params.number);
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
         await new Promise(resolve => setTimeout(resolve, 250));
         console.log(`Added seat ${number}, row ${row}, id ${id}`);
@@ -105,14 +123,25 @@ class SeatMap extends React.Component {
         console.log(`Added seat ${number}, row ${row}, id ${id}`);
        
         // var flag = true;
+=======
+        await new Promise(resolve => setTimeout(resolve, 750));
+        console.log(`Added seat ${number}, row ${row}, id ${id}`);
+       
+        var flag = true;
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
         if(this.state.from){
             if(this.state.choosenseatsID.length==0 && this.state.reserv['SeatsChoosenFromID'].length!==0){
               console.log(this.state.reserv['SeatsChoosenFromID']);
             this.state.choosenseatsID = this.state.reserv['SeatsChoosenFromID']
             this.state.choosenseats = this.state.reserv['SeatsChoosenFrom']
             for(var i=1;i<this.state.choosenseatsID.length;i++){
+<<<<<<< HEAD
               // if(id==this.state.choosenseatsID[i])
                 // flag = false;
+=======
+              if(id==this.state.choosenseatsID[i])
+                flag = false;
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
               const newTooltip = `Seat number `+row+number+' is selected!';
               var r = this.state.choosenseats[i].substring(0,1);
               var n = parseInt(this.state.choosenseats[i].substring(1));
@@ -131,8 +160,13 @@ class SeatMap extends React.Component {
           this.state.choosenseatsID = this.state.reserv['SeatsChoosenToID']
           this.state.choosenseats = this.state.reserv['SeatsChoosenTo']
           for(var i=1;i<this.state.choosenseatsID.length;i++){
+<<<<<<< HEAD
             // if(id==this.state.choosenseatsID[i])
               // flag = false;
+=======
+            if(id==this.state.choosenseatsID[i])
+              flag = false;
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
             const newTooltip = `Seat number `+row+number+' is selected!';
             var r = this.state.choosenseats[i].substring(0,1);
             var n = parseInt(this.state.choosenseats[i].substring(1));
@@ -144,7 +178,11 @@ class SeatMap extends React.Component {
         }
 
         
+<<<<<<< HEAD
         // if(flag){
+=======
+        if(flag){
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
         const newTooltip = `Seat number `+row+number+' is selected!';
         addCb(row, number, id, newTooltip);
         var seatName = ''+row+number;
@@ -153,20 +191,31 @@ class SeatMap extends React.Component {
         }))
         this.addpeople(id)
         
+<<<<<<< HEAD
         // }
       
        
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+        }
+      
+       
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
         this.setState({ loading: false });
       }
     );
   };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+
+
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
   removeSeatCallback = ({ row, number, id }, removeCb) => {
     this.setState(
       {
@@ -174,10 +223,14 @@ class SeatMap extends React.Component {
       },
       async () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
         await new Promise(resolve => setTimeout(resolve, 250));
 =======
         await new Promise(resolve => setTimeout(resolve, 500));
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+        await new Promise(resolve => setTimeout(resolve, 500));
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
         console.log(`Removed seat ${number}, row ${row}, id ${id}`);
         // A value of null will reset the tooltip to the original while '' will hide the tooltip
         const newTooltip = ["A", "B", "C"].includes(row) ? null : "";
@@ -188,6 +241,7 @@ class SeatMap extends React.Component {
     );
   };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   removePeople(e) {
     var array = [...this.state.track]; // make a separate copy of the array
@@ -273,6 +327,8 @@ class SeatMap extends React.Component {
       })}
   }
 =======
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
   removePeople(id) {
     var array = [...this.state.choosenseatsID]; // make a separate copy of the array
     var array2 = [...this.state.choosenseats]; 
@@ -408,13 +464,17 @@ class SeatMap extends React.Component {
   //       this.setState({ seats: seats,track: []});
   //     })}
   // }
+<<<<<<< HEAD
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
 
 
 
   
   render() {
      
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     const rows = new Array(26);
@@ -454,6 +514,8 @@ class SeatMap extends React.Component {
 }
 
 =======
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
     const data=this.props.parentToChild;
 
     console.log(data)
@@ -493,26 +555,37 @@ class SeatMap extends React.Component {
   //   console.log(rows);
   
   // console.log(rows)
+<<<<<<< HEAD
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
     const { loading } = this.state;
     return ( 
     <>
     <div>
       </div><div>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '240vh' }}>
 =======
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '250vh' }}>
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '250vh' }}>
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
             <SeatPicker
               addSeatCallback={this.addSeatCallbackContinousCase}
               removeSeatCallback={this.removeSeatCallback}
               rows={rows}
 <<<<<<< HEAD
+<<<<<<< HEAD
               maxReservableSeats={this.state.seats}
 =======
               maxReservableSeats={this.state.maxSeats}
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+              maxReservableSeats={this.state.maxSeats}
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
               alpha
               visible
               selectedByDefault
@@ -543,7 +616,12 @@ ReactDOM.render(<SeatMap />, rootElement);
 export default SeatMap;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+
+
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b

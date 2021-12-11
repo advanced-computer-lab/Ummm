@@ -167,15 +167,20 @@ exports.updateseats = (req,res)=>{
   Flights.findOneAndUpdate({'_id':id},{$set:{Available_Seats:seats}}).exec().then(result =>{
       res.status(200).send("Flight Seats Updated ");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       console.log(result)
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+      console.log(result)
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
       console.log('The Flight Seats are Updated successfully !');
   }).catch(err => {
       console.log(err);
     });
 
 };
+<<<<<<< HEAD
 <<<<<<< HEAD
 exports.updatereservationseats = (req,res)=>{
   var id = req.body.data.var1;
@@ -221,6 +226,8 @@ exports.updatereservationseats = (req,res)=>{
 };
 
 =======
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
 
 exports.updatereservationseats = (req,res)=>{
   var id = req.body.data.var1;
@@ -277,7 +284,10 @@ exports.updatereservationseats = (req,res)=>{
 
 // };
 
+<<<<<<< HEAD
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
 exports.updateuser = (req,res)=>{
 
   var username = req.body.data.var1;
@@ -432,6 +442,10 @@ exports.reservationinfo = (req,res)=>{
 
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b

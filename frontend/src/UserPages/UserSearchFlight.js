@@ -1918,7 +1918,11 @@ function floatedLabel(input) {
           <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
           <figcaption>
             <div class="caption">
+<<<<<<< HEAD
               <h1>{flight.Price}</h1>
+=======
+              <h1>${flight.Price}</h1>
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
               <p>{flight.To }</p>
               </div>
           </figcaption>
@@ -1951,7 +1955,11 @@ function floatedLabel(input) {
           <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
           <figcaption>
             <div class="caption">
+<<<<<<< HEAD
               <h1>{flight.Price}</h1>
+=======
+              <h1>${flight.Price}</h1>
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
               <p>{flight.To}</p>
               </div>
           </figcaption>

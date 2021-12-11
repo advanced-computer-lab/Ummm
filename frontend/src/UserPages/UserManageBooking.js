@@ -32,6 +32,7 @@ import {
 
 const UserManageBooking = () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
   const LogOutHandler = (e) => {
     sessionStorage.clear()
     history.push({
@@ -41,6 +42,9 @@ const UserManageBooking = () => {
 =======
 
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
  const history = useHistory();
  const [isLoading, setLoading] = useState(true);
 
@@ -51,12 +55,18 @@ const UserManageBooking = () => {
   const [Reservations, setallReservation] = useState();
   const [mapped, setmapped] = useState(false);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
   // const [Available, setAvailable] = useState();
   const [reserv, setreserv] = useState();
   const [data1, setData] = useState();
 
+<<<<<<< HEAD
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
 
   const [flight1, setflight1] = useState();
   const [flight2, setflight2] = useState();
@@ -74,6 +84,7 @@ const UserManageBooking = () => {
 
   useEffect(() => {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     if(Guard === true){
       axios.post('http://localhost:8000/reservationinfo',criteria).then((result)=>
@@ -101,6 +112,8 @@ const UserManageBooking = () => {
   const [data1, setData] = useState([]);
 
 =======
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
     // if(Guard === true){
       axios.post('http://localhost:8000/reservationinfo',criteria).then((result)=>
       {    
@@ -348,7 +361,10 @@ console.log(rows)
     {    
       // setData2(result.data[0].Available_Seats);
   })};
+<<<<<<< HEAD
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
 
 
   const AboutUs = () => { // e will contain the reservation number 
@@ -393,15 +409,21 @@ console.log(rows)
     })
   };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
   const LogOutHandler = () => {
     sessionStorage.clear()
     window.open("UserLogin", "_self");
   
   
   };
+<<<<<<< HEAD
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
 
 
   const ConfirmDelete = (Reservationid,RefundedAmount,Useremail) => { // e will contain the reservation number 
@@ -482,6 +504,7 @@ const EditProfileHendler = event => {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const parentToChild = (e,f,g,from,date) => {
   setData({e,f,g,from,date});
   if(mapped==false){
@@ -489,6 +512,8 @@ const parentToChild = (e,f,g,from,date) => {
   else{setmapped(false);}
 }
 =======
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
 const senddata = (reserv) => {
 
   
@@ -522,7 +547,10 @@ const parentToChild = (res,from) => {
   // setmapped(true);
 }
 
+<<<<<<< HEAD
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
 const swalWithBootstrapButtons = Swal.mixin({
   // customClass: {
   //   confirmButton: 'btn btn-success',
@@ -652,12 +680,15 @@ const swalWithBootstrapButtons = Swal.mixin({
         
   
 <<<<<<< HEAD
+<<<<<<< HEAD
   
   
   
   
 =======
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
   ,
   
   
@@ -721,7 +752,10 @@ const swalWithBootstrapButtons = Swal.mixin({
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
 
 
 
@@ -736,7 +770,10 @@ const swalWithBootstrapButtons = Swal.mixin({
 
 
 
+<<<<<<< HEAD
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
   if (Reservations) {
 
     if(!mapped){
@@ -765,19 +802,27 @@ const swalWithBootstrapButtons = Swal.mixin({
 
           <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
 <<<<<<< HEAD
+<<<<<<< HEAD
             {/* <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
 =======
             <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+            <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
             
        
             <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
             <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li> */}
 =======
             <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
             <li><a onClick={() => LogOutHandler()} ><span>Log Out</span></a></li>
 
           </ul>
@@ -869,15 +914,20 @@ const swalWithBootstrapButtons = Swal.mixin({
           <figcaption>
             <div class="caption">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <h1>Depart Flight</h1>
 =======
             <h1>Outbound Flight</h1>
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+            <h1>Outbound Flight</h1>
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
               <p>Flight Number:{reserv.Flight_NoFrom}</p>
               </div>
           </figcaption>
       </figure>
       <div class="listing">
+<<<<<<< HEAD
 <<<<<<< HEAD
           <h4>From:{reserv.Flight_From} </h4>
           <h4>To:{reserv.Flight_To}</h4>
@@ -890,6 +940,8 @@ const swalWithBootstrapButtons = Swal.mixin({
           {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
           <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
 =======
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
           <h4>From: {reserv.Flight_From} </h4>
           <h4>To: {reserv.Flight_To}</h4>
           <h4>Flight Date: {moment(reserv.Flight_DateFrom).format("DD-MM-YYYY")}</h4>
@@ -900,7 +952,10 @@ const swalWithBootstrapButtons = Swal.mixin({
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
           <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv,true)} smooth={true}>Select Seat</Link>
+<<<<<<< HEAD
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
 
       </div>
   </div>
@@ -917,6 +972,7 @@ const swalWithBootstrapButtons = Swal.mixin({
       </figure>
       <div class="listing">
 <<<<<<< HEAD
+<<<<<<< HEAD
          <h4>From:{reserv.Flight_To} </h4>
           <h4>To:{reserv.Flight_From}</h4>
           <h4>Flight Date:{reserv.Flight_DateTo}</h4>
@@ -925,6 +981,8 @@ const swalWithBootstrapButtons = Swal.mixin({
           <h4>Seat:{reserv.SeatsChoosenTo}</h4>
           <h4>Booking Number:{reserv._id}</h4>
 =======
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
          <h4>From: {reserv.Flight_To} </h4>
           <h4>To: {reserv.Flight_From}</h4>
           <h4>Flight Date: {moment(reserv.Flight_DateTo).format("DD-MM-YYYY")}</h4>
@@ -932,17 +990,24 @@ const swalWithBootstrapButtons = Swal.mixin({
           <h4>Cabin: {reserv.CabinTo}</h4>
           <h4>Seat: {reserv.SeatsChoosenTo}</h4>
           <h4>Booking Number: {reserv._id}</h4>
+<<<<<<< HEAD
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a href="#modal-opened" class="link-1" id="modal-closed">Reserve Flight</a> */}
           {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
           {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
           {/* spy={true} */}
 <<<<<<< HEAD
+<<<<<<< HEAD
           <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
 =======
           <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv,false)}  smooth={true}>Select Seat</Link>
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+          <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv,false)}  smooth={true}>Select Seat</Link>
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
   
       </div>
   </div>
@@ -1044,19 +1109,27 @@ const swalWithBootstrapButtons = Swal.mixin({
   
             <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
 <<<<<<< HEAD
+<<<<<<< HEAD
               {/* <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
 =======
               <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+              <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
               
          
               <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
               <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li> */}
 =======
               <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+              <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
               <li><a onClick={() => LogOutHandler()} ><span>Log Out</span></a></li>
   
             </ul>
@@ -1148,15 +1221,20 @@ const swalWithBootstrapButtons = Swal.mixin({
             <figcaption>
               <div class="caption">
 <<<<<<< HEAD
+<<<<<<< HEAD
               <h1>Depart Flight</h1>
 =======
               <h1>Outboard Flight</h1>
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+              <h1>Outbound Flight</h1>
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
                 <p>Flight Number:{reserv.Flight_NoFrom}</p>
                 </div>
             </figcaption>
         </figure>
         <div class="listing">
+<<<<<<< HEAD
 <<<<<<< HEAD
             <h4>From:{reserv.Flight_From} </h4>
             <h4>To:{reserv.Flight_To}</h4>
@@ -1169,6 +1247,8 @@ const swalWithBootstrapButtons = Swal.mixin({
             {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
             <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDFrom,true,reserv.Flight_DateFrom)} smooth={true}>Select Seat</Link>
 =======
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
             <h4>From: {reserv.Flight_From} </h4>
             <h4>To: {reserv.Flight_To}</h4>
             <h4>Flight Date: {moment(reserv.Flight_DateFrom).format("DD-MM-YYYY")}</h4>
@@ -1179,7 +1259,10 @@ const swalWithBootstrapButtons = Swal.mixin({
             {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
             {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
             <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv,true)} smooth={true}>Select Seat</Link>
+<<<<<<< HEAD
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
   
         </div>
     </div>
@@ -1196,6 +1279,7 @@ const swalWithBootstrapButtons = Swal.mixin({
         </figure>
         <div class="listing">
 <<<<<<< HEAD
+<<<<<<< HEAD
            <h4>From:{reserv.Flight_To} </h4>
             <h4>To:{reserv.Flight_From}</h4>
             <h4>Flight Date:{reserv.Flight_DateTo}</h4>
@@ -1204,6 +1288,8 @@ const swalWithBootstrapButtons = Swal.mixin({
             <h4>Seat:{reserv.SeatsChoosenTo}</h4>
             <h4>Booking Number:{reserv._id}</h4>
 =======
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
            <h4>From: {reserv.Flight_To} </h4>
             <h4>To: {reserv.Flight_From}</h4>
             <h4>Flight Date: {moment(reserv.Flight_DateTo).format("DD-MM-YYYY")}</h4>
@@ -1211,17 +1297,24 @@ const swalWithBootstrapButtons = Swal.mixin({
             <h4>Cabin: {reserv.CabinTo}</h4>
             <h4>Seat: {reserv.SeatsChoosenTo}</h4>
             <h4>Booking Number: {reserv._id}</h4>
+<<<<<<< HEAD
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
             {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
             {/* <a href="#modal-opened" class="link-1" id="modal-closed">Reserve Flight</a> */}
             {/* <a  class="button-79" role="button"  >SELECT SEAT</a> */}
             {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
             {/* spy={true} */}
 <<<<<<< HEAD
+<<<<<<< HEAD
             <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv.Adults,reserv.Children,reserv.Flight_IDTo,false,reserv.Flight_DateTo)}  smooth={true}>Select Seat</Link>
 =======
             <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv,false)}  smooth={true}>Select Seat</Link>
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+            <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv,false)}  smooth={true}>Select Seat</Link>
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
     
         </div>
     </div>
@@ -1322,15 +1415,22 @@ return (<h1></h1>)
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
 {/* <div id="app"></div> 
   ReactDOM.render(<UserManageBooking />, document.querySelector("#app")); */}
 
 export default UserManageBooking;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
+=======
+
+>>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
