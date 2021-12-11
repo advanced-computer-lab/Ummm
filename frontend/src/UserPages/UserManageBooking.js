@@ -1037,7 +1037,7 @@ const swalWithBootstrapButtons = Swal.mixin({
             <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
             <figcaption>
               <div class="caption">
-              <h1>Outboard Flight</h1>
+              <h1>Outbound Flight</h1>
                 <p>Flight Number:{reserv.Flight_NoFrom}</p>
                 </div>
             </figcaption>
