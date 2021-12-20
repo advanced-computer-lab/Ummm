@@ -76,6 +76,7 @@ class SeatMap extends React.Component {
 >>>>>>> b9c567d5f57e24389301dfb9a8e4280e148a7bfa
 =======
 
+  
 
 >>>>>>> d6a1a6a772a59abe2440c92ab383c79583c8d46b
   addSeatCallbackContinousCase = (
