@@ -16,6 +16,7 @@ function ___$insertStyle(css) {
     return;
   }
 
+  
   var style = document.createElement('style');
 
   style.setAttribute('type', 'text/css');
