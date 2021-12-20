@@ -56,6 +56,7 @@ class SeatMap extends React.Component {
 
   // };
 
+  
 
   addSeatCallbackContinousCase = (
     { row, number, id },
