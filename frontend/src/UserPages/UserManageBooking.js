@@ -29,6 +29,78 @@ import {
   message,
   Switch,
 } from 'antd';
+import $ from "jquery"; 
+import {findDOMNode} from 'react-dom'
+
+$(document).ready(function() {
+  var qrWidth, qrHeight; 
+  
+  //fluid height of wrapper
+  function resizeWrapper(){    
+    var wrapper = $('.wrapper');
+    var wrapperWidth = wrapper.css('width');
+    if($.trim($('.wrapper').attr('width')) != ''){
+    var wrapperheight = parseInt(wrapperWidth.substring(0,wrapperWidth.length-2))/2.5;
+    }
+    wrapper.css('height', wrapperheight + 'px');
+    
+    if(!$('.qr').hasClass('expand')){
+      qrWidth = $('.qr').css('width');
+      qrHeight = $('.qr').css('height');
+      if($.trim($('.qr').attr('width')) != ''){
+      qrWidth = parseInt(qrWidth.substring(0, qrWidth.length-2));
+      }
+      if($.trim($('.qr').attr('height')) != ''){
+      qrHeight = parseInt(qrHeight.substring(0, qrHeight.length-2));
+      }
+    }
+  }  
+  
+  function resizeQr(type){
+    var qrWrapper = $('.qr-wrapper');
+    if(type === 'down'){
+     qrWrapper.css('height', (qrHeight * 0.38) + 'px');
+     qrWrapper.css('width', (qrWidth * 0.5) + 'px');
+    
+    }
+    else{
+      qrWrapper.css('height', (qrHeight * 0.53) + 'px');
+     qrWrapper.css('width', (qrWidth * 0.7) + 'px');
+   
+    }
+  }
+  
+  $(window).resize(function() {
+    resizeWrapper();
+    resizeQr('down'); 
+  });
+  resizeWrapper();
+  
+  //Expand QR
+  $('body').on('click', '.qr', function(){//delegated
+  
+    $(this).toggleClass('expand');
+    if($(this).hasClass('expand')){
+      resizeQr('up'); 
+      $('.qr a').text('collapse');
+    }
+    else{
+      resizeQr('down'); 
+      $('.qr a').text('expand');
+    }
+  });
+  
+  // $('.details .seat').on('click',function(){
+  //   $('.inner-wrapper').addClass('seat-details');
+  //   $('.inner-wrapper').removeClass('boarding-pass');
+  // });
+  
+  // $('.seat-layout .close').on('click',function(){
+  //   $('.inner-wrapper').addClass('boarding-pass');
+  //   $('.inner-wrapper').removeClass('seat-details');
+  // });
+ 
+})
 
 const UserManageBooking = () => {
 
@@ -480,9 +552,23 @@ const swalWithBootstrapButtons = Swal.mixin({
 
 
 
+ 
 
+  const Showboarding = (DateFrom,DateTo,From,To,CabinFrom,CabinTo,Booking_no,Flight_NoFrom,Flight_NoTo,SeatsChoosenFrom,SeatsChoosenTo,Username,Useremail) => {
+    $('body').on('click', '.button-100', function(){
+      var DepartFlight ="Depart+Flight+Details%0A"+"Reservation+Account:"+Username+"%0A"+"Reservation+Email:"+Useremail+"%0A"+"Booking+number:"+Booking_no+"%0A"+"Flight+Number:"+Flight_NoFrom+"%0A"+"From:"+From+"%0A"+"To:"+To+"%0A"+"Cabin:"+CabinFrom+"%0A"+"Seats:"+SeatsChoosenFrom+"%0A"+"Flight+Date:"+moment(DateFrom).format("YYYY-MM-DD")+"%0A"+"Flight+Time:"+moment(DateFrom).format("HH:mm")  ;
+      var ReturnFlight ="Return+Flight+Details%0A"+"Reservation+Account:"+Username+"%0A"+"Reservation+Email:"+Useremail+"%0A"+"Booking+number:"+Booking_no+"%0A"+"Flight+Number:"+Flight_NoTo+"%0A"+"From:"+To+"%0A"+"To:"+From+"%0A"+"Cabin:"+CabinTo+"%0A"+"Seats:"+SeatsChoosenTo+"%0A"+"Flight+Date:"+moment(DateTo).format("YYYY-MM-DD")+"%0A"+"Flight+Time:"+moment(DateTo).format("HH:mm") ;
+      var DepartFlightimagSrc= "https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl="+DepartFlight;
+      var ReturnFlightimagSrc= "https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl="+ReturnFlight;
+      $('.qr-image').css({// for depart flight details
+        'background-image':"url("+DepartFlightimagSrc+")" 
+    });
 
-  const Showboarding = (DateFrom,DateTo,From,To,CabinFrom,CabinTo) => {
+    $('.qr-image2').css({ // for return flight details
+      'background-image':"url("+ReturnFlightimagSrc+")" 
+  });
+
+  });
   swalWithBootstrapButtons.fire({
   
         html:
@@ -546,7 +632,7 @@ const swalWithBootstrapButtons = Swal.mixin({
         '<div class="qr">'+
           '<div class="title">boarding pass</div>'+
           '<div class="qr-wrapper">'+
-            '<div class="qr-image"></div>'+
+            '<div class="qr-image2"></div>'+
           '</div>'+
           '<a>expand</a>'+
         '</div>'+
@@ -861,7 +947,7 @@ const swalWithBootstrapButtons = Swal.mixin({
 
      </div>
      <div class="listing-item99">
-  <button  type="button" onClick={() => Showboarding(reserv.Flight_DateFrom,reserv.Flight_DateTo,reserv.Flight_From,reserv.Flight_To,reserv.CabinFrom,reserv.CabinTo)} class="button-100" > 
+  <button  type="button" onClick={() => Showboarding(reserv.Flight_DateFrom,reserv.Flight_DateTo,reserv.Flight_From,reserv.Flight_To,reserv.CabinFrom,reserv.CabinTo ,reserv._id,reserv.Flight_NoFrom,reserv.Flight_NoTo,reserv.SeatsChoosenFrom,reserv.SeatsChoosenTo,reserv.Username,reserv.Useremail)} class="button-100" > 
   <div class="center">
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-ticket-detailed-fill" viewBox="0 0 16 16">
   <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5Zm4 1a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5Zm0 5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5ZM4 8a1 1 0 0 0 1 1h6a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1Z"/>
@@ -1101,7 +1187,7 @@ const swalWithBootstrapButtons = Swal.mixin({
   
        </div>
        <div class="listing-item99">
-    <button  type="button" onClick={() => Showboarding(reserv.Flight_DateFrom,reserv.Flight_DateTo,reserv.Flight_From,reserv.Flight_To,reserv.CabinFrom,reserv.CabinTo)} class="button-100" > 
+    <button  type="button" onClick={() => Showboarding(reserv.Flight_DateFrom,reserv.Flight_DateTo,reserv.Flight_From,reserv.Flight_To,reserv.CabinFrom,reserv.CabinTo ,reserv._id,reserv.Flight_NoFrom,reserv.Flight_NoTo,reserv.SeatsChoosenFrom,reserv.SeatsChoosenTo,reserv.Username,reserv.Useremail)} class="button-100" > 
     <div class="center">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-ticket-detailed-fill" viewBox="0 0 16 16">
     <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5Zm4 1a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5Zm0 5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5ZM4 8a1 1 0 0 0 1 1h6a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1Z"/>
