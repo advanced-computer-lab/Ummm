@@ -10,6 +10,8 @@ import Swal from 'sweetalert2'
 import '../css/main.css';
 import '../css/guest.css';
 import '../css/creditCard.css';
+import $ from "jquery"; 
+import {findDOMNode} from 'react-dom'
 
 
 
@@ -28,7 +30,58 @@ import {
   Switch,
 } from 'antd';
 
+//$('body').on('click', '.qr', function(){//delegated 
 
+
+$(document).ready(function() { // must reload at least once 
+
+  $('.input-cart-number').on('keyup change', function(){ //jqeury worked finally yaaaaaay
+  var $t = $(this);
+  
+  
+  
+  var card_number = '';
+  $('.input-cart-number').each(function(){
+    card_number += $(this).val() + ' ';
+    if ($(this).val().length == 4) {
+      $(this).next().focus();
+    }
+  })
+  
+  $('.credit-card-box .number').html(card_number);
+});
+
+$('#card-holder').on('keyup change', function(){
+  var $t = $(this);
+  $('.credit-card-box .card-holder div').html($t.val());
+});
+
+$('#card-holder').on('keyup change', function(){
+  var $t = $(this);
+  $('.credit-card-box .card-holder div').html($t.val());
+});
+
+$('#card-expiration-month, #card-expiration-year').change(function(){
+  var m = $('#card-expiration-month option').index($('#card-expiration-month option:selected'));
+  var m = (m < 10) ? '0' + m : m;
+  var y = $('#card-expiration-year').val().substr(2,2);
+  $('.card-expiration-date div').html(m + '/' + y);
+})
+
+$('#card-ccv').on('focus', function(){
+  $('.credit-card-box').addClass('hover');
+}).on('blur', function(){
+  $('.credit-card-box').removeClass('hover');
+}).on('keyup change', function(){
+  $('.ccv div').html($(this).val());
+});
+
+
+/*--------------------
+CodePen Tile Preview
+--------------------*/
+
+});
    
 
 const UserConfirmBooking = () => {
