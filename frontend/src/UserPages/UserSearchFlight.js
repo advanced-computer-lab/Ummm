@@ -175,8 +175,8 @@ const SearchFlight = () => {
       const FilteredResult2 =[];
       console.log(Result1);
 
-      var minFlightDate = Result1[0]['Flight_Date'];
-      //var minFlightDate = new Date();
+      // var minFlightDate = Result1[0]['Flight_Date'];
+      var minFlightDate = new Date();
 
     
       console.log(Result1)
