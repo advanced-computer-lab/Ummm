@@ -7,8 +7,9 @@ const userController = require('./Routes/userController');
 const cors = require('cors')
 const dotenv = require("dotenv")
 dotenv.config();
-const Admins = require('../models/Admins');
-const Users = require('../models/User');
+const Admins = require('../src/Models/Admins.js');
+const Users = require('../src/Models/User.js');
+const RefreshTokens = require('../src/Models/RefreshTokens.js');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -19,7 +20,7 @@ const bcrypt = require("bcrypt");
 // // Connect Database
 // connectDB();
 
-let refreshTokens = []
+// let refreshTokens = []
 
 
 //App variables
@@ -107,14 +108,15 @@ app.delete('/deletereservation',userController.deletereservation)
 
 
 
-app.post('/loginpage' ,  async (req, res, next) => {
+app.post('/loginpage' ,  async (req, res) => {
   Admins.findOne({Username: req.body.Username}) 
   .then(dbUser => { 
-    // console.log(dbUser)
     if (!dbUser) { 
-      return res.json({ 
-        message: "Invalid Username or Password" 
-      }) 
+      console.log(dbUser)
+      return res.status(401).send("Username does not Exist!");
+      //  res.json({ 
+      //   message: "Invalid Username or Password" 
+      // }) 
    }
   bcrypt.compare(req.body.Password, dbUser.Password) 
   .then(isCorrect => {
@@ -127,17 +129,45 @@ app.post('/loginpage' ,  async (req, res, next) => {
     jwt.sign(payload,process.env.REFRESH_TOKEN_SECRET,
         (err, token) => { 
           if (err) return res.json({message: err}) 
-          refreshTokens.push(token)
-          console.log(refreshTokens)
+        //  refreshTokens.push(token)
+        //  console.log(refreshTokens)
+
+        
+        var userid = dbUser._id.toString()
+        var Refresh = {}
+        Refresh['UserID'] = userid
+        Refresh['RefreshToken'] = token
+        const RefreshToken = new RefreshTokens(Refresh)
+        console.log(RefreshToken)
+
+        RefreshTokens.findOne({UserID: userid}) 
+        .then(dbUser => { 
+          if (!dbUser) { 
+                console.log("NOT FOUND!!")
+                RefreshToken.save()
+                .then(result => {
+                })
+                .catch(err => {
+                  console.log(err);
+                })
+          }
+          else{
+            console.log("FOUND!!")
+            RefreshTokens.findOneAndUpdate({'UserID':userid},Refresh).exec().then(result =>{
+          }).catch(err => {
+              console.log(err);
+            });
+          }
+        })
+
+
           return res.json({ message: "Success",
            AccessToken: "Bearer " + AccessToken,
           RefreshToken: token
          }) 
       })
      } else{
-       return res.json({ 
-         message: "Invalid Username or Password" 
-               }) 
+      return res.status(403).send("Incorrect Password!");
              }
          })
          .catch(err => {
@@ -145,8 +175,6 @@ app.post('/loginpage' ,  async (req, res, next) => {
       })
       })
   })
-
-
 
 
 

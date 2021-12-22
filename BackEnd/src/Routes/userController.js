@@ -6,7 +6,7 @@ const Reservations = require('../models/Reservation');
 const moment = require('moment');
 const nodemailer = require('nodemailer');
 const today = moment().startOf('day');
-// const App = require('/Users/ibrahimahmed/Documents/Sprint#2/Ummm/BackEnd/src/App.js');
+// const App = require('../src/App.js');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -31,6 +31,8 @@ exports.createflight = (req, res) => {
 };
 
 
+
+
 exports.createnewReservation = (req, res) => {
   console.log(req.body);
 
@@ -45,6 +47,7 @@ exports.createnewReservation = (req, res) => {
       console.log(err);
     });
 };
+
 
 exports.createuseraccount = (req, res) => {
   console.log(req.body);

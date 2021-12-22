@@ -82,15 +82,16 @@ const LoginPage = () => {
         history.push({
             pathname: '/homepage'
           });
-       }).catch(error => {
-         warning();
-        console.log(error);
+       }).catch(err => {
+        console.log(err.response.status);
+           var msg = err.response.data
+         warning(msg);
     })
 
   };
   
-  const warning = () => {
-    message.warning('Incorrect Username or Password!');
+  const warning = (msg) => {
+    message.warning(msg);
   }
 
 
