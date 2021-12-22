@@ -6,6 +6,13 @@ const Reservations = require('../models/Reservation');
 const moment = require('moment');
 const nodemailer = require('nodemailer');
 const today = moment().startOf('day');
+// const App = require('/Users/ibrahimahmed/Documents/Sprint#2/Ummm/BackEnd/src/App.js');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
+
+// let refreshTokens = []
+
 
 
 exports.createflight = (req, res) => {
@@ -316,31 +323,38 @@ Flights.find(search)
 
 
 
-exports.loginpage = (req, res) => {
+// exports.loginpage =  (req, res) => {
+//   // const authHeader = req.headers['authorization']
+//   // console.log(authHeader);
 
-    if(Object.keys(req.body).length === 0){    
-      return res.status(400).send();
-    }
-         const search ={};
+//     if(Object.keys(req.body).length === 0){    
+//       return res.status(400).send();
+//     }
+//          const search ={};
 
-    Object.keys(req.body).forEach(key => {
-    if (req.body[key]!==null) {
-        search[key] = {$regex: '^' + req.body[key]};
-      }
-    });
-  
-  Admins.find(search)
- .then(result => { 
-      if(result.length != 0){
-       res.send(result);
-      }
-       else 
-       res.status(400).send();
-      })
-     .catch(err => {
-      console.log(err);
-     });
- };
+//     Object.keys(req.body).forEach(key => {
+//     if (req.body[key]!==null) {
+//         search[key] = {$regex: '^' + req.body[key]};
+//       }
+//     });
+//   Admins.find(search)
+//  .then(result => { 
+//       if(result.length != 0){
+//        res.send(result);
+//        console.log(result);
+//       }
+//        else 
+//        res.status(400).send();
+//       })
+//      .catch(err => {
+//       console.log(err);
+//      });
+
+    
+//  };
+
+
+
 
 
  exports.userlogin = (req, res) => {
@@ -383,3 +397,27 @@ exports.reservationinfo = (req,res)=>{
 
 }
 
+
+// function authenticateToken(req, res, next) {
+  
+//    // console.log(res)
+ 
+//    const authHeader = req.headers['authorization']
+//    console.log(authHeader)
+//    const token = authHeader && authHeader.split(' ')[1]
+//    if (token == null) return res.sendStatus(401)
+ 
+//    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+//      console.log(err)
+//      if (err) return res.sendStatus(403)
+//      req.user = user
+//      next()
+//    })
+ 
+//    axios.post('http://localhost:8000/token')
+//    .then(res => {
+//      console.log(res);
+ 
+//    })
+ 
+//  }

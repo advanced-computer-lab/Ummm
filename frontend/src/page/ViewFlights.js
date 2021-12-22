@@ -37,7 +37,17 @@ function App() {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/viewflights').then((result)=>
+    const headers = {
+      'AccessToken': localStorage.getItem('AccessToken'),
+      'RefreshToken': localStorage.getItem('RefreshToken')
+    }    
+    console.log(headers)
+
+    axios.get('http://localhost:8000/viewflights',{
+      headers: headers
+      })
+
+    .then((result)=>
     {
         Setflights(result.data);
     });
@@ -63,7 +73,13 @@ function App() {
           "Do you really want to delete this Flight?"
         )
         if (confirmBox === true) {
-          axios.delete('http://localhost:8000/deleteflight', {data: {var1:del}})
+          const headers = {
+            'AccessToken': localStorage.getItem('AccessToken'),
+            'RefreshToken': localStorage.getItem('RefreshToken')
+          }    
+          axios.delete('http://localhost:8000/deleteflight', {data: {var1:del}},{
+            headers: headers
+            })
           .then(response => {
               console.log(response);
                }).catch(error => {

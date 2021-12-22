@@ -178,7 +178,16 @@ const CreateFlight = () => {
       });
       console.log(Data1);
 
-    axios.post('http://localhost:8000/createflight', Data1)
+
+    const headers = {
+      'AccessToken': localStorage.getItem('AccessToken'),
+      'RefreshToken': localStorage.getItem('RefreshToken')
+    }      
+
+    axios.post('http://localhost:8000/createflight', Data1, {
+    headers: headers
+    })
+    
     .then(response => {
       console.log(response.status);
       //  window.location.reload(false);

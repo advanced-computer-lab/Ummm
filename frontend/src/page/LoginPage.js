@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css'; 
 import '../css/App.css';
 
+
 import moment from "moment";
 import {
   Form,
@@ -53,10 +54,20 @@ const LoginPage = () => {
       }
     });
 
+    // const headers = {
+    //   'Content-Type': 'application/json',
+    //   'Authorization': 'JWT fefege...'
+    // }    
+
    // prevent reloading the page
-    axios.post('http://localhost:8000/LoginPage', criteria)
-    .then(response => {
-      console.log(response.status);
+    axios.post('http://localhost:8000/LoginPage', criteria, {
+    // headers: headers
+    })
+    .then(res => {
+      console.log(res.status);
+      console.log(res.data.AccessToken);
+      localStorage.setItem("AccessToken", res.data.AccessToken);
+      localStorage.setItem("RefreshToken", res.data.RefreshToken);
       setState({
         Username: "",  
         Password: "",
@@ -65,8 +76,6 @@ const LoginPage = () => {
         sessionStorage.setItem("Username", criteria.Username);
         // console.log(sessionStorage.getItem("AuthenticationState"))
         // console.log(sessionStorage.getItem("Username"))
-  
-
                 
                 //This authentication key will expire in 1 hour.
        // sessionStorage.setItem("AuthenticationExpires", Date.now.addHours(1));
