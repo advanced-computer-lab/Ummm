@@ -131,14 +131,13 @@ app.post('/loginpage' ,  async (req, res) => {
           if (err) return res.json({message: err}) 
         //  refreshTokens.push(token)
         //  console.log(refreshTokens)
-
         
         var userid = dbUser._id.toString()
         var Refresh = {}
         Refresh['UserID'] = userid
         Refresh['RefreshToken'] = token
         const RefreshToken = new RefreshTokens(Refresh)
-        console.log(RefreshToken)
+        // console.log(RefreshToken)
 
         RefreshTokens.findOne({UserID: userid}) 
         .then(dbUser => { 
@@ -160,10 +159,10 @@ app.post('/loginpage' ,  async (req, res) => {
           }
         })
 
-
           return res.json({ message: "Success",
            AccessToken: "Bearer " + AccessToken,
-          RefreshToken: token
+          RefreshToken: token,
+          UserID: userid
          }) 
       })
      } else{
@@ -179,15 +178,35 @@ app.post('/loginpage' ,  async (req, res) => {
 
 
 
+
+
+  app.delete('/logout', (req, res) => {
+    var del = req.body.ID
+    RefreshTokens.findOneAndDelete({'UserID':del}).exec().then(result =>{
+      res.status(204).send("RefreshToken Deleted");
+  }).catch(err => {
+      console.log(err);
+    });
+  })
+
+
+
+
+
+  
+
+
 function authenticateToken(req, res, next) {
 
-  console.log(req.RefreshToken)
-  console.log("innnn")
+  console.log(req.headers.accesstoken)
+  console.log(req.headers.refreshtoken)
+  // console.log("innnn")
   // next()
  
-   const authHeader = req.headers.accesstoken
+   const AccessToken = req.headers.accesstoken
+   const RefreshToken = req.headers.refreshtoken
   //  console.log(req.headers.accesstoken)
-   const token = authHeader && authHeader.split(' ')[1]
+   const token = AccessToken && AccessToken.split(' ')[1]
    if (token == null) return res.sendStatus(401)
  
    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
@@ -196,24 +215,19 @@ function authenticateToken(req, res, next) {
       //  return res.sendStatus(403)
 
 
-
-      const refreshToken = req.headers.refreshtoken
-      if (refreshToken == null) return res.sendStatus(401)
-      if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403)
+      if (RefreshToken == null) return res.sendStatus(401)
+      if (!RefreshToken.includes(refreshToken)) return res.sendStatus(403)
       // jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
       //   if (err) return res.sendStatus(403)
       //   const accessToken = generateAccessToken({ name: user.name })
       //   res.json({ accessToken: accessToken }) // update session [AccessToken]
       // })
 
-
-
      }
      req.user = user
-     console.log(user)
+    //  console.log(user)
      next()
    })
-
 
  
  }

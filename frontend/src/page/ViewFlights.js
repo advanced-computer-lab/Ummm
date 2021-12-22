@@ -16,19 +16,21 @@ import { withRouter } from "react-router-dom";
 import moment from "moment";
 
 function App() {
-  if (sessionStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
+  if (localStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
     window.open("LoginPage", "_self");
  }
-  const LogOutHandler = (e) => {
-    sessionStorage.clear()
-    history.push({
-      pathname: '/LoginPage'
-    });
 
-    
-  };
+ const LogOutHandler = (e) => {
+  var userid = localStorage.getItem('UserID')
+ axios.delete('http://localhost:8000/logout',{data: {ID: userid}})
+ localStorage.clear()
+ history.push({
+   pathname: '/LoginPage'
+ });
+};
+
  //Is their authentication token still valid?
-//  else if (Date.now > new Date(sessionStorage.getItem('AuthenticationExpires'))) {
+//  else if (Date.now > new Date(localStorage.getItem('AuthenticationExpires'))) {
 //        window.open("AccessDenied.html", "_self");
 //  }
   const history = useHistory();
