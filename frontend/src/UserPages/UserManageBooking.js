@@ -15,9 +15,10 @@ import '../css/header.css';
 import swal from 'sweetalert2'
 import '../css/BoardingPass.scss';
 import '../css/pass.scss';
+ import '../css/headerfinal.css';
 import moment from "moment";
 import {
-  Form,
+  Form, 
   Input,
   Button,
   Radio,
@@ -99,8 +100,81 @@ $(document).ready(function() {
   //   $('.inner-wrapper').addClass('boarding-pass');
   //   $('.inner-wrapper').removeClass('seat-details');
   // });
+
+ 
  
 })
+
+var header = $('body');
+
+var backgrounds = new Array(
+    'url(https://i.ibb.co/80T0KvP/riayd3.jpg)'
+  , 'url(https://i.ibb.co/kGqzWMY/Aerial-view-of-Berlin-32881394137.jpg)'
+  , 'url(https://i.ibb.co/XYDcdfX/a33.jpg)'
+  , 'url(https://i.ibb.co/9GwzNW8/swiss.jpg)'
+);
+
+var texts = new Array(
+  'Riyadh To Cairo'
+ ,'Berlin To Iceland'
+, 'Amsterdam To Jeddah'
+, 'Switzerland To Moscow'
+);
+
+var details = new Array(
+  'Daily direct flights starting from 199.99$'
+ ,'3 direct weekly flights starting from 329.99$'
+, 'For your perfect Amsterdam holiday, trust Fly Nawww! Reserve your Flight today starting from 329.99$'
+, '20% discount for passengers with reduced mobility'
+);
+    
+var current = 0;
+
+
+function nextBackground() {
+    current++;
+    current = current % backgrounds.length;
+    header.css('background-image', backgrounds[current]);
+  
+      $('.textNext a').text(texts[current]);
+    
+      $('.textNext2 a').text(details[current]);
+}
+
+
+setInterval(nextBackground, 8000);
+
+header.css('background-image', backgrounds[0]);
+
+
+
+
+// var $headline = $('.headline'),
+//     $inner = $('.inner'),
+//     $nav = $('nav'),
+//     navHeight = 75;
+
+// $(window).scroll(function() {
+  
+
+//   // var scrollTop = $(window).scrollTop(),
+//   var scrollTop = ($(window).scrollTop() || $("body").scrollTop()),
+//       headlineHeight = $headline.outerHeight() - navHeight,
+//       navOffset = $nav.offset().top;
+
+//   $headline.css({
+//     'opacity': (1 - scrollTop / headlineHeight)
+//   });
+//   $inner.children().css({
+//     'transform': 'translateY('+ scrollTop * 0.4 +'px)'
+//   });
+//   if (navOffset > headlineHeight) {
+//     $nav.addClass('scrolled');
+//   } else {
+//     $nav.removeClass('scrolled');
+//   }
+// });
+
 
 const UserManageBooking = () => {
 
@@ -765,48 +839,58 @@ const swalWithBootstrapButtons = Swal.mixin({
     if(!mapped){
     return(
       <>
-<div class="site-mobile-menu">
+
+
+
+
+{/* <div class="site-mobile-menu">
   <div class="site-mobile-menu-header">
     <div class="site-mobile-menu-close mt-3">
       <span class="icon-close2 js-menu-toggle"></span>
     </div>
   </div>
   <div class="site-mobile-menu-body"></div>
+</div> */}
+
+<header >
+  
+  <nav>
+    <div class="logo"></div>
+    <ul>
+      <li><a href="#">Log out</a></li>
+      <li><a href="#">Item 2</a></li>
+      <li><a href="#">Item 3</a></li>
+      <li><a href="#">Item 4</a></li>
+    </ul>
+  </nav>
+  <header>
+    <div class="headline">
+      <div class="inner">
+
+      <div class="textNext">
+          <a class="first">Riyadh To Cairo</a>
+        </div>
+        {/* <a class="textNext">Hello</a> */}
+        
+        <div class="textNext2">
+          <a class="first">Daily direct flights starting from 199.99$</a>
+        </div>
+        
+        <div>
+  {/* <p class="first">My name is <span class="emphasis">(pick a name!)</span>.</p> */}
 </div>
 
-<header class="site-navbar" role="banner">
-
-  <div class="container">
-    <div class=" align-items-center row">
-      
-      <div class="col-11 col-xl-2">
-      <img src='https://i.ibb.co/0q5z6Jv/e0f7973e78414b2bb23ad01e5f3a88bb-removebg-preview.png' alt='Visit Computer Hope'></img>
-        {/* <h1 class="mb-0 site-logo"><a href="index.html" class="text-white mb-0">Brand</a></h1> */}
-      </div>
-      <div class="col-12 col-md-10 d-none d-xl-block">
-        <nav class="site-navigation position-relative text-right" role="navigation">
-
-          <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-            <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
-            
-       
-            <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
-            <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
-            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
-            <li><a onClick={() => LogOutHandler()} ><span>Log Out</span></a></li>
-
-          </ul>
-        </nav>
-      </div>
 
 
-      <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" ><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+
 
       </div>
-
     </div>
-
   </header>
+  
+    
+      </header>
 
              <div class="s011">
       <form>
@@ -947,7 +1031,7 @@ const swalWithBootstrapButtons = Swal.mixin({
 
      </div>
      <div class="listing-item99">
-  <button  type="button" onClick={() => Showboarding(reserv.Flight_DateFrom,reserv.Flight_DateTo,reserv.Flight_From,reserv.Flight_To,reserv.CabinFrom,reserv.CabinTo ,reserv._id,reserv.Flight_NoFrom,reserv.Flight_NoTo,reserv.SeatsChoosenFrom,reserv.SeatsChoosenTo,reserv.Username,reserv.Useremail)} class="button-100" > 
+  <button  type="button" onClick={() => Showboarding(reserv.Flight_DateFrom,reserv.Flight_DateTo,reserv.Flight_From,reserv.Flight_To,reserv.CabinFrom,reserv.CabinTo ,reserv._id,reserv.Flight_NoFrom,reserv.Flight_NoTo,reserv.SeatsChoosenFrom,reserv.SeatsChoosenTo,reserv.Username,reserv.Email)} class="button-100" > 
   <div class="center">
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-ticket-detailed-fill" viewBox="0 0 16 16">
   <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5Zm4 1a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5Zm0 5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5ZM4 8a1 1 0 0 0 1 1h6a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1Z"/>
@@ -1005,48 +1089,44 @@ const swalWithBootstrapButtons = Swal.mixin({
     else{
       return(
         <>
-  <div class="site-mobile-menu">
+  {/* <div class="site-mobile-menu">
     <div class="site-mobile-menu-header">
       <div class="site-mobile-menu-close mt-3">
         <span class="icon-close2 js-menu-toggle"></span>
       </div>
     </div>
     <div class="site-mobile-menu-body"></div>
-  </div>
+  </div> */}
   
-  <header class="site-navbar" role="banner">
+  <header >
   
-    <div class="container">
-      <div class=" align-items-center row">
+  <nav>
+    <div class="logo"></div>
+    <ul>
+      <li><a href="#">Log out</a></li>
+      <li><a href="#">Item 2</a></li>
+      <li><a href="#">Item 3</a></li>
+      <li><a href="#">Item 4</a></li>
+    </ul>
+  </nav>
+  <header>
+    <div class="headline">
+      <div class="inner">
+
+      <div class="textNext">
+          <a>Riyadh To Cairo</a>
+        </div>
+        {/* <a class="textNext">Hello</a> */}
         
-        <div class="col-11 col-xl-2">
-        <img src='https://i.ibb.co/0q5z6Jv/e0f7973e78414b2bb23ad01e5f3a88bb-removebg-preview.png' alt='Visit Computer Hope'></img>
-          {/* <h1 class="mb-0 site-logo"><a href="index.html" class="text-white mb-0">Brand</a></h1> */}
+        <div class="textNext2">
+          <a>Daily direct flights starting from 199.99$</a>
         </div>
-        <div class="col-12 col-md-10 d-none d-xl-block">
-          <nav class="site-navigation position-relative text-right" role="navigation">
-  
-            <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-              <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li>
-              
-         
-              <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
-              <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
-              <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
-              <li><a onClick={() => LogOutHandler()} ><span>Log Out</span></a></li>
-  
-            </ul>
-          </nav>
-        </div>
-  
-  
-        <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" ><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
-  
-        </div>
-  
       </div>
+    </div>
+  </header>
   
-    </header>
+    
+      </header>
   
                <div class="s011">
         <form>
@@ -1187,7 +1267,7 @@ const swalWithBootstrapButtons = Swal.mixin({
   
        </div>
        <div class="listing-item99">
-    <button  type="button" onClick={() => Showboarding(reserv.Flight_DateFrom,reserv.Flight_DateTo,reserv.Flight_From,reserv.Flight_To,reserv.CabinFrom,reserv.CabinTo ,reserv._id,reserv.Flight_NoFrom,reserv.Flight_NoTo,reserv.SeatsChoosenFrom,reserv.SeatsChoosenTo,reserv.Username,reserv.Useremail)} class="button-100" > 
+    <button  type="button" onClick={() => Showboarding(reserv.Flight_DateFrom,reserv.Flight_DateTo,reserv.Flight_From,reserv.Flight_To,reserv.CabinFrom,reserv.CabinTo ,reserv._id,reserv.Flight_NoFrom,reserv.Flight_NoTo,reserv.SeatsChoosenFrom,reserv.SeatsChoosenTo,reserv.Username,reserv.Email)} class="button-100" > 
     <div class="center">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-ticket-detailed-fill" viewBox="0 0 16 16">
     <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5Zm4 1a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5Zm0 5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5ZM4 8a1 1 0 0 0 1 1h6a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1Z"/>
