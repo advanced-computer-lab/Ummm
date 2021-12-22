@@ -429,7 +429,20 @@ const UserEditProfile = () => {
 					</span>
                     </div >
                     
-                    <DatePicker   type="date" format="DD-MM-YYYY" 
+                    <DatePicker  style={{ 
+                    borderTopColor:"transparent",
+                    borderBottomColor:"transparent",
+                    borderLeftColor:"transparent",
+                    borderRightColor:"transparent",
+                    // forcedColorAdjust:"red",
+                    // stopColor: "#ccc",
+                    // stopColor: "rgb(255, 255, 255)",
+                minWidth:"600px",
+                imageWidth:"250px",
+            marginTop: "25px", 
+            backgroundColor:"transparent",
+            Color:"white",    
+          }} type="date" format="DD-MM-YYYY" 
            defaultPickerValue={now2} disabledDate={d => d.isAfter(now)} value={Data.Date_of_Birth} name="Date_of_Birth" onChange={(date) => setState(prevData => {
               return {...prevData ,Date_of_Birth: date}}) 
     }/>

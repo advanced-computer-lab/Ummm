@@ -47,13 +47,20 @@
     padding-bottom: 1rem;
   }
   .qr .qr-wrapper {
-    height: 30%;
-    width: 30%;
+    height: 168px;
+    width: 170px;
     background-color: white;
-    padding: 0.5rem;
+   
     transition: all 600ms ease-in-out;
   }
   .qr .qr-wrapper .qr-image {
+    height: 100%;
+    width: 120%;
+    background-image: url(http://covernomics.org/main/images/qrcodes/accessrestricted-qr.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .qr .qr-wrapper .qr-image2 {
     height: 100%;
     width: 100%;
     background-image: url(http://covernomics.org/main/images/qrcodes/accessrestricted-qr.png);
