@@ -38,22 +38,28 @@ function App() {
     
 
   useEffect(() => {
-
+    
     const headers = {
       'AccessToken': localStorage.getItem('AccessToken'),
-      'RefreshToken': localStorage.getItem('RefreshToken')
+      'RefreshToken': localStorage.getItem('RefreshToken'),
+      // 'UserID': localStorage.getItem('UserID')
     }    
     console.log(headers)
 
     axios.get('http://localhost:8000/viewflights',{
       headers: headers
       })
-
     .then((result)=>
     {
-        Setflights(result.data);
-    });
-
+      localStorage.setItem('AccessToken', 'Bearer ' + result.data.AccessToken)
+      console.log(result.data);
+        Setflights(result.data.FlightData);
+    })
+    .catch(err => {
+      console.log(err.response.status)
+    console.log(err.response.data)
+    })
+  
   },[]);
 
   const editHandler = (flight) => {
