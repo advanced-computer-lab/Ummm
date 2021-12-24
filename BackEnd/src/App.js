@@ -104,7 +104,7 @@ app.post('/searchflight' ,authenticateToken ,userController.searchflight)
 
 //User
 app.post('/createuseraccount',userController.createuseraccount)
-app.post('/userlogin',userController.userlogin)
+// app.post('/userlogin',userController.userlogin)
 app.post('/createnewReservation',authenticateToken ,userController.createnewReservation)
 app.post('/GetUserInfo',authenticateToken ,userController.GetUserInfo)
 app.post('/userinfo',authenticateToken ,userController.userinfo)
@@ -119,6 +119,75 @@ app.post('/usersearchflight' ,userController.usersearchflight)
 
 
 
+app.post('/userlogin' ,  async (req, res) => {
+  console.log(req.body.Username)
+  Users.findOne({Username: req.body.Username.toLowerCase()}) 
+  .then(dbUser => { 
+    if (!dbUser) { 
+      console.log(dbUser)
+      return res.status(401).send("Username does not Exist!");
+      //  res.json({ 
+      //   message: "Invalid Username or Password" 
+      // }) 
+   }
+  bcrypt.compare(req.body.Password, dbUser.Password) 
+  .then(isCorrect => {
+    if (isCorrect) {
+       const payload = { 
+         id: dbUser._id, 
+         username: dbUser.Username, 
+    } 
+   const AccessToken =  jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: (10)*60}) //15 mins
+    jwt.sign(payload,process.env.REFRESH_TOKEN_SECRET, {expiresIn: (12)*60*60},
+        (err, token) => { 
+          if (err) return res.json({message: err}) 
+        //  refreshTokens.push(token)
+        //  console.log(refreshTokens)
+        
+        var userid = dbUser._id.toString()
+        var Refresh = {}
+        Refresh['UserID'] = userid
+        Refresh['RefreshToken'] = token
+        const RefreshToken = new RefreshTokens(Refresh)
+        // console.log(RefreshToken)
+
+        RefreshTokens.findOne({UserID: userid}) 
+        .then(dbUser => { 
+          if (!dbUser) { 
+                console.log("NOT FOUND!!")
+                RefreshToken.save()
+                .then(result => {
+                })
+                .catch(err => {
+                  console.log(err);
+                })
+          }
+          else{
+            console.log("FOUND!!")
+            RefreshTokens.findOneAndUpdate({'UserID':userid},Refresh).exec().then(result =>{
+          }).catch(err => {
+              console.log(err);
+            });
+          }
+        })
+
+          return res.json({ message: "Success",
+           AccessToken: "Bearer " + AccessToken,
+          RefreshToken: token,
+          UserID: userid
+         }) 
+
+      })
+     } else{
+      return res.status(403).send("Incorrect Password!");
+             }
+         })
+         .catch(err => {
+          res.status(500).send('Internal server error');
+      })
+      })
+  })
+// 
 
 
 

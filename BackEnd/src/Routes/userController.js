@@ -51,19 +51,44 @@ exports.createnewReservation = (req, res) => {
 };
 
 
-exports.createuseraccount = (req, res) => {
+exports.createuseraccount = async (req, res) => {
   console.log(req.body);
 
-  const User = new Users(req.body)
-  User.save()
+  var user = req.body; 
+    const takenUsername =await Users.findOne({Username: user.Username.toLowerCase()});
+    const takenEmail = await Users.findOne({Email: user.Email.toLowerCase()});
+    if (takenUsername){
+      res.status(401).send("Username has already been taken!");  //res.json({message:"Username or email has already been taken"})
+    }
+    else if(takenEmail){
+      res.status(403).send("Email already exist, Login!");
+    }
+    else{ 
+      user.Password = await bcrypt.hash(req.body.Password, 10) 
+      console.log(user.Password)
+      user.Username = user.Username.toLowerCase()
+      user.Email = user.Email.toLowerCase()
+      const Data = new Users(user)
+      Data.save()
     .then(result => {
-      res.send(result);
+      res.status(200).send(result); //res.json({message: "Success"}) 
       console.log("added");
     })
     .catch(err => {
       res.status(400).send();
       console.log(err);
     });
+    }
+  // const User = new Users(req.body)
+  // User.save()
+  //   .then(result => {
+  //     res.send(result);
+  //     console.log("added");
+  //   })
+  //   .catch(err => {
+  //     res.status(400).send();
+  //     console.log(err);
+  //   });
 };
 
 

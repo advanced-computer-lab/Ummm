@@ -72,6 +72,7 @@ const UserLogin = () => {
           success(Data.Username);
        }).catch(err => {
         console.log(err.response.status);
+        console.log(err.response)
            var msg = err.response.data
          warning(msg);
          console.log(err)

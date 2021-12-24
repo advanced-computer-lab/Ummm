@@ -58,7 +58,6 @@ const CreateUserAccount = () => {
 
 
   const submitHandler = (e) => {
-    success();
     e.preventDefault();    // prevent reloading the page
    var mailformat =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
    
@@ -77,6 +76,7 @@ else { // will post normally
     axios.post('http://localhost:8000/createuseraccount', Data)
     .then(response => {
       console.log(response.status);
+      success();
       setState({
         FirstName: "",
         LastName: "",  
@@ -89,11 +89,22 @@ else { // will post normally
         // data succ added less go
       
       }).catch(error => {
+        console.log("errorrr")
+        if(error.response.status==401){
+          var msg = error.response.data
+          warning9(msg);
+        }
+        else if(error.response.status==403){
+          var msg = error.response.data
+          warning9(msg);
+        }
+
+
+        else
         if(!Data.Email.match(mailformat)){
           warning11()
          } 
-         else
-        warning9();
+       
         //console.log(error);
     })
   }
@@ -194,8 +205,8 @@ else { // will post normally
   const warning12 = () => {
     message.warning('"Passport No" Must be Filled!');
   };
-  const warning9 = () => {
-    message.warning('Username/Email already Exists!');
+  const warning9 = (msg) => {
+    message.warning(msg);
   };
   
   const LoginHandler = event => {
