@@ -442,14 +442,28 @@ figcaption p{
     color: #444;
     padding: 20px;
   }
+
+
+  /* chnage background color */
   .box {
     background-color: #444;
     color: #fff;
     border-radius: 5px;
     padding: 20px;
     font-size: 150%;
+    display: none;
 
   }
+
+  /* .box- {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+    display: none;
+
+  } */
   
 
   
