@@ -6,6 +6,8 @@ import 'antd/dist/antd.css';
 import '../css/popup.css';
 import '../css/swal.css';
 import Swal from 'sweetalert2'
+import Cookies from "js-cookies";
+
 
 import '../css/main.css';
 import '../css/guest.css';
@@ -37,15 +39,22 @@ import {
 //TESTTTTTTTTT
 
 
-const SearchFlight = () => {
+const UserSearchFlight = () => {
+//   if (localStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
+//     window.open("UserLogin", "_self");
+//  }
   // console.log(sessionStorage.getItem('AuthenticationState'));
   // console.log(sessionStorage.getItem('Username'));
-  const LogOutHandler = (e) => {
-    sessionStorage.clear()
-    history.push({
-      pathname: '/UserLogin'
-    });
+
+   const LogOutHandler = (e) => {
+    var userid = localStorage.getItem('UserID')
+   axios.delete('http://localhost:8000/logout',{data: {ID: userid}})
+   localStorage.clear()
+   history.push({
+     pathname: '/UserLogin'
+   });
   };
+
   
  const history = useHistory();
   const [componentSize, setComponentSize] = useState('default');
@@ -526,7 +535,7 @@ swalWithBootstrapButtons.fire({
 }).then((result) => {
   if (result.isConfirmed) {
 
-    if (sessionStorage.getItem('AuthenticationState') === "UserAuthenticated") {
+    if (localStorage.getItem('AuthenticationState') === "UserAuthenticated") {
                 history.push({
                   pathname: '/UserConfirmBooking',
                 state: {
@@ -611,19 +620,44 @@ else{
    // prevent reloading the page
   //  console.log(Data.Flight_Date_Depart);
   //  if(Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date_Depart!=="" &&Data.Flight_Date_Return!==""){
-    axios.post('http://localhost:8000/SearchFlight', criteria1)
+
+  
+    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+
+    axios.post('http://localhost:8000/SearchFlight', criteria1,{withCredentials: true})
     .then(response => {
+      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
       setResult1(response.data);
       //  console.log(Result1);
        }).catch(error => {
+        if(error.response.status==403){
+          history.push({
+            pathname: '/UserLogin'
+          });
+        }
       console.log(error);
     })
 
-    axios.post('http://localhost:8000/SearchFlight', criteria2)
+    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+
+    axios.post('http://localhost:8000/SearchFlight', criteria2,{withCredentials: true})
     .then(response => {
+      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       setResult2(response.data);
       //  console.log(Result2);
        }).catch(error => {
+        if(error.response.status==403){
+          history.push({
+            pathname: '/UserLogin'
+          });
+        }
       console.log(error);
     })
     // console.log("woooooooooow")
@@ -2044,4 +2078,4 @@ function floatedLabel(input) {
 
 
 };
-export default SearchFlight;
+export default UserSearchFlight;

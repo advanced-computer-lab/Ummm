@@ -30,6 +30,8 @@ const { Header, Sider, Content } = Layout;
 
 class HomePage extends React.Component {
 
+
+
    LogOutHandler = () => {
     var userid = localStorage.getItem('UserID')
    axios.delete('http://localhost:8000/logout',{data: {ID: userid}})

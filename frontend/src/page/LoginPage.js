@@ -67,7 +67,6 @@ const LoginPage = () => {
     })
     .then(res => {
       console.log(res.status);
-      console.log(res.data.AccessToken);
       localStorage.setItem("AuthenticationState", "AdminAuthenticated")
       localStorage.setItem("AccessToken", res.data.AccessToken);
       localStorage.setItem("RefreshToken", res.data.RefreshToken);
@@ -91,6 +90,7 @@ const LoginPage = () => {
         console.log(err.response.status);
            var msg = err.response.data
          warning(msg);
+         console.log(err)
     })
 
   };

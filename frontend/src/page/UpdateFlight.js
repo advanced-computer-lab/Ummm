@@ -34,9 +34,9 @@ const UpdateFlight = () => {
    pathname: '/LoginPage'
  });
 };
-  if (localStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
-    window.open("LoginPage", "_self");
- }
+if (localStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
+  window.open("LoginPage", "_self");
+}
  //Is their authentication token still valid?
 //  else if (Date.now > new Date(localStorage.getItem('AuthenticationExpires'))) {
 //        window.open("AccessDenied.html", "_self");

@@ -92,9 +92,9 @@ app.get("/home", (req, res) => {
   });
 //Flight and admin
 app.post('/createflight',authenticateToken ,userController.createflight)
-app.get('/viewflights' ,authenticateToken, userController.viewflights )
-app.delete('/deleteflight', authenticateToken ,userController.deleteflight)
-app.put('/updateflight' , authenticateToken,userController.updateflight)
+app.get('/viewflights' ,authenticateToken ,userController.viewflights )
+app.delete('/deleteflight',authenticateToken ,userController.deleteflight)
+app.put('/updateflight' ,authenticateToken ,userController.updateflight)
 app.post('/searchflight' ,authenticateToken ,userController.searchflight)
 // (req, res) => { 
 //   console.log("rtyuio")
@@ -103,17 +103,17 @@ app.post('/searchflight' ,authenticateToken ,userController.searchflight)
 // })
 
 //User
-app.post('/createuseraccount' ,userController.createuseraccount)
+app.post('/createuseraccount',userController.createuseraccount)
 app.post('/userlogin',userController.userlogin)
-app.post('/createnewReservation',userController.createnewReservation)
-app.post('/GetUserInfo',userController.GetUserInfo)
-app.post('/userinfo',userController.userinfo)
-app.put('/updateuser',userController.updateuser)
-app.post('/reservationinfo',userController.reservationinfo)
-app.post('/flightmap',userController.flightmap)
-app.put('/updateseats',userController.updateseats)
-app.put('/updatereservationseats',userController.updatereservationseats)
-app.delete('/deletereservation',userController.deletereservation)
+app.post('/createnewReservation',authenticateToken ,userController.createnewReservation)
+app.post('/GetUserInfo',authenticateToken ,userController.GetUserInfo)
+app.post('/userinfo',authenticateToken ,userController.userinfo)
+app.put('/updateuser',authenticateToken ,userController.updateuser)
+app.post('/reservationinfo',authenticateToken ,userController.reservationinfo)
+app.post('/flightmap',authenticateToken ,userController.flightmap)
+app.put('/updateseats',authenticateToken ,userController.updateseats)
+app.put('/updatereservationseats',authenticateToken ,userController.updatereservationseats)
+app.delete('/deletereservation',authenticateToken ,userController.deletereservation)
 
 
 
