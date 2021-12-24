@@ -137,8 +137,8 @@ app.post('/loginpage' ,  async (req, res) => {
          id: dbUser._id, 
          username: dbUser.Username, 
     } 
-   const AccessToken =  jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: 10}) //15 mins
-    jwt.sign(payload,process.env.REFRESH_TOKEN_SECRET, //{expiresIn: 30},
+   const AccessToken =  jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: (10)*60}) //15 mins
+    jwt.sign(payload,process.env.REFRESH_TOKEN_SECRET, {expiresIn: (12)*60*60},
         (err, token) => { 
           if (err) return res.json({message: err}) 
         //  refreshTokens.push(token)
