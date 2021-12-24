@@ -17,6 +17,8 @@ import '../css/BoardingPass.scss';
 import '../css/pass.scss';
  import '../css/headerfinal.css';
  import '../css/main.css';
+ import Cookies from "js-cookies";
+
 
  import '../css/ButtonReservation.css';
  
@@ -177,6 +179,9 @@ setInterval(MovePlane, 80);
 
 
 const ReservationHomePage = () => {
+//   if (localStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
+//     window.open("UserLogin", "_self");
+//  }
 
  const history = useHistory();
  const [isLoading, setLoading] = useState(true);
@@ -448,10 +453,13 @@ const ReservationHomePage = () => {
       }
     })
   };
+
+ 
   const LogOutHandler = () => {
-    sessionStorage.clear()
+    var userid = localStorage.getItem('UserID')
+   axios.delete('http://localhost:8000/logout',{data: {ID: userid}})
+   localStorage.clear()
     window.open("UserLogin", "_self");
-  
   
   };
 
@@ -506,12 +514,23 @@ const parentToChild = (res,from) => {
  else
    ID = res.Flight_IDTo
  
-
-  axios.post('http://localhost:8000/flightmap',{data: {var1 : ID} })
+   Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+         Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+  axios.post('http://localhost:8000/flightmap',{data: {var1 : ID} }, {withCredentials: true})
   .then((result)=> {
+    localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+    document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     setreserv({reserv: res,from: from, Available:result.data[0].Available_Seats});
       // setAvailable(result.data[0].Available_Seats);
       // console.log(Available)
+    })
+    .catch((error)=>{
+      if(error.response.status==403){
+        history.push({
+          pathname: '/LoginPage'
+        });
+      }
     })
 
    

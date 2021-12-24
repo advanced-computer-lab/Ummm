@@ -13,6 +13,9 @@ const RefreshTokens = require('../src/Models/RefreshTokens.js');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const cookieParser = require('cookie-parser');
+var Cookies = require('cookies')
+// import {cookie} from "cookie"
+
 
 
 
@@ -29,7 +32,13 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const port = process.env.PORT || "8000";
 // #Importing the userController
-app.use(cors())
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+    optionSuccessStatus: 200,
+  })
+);
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}));
 app.use(express.json()) // To parse the incoming requests with JSON payloads// configurations
@@ -83,10 +92,10 @@ app.get("/home", (req, res) => {
   });
 //Flight and admin
 app.post('/createflight',authenticateToken ,userController.createflight)
-app.get('/viewflights', authenticateToken ,userController.viewflights)
-app.delete('/deleteflight' ,userController.deleteflight)
-app.put('/updateflight' ,userController.updateflight)
-app.post('/searchflight' ,userController.searchflight)
+app.get('/viewflights' ,authenticateToken ,userController.viewflights )
+app.delete('/deleteflight',authenticateToken ,userController.deleteflight)
+app.put('/updateflight' ,authenticateToken ,userController.updateflight)
+app.post('/searchflight' ,authenticateToken ,userController.searchflight)
 // (req, res) => { 
 //   console.log("rtyuio")
 //   console.log(res.data.RefreshToken)
@@ -94,17 +103,17 @@ app.post('/searchflight' ,userController.searchflight)
 // })
 
 //User
-app.post('/createuseraccount' ,userController.createuseraccount)
+app.post('/createuseraccount',userController.createuseraccount)
 app.post('/userlogin',userController.userlogin)
-app.post('/createnewReservation',userController.createnewReservation)
-app.post('/GetUserInfo',userController.GetUserInfo)
-app.post('/userinfo',userController.userinfo)
-app.put('/updateuser',userController.updateuser)
-app.post('/reservationinfo',userController.reservationinfo)
-app.post('/flightmap',userController.flightmap)
-app.put('/updateseats',userController.updateseats)
-app.put('/updatereservationseats',userController.updatereservationseats)
-app.delete('/deletereservation',userController.deletereservation)
+app.post('/createnewReservation',authenticateToken ,userController.createnewReservation)
+app.post('/GetUserInfo',authenticateToken ,userController.GetUserInfo)
+app.post('/userinfo',authenticateToken ,userController.userinfo)
+app.put('/updateuser',authenticateToken ,userController.updateuser)
+app.post('/reservationinfo',authenticateToken ,userController.reservationinfo)
+app.post('/flightmap',authenticateToken ,userController.flightmap)
+app.put('/updateseats',authenticateToken ,userController.updateseats)
+app.put('/updatereservationseats',authenticateToken ,userController.updatereservationseats)
+app.delete('/deletereservation',authenticateToken ,userController.deletereservation)
 
 
 
@@ -128,8 +137,8 @@ app.post('/loginpage' ,  async (req, res) => {
          id: dbUser._id, 
          username: dbUser.Username, 
     } 
-   const AccessToken =  jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: 10}) //15 mins
-    jwt.sign(payload,process.env.REFRESH_TOKEN_SECRET, {expiresIn: 30},
+   const AccessToken =  jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: (10)*60}) //15 mins
+    jwt.sign(payload,process.env.REFRESH_TOKEN_SECRET, {expiresIn: (12)*60*60},
         (err, token) => { 
           if (err) return res.json({message: err}) 
         //  refreshTokens.push(token)
@@ -195,41 +204,44 @@ app.post('/loginpage' ,  async (req, res) => {
 
 
 
+  // app.get('/viewflights', (req, res) => {
+  //   console.log(req.cookies) 
+
+  //   // res.cookie("Accessss","aoaoaoaoaoa",{
+  //   //   path: "/",
+  //   //   httpOnly: false,
+  //   // })
+    
+  //   // res.cookie("ghjghj","aoaoaoaoaopppa")
+  //   res.header("Content-Type",'application/json');
+  //   res.send("Dataaaa")
+  // })
 
 
   
 
 
+
 function authenticateToken(req, res, next) {
 
-  // console.log(req.headers.accesstoken)
-  // console.log("Accessssssss")
-  // console.log(req.headers.refreshtoken)
-  // console.log("innnn")
-  // next()
+  // console.log(req.cookies) 
  
-   var AccessToken = req.headers.accesstoken
-   const RefreshToken = req.headers.refreshtoken
+   var AccessToken = req.cookies.AccessToken
+   const RefreshToken = req.cookies.RefreshToken
 
-   req.AccessToken = AccessToken
-
-  //  console.log(req.headers.accesstoken)
+  //  console.log(AccessToken)
    const token = AccessToken && AccessToken.split(' ')[1]
    if (token == null) return  res.status(403).send("Access Token Not Found!")
  else{
    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
      if(!err){
             console.log("AccessToken Usedddddddd")
-            res.cookie("testttt","aoaoaoaoaoa",{
-              path: "/",
-              httpOnly: false,
-            })
             next() 
      }
      if (err) {
       console.log("AccessToken Expireddddd")
       //  return res.sendStatus(403)
-      if (RefreshToken == null) return res.sendStatus(401)
+      if (RefreshToken == null) return res.sendStatus(403)
       RefreshTokens.findOne({'RefreshToken':RefreshToken}) 
       .then(Token => { 
         if (!Token) { 
@@ -239,19 +251,26 @@ function authenticateToken(req, res, next) {
         else{
           console.log("refreshToken Founddd in DBBB")
         jwt.verify(RefreshToken, process.env.REFRESH_TOKEN_SECRET ,(err, user) => {
-          console.log("Refresh Token Expireddddd!")
+         
         if (err) { 
+          console.log("Refresh Token Expireddddd!")
           return res.status(403).send("Refresh Token Expired 'LogIn Again' !"); //res.sendStatus(407); //res.sendStatus(403)
         }
         else{
+          console.log("Refresh Token Useddd!")
         const payload = { 
           id: user.id, 
           username: user.username, 
      } 
-     console.log(payload)
+    //  console.log(payload)
      AccessToken =  jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: 10}) //15 mins
-     console.log(AccessToken)
-     req.AccessToken = AccessToken
+     console.log("Access Token Updated!")
+    //  console.log(AccessToken)
+     res.cookie("AccessToken","Bearer " + AccessToken,{
+      path: "/",
+      httpOnly: false,
+      // maxAge: (1000) * 15
+    })
       next() 
         }
       })
@@ -262,8 +281,9 @@ function authenticateToken(req, res, next) {
     
    })
   }
-
  }
+
+
 
 
 // Starting server

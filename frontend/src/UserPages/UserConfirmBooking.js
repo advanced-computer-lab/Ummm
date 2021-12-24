@@ -6,6 +6,8 @@ import 'antd/dist/antd.css';
 import '../css/popup.css';
 import '../css/swal.css';
 import Swal from 'sweetalert2'
+import Cookies from "js-cookies";
+
 
 import '../css/main.css';
 import '../css/guest.css';
@@ -89,6 +91,9 @@ const UserConfirmBooking = () => {
   // console.log(sessionStorage.getItem('Username'));
  
 
+  if (localStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
+    window.open("UserLogin", "_self");
+ }
 //   if (sessionStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
 //     Login();
 //  }
@@ -146,8 +151,13 @@ const UserConfirmBooking = () => {
     });
 
     console.log(criteria)
-    axios.post('http://localhost:8000/GetUserInfo', criteria)
+    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+    axios.post('http://localhost:8000/GetUserInfo', criteria, {withCredentials: true})
     .then(response => {
+      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       console.log(response.data[0].Email);
       setState( prevData => {
         return {...prevData ,['Email']: response.data[0].Email}});
@@ -156,6 +166,11 @@ const UserConfirmBooking = () => {
       //  form.resetFields();
       //   success(); // data succ added less go
       }).catch(error => {
+        if(error.response.status==403){
+          history.push({
+            pathname: '/LoginPage'
+          });
+        }
         console.log(error);
     })
 
@@ -196,14 +211,24 @@ const UserConfirmBooking = () => {
   const BookFlightHandler = (e) => {
     e.preventDefault();    // prevent reloading the page
 
-    axios.post('http://localhost:8000/createnewReservation', Data)
+    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+    axios.post('http://localhost:8000/createnewReservation', Data, {withCredentials: true})
     .then(response => {
+      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       console.log(Data);
       success();
       //  window.location.reload(false);
       //  form.resetFields();
       //   success(); // data succ added less go
       }).catch(error => {
+        if(error.response.status==403){
+          history.push({
+            pathname: '/LoginPage'
+          });
+        }
         console.log("asdfasfsafdsafsadf")
         console.log(error);
     })

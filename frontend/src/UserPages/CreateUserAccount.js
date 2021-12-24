@@ -7,6 +7,8 @@ import '../css/EditUser.css';
 import '../css/EditUser1.css';
 import '../css/swal.css';
 import Swal from 'sweetalert2'
+import Cookies from "js-cookies";
+
 
 import moment from "moment";
 import {
@@ -203,6 +205,7 @@ else { // will post normally
     });
  };
 
+ 
 
 //  Swal.fire({
 //   title: 'Error!',

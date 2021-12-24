@@ -10,7 +10,7 @@ const today = moment().startOf('day');
 // const App = require('../src/App.js');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const cookieParser = require('cookie-parser');
+
 
 
 // let refreshTokens = []
@@ -116,20 +116,9 @@ exports.userinfo = (req,res)=>
 
 exports.viewflights = (req,res)=>
 {
-//  console.log(req.AccessToken)
-
-// res.cookie("testttt","aoaoaoaoaoa",{
-//   path: "/",
-//   httpOnly: false,
-// })
-
-  console.log("Hereeee")
-
   Flights.find().then((result)=>{
-        res.header("Content-Type",'application/json');
-        // res.writeHead(200, {'Content-Type': req.AAA});
-        res.send({FlightData: result, AccessToken: req.AccessToken})
-        // res.send();
+    res.header("Content-Type",'application/json');
+    res.send(JSON.stringify(result, null, 4));
     });
 };
 
@@ -326,6 +315,7 @@ Flights.find(search)
 
 
 
+
 // const search ={};
 
 // Object.keys(req.body).forEach(key => {
@@ -414,104 +404,6 @@ exports.reservationinfo = (req,res)=>{
 }
 
 
-// function authenticateToken(req, res, next) {
-  
-//    // console.log(res)
- 
-//    const authHeader = req.headers['authorization']
-//    console.log(authHeader)
-//    const token = authHeader && authHeader.split(' ')[1]
-//    if (token == null) return res.sendStatus(401)
- 
-//    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-//      console.log(err)
-//      if (err) return res.sendStatus(403)
-//      req.user = user
-//      next()
-//    })
- 
-//    axios.post('http://localhost:8000/token')
-//    .then(res => {
-//      console.log(res);
- 
-//    })
- 
-//  }
 
-
-
-async function authenticateToken(req, res, next) {
-
-  console.log("innnnnn")
-  next()
-
-  // console.log(req.headers.accesstoken)
-  // console.log(req.headers.refreshtoken)
- 
-  //  const AccessToken = req.headers.accesstoken
-  //  const RefreshToken = req.headers.refreshtoken
-
-
-  // //  console.log(req.headers.accesstoken)
-  //  const token = AccessToken && AccessToken.split(' ')[1]
-  //  if (token == null) return res.sendStatus(401)
- 
-  //  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-  //    console.log(err)
-  //    if (err) {
-  //     //  return res.sendStatus(403)
-  //     if (RefreshToken == null) return res.sendStatus(401)
-  //     RefreshTokens.findOne({'RefreshToken':RefreshToken}) 
-  //     .then(Token => { 
-  //       if (!Token) { 
-  //         console.log("refreshtokennnnnn not in active sessionnnn")
-  //         return res.sendStatus(403)
-  //       }
-  //       else{
-  //         console.log("refreshToken Founddd in DBBB")
-  //       jwt.verify(RefreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
-  //         console.log(err)
-  //         console.log(user)
-  //       if (err) return res.sendStatus(403)
-  //       const payload = { 
-  //         id: user.id, 
-  //         username: user.username, 
-  //          } 
-  //    console.log(payload)
-  //   const AccessToken =  jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: 10}) //15 mins
-  //    console.log(AccessToken)
-
-  //       req.AccessToken = AccessToken
-  //       next()
-
-  //   // res.headers("Content-Typeeeee",'dfgtyuiouytrtui');
-  //   // res.headers.Add("AHHHHHHAAHAHHAH",'aaaaaaooooo')
-  //   //  res.config.headers.AccessToken = 'aaaaaaaaaa'
-
-  //   // res.writeHead(200, {'Content-Type': 'text/event-stream'});
-
-  //   // return 
-
-  //   // res.setHeader({ message: "Success",
-  //   // AccessToken: "Bearer " + AccessToken,
-  // //  }) 
-  //   //  res.json({ accessToken: accessToken }) // update session [AccessToken]
-
-  //       // const accessToken = generateAccessToken({ name: user.name })
-  //     })
-     
-  //       }
-
-  //     })
-
-  //    }
-  //   //  req.user = user
-  //   //  console.log(user)
-    
-  //  })
-
-
-
- }
 
 

@@ -3,6 +3,8 @@ import axios from 'axios'
 import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css'; 
+import Cookies from "js-cookies";
+
 
 import moment from "moment";
 import {
@@ -32,9 +34,9 @@ const UpdateFlight = () => {
    pathname: '/LoginPage'
  });
 };
-  if (localStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
-    window.open("LoginPage", "_self");
- }
+if (localStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
+  window.open("LoginPage", "_self");
+}
  //Is their authentication token still valid?
 //  else if (Date.now > new Date(localStorage.getItem('AuthenticationExpires'))) {
 //        window.open("AccessDenied.html", "_self");
@@ -120,14 +122,26 @@ const UpdateFlight = () => {
    
     if(Data.Flight_No.length==5 &Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date!==null 
       &&Data.Terminal!==''&& Data.Economy_Seats!==''&& Data.First_Seats!==''&& Data.Business_Seats!=='' ){
-    axios.put('http://localhost:8000/UpdateFlight', {data: {var1:update, var2:Data1}})
+
+        Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+        Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+    axios.put('http://localhost:8000/UpdateFlight', {data: {var1:update, var2:Data1}}, {withCredentials: true})
     .then(response => {
+      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
         history.push('/ViewFlights')
       console.log(response);
       form.resetFields();
       success(); // data succ added less go
-       }).catch(error => {
-      console.log(error);
+       }).catch(err => {
+        if(err.response.status==403){
+          history.push({
+            pathname: '/LoginPage'
+          });
+        }
+      console.log(err);
     })
 
   }

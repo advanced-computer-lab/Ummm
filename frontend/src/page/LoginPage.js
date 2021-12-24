@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css'; 
 import '../css/App.css';
+import Cookies from "js-cookies";
+
 
 
 import moment from "moment";
@@ -65,7 +67,6 @@ const LoginPage = () => {
     })
     .then(res => {
       console.log(res.status);
-      console.log(res.data.AccessToken);
       localStorage.setItem("AuthenticationState", "AdminAuthenticated")
       localStorage.setItem("AccessToken", res.data.AccessToken);
       localStorage.setItem("RefreshToken", res.data.RefreshToken);
@@ -89,6 +90,7 @@ const LoginPage = () => {
         console.log(err.response.status);
            var msg = err.response.data
          warning(msg);
+         console.log(err)
     })
 
   };
