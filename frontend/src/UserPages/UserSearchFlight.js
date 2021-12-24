@@ -622,42 +622,42 @@ else{
   //  if(Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date_Depart!=="" &&Data.Flight_Date_Return!==""){
 
   
-    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
-    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+    // Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+    // Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
 
-    axios.post('http://localhost:8000/SearchFlight', criteria1,{withCredentials: true})
+    axios.post('http://localhost:8000/usersearchflight', criteria1,)//{withCredentials: true})
     .then(response => {
-      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      // localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 
       setResult1(response.data);
       //  console.log(Result1);
        }).catch(error => {
-        if(error.response.status==403){
-          history.push({
-            pathname: '/UserLogin'
-          });
-        }
+        // if(error.response.status==403){
+        //   history.push({
+        //     pathname: '/UserLogin'
+        //   });
+        // }
       console.log(error);
     })
 
-    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
-    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+    // Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+    // Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
 
-    axios.post('http://localhost:8000/SearchFlight', criteria2,{withCredentials: true})
+    axios.post('http://localhost:8000/usersearchflight', criteria2)//,{withCredentials: true})
     .then(response => {
-      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      // localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       setResult2(response.data);
       //  console.log(Result2);
        }).catch(error => {
-        if(error.response.status==403){
-          history.push({
-            pathname: '/UserLogin'
-          });
-        }
+        // if(error.response.status==403){
+        //   history.push({
+        //     pathname: '/UserLogin'
+        //   });
+        // }
       console.log(error);
     })
     // console.log("woooooooooow")

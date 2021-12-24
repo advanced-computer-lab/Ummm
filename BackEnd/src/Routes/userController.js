@@ -315,6 +315,47 @@ Flights.find(search)
 
 
 
+exports.usersearchflight = (req, res) => {
+
+  const search ={};
+  var dd;
+  var ss;
+   Object.keys(req.body).forEach(key => {
+ 
+    if (req.body[key]!==null) {
+      if(key=='Flight_Date'){
+         dd = (req.body[key]);
+         var start = moment(dd).startOf('day');
+         var end = moment(dd).endOf('day'); 
+         //  console.log(search["Flight_Date"])
+           search[key] = { '$gte': start,"$lt": end};
+         }
+       else if(key=='Economy_Seats' || key=='Business_Seats' || key=='First_Seats'
+        || key=='Economy_Baggage' || key=='Business_Baggage' || key=='First_Baggage'
+        || key=='Economy_Price ' || key=='Business_Price' || key=='First_Price'){
+         ss = (req.body[key]); 
+         search[key] = ss;
+       }
+       else{
+       search[key] = {$regex: '^' + req.body[key],     $options: 'ix'};
+       }
+     }
+     
+   });
+ 
+   console.log(search);
+ 
+ Flights.find(search)
+ .then(result => {
+       res.send(result);
+       // console.log(result);
+     })
+     .catch(err => {
+       console.log(err);
+     });
+ };
+ 
+
 
 // const search ={};
 

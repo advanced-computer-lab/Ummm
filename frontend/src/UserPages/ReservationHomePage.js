@@ -657,7 +657,7 @@ const parentToChild = (res,from) => {
     .catch((error)=>{
       if(error.response.status==403){
         history.push({
-          pathname: '/LoginPage'
+          pathname: '/UserLogin'
         });
       }
     })
