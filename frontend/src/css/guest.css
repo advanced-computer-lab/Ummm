@@ -443,6 +443,8 @@ figcaption p{
     padding: 20px;
   }
 
+  
+
 
   /* chnage background color */
   .box {
@@ -451,8 +453,23 @@ figcaption p{
     border-radius: 5px;
     padding: 20px;
     font-size: 150%;
+    
+
+  }
+
+  .box2 {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
     display: none;
 
+  }
+  .box2 .box {
+    background-color: #ccc;
+    color: #444;
+    padding: 20px;
   }
 
   /* .box- {

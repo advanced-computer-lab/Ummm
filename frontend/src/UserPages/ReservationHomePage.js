@@ -145,12 +145,16 @@ setInterval(MovePlane, 80);
 
 
   $('body').on('click', '.submit-btn2', function(){//delegated
-    $(".box").css("display", "grid"); 
+    $(".box2").css("display", "grid"); 
   });
 
   $('body').on('click', '.submit-btn2-visable-under', function(){//delegated
-    $(".box").css("display", "grid"); 
+    $(".box2").css("display", "grid"); 
   });
+
+
+
+  
 // var $headline = $('.headline'),
 //     $inner = $('.inner'),
 //     $nav = $('nav'),
@@ -504,6 +508,131 @@ const senddata = (reserv) => {
 //   window.scrollTo(0,document.body.scrollHeight);
 // }
 
+const searchHandler = (e) => {
+  e.preventDefault(); 
+ 
+  /// setDisplay1([]);
+  // setDisplay2([]);
+
+  const criteria1 = {};
+  const criteria2 = {};
+  var dd;
+
+
+  console.log(Data);
+
+  Object.keys(Data).forEach(key => {
+ if (Data[key]!=="") {
+  if(key=="Flight_Date_Depart"){
+    criteria1["Flight_Date"] = Data[key];
+    // criteria2["Flight_Date_Depart"] = Data[key];
+  }
+    else
+      criteria1[key] = Data[key];
+      if(key=="From"){
+        criteria2[key] = Data["To"];
+      }
+     else if(key=="To"){
+        criteria2[key] = Data["From"];
+      }
+      else if(key=="Flight_Date_Return"){
+        criteria2["Flight_Date"] = Data[key];
+      }
+      else
+      criteria2[key] = Data[key];
+    }
+  });
+  console.log(criteria2);
+
+ // prevent reloading the page
+//  console.log(Data.Flight_Date_Depart);
+//  if(Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date_Depart!=="" &&Data.Flight_Date_Return!==""){
+
+
+  Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+  Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+
+  axios.post('http://localhost:8000/SearchFlight', criteria1,{withCredentials: true})
+  .then(response => {
+    localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+    document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+    setResult1(response.data);
+    //  console.log(Result1);
+     }).catch(error => {
+      if(error.response.status==403){
+        history.push({
+          pathname: '/UserLogin'
+        });
+      }
+    console.log(error);
+  })
+
+  Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+  Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+
+  axios.post('http://localhost:8000/SearchFlight', criteria2,{withCredentials: true})
+  .then(response => {
+    localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+    document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    setResult2(response.data);
+    //  console.log(Result2);
+     }).catch(error => {
+      if(error.response.status==403){
+        history.push({
+          pathname: '/UserLogin'
+        });
+      }
+    console.log(error);
+  })
+  // console.log("woooooooooow")
+  // console.log(Result1.Adults)
+  // console.log(Result1.Children)
+
+  setGuard(true);
+
+  // console.log(Result1);
+  // console.log(Result2);
+
+
+  // setState({
+  //   Flight_No: "",
+  //     From: "",  
+  //     To: "",
+  //     Flight_Date_Depart: "", // Data type date
+  //     Flight_Date_Return: "", // Data type date
+  //     Terminal: "",
+  //     Flight_Duration:"",
+  //     Seats: "",
+  //     Baggage: "", 
+  //     Price: "",
+
+  //     Adults: "",
+  //     Children:"",
+  //     CabinDepart: "",
+  //     CabinReturn: "",
+  //   })
+
+
+  // }
+
+    // else if(Data.From.length<3 ){
+    //   warning1();
+    // }
+    // else if(Data.To.length<3 ){
+    //   warning2();
+    // }
+    // else if(Data.Flight_Date_Depart=="" ){
+    //   warning3();
+    // }
+    // else if(Data.Flight_Date_Return=="" ){
+    //   warning4();
+    // }
+
+};
+
 
 const parentToChild = (res,from) => {
   console.log(from);
@@ -652,7 +781,7 @@ const parentToChild = (res,from) => {
 
                
                 
-                <button  class="submit-btn2" type="button">Search Now</button>
+                <button  class="submit-btn2" type="button" >Search Now</button>
 
              
 							</div>
@@ -791,7 +920,7 @@ const parentToChild = (res,from) => {
 
                    {/* this button will be hidden until we pressed on expand  */}
                 <div class="row">
-                <button  class="submit-btn2-hidden-under" type="button">Search Now</button>
+                <button  class="submit-btn2-hidden-under" type="button" >Search Now</button>
                 </div>
 
 
@@ -853,7 +982,7 @@ const parentToChild = (res,from) => {
 
     
   
-    <div class="box d">
+    <div class="box2 d">
 <label class="center">Depart Flight</label>
   <div class="box f">
   {Display1.map(flight =>
@@ -881,8 +1010,8 @@ const parentToChild = (res,from) => {
     <div class="flight-details-row">
       <div class="flight-operator">
        
-        <span class="detail">Flight Date:{moment(flight.Flight_Date).format("YYYY-MM-DD")} <br></br>
-        Flight time:{moment(flight.Flight_Date).format("HH:mm")}
+        <span class="detail">{moment(flight.Flight_Date).format("YYYY-MM-DD")} <br></br>
+        {moment(flight.Flight_Date).format("HH:mm")}
         </span>
         {/* <span class="detail">15:55</span> */}
       </div>
@@ -929,10 +1058,10 @@ const parentToChild = (res,from) => {
         <span class="detail">2020-12-12 <br></br>
               20:15
         </span>
-        {/* <span class="detail">15:55</span> */}
+     
       </div>
       <div class="flight-number">
-       {/* the price here */}
+     
        <span class="detail2">200.99$</span>
       </div>
       <div class="flight-class">
@@ -942,43 +1071,59 @@ const parentToChild = (res,from) => {
     </div>
 
   </div>
-</button>
+</button> 
   
   
   </div>
   
   <label class="center">Return Flight</label>
   <div class="box g">
-
-
   {Display2.map(flight =>
-      
-  <div class="listing-item">
-      <figure class="image">
-          <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
-          <figcaption>
-            <div class="caption">
-              <h1>${flight.Price}</h1>
-              <p>{flight.To}</p>
-              </div>
-          </figcaption>
-      </figure>
-      <div class="listing">
-          <h4>From: {flight.From}</h4>
-          <h4>To:{flight.To}</h4>
-          <h4>Flight Date:{moment(flight.Flight_Date).format("YYYY-MM-DD")}</h4>
-          <h4>Flight time:{moment(flight.Flight_Date).format("HH:mm")}</h4>
-         
-          {/* <a  class=" button-79"  name={flight._id} onClick={() => returnHandler(flight)} >BOOK NOW!</a> */}
-          <button class="button-79" role="button" name={flight._id} onClick={() => returnHandler(flight)}>BOOK NOW!</button>
 
+<button  type="button" class="flight-card">
 
-      </div>
+<div class="flight-card-content">
+  <div class="flight-row">
+    <div class="flight-from">
+      <span class="from-code">{flight.From}</span>
+  
+    </div>
+    
+    <div class="plane">
+      <img src="https://www.svgrepo.com/show/197156/airplane-flight.svg" alt=""/>
+     
+    </div>
+    <div class="plane"></div>
+    <div class="flight-to">
+      <span class="to-code">{flight.To}</span>
+    </div>
+    
   </div>
 
-  
+  <div class="flight-details-row">
+    <div class="flight-operator">
+     
+      <span class="detail">{moment(flight.Flight_Date).format("YYYY-MM-DD")} <br></br>
+      {moment(flight.Flight_Date).format("HH:mm")}
+      </span>
+      {/* <span class="detail">15:55</span> */}
+    </div>
+    <div class="flight-number">
+     {/* the price here */}
+     <span class="detail">{flight.Price}$</span>
+    </div>
+    <div class="flight-class">
 
-        )}
+      <span class="detail">{flight.CabinDepart}</span>
+    </div>
+  </div>
+
+</div>
+</button>
+
+)}
+
+  
   </div>
 
 
