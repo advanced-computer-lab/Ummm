@@ -114,6 +114,8 @@ app.post('/flightmap',authenticateToken ,userController.flightmap)
 app.put('/updateseats',authenticateToken ,userController.updateseats)
 app.put('/updatereservationseats',authenticateToken ,userController.updatereservationseats)
 app.delete('/deletereservation',authenticateToken ,userController.deletereservation)
+app.post('/usersearchflight' ,userController.usersearchflight)
+
 
 
 

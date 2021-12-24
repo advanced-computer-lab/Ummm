@@ -300,26 +300,26 @@ const ReservationHomePage = () => {
 
   useEffect(() => {
 
-    // if(Guard === true){
-      Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
-      Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
-      axios.post('http://localhost:8000/reservationinfo',criteria, {withCredentials: true}).then((result)=>
-      {    
-        localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-        document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        // console.log("ssss")
-       setallReservation(result.data);
-      //  console.log(Reservations);
-        } )
-        .catch((error) => {
-          if(error.response.status==403){
-            history.push({
-              pathname: '/LoginPage'
-            });
-          }
-        })
-      // };
+    // // if(Guard === true){
+    //   Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+    //   Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+    //   axios.post('http://localhost:8000/reservationinfo',criteria, {withCredentials: true}).then((result)=>
+    //   {    
+    //     localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+    //     document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    //     document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    //     // console.log("ssss")
+    //    setallReservation(result.data);
+    //   //  console.log(Reservations);
+    //     } )
+    //     .catch((error) => {
+    //       if(error.response.status==403){
+    //         history.push({
+    //           pathname: '/UserLogin'
+    //         });
+    //       }
+    //     })
+    //   // };
 
 
 
@@ -639,7 +639,7 @@ const ReservationHomePage = () => {
                       }).catch(error => {
                         if(error.response.status==403){
                           history.push({
-                            pathname: '/LoginPage'
+                            pathname: '/UserLogin'
                           });
                         }
               console.log(error); //Handle Flight_No excite 
@@ -673,7 +673,7 @@ const ReservationHomePage = () => {
           }).catch(error => {
             if(error.response.status==403){
               history.push({
-                pathname: '/LoginPage'
+                pathname: '/UserLogin'
               });
             }
 })
@@ -745,7 +745,7 @@ const parentToChild = (res,from) => {
     .catch((error)=>{
       if(error.response.status==403){
         history.push({
-          pathname: '/LoginPage'
+          pathname: '/UserLogin'
         });
       }
     })
