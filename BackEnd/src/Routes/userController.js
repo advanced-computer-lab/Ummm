@@ -10,6 +10,7 @@ const today = moment().startOf('day');
 // const App = require('../src/App.js');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const cookieParser = require('cookie-parser');
 
 
 // let refreshTokens = []
@@ -115,7 +116,12 @@ exports.userinfo = (req,res)=>
 
 exports.viewflights = (req,res)=>
 {
- console.log(req.AccessToken)
+//  console.log(req.AccessToken)
+
+// res.cookie("testttt","aoaoaoaoaoa",{
+//   path: "/",
+//   httpOnly: false,
+// })
 
   console.log("Hereeee")
 

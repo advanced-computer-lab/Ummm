@@ -8,6 +8,8 @@ import {
   Button,
 
 } from 'antd';
+import Cookies from "js-cookies";
+
 // import {Redirect} from 'react-router-dom';
 // import LNSelect from "../LNSelect/LNSelect";
 // import Navbar from './navbar';
@@ -35,7 +37,7 @@ function App() {
 //  }
   const history = useHistory();
   const[flights,Setflights]=useState([]);
-    
+  // axios.defaults.withCredentials = true;
 
   useEffect(() => {
     
@@ -48,14 +50,21 @@ function App() {
 
     axios.get('http://localhost:8000/viewflights',{
       headers: headers
-      })
+  }  ,{ withCredentials: true })
     .then((result)=>
     {
+      console.log("resultoooo")
+      // Cookies.setItem("authToken", Token); // no need it's done automatically.
+      console.log(Cookies.getItem("testttt"))
       localStorage.setItem('AccessToken', 'Bearer ' + result.data.AccessToken)
       console.log(result.data);
         Setflights(result.data.FlightData);
     })
     .catch(err => {
+      if(err.response.status == 403){
+        console.log("Please LogIn Again") //Redirect la Login Hanaaa
+      }
+      console.log("erroroooo")
       console.log(err.response.status)
     console.log(err.response.data)
     })

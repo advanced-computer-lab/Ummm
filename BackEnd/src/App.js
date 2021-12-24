@@ -12,6 +12,8 @@ const Users = require('../src/Models/User.js');
 const RefreshTokens = require('../src/Models/RefreshTokens.js');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const cookieParser = require('cookie-parser');
+
 
 
 
@@ -28,6 +30,7 @@ const app = express();
 const port = process.env.PORT || "8000";
 // #Importing the userController
 app.use(cors())
+app.use(cookieParser())
 app.use(express.urlencoded({extended: true}));
 app.use(express.json()) // To parse the incoming requests with JSON payloads// configurations
 const MongoURI = 
@@ -199,8 +202,8 @@ app.post('/loginpage' ,  async (req, res) => {
 
 function authenticateToken(req, res, next) {
 
-  console.log(req.headers.accesstoken)
-  console.log("Accessssssss")
+  // console.log(req.headers.accesstoken)
+  // console.log("Accessssssss")
   // console.log(req.headers.refreshtoken)
   // console.log("innnn")
   // next()
@@ -212,24 +215,35 @@ function authenticateToken(req, res, next) {
 
   //  console.log(req.headers.accesstoken)
    const token = AccessToken && AccessToken.split(' ')[1]
-   if (token == null) return res.sendStatus(401)
- 
+   if (token == null) return  res.status(403).send("Access Token Not Found!")
+ else{
    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-     console.log("AccessToken Usedddddddd")
+     if(!err){
+            console.log("AccessToken Usedddddddd")
+            res.cookie("testttt","aoaoaoaoaoa",{
+              path: "/",
+              httpOnly: false,
+            })
+            next() 
+     }
      if (err) {
+      console.log("AccessToken Expireddddd")
       //  return res.sendStatus(403)
       if (RefreshToken == null) return res.sendStatus(401)
       RefreshTokens.findOne({'RefreshToken':RefreshToken}) 
       .then(Token => { 
         if (!Token) { 
           console.log("refreshtokennnnnn not in active sessionnnn")
-          return res.sendStatus(403)
+          return res.status(403).send("Refresh Token Not in DB!");
         }
         else{
           console.log("refreshToken Founddd in DBBB")
         jwt.verify(RefreshToken, process.env.REFRESH_TOKEN_SECRET ,(err, user) => {
-          console.log(err)
-        if (err) return res.sendStatus(403); //res.sendStatus(403)
+          console.log("Refresh Token Expireddddd!")
+        if (err) { 
+          return res.status(403).send("Refresh Token Expired 'LogIn Again' !"); //res.sendStatus(407); //res.sendStatus(403)
+        }
+        else{
         const payload = { 
           id: user.id, 
           username: user.username, 
@@ -237,19 +251,17 @@ function authenticateToken(req, res, next) {
      console.log(payload)
      AccessToken =  jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: 10}) //15 mins
      console.log(AccessToken)
-
      req.AccessToken = AccessToken
-    //  next() 
+      next() 
+        }
       })
         }
 
       })
      }
-    //  req.user = user
-    //  next() 
-    //  console.log(user)
     
    })
+  }
 
  }
 
