@@ -23,19 +23,20 @@ import {
 
 
 const UpdateFlight = () => {
-  const LogOutHandler = (e) => {
-    sessionStorage.clear()
-    history.push({
-      pathname: '/LoginPage'
-    });
 
-    
-  };
-  if (sessionStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
+  const LogOutHandler = (e) => {
+  var userid = localStorage.getItem('UserID')
+ axios.delete('http://localhost:8000/logout',{data: {ID: userid}})
+ localStorage.clear()
+ history.push({
+   pathname: '/LoginPage'
+ });
+};
+  if (localStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
     window.open("LoginPage", "_self");
  }
  //Is their authentication token still valid?
-//  else if (Date.now > new Date(sessionStorage.getItem('AuthenticationExpires'))) {
+//  else if (Date.now > new Date(localStorage.getItem('AuthenticationExpires'))) {
 //        window.open("AccessDenied.html", "_self");
 //  }
 

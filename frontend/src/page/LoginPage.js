@@ -66,14 +66,17 @@ const LoginPage = () => {
     .then(res => {
       console.log(res.status);
       console.log(res.data.AccessToken);
+      localStorage.setItem("AuthenticationState", "AdminAuthenticated")
       localStorage.setItem("AccessToken", res.data.AccessToken);
       localStorage.setItem("RefreshToken", res.data.RefreshToken);
+      localStorage.setItem("UserID", res.data.UserID)
+      console.log(localStorage)
       setState({
         Username: "",  
         Password: "",
         })
-        sessionStorage.setItem("AuthenticationState", "AdminAuthenticated");
-        sessionStorage.setItem("Username", criteria.Username);
+        // sessionStorage.setItem("AuthenticationState", "AdminAuthenticated");
+        // sessionStorage.setItem("Username", criteria.Username);
         // console.log(sessionStorage.getItem("AuthenticationState"))
         // console.log(sessionStorage.getItem("Username"))
                 
@@ -93,7 +96,6 @@ const LoginPage = () => {
   const warning = (msg) => {
     message.warning(msg);
   }
-
 
 
 

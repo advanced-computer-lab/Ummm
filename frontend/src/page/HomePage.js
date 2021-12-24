@@ -1,6 +1,7 @@
 
 import { Layout, Menu,Button } from 'antd';
 import React, { Component } from 'react';
+import axios from 'axios'
 import ReactDOM from 'react-dom'
 import 'antd/dist/antd.css'; 
 import '../css/App.css';
@@ -30,11 +31,13 @@ const { Header, Sider, Content } = Layout;
 class HomePage extends React.Component {
 
    LogOutHandler = () => {
-    sessionStorage.clear()
+    var userid = localStorage.getItem('UserID')
+   axios.delete('http://localhost:8000/logout',{data: {ID: userid}})
+   localStorage.clear()
     window.open("LoginPage", "_self");
-
-    
   };
+
+
 
   
   state = {
@@ -55,11 +58,11 @@ class HomePage extends React.Component {
   // };
 
   render() {
-    if (sessionStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
+    if (localStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
       window.open("LoginPage", "_self");
    }
    //Is their authentication token still valid?
-  //  else if (Date.now > new Date(sessionStorage.getItem('AuthenticationExpires'))) {
+  //  else if (Date.now > new Date(localStorage.getItem('AuthenticationExpires'))) {
   //        window.open("AccessDenied.html", "_self");
   //  }
     return (

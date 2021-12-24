@@ -28,15 +28,18 @@ import {
   
 
 const CreateFlight = () => {
-  if (sessionStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
+  if (localStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
     window.open("LoginPage", "_self");
  }
+
+
  const LogOutHandler = (e) => {
-  sessionStorage.clear()
+   var userid = localStorage.getItem('UserID')
+  axios.delete('http://localhost:8000/logout',userid)
+  localStorage.clear()
   history.push({
     pathname: '/LoginPage'
   });
-
 };
 
   const history = useHistory();
@@ -184,10 +187,11 @@ const CreateFlight = () => {
       'RefreshToken': localStorage.getItem('RefreshToken')
     }      
 
+    console.log(headers)
+
     axios.post('http://localhost:8000/createflight', Data1, {
     headers: headers
     })
-    
     .then(response => {
       console.log(response.status);
       //  window.location.reload(false);

@@ -16,19 +16,21 @@ import { withRouter } from "react-router-dom";
 import moment from "moment";
 
 function App() {
-  if (sessionStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
+  if (localStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
     window.open("LoginPage", "_self");
  }
-  const LogOutHandler = (e) => {
-    sessionStorage.clear()
-    history.push({
-      pathname: '/LoginPage'
-    });
 
-    
-  };
+ const LogOutHandler = (e) => {
+  var userid = localStorage.getItem('UserID')
+ axios.delete('http://localhost:8000/logout',{data: {ID: userid}})
+ localStorage.clear()
+ history.push({
+   pathname: '/LoginPage'
+ });
+};
+
  //Is their authentication token still valid?
-//  else if (Date.now > new Date(sessionStorage.getItem('AuthenticationExpires'))) {
+//  else if (Date.now > new Date(localStorage.getItem('AuthenticationExpires'))) {
 //        window.open("AccessDenied.html", "_self");
 //  }
   const history = useHistory();
@@ -36,22 +38,28 @@ function App() {
     
 
   useEffect(() => {
-
+    
     const headers = {
       'AccessToken': localStorage.getItem('AccessToken'),
-      'RefreshToken': localStorage.getItem('RefreshToken')
+      'RefreshToken': localStorage.getItem('RefreshToken'),
+      // 'UserID': localStorage.getItem('UserID')
     }    
     console.log(headers)
 
     axios.get('http://localhost:8000/viewflights',{
       headers: headers
       })
-
     .then((result)=>
     {
-        Setflights(result.data);
-    });
-
+      localStorage.setItem('AccessToken', 'Bearer ' + result.data.AccessToken)
+      console.log(result.data);
+        Setflights(result.data.FlightData);
+    })
+    .catch(err => {
+      console.log(err.response.status)
+    console.log(err.response.data)
+    })
+  
   },[]);
 
   const editHandler = (flight) => {

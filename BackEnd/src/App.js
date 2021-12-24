@@ -80,10 +80,10 @@ app.get("/home", (req, res) => {
   });
 //Flight and admin
 app.post('/createflight',authenticateToken ,userController.createflight)
-app.get('/viewflights',authenticateToken ,userController.viewflights)
-app.delete('/deleteflight',authenticateToken ,userController.deleteflight)
-app.put('/updateflight',authenticateToken ,userController.updateflight)
-app.post('/searchflight',authenticateToken ,userController.searchflight)
+app.get('/viewflights', authenticateToken ,userController.viewflights)
+app.delete('/deleteflight' ,userController.deleteflight)
+app.put('/updateflight' ,userController.updateflight)
+app.post('/searchflight' ,userController.searchflight)
 // (req, res) => { 
 //   console.log("rtyuio")
 //   console.log(res.data.RefreshToken)
@@ -91,7 +91,7 @@ app.post('/searchflight',authenticateToken ,userController.searchflight)
 // })
 
 //User
-app.post('/createuseraccount', userController.createuseraccount)
+app.post('/createuseraccount' ,userController.createuseraccount)
 app.post('/userlogin',userController.userlogin)
 app.post('/createnewReservation',userController.createnewReservation)
 app.post('/GetUserInfo',userController.GetUserInfo)
@@ -126,19 +126,18 @@ app.post('/loginpage' ,  async (req, res) => {
          username: dbUser.Username, 
     } 
    const AccessToken =  jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: 10}) //15 mins
-    jwt.sign(payload,process.env.REFRESH_TOKEN_SECRET,
+    jwt.sign(payload,process.env.REFRESH_TOKEN_SECRET, {expiresIn: 30},
         (err, token) => { 
           if (err) return res.json({message: err}) 
         //  refreshTokens.push(token)
         //  console.log(refreshTokens)
-
         
         var userid = dbUser._id.toString()
         var Refresh = {}
         Refresh['UserID'] = userid
         Refresh['RefreshToken'] = token
         const RefreshToken = new RefreshTokens(Refresh)
-        console.log(RefreshToken)
+        // console.log(RefreshToken)
 
         RefreshTokens.findOne({UserID: userid}) 
         .then(dbUser => { 
@@ -160,11 +159,12 @@ app.post('/loginpage' ,  async (req, res) => {
           }
         })
 
-
           return res.json({ message: "Success",
            AccessToken: "Bearer " + AccessToken,
-          RefreshToken: token
+          RefreshToken: token,
+          UserID: userid
          }) 
+
       })
      } else{
       return res.status(403).send("Incorrect Password!");
@@ -179,45 +179,79 @@ app.post('/loginpage' ,  async (req, res) => {
 
 
 
+
+
+  app.delete('/logout', (req, res) => {
+    var del = req.body.ID
+    RefreshTokens.findOneAndDelete({'UserID':del}).exec().then(result =>{
+      res.status(204).send("RefreshToken Deleted");
+  }).catch(err => {
+      console.log(err);
+    });
+  })
+
+
+
+
+
+  
+
+
 function authenticateToken(req, res, next) {
 
-  console.log(req.RefreshToken)
-  console.log("innnn")
+  console.log(req.headers.accesstoken)
+  console.log("Accessssssss")
+  // console.log(req.headers.refreshtoken)
+  // console.log("innnn")
   // next()
  
-   const authHeader = req.headers.accesstoken
+   var AccessToken = req.headers.accesstoken
+   const RefreshToken = req.headers.refreshtoken
+
+   req.AccessToken = AccessToken
+
   //  console.log(req.headers.accesstoken)
-   const token = authHeader && authHeader.split(' ')[1]
+   const token = AccessToken && AccessToken.split(' ')[1]
    if (token == null) return res.sendStatus(401)
  
    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-     console.log(err)
+     console.log("AccessToken Usedddddddd")
      if (err) {
       //  return res.sendStatus(403)
+      if (RefreshToken == null) return res.sendStatus(401)
+      RefreshTokens.findOne({'RefreshToken':RefreshToken}) 
+      .then(Token => { 
+        if (!Token) { 
+          console.log("refreshtokennnnnn not in active sessionnnn")
+          return res.sendStatus(403)
+        }
+        else{
+          console.log("refreshToken Founddd in DBBB")
+        jwt.verify(RefreshToken, process.env.REFRESH_TOKEN_SECRET ,(err, user) => {
+          console.log(err)
+        if (err) return res.sendStatus(403); //res.sendStatus(403)
+        const payload = { 
+          id: user.id, 
+          username: user.username, 
+     } 
+     console.log(payload)
+     AccessToken =  jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: 10}) //15 mins
+     console.log(AccessToken)
 
+     req.AccessToken = AccessToken
+    //  next() 
+      })
+        }
 
-
-      const refreshToken = req.headers.refreshtoken
-      if (refreshToken == null) return res.sendStatus(401)
-      if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403)
-      // jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
-      //   if (err) return res.sendStatus(403)
-      //   const accessToken = generateAccessToken({ name: user.name })
-      //   res.json({ accessToken: accessToken }) // update session [AccessToken]
-      // })
-
-
-
+      })
      }
-     req.user = user
-     console.log(user)
-     next()
+    //  req.user = user
+    //  next() 
+    //  console.log(user)
+    
    })
 
-
- 
  }
-
 
 
 // Starting server
