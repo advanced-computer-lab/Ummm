@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css'; 
 import { SettingOutlined } from '@ant-design/icons';
+import Cookies from "js-cookies";
+
 
 import moment from "moment";
 import {
@@ -182,22 +184,26 @@ const CreateFlight = () => {
       console.log(Data1);
 
 
-    const headers = {
-      'AccessToken': localStorage.getItem('AccessToken'),
-      'RefreshToken': localStorage.getItem('RefreshToken')
-    }      
+      Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+      Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+ 
 
-    console.log(headers)
-
-    axios.post('http://localhost:8000/createflight', Data1, {
-    headers: headers
-    })
+    axios.post('http://localhost:8000/createflight', Data1, {withCredentials: true})
     .then(response => {
+      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
       console.log(response.status);
       //  window.location.reload(false);
        form.resetFields();
         success(); // data succ added less go
       }).catch(error => {
+        if(error.response.status==403){
+          history.push({
+            pathname: '/LoginPage'
+          });
+        }
         warning9();
         console.log(error);
     })
