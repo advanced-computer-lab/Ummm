@@ -816,8 +816,6 @@ const ReservationHomePage = () => {
   const success = () => {
 
 
-
-
     swalWithBootstrapButtons.fire({
 
       html:
@@ -1942,8 +1940,6 @@ const ReservationHomePage = () => {
 
 
   //     );}
-
-
 
 
 

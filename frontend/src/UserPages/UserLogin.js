@@ -60,7 +60,7 @@ const UserLogin = () => {
       localStorage.setItem("UserID", res.data.UserID)
       localStorage.setItem("Username", Data.Username.toLowerCase())
 
-
+console.log(localStorage.getItem("UserInfo"))
       console.log(localStorage)
       // console.log(sessionStorage.getItem("AuthenticationState"))
       // console.log(sessionStorage.getItem("Username"))

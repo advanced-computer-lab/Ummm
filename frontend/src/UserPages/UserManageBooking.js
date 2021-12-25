@@ -655,7 +655,37 @@ const swalWithBootstrapButtons = Swal.mixin({
 })
 
 
+const Editdeparthandler = (res) => {
+  history.push({
+    pathname: '/UserEditFlight',
+  state: {
+    reservation: res,
+    depart:true,
+    return:false,
+    from: res.Flight_From,
+    to: res.Flight_To,
+    cabin:res.CabinFrom,
+    date: res.Flight_DateFrom
+  }
+  });
+}
 
+const Editreturnhandler = (res) => {
+
+  history.push({
+                    pathname: '/UserEditFlight',
+                  state: {
+                    reservation: res,
+                    depart:false,
+                    return:true,
+                    from: res.Flight_To,
+                    to: res.Flight_From,
+                    cabin:res.CabinTo,
+                    date: res.Flight_DateTo
+                                }
+                  });
+}
+ 
  
 
   const Showboarding = (DateFrom,DateTo,From,To,CabinFrom,CabinTo,Booking_no,Flight_NoFrom,Flight_NoTo,SeatsChoosenFrom,SeatsChoosenTo,Username,Useremail) => {
@@ -1018,6 +1048,7 @@ const swalWithBootstrapButtons = Swal.mixin({
           {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
           {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
           <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv,true)} smooth={true}>Select Seat</Link>
+          <Link class="button-79" role="button" onClick={() => Editdeparthandler(reserv)} smooth={true}>Edit Flight</Link>
 
       </div>
   </div>
@@ -1046,7 +1077,8 @@ const swalWithBootstrapButtons = Swal.mixin({
           {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
           {/* spy={true} */}
           <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv,false)}  smooth={true}>Select Seat</Link>
-  
+          <Link class="button-79" role="button" onClick={() => Editreturnhandler(reserv)} smooth={true}>Edit Flight</Link>
+
       </div>
   </div>
   
@@ -1254,6 +1286,8 @@ const swalWithBootstrapButtons = Swal.mixin({
             {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
             {/* <a  class="button-79" role="button" onClick={scrollToBottom} >SELECT SEAT</a> */}
             <Link class="button-79" role="button" to="SeatMap"  onClick={() => parentToChild(reserv,true)} smooth={true}>Select Seat</Link>
+            <Link class="button-79" role="button" onClick={() => Editdeparthandler(reserv)} smooth={true}>Edit Flight</Link>
+
   
         </div>
     </div>
@@ -1282,7 +1316,8 @@ const swalWithBootstrapButtons = Swal.mixin({
             {/* <button  class="button-79" role="button" onClick={scrollToBottom}>SELECT SEAT</button> */}
             {/* spy={true} */}
             <Link class="button-79" role="button" to="SeatMap" onClick={() => parentToChild(reserv,false)}  smooth={true}>Select Seat</Link>
-    
+            <Link class="button-79" role="button" onClick={() => Editreturnhandler(reserv)} smooth={true}>Edit Flight</Link>
+
         </div>
     </div>
     

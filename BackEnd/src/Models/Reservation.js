@@ -5,7 +5,7 @@ const reservationSchema = new Schema({
 
 
 
-  //Flight From Info
+//Flight From Info
 
   Flight_IDFrom: {
     type: String,
@@ -21,19 +21,19 @@ const reservationSchema = new Schema({
   },
   Flight_DateFrom: {
     type: Date,
-    required: true,
+   required: true,
   },
   CabinFrom: {
     type: String,
-    required: true
+   required: true
   },
   FromPrice: {
     type: Number,
-    required: true
+   required: true
   },
   SeatsChoosenFrom: {
     type: String,
-  },
+  }, 
   SeatsChoosenFromID: {
     type: Number,
   },
@@ -59,22 +59,22 @@ const reservationSchema = new Schema({
   },
   Flight_DateTo: {
     type: Date,
-    required: true,
+   required: true,
   },
   CabinTo: {
     type: String,
-    required: true
+   required: true
   },
   ToPrice: {
     type: Number,
-    required: true
+   required: true
   },
   SeatsChoosenTo: {
     type: String,
-  },
+  }, 
   SeatsChoosenToID: {
     type: Number,
-  },
+  }, 
 
 
 
@@ -83,7 +83,7 @@ const reservationSchema = new Schema({
 
   //Passenger Information
 
-  FirstName: {
+   FirstName: {
     type: String,
     required: true,
   },
@@ -97,7 +97,7 @@ const reservationSchema = new Schema({
     type: String,
     required: true,
   },
-
+  
   Username: {
     type: String,
     required: true,
@@ -105,7 +105,7 @@ const reservationSchema = new Schema({
   Email: {
     type: String,
     required: true,
-  },
+  },  
   ReservationOwner: {
     type: Boolean,
     required: true,
@@ -116,17 +116,17 @@ const reservationSchema = new Schema({
   },
   TotalPrice: {
     type: Number,
-    required: true
+   required: true
   },
   Adults: {
     type: Number,
-    required: true
+  required: true
   },
   Children: {
-    type: Number,
+      type: Number,
     required: true
-  },
-
+    },
+ 
 
 }, { timestamps: true });
 
