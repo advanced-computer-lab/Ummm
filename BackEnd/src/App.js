@@ -95,6 +95,7 @@ app.post('/searchflight' ,userController.searchflight)
 
 //User
 app.post('/createuseraccount' ,userController.createuseraccount)
+app.post('/usersearchflight' ,userController.usersearchflight)
 app.post('/userlogin',userController.userlogin)
 app.post('/createnewReservation',userController.createnewReservation)
 app.post('/GetUserInfo',userController.GetUserInfo)
@@ -102,7 +103,9 @@ app.post('/userinfo',userController.userinfo)
 app.put('/updateuser',userController.updateuser)
 app.post('/reservationinfo',userController.reservationinfo)
 app.post('/flightmap',userController.flightmap)
+app.post('/searchflightid',userController.searchflightid)
 app.put('/updateseats',userController.updateseats)
+app.put('/updateeditflight',userController.updateeditflight)
 app.put('/updatereservationseats',userController.updatereservationseats)
 app.delete('/deletereservation',userController.deletereservation)
 

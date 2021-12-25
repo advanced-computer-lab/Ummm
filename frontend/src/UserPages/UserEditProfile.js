@@ -74,6 +74,7 @@ const UserEditProfile = () => {
     Password: userinfo.Password,
   });
   const [Result1, setResult] = useState();
+  
   useEffect(() => {
     if(Guard === true){
     axios.post('http://localhost:8000/userinfo',criteria).then((result)=>

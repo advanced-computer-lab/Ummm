@@ -56,6 +56,7 @@ const SearchFlight = () => {
 
   const [isLoading, setLoading] = useState(true);
   const [bothselected, setbothselected] = useState(true);
+
   const [isdepart, setdepart] = useState();
   const [isreturn, setreturn] = useState();
   const [Display1, setDisplay1] = useState([]);
@@ -131,6 +132,7 @@ const SearchFlight = () => {
       CabinTo: Data.CabinReturn,
       Adults: Data.Adults,
       Children: Data.Children,
+      Update:false
     }
     });
 
@@ -536,6 +538,7 @@ swalWithBootstrapButtons.fire({
                   CabinTo: Data.CabinReturn,
                   Adults: Data.Adults,
                   Children: Data.Children,
+                  Update: false
                 }
                 });
              }
@@ -606,7 +609,7 @@ else{
         criteria2[key] = Data[key];
       }
     });
-    console.log(criteria2);
+    console.log(criteria1);
 
    // prevent reloading the page
   //  console.log(Data.Flight_Date_Depart);

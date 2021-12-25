@@ -47,6 +47,14 @@ const reservationSchema = new Schema({
     type: Number,
    required: true
   },
+  // PriceFrom: {
+  //   type: Number,
+  //  required: true
+  // },
+  // PriceTo: {
+  //   type: Number,
+  //  required: true
+  // },
   SeatsChoosenFrom: {
     type: [String],
   }, 
