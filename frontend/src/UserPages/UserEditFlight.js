@@ -6,6 +6,7 @@ import 'antd/dist/antd.css';
 import '../css/popup.css';
 import '../css/swal.css';
 import Swal from 'sweetalert2'
+import Cookies from "js-cookies";
 
 import '../css/main.css';
 import '../css/guest.css';
@@ -124,22 +125,37 @@ console.log(isReturn)
     // olddate= moment(Dest.Flight_Date)
     e.preventDefault(); 
     if(isDepart){
-        console.log("sadfsafasfsafasf")
-        axios.post('http://localhost:8000/flightmap',{data: {var1 : reserv.Flight_IDTo} })
+        Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+        axios.post('http://localhost:8000/flightmap',{data: {var1 : reserv.Flight_IDTo} }, {withCredentials: true})
     .then((result)=> {
-
+        localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+        document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
           setFlightbooked(result.data[0])
           console.log(isFlightbooked)
         }).catch(error => {
+            if(error.response.status==403){
+                history.push({
+                  pathname: '/UserLogin'
+                });}
             console.log(error);
           })
         }
-    else{   
-     console.log("sadfsafasfsafasf")
-    axios.post('http://localhost:8000/flightmap',{data: {var1 : reserv.Flight_IDFrom} })
+    else{
+        Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+        Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+    axios.post('http://localhost:8000/flightmap',{data: {var1 : reserv.Flight_IDFrom} }, {withCredentials: true})
     .then((result)=> {
+        localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+        document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
          setFlightbooked(result.data[0]);
          }).catch(error => {
+            if(error.response.status==403){
+                history.push({
+                  pathname: '/UserLogin'
+                });}
            console.log(error);
           })
          }
@@ -169,14 +185,23 @@ console.log(isReturn)
     console.log(isFlightbooked);
     console.log(Result);
 
-   
-    axios.post('http://localhost:8000/usersearchflight', criteria)
+    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+    axios.post('http://localhost:8000/usersearchflight', criteria, {withCredentials: true})
     .then(response => {
+        localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+        document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       setResult(response.data);
        console.log(Result);
        setLoading(false);
 
        }).catch(error => {
+        if(error.response.status==403){
+            history.push({
+              pathname: '/UserLogin'
+            });
+          }
       console.log(error);
     })
 

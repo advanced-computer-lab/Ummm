@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 import '../css/popup.css';
 import '../css/swal.css';
 import Swal from 'sweetalert2'
-
+import Cookies from "js-cookies";
 import '../css/main.css';
 import '../css/guest.css';
 import '../css/creditCard.css';
@@ -139,8 +139,13 @@ console.log(CabinFrom)
     });
 
     console.log(criteria)
-    axios.post('http://localhost:8000/GetUserInfo', criteria)
+    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+    axios.post('http://localhost:8000/GetUserInfo', criteria, {withCredentials: true})
     .then(response => {
+        localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+        document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       console.log(response.data[0].Email);
       setState( prevData => {
         return {...prevData ,['Email']: response.data[0].Email}});
@@ -149,6 +154,10 @@ console.log(CabinFrom)
       //  form.resetFields();
       //   success(); // data succ added less go
       }).catch(error => {
+        if(error.response.status==403){
+            history.push({
+              pathname: '/UserLogin'
+            });}
         console.log(error);
     })
 
@@ -182,11 +191,20 @@ console.log(CabinFrom)
     e.preventDefault();    // prevent reloading the page
     console.log(Flight1)
     console.log(Data)
-    axios.put('http://localhost:8000/updateeditflight', {data: {var1:reserv._id, var2:Data}})
+    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+    axios.put('http://localhost:8000/updateeditflight', {data: {var1:reserv._id, var2:Data}}, {withCredentials: true})
     .then(response => {
+        localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+        document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         history.push('/UserManageBooking')
       success(); // data succ added less go
        }).catch(error => {
+        if(error.response.status==403){
+            history.push({
+              pathname: '/UserLogin'
+            });}
       console.log(error);
     })
   };
