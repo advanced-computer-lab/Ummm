@@ -216,7 +216,7 @@ const LogOutHandler = (e) => {
   
   const SearchFlightHandler = event => {
     history.push({
-        pathname: '/UserSearchFlight',
+      pathname: '/ReservationHomePage',
         state: { detail: 'some_value' }
     });
  };

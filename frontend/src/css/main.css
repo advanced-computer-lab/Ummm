@@ -2,26 +2,12 @@
 color: rgb(255, 255, 255);
 }
 
-html {
-  
-  line-height: 1.15;
-  /* 1 */
-  -ms-text-size-adjust: 100%;
-  /* 2 */
-  -webkit-text-size-adjust: 100%;
-
-  /* 2 */
-}
 
 /* Sections
    ========================================================================== */
 /**
  * Remove the margin in all browsers (opinionated).
  */
-body {
-  background: #ff0000;
-  margin: 0;
-}
 
 /**
  * Add the correct display in IE 9-.
@@ -1571,6 +1557,23 @@ span.flatpickr-weekday {
 }
 
 .s011 {
+  background: rgba(0, 0, 0, 0.8);
+  min-height: 10%;
+  display: -ms-flexbox;
+  display: grid;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  background-size: cover;
+  background-position: center center;
+  padding: 15px;
+  font-family: 'Lato', sans-serif;
+  /* background-image: url('https://www.maxpixel.net/static/photo/1x/Plane-Soft-Travel-White-Airplane-Flight-Blue-Sky-4125770.jpg'); */
+}
+
+
+.s011-reservation {
   
   min-height: 100vh;
   display: -ms-flexbox;
@@ -1614,7 +1617,21 @@ span.flatpickr-weekday {
 
 .s011 form .inner-form header .travel-type-wrap .item {
   color: #555;
-  border-radius: 100px;
+  border-radius: px;
+  background: #fff;
+  margin-right: 5px;
+  padding: 18px 20px;
+  transition: all .3s;
+  cursor: pointer;
+  text-align: center;
+  width:300px ;
+  height:94px ;
+  border-radius:110px ;
+}
+
+.item99 {
+  color: #555;
+  border-radius: px;
   background: #fff;
   margin-right: 5px;
   padding: 18px 20px;
@@ -1648,7 +1665,7 @@ span.flatpickr-weekday {
 
 .s011 form .inner-form header .travel-type-wrap .item.active {
   color: #fff;
-  background: #2c6ed5;
+  background: #e35e0a;
 }
 
 .s011 form .inner-form header .travel-type-wrap .item.active svg {
@@ -1659,7 +1676,7 @@ span.flatpickr-weekday {
 
  /* adasdasd */
 .s011 form .inner-form header .travel-type-wrap .item:hover, .s011 form .inner-form header .travel-type-wrap .item:focus {
-  background: #2c6ed5;
+  background: #e35e0a;
   color: #fff;
 }
 

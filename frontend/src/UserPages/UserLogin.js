@@ -58,6 +58,8 @@ const UserLogin = () => {
       localStorage.setItem("RefreshToken", res.data.RefreshToken);
       localStorage.setItem("UserID", res.data.UserID)
       localStorage.setItem("UserInfo", res.data)
+      localStorage.setItem("Username", res.data.Username)
+      localStorage.setItem("Email", res.data.Email)
 
 
       console.log(localStorage)
@@ -69,7 +71,7 @@ const UserLogin = () => {
         Password: "",
         })
         history.push({
-            pathname: '/usersearchflight' //Pass to 
+          pathname: '/ReservationHomePage'
           });
 
           success(Data.Username);
@@ -104,7 +106,7 @@ const UserLogin = () => {
     warning3();
     e.preventDefault();  
         history.push({
-            pathname: '/usersearchflight'
+            pathname: '/ReservationHomePage'
           });
   };
   

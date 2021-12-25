@@ -1,4 +1,4 @@
-
+/* 
 *,
 *::after,
 *::before {
@@ -6,14 +6,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+ */
 
 
-
-body {
+/* body {
     --light: hsl(0, 0%, 100%);
     --background: linear-gradient(to right bottom, hsl(236, 50%, 50%), hsl(195, 50%, 50%));
   
-    /* display: flex; */
+   
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -22,7 +22,7 @@ body {
   
     min-height: 100vh;
     background: linear-gradient(to bottom, hsl(236, 50%, 98%), hsl(236, 50%, 94%));
-  }
+  } */
 a,
 a:link {
   font-family: inherit;
@@ -260,7 +260,7 @@ a:link {
 /* ==========================================================================
    #GRID
    ========================================================================== */
-   .row {
+   /* .row {
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -270,7 +270,7 @@ a:link {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     position: relative;
-  }
+  } */
   
   .row-space {
     -webkit-box-pack: justify;
@@ -1092,7 +1092,7 @@ a:link {
 
 
 
-  
+    /* rowwwwwwww is deleted heeeeeeere might effect other pages */
 
 
 

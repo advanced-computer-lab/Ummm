@@ -106,17 +106,16 @@ const UserConfirmBooking = () => {
   const Flight2 = history.location.state?.flight2;
   const Adults = history.location.state?.Adults;
   const Children = history.location.state?.Children;
-  const User = localStorage.getItem("UserInfo")
 
 
   const [Data, setState] = useState({
-
+    Username: localStorage.getItem('Username'),
+    Email: localStorage.getItem('Email'),
 
     Flight_IDFrom: Flight1._id,
     Flight_NoFrom: Flight1.Flight_No,
     Flight_DateFrom: Flight1.Flight_Date,
     Flight_From: Flight1.From,
-    FromPrice: Flight1.Price,
     CabinFrom: history.location.state?.CabinFrom,
     SeatsChoosenFrom: "",
     SeatsChoosenFromID: "",
@@ -126,19 +125,10 @@ const UserConfirmBooking = () => {
     Flight_NoTo: Flight2.Flight_No,
     Flight_DateTo: Flight2.Flight_Date,
     Flight_To: Flight1.To,
-    ToPrice: Flight2.Price,
     CabinTo: history.location.state?.CabinTo,
     SeatsChoosenTo: "",
     SeatsChoosenToID: "",
 
-
-    FirstName: User.FirstName,
-    LastName: User.LastName,
-    PassPort_No: User.PassPort_No,
-    Username: User.Username,
-    Email: User.Email,
-    ReservationOwner: true,
-    isChild: false,
     Adults: Adults,
     Children: Children,
 
@@ -149,45 +139,43 @@ const UserConfirmBooking = () => {
  
 
 
-  // useEffect(() => {
+  useEffect(() => {
    
-  //   console.log(Data['Username'])
+    console.log(Data['Username'])
 
-  //   const criteria = {};
-  //   Object.keys(Data).forEach(key => {
-  //  if (key==="Username") {
-  //       criteria[key] = Data[key];
-  //     }
-  //   });
+    const criteria = {};
+    Object.keys(Data).forEach(key => {
+   if (key==="Username") {
+        criteria[key] = Data[key];
+      }
+    });
 
-  //   console.log(criteria)
-  //   Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
-  //   Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
-  //   axios.post('http://localhost:8000/GetUserInfo', criteria, {withCredentials: true})
-  //   .then(response => {
-  //     localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-  //     document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  //     document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  //     console.log(response.data[0].Email);
-  //     setState( prevData => {
-  //       return {...prevData ,['Email']: response.data[0].Email}});
-  //     // console.log(Data.Email);
-  //     //  window.location.reload(false);
-  //     //  form.resetFields();
-  //     //   success(); // data succ added less go
-  //     }).catch(error => {
-  //       if(error.response.status==403){
-  //         history.push({
-  //           pathname: '/LoginPage'
-  //         });
-  //       }
-  //       console.log(error);
-  //   })
-
-
-  // },[]);
+    console.log(criteria)
+    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+    axios.post('http://localhost:8000/GetUserInfo', criteria, {withCredentials: true})
+    .then(response => {
+      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      console.log(response.data[0].Email);
+      setState( prevData => {
+        return {...prevData ,['Email']: response.data[0].Email}});
+      // console.log(Data.Email);
+      //  window.location.reload(false);
+      //  form.resetFields();
+      //   success(); // data succ added less go
+      }).catch(error => {
+        if(error.response.status==403){
+          history.push({
+            pathname: '/LoginPage'
+          });
+        }
+        console.log(error);
+    })
 
 
+  },[]);
 
   const success = () => {
     Swal.fire(
@@ -223,10 +211,6 @@ const UserConfirmBooking = () => {
   const BookFlightHandler = (e) => {
     e.preventDefault();    // prevent reloading the page
 
-    for (let index = 0; index < array.length; index++) {
-      const element = array[index];
-      
-    
     Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
     Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
     axios.post('http://localhost:8000/createnewReservation', Data, {withCredentials: true})
@@ -249,8 +233,6 @@ const UserConfirmBooking = () => {
         console.log(error);
     })
 
-
-  }
 
 
     // setState({
