@@ -70,7 +70,7 @@ console.log(localStorage.getItem("UserInfo"))
         Password: "",
         })
         history.push({
-            pathname: '/usersearchflight' //Pass to 
+            pathname: '/ReservationHomePage' //Pass to 
           });
 
           success(Data.Username);
@@ -105,7 +105,7 @@ console.log(localStorage.getItem("UserInfo"))
     warning3();
     e.preventDefault();  
         history.push({
-            pathname: '/usersearchflight'
+            pathname: '/ReservationHomePage'
           });
   };
   
