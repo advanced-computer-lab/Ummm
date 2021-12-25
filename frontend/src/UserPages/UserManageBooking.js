@@ -644,7 +644,7 @@ console.log(rows)
   };
 
 
-  const ConfirmDelete = (Reservationid,RefundedAmount,Useremail) => { // e will contain the reservation number 
+  const ConfirmDelete = (Reservationid,RefundedAmount,Useremail,reservation) => { // e will contain the reservation number 
     Swal.fire(
       {
       title: 'Delete Reservation',
@@ -695,10 +695,12 @@ console.log(rows)
           }, 4000);
 
           var Refund = RefundedAmount;
-          var mail = "ahmed.eltawel35@gmail.com";
+          var mail = "anasnemr25@gmail.com";
+          var reservation2= reservation;
+
           Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
           Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
-          axios.post("http://localhost:8000/sendmail", {data: {var1:Refund,var2:mail}}, {withCredentials: true}).then(response => {
+          axios.post("http://localhost:8000/sendmail", {data: {var1:Refund,var2:mail,var3:reservation2}}, {withCredentials: true}).then(response => {
              localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
             document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
             document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -1225,7 +1227,7 @@ const Editreturnhandler = (res) => {
   
   {/* on click will send reservation number + total price refunded */}
   <div class="listing-item99">
-  <button  type="button" onClick={() => ConfirmDelete(reserv._id,reserv.TotalPrice,reserv.Email)} class="button-70" > 
+  <button  type="button" onClick={() => ConfirmDelete(reserv._id,reserv.TotalPrice,reserv.Email,reserv)} class="button-70" > 
   <div class="center">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -1836,7 +1838,7 @@ const Editreturnhandler = (res) => {
     
     {/* on click will send reservation number + total price refunded */}
     <div class="listing-item99">
-    <button  type="button" onClick={() => ConfirmDelete(reserv._id,reserv.TotalPrice,reserv.Email)} class="button-70" > 
+    <button  type="button" onClick={() => ConfirmDelete(reserv._id,reserv.TotalPrice,reserv.Email,reserv)} class="button-70" > 
     <div class="center">
       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>

@@ -3,6 +3,7 @@
 const express = require("express");
 const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
+
 const userController = require('./Routes/userController');
 const cors = require('cors')
 const dotenv = require("dotenv")
@@ -80,7 +81,29 @@ app.get("/home", (req, res) => {
   app.post("/sendmail", (req, res) => {
     console.log("we have reached hereeee")
     mailoptions.to=req.body.data.var2
-    mailoptions.text='Hello Dear Customer,\nYour Reservation has been successfully cancelled and you will be refunded with $'.concat(req.body.data.var1)+'\nHope to see you fly with us again,\nFly Nawww.';
+  const reserv= req.body.data.var3;
+  console.log(reserv)
+    mailoptions.html= '<html>' +
+    '<body>'+
+
+  '<h2>  Reservation Info  </h2>' +
+
+   ' <ul>'+
+      '<li>UserName: ' + reserv.Username +'</li>'+
+    ' <li>First Name: '+ reserv.FirstName +'</li>'+
+    ' <li>Last Name: '+ reserv.LastName +'</li>'+
+    ' <li> Round Trip Flight From: ' + reserv.Flight_From +'  To: ' + reserv.Flight_To +'</li>'+
+     ' <li>Depart Flight Number: ' + reserv.Flight_NoFrom +'</li>'+
+      '<li>Return Flight Number: ' + reserv.Flight_NoTo +'</li>'+
+      '<li>Depart Flight Date: ' + reserv.Flight_DateFrom +'</li>'+
+      '<li>Return Flight Date: ' + reserv.Flight_DateTo +'</li>'+
+     ' <li>Reservation ID: ' + reserv._id  +'</li>'+
+
+    '</ul>' +
+    '<h3>Your personal reservation has been cancelled and you will be refunded $'+reserv.TotalPrice+'</h3>'
+  '  </body>' +
+   ' </html>'
+
     transporter.sendMail(mailoptions, function (error, info, callback){
       if(error){
         console.log(error);
