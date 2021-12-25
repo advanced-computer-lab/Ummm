@@ -275,11 +275,11 @@ else{
   });
 }};
 
-exports.updatepassword = (req,res)=>{
+exports.updatepassword =async (req,res)=>{
 
   var oldP = req.body.data.var1;
   var newP2 =req.body.data.var2;
-  var newP  = await bcrypt.hash(newP2, 10) 
+  const newP  = await bcrypt.hash(newP2, 10) 
   var realP = req.body.data.var3;
   var ID = req.body.data.var4;
 console.log(oldP)
