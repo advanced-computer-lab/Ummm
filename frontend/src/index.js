@@ -16,6 +16,7 @@ import CreateUserAccount from './UserPages/CreateUserAccount'
 import UserSearchFlight from './UserPages/UserSearchFlight'
 import UserManageBooking from './UserPages/UserManageBooking'
 import UserEditProfile from './UserPages/UserEditProfile'
+import ChangePassword from './UserPages/ChangePassword'
 import UserEditFlight from './UserPages/UserEditFlight'
 import UserConfirmBooking from './UserPages/UserConfirmBooking'
 import UserUpdateBooking from './UserPages/UserUpdateBooking'
@@ -54,6 +55,8 @@ ReactDOM.render(
 
 
                     <Route exact path="/UserEditProfile" component={UserEditProfile} />
+                    <Route exact path="/ChangePassword" component={ChangePassword} />
+
                     <Route exact path="/UserEditFlight" component={UserEditFlight} />
                     <Route exact path="/ReservationHomePage" component={ReservationHomePage} />
                     

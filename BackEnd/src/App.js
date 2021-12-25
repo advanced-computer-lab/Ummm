@@ -109,6 +109,7 @@ app.post('/createnewReservation',authenticateToken ,userController.createnewRese
 app.post('/GetUserInfo',authenticateToken ,userController.GetUserInfo)
 app.post('/userinfo',authenticateToken ,userController.userinfo)
 app.put('/updateuser',authenticateToken ,userController.updateuser)
+app.put('/updatepassword',authenticateToken ,userController.updatepassword)
 app.post('/reservationinfo',authenticateToken ,userController.reservationinfo)
 app.post('/flightmap',authenticateToken ,userController.flightmap)
 app.put('/updateseats',authenticateToken ,userController.updateseats)

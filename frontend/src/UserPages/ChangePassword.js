@@ -46,7 +46,7 @@ import {
  
 
 
-const UserEditProfile = () => {
+const ChangePassword = () => {
   if (localStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
     window.open("UserLogin", "_self");
  }
@@ -62,92 +62,29 @@ const LogOutHandler = (e) => {
   const [componentSize, setComponentSize] = useState('default');
 
   const history = useHistory();
+  const realP = history.location.state?.DePassword;
   const[userinfo,Setuserinfo]=useState([]);
   const [Guard, setGuard] = useState(true);
  const criteria = localStorage.getItem("UserID");
 //  const getusername = sessionStorage.getItem("username");
   
    const [Data, setState] = useState({
-    FirstName:"",
-    LastName: userinfo.LastName,  
-    Email: userinfo.Email,
-    Date_of_Birth: userinfo.Date_of_Birth, // Data type date
-    PassPort_No: userinfo.PassPort_No,
-    Username: userinfo.Username,
-    Password: userinfo.Password,
+    NewPassword:"",
+    OldPassword: "" 
   });
-  const [Result1, setResult] = useState();
-  
-  useEffect(() => { console.log(criteria)
-    if(Guard === true){
-      Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
-      Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
-    axios.post('http://localhost:8000/userinfo',{data: {var1 : criteria} }, {withCredentials: true}).then((result)=>
-    {    
-      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-       console.log("ssss")
-     console.log(result.data[0])
-     setResult(result.data[0]);
-      } ).catch ((error) => {
-        if(error.response.status==403){
-          history.push({
-            pathname: '/UserLogin'
-          });
-        }
-      })
-    
-    
-    };
-   
-     if(Result1){ 
-       setState(
-        {
-        ["FirstName"] : Result1.FirstName, 
-        ["LastName"]: Result1.LastName,
-        ["Email"]: Result1.Email,
-        ["Date_of_Birth"]:moment(Result1.Date_of_Birth), // Data type date
-        ["PassPort_No"]: Result1.PassPort_No,
-        ["Username"]: Result1.Username, 
-        ["Password"]: Result1.Password,})}
 
-    if( Result1 && Guard === true){
-      setTimeout(() => {
-        setGuard(false);
-      }, 1000);
-    }
-
-  },[Result1,Guard]);
-
-
-
-
-  console.log(Result1);
-  console.log(Data);
-
-
-
-
-
-  const changeHander = (e) => {
-    setState( prevData => {
-     return {...prevData ,[e.target.name]: e.target.value}})
-  };
   const updateHandler = (e,user) => {
     e.preventDefault();    // prevent reloading the page
-    var update =user.Username;
-    var update1=user.Email;
-
+    var oldP =Data.OldPassword;
+    var newP = Data.NewPassword;
     Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
     Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
-
-    axios.put('http://localhost:8000/updateuser', {data: {var1:update, var2:Data,var3:update1}}, {withCredentials: true})
+    axios.put('http://localhost:8000/updatepassword', {data: {var1:oldP, var2:newP,var3:realP ,var4:criteria}}, {withCredentials: true})
     .then(response => {
       localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
       document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        history.push('/Usersearchflight')
+        history.push('/ReservationHomePage')
       success(); // data succ added less go
        }).catch(error => {
         if(error.response.status==403){
@@ -161,16 +98,16 @@ const LogOutHandler = (e) => {
   }
 
 
-  const changeHandler = (e,user) =>{
-    history.push({
-      pathname: '/ChangePassword',
-    state: {
-        DePassword: Result1.Password,
-        UserID: criteria
-    }
-    });
 
-  }
+
+  const changeHander = (e) => {
+      console.log(Data)
+    setState( prevData => {
+     return {...prevData ,[e.target.name]: e.target.value}})
+  };
+
+
+
   const warning = () => {
     message.warning('Fill All Fields Please!');
   };
@@ -211,15 +148,11 @@ const LogOutHandler = (e) => {
     message.warning('Username/Email already Exists!');
   };
 
-  var now = new Date();
-  now.setFullYear(now.getFullYear()-18);
-  var now2 =  moment().subtract(18, 'years')
-
   const success = () => {
     Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'Profile Data Successfully Updated',
+        title: 'Password Data Successfully Updated',
         showConfirmButton: false,
         timer: 1500
       })
@@ -239,53 +172,7 @@ const LogOutHandler = (e) => {
       state: { detail: 'some_value' }
   });
 };
-    // if (localStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
-    //   window.open("UserHomePage", "_self");
-    //   warning2();
-    // }
-    const AboutUs = () => { // e will contain the reservation number 
-      Swal.fire({
-        title: 'Fly Nawww is a Saudi Arabian leading low-cost carrier with a fleet of 34 aircrafts, operating more than 1500 weekly flights to 35 domestic and international destinations.',
-        confirmButtonText: 'Hmm.. Ok',
-        confirmButtonColor: '#ff8300',
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        }
-      })
-    };
-    const Vision = () => { // e will contain the reservation number 
-      Swal.fire({
-        title: 'To act responsibly in developing the market, evolving our employees, supporting our partners and local communities.',
-        confirmButtonText: 'Hmm.. Ok',
-        confirmButtonColor: '#ff8300',
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        }
-      })
-    };
-
-    const ContactUs = () => { // e will contain the reservation number 
-      Swal.fire({
-        title: 'Call:011414656668',
-        confirmButtonText: 'Hmm.. Ok',
-        confirmButtonColor: '#ff8300',
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        }
-      })
-    };
-    
-    
-    
+ 
     
     return (
       <>
@@ -315,13 +202,7 @@ const LogOutHandler = (e) => {
         <nav class="site-navigation position-relative text-right" role="navigation">
 
           <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-            {/* <li ><a onClick={(e) => SearchFlightHandler(e)}><span>Home Page</span></a></li> */}
-            
-       
-            {/* <li><a onClick={(e) => AboutUs()}><span>About Us</span></a></li>
-            <li><a onClick={(e) => Vision()}><span>Our Vision</span></a></li>
-            <li><a onClick={(e) => ContactUs()}><span>Contact Us</span></a></li>
-            */}
+
              <li><a onClick={() => LogOutHandler()}><span>Log Out</span></a></li> 
 
           </ul>
@@ -424,115 +305,34 @@ const LogOutHandler = (e) => {
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				<form class="login100-form validate-form">
 					<span class="login100-form-title p-b-49">
-						My Info
+						Changing Password
 					</span>
 
-                    <div class="wrap-input100 validate-input m-b-23" data-validate = "FirstName is required">
-                       <div class="grid-container-EditUser">
-						
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-</svg>     
-                        <span >
-					First Name
-					</span>
-                    </div >
-                    
-						<input class="input100" name="FirstName" value={Data.FirstName}  onChange={(e) => changeHander(e)}></input>
-                        <span class="focus-input100" ></span>
-					</div>
+	<div class="wrap-input100 validate-input m-b-23" data-validate="Password is required" >
 
-                    <div class="wrap-input100 validate-input m-b-23" data-validate = "LastName is reauired">
-                    <div class="grid-container-EditUser">
-						
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-</svg>
-                       
-            <span >
-					Last Name
-					</span>
-                    </div >
-
-
-						<input class="input100"  name="LastName"  value={Data.LastName} onChange={(e) => changeHander(e)}></input>
-                        <span class="focus-input100" ></span>
-					</div>
-
-                    <div class="wrap-input100 validate-input m-b-23" data-validate = "date of Birth is reauired">
-                    <div class="grid-container-EditUser">
-						
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-calendar2-week-fill" viewBox="0 0 16 16">
-  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zm9.954 3H2.545c-.3 0-.545.224-.545.5v1c0 .276.244.5.545.5h10.91c.3 0 .545-.224.545-.5v-1c0-.276-.244-.5-.546-.5zM8.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM3 10.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
-</svg>  
-<span >
-					 Date Of Birth
-					</span>
-                    </div >
-                    
-                    <DatePicker  style={{ 
-                    borderTopColor:"transparent",
-                    borderBottomColor:"transparent",
-                    borderLeftColor:"transparent",
-                    borderRightColor:"transparent",
-                    // forcedColorAdjust:"red",
-                    // stopColor: "#ccc",
-                    // stopColor: "rgb(255, 255, 255)",
-                minWidth:"600px",
-                imageWidth:"250px",
-            marginTop: "25px", 
-            backgroundColor:"transparent",
-            Color:"white",    
-          }} type="date" format="DD-MM-YYYY" 
-           defaultPickerValue={now2} disabledDate={d => d.isAfter(now)} value={Data.Date_of_Birth} name="Date_of_Birth" onChange={(date) => setState(prevData => {
-              return {...prevData ,Date_of_Birth: date}}) 
-    }/>
-                        <span class="focus-input100" ></span>
-					</div>
-
-                    <div class="wrap-input100 validate-input m-b-23" data-validate = "Passport Number is reauired">
-                    <div class="grid-container-EditUser">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-credit-card-2-front-fill" viewBox="0 0 16 16">
-  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+<div class="grid-container-EditUser"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
+<path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
 </svg>
 <span >
-					 Passport No
-					</span>
-                    </div >   
-						<input class="input100"  name="PassPort_No"value={Data.PassPort_No} onChange={(e) => changeHander(e)}></input>
-                        <span class="focus-input100" ></span>
-					</div>
+New Password
+</span>
+</div>
+    <input class="input100" type="password" name="NewPassword" onChange={(e) => changeHander(e)}></input>
+    <span class="focus-input100" ></span>
+</div>
 
-                    <div class="wrap-input100 validate-input m-b-23" data-validate = "Email is reauired">
-                    <div class="grid-container-EditUser">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+					<div class="wrap-input100 validate-input m-b-23" data-validate="Password is required" >
+
+                    <div class="grid-container-EditUser"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
+  <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
 </svg>
 <span >
-					 Email
+					Old Password
 					</span>
                     </div>
-						<input class="input100"  name="Email"value={Data.Email} onChange={(e) => changeHander(e)}></input>
-                        <span class="focus-input100" ></span>
+						<input class="input100" type="password" name="OldPassword" onChange={(e) => changeHander(e)}></input>
+						<span class="focus-input100" ></span>
 					</div>
-
-
-
-
-					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired"  >
-                    <div class="grid-container-EditUser">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-</svg>
-<span >
-					 Username
-					</span>
-                    </div>
-						<input class="input100" name="Username"value={Data.Username} onChange={(e) => changeHander(e)}></input>
-                        <span class="focus-input100" ></span>
-					</div>
-
 					
 					
 
@@ -540,9 +340,9 @@ const LogOutHandler = (e) => {
 
 
                       
-                    <a type="button"class="button-60" role="button"  onClick={(e) => updateHandler(e,Result1)}>Update</a>
+                    <a type="button"class="button-60" role="button"  onClick={(e) => updateHandler(e)}>Change Password</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a type="button"class="button-60" role="button"  onClick={(e) => changeHandler(e,Result1)}>Change Password</a>
+                    <a type="button"class="button-60" role="button" href='/UserEditProfile'>Back </a>
 
 					<div class="txt1 text-center p-t-54 p-b-20">
 						
@@ -593,24 +393,7 @@ const LogOutHandler = (e) => {
         </div>
       </form>
     </div>
-    
-  
-    {/* <script type="text/javascript">
-var images = [],
-index = 0;
-images[0] = "<a href = 'https://www.computerhope.com/'><img src='https://www.computerhope.com/banners/banner.gif' alt='Visit Computer Hope'></img></a>";
-images[1] = "<a href = 'https://www.computerhope.com/history'><img src='https://www.computerhope.com/banners/banner2.gif' alt='Computer History'></img></a>";
-images[2] = "<a href = 'https://www.computerhope.com/'><img src='https://www.computerhope.com/banners/banner3.gif' alt='Visit Computer Hope'></img></a>";
-index = Math.floor(Math.random() * images.length);
-document.write(images[index]);
 
-</script> */}
-
-
-
-
-       
-       
       </>
       
     );
@@ -623,4 +406,4 @@ document.write(images[index]);
 
 };
 
-export default UserEditProfile;
+export default ChangePassword;

@@ -125,12 +125,9 @@ Users.find(search)
 
 
 exports.userinfo = (req,res)=>
-{   const key2="Username"
-   const search ={};
-  search[key2]= {$regex: '^' + req.body[key2],$options: 'ix'};
-  Users.find(search).then(result => {
+{    var ID = req.body.data.var1;
+  Users.find({'_id':ID}).exec().then(result => {
     res.send(result);
-    console.log(result)
   })
   .catch(err => {
     console.log(err);
@@ -278,6 +275,33 @@ else{
   });
 }};
 
+exports.updatepassword = (req,res)=>{
+
+  var oldP = req.body.data.var1;
+  var newP2 =req.body.data.var2;
+  var newP  = await bcrypt.hash(newP2, 10) 
+  var realP = req.body.data.var3;
+  var ID = req.body.data.var4;
+console.log(oldP)
+console.log(newP)
+console.log(realP)
+console.log(ID)
+
+bcrypt.
+  bcrypt.compare(oldP, realP) 
+  .then(isCorrect => {
+    if (isCorrect) {
+      Users.findOneAndUpdate({'_id':ID},{$set:{Password:newP}}).exec().then(result =>{
+        res.status(200).send("User updated ");
+        console.log('The User is Updated successfully !');
+    }).catch(err => {
+        console.log(err);
+      });
+
+  }
+  else{console.log("WRONG OLD PASSWORD")}
+})
+};
 
 exports.searchflight = (req, res) => {
 
@@ -409,32 +433,34 @@ exports.usersearchflight = (req, res) => {
 
 
 
- exports.userlogin = (req, res) => {
+//  exports.userlogin = (req, res) => {
 
-  console.log(req.body);
-  if(Object.keys(req.body).length === 0){    
-    return res.status(400).send();
-  }
-       const search ={};
+//   console.log(req.body);
+//   if(Object.keys(req.body).length === 0){    
+//     return res.status(400).send();
+//   }
+//        const search ={};
 
-  Object.keys(req.body).forEach(key => {
-  if (req.body[key]!==null) {
-      search[key] = {$regex: '^' + req.body[key]};
-    }
-  });
+//   Object.keys(req.body).forEach(key => {
+//   if (req.body[key]!==null) {
+//       search[key] = {$regex: '^' + req.body[key]};
+//     }
+//   });
 
-Users.find(search)
-.then(result => { 
-    if(result.length != 0){
-     res.send(result);
-    }
-     else 
-     res.status(400).send();
-    })
-   .catch(err => {
-    console.log(err);
-   });
-};
+// Users.find(search)
+// .then(result => { 
+//     if(result.length != 0){
+//       console.log("YAYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY")
+//       console.log(result)
+//      res.send(result);
+//     }
+//      else 
+//      res.status(400).send();
+//     })
+//    .catch(err => {
+//     console.log(err);
+//    });
+// };
 
 exports.reservationinfo = (req,res)=>{
   const key2="Username"
