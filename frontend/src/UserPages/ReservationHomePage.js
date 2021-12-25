@@ -768,14 +768,7 @@ else { // will post normally
   };
 
 
-  const LogOutHandler = () => {
-    var userid = localStorage.getItem('UserID')
-    axios.delete('http://localhost:8000/logout', { data: { ID: userid } })
-    localStorage.clear()
-    window.open("UserLogin", "_self");
-
-  };
-
+ 
 
 
 
@@ -1243,18 +1236,20 @@ else { // will post normally
       }
     })
 
-    const showModal = () => {
-      setIsModalVisible(true);
-    };
-  
-    const handleOk = () => {
-      setIsModalVisible(false);
-    };
-  
-    const handleCancel = () => {
-      setIsModalVisible(false);
-    };
+    
 
+  };
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
   };
 
 
@@ -1488,14 +1483,10 @@ else { // will post normally
   {/* <p class="first">My name is <span class="emphasis">(pick a name!)</span>.</p> */}
 </div>
 
-              <div class="textNext">
-                <a class="first">Riyadh To Cairo</a>
-              </div>
+            
               {/* <a class="textNext">Hello</a> */}
 
-              <div class="textNext2">
-                <a class="first">Daily direct flights starting from 199.99$</a>
-              </div>
+             
 
               <div>
                 {/* <p class="first">My name is <span class="emphasis">(pick a name!)</span>.</p> */}
@@ -1950,36 +1941,7 @@ else { // will post normally
                   <div class="flight-class">
 
 
-<main class="page-content">
-  <div class="card">
-    <div class="content">
-      <h2 class="title">Mountain View</h2>
-      <p class="copy">Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p>
-      <button class="btn">View Trips</button>
-    </div>
-  </div>
-  <div class="card">
-    <div class="content">
-      <h2 class="title">To The Beach</h2>
-      <p class="copy">Plan your next beach trip with these fabulous destinations</p>
-      <button class="btn">View Trips</button>
-    </div>
-  </div>
-  <div class="card">
-    <div class="content">
-      <h2 class="title">Desert Destinations</h2>
-      <p class="copy">It's the desert you've always dreamed of</p>
-      <button class="btn">Book Now</button>
-    </div>
-  </div>
-  <div class="card">
-    <div class="content">
-      <h2 class="title">Explore The Galaxy</h2>
-      <p class="copy">Seriously, straight up, just blast off into outer space today</p>
-      <button class="btn">Book Now</button>
-    </div>
-  </div>
-</main>
+
 
    
                     <span class="detail">{flight.CabinDepart}</span>
@@ -2019,7 +1981,36 @@ else { // will post normally
 
 
 
-
+      <main class="page-content">
+  <div class="card">
+    <div class="content">
+      <h2 class="title">Mountain View</h2>
+      <p class="copy">Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p>
+      <button class="btn">View Trips</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="content">
+      <h2 class="title">To The Beach</h2>
+      <p class="copy">Plan your next beach trip with these fabulous destinations</p>
+      <button class="btn">View Trips</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="content">
+      <h2 class="title">Desert Destinations</h2>
+      <p class="copy">It's the desert you've always dreamed of</p>
+      <button class="btn">Book Now</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="content">
+      <h2 class="title">Explore The Galaxy</h2>
+      <p class="copy">Seriously, straight up, just blast off into outer space today</p>
+      <button class="btn">Book Now</button>
+    </div>
+  </div>
+</main>
 
 
 
