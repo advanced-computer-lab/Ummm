@@ -44,6 +44,10 @@
   h1,h2,h3,h4,h5,h6 {
       margin: 0px;
   }
+
+  h12{
+    margin: 5px;
+  }
   
   p {
       
@@ -223,6 +227,13 @@
     border-bottom: 2px solid #d9d9d9;
   }
   
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    background: rgb(255, 255, 255);
+}
   .label-input100 {
    
     font-size: 14px;

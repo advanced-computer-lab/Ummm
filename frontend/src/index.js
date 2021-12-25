@@ -16,7 +16,12 @@ import CreateUserAccount from './UserPages/CreateUserAccount'
 import UserSearchFlight from './UserPages/UserSearchFlight'
 import UserManageBooking from './UserPages/UserManageBooking'
 import UserEditProfile from './UserPages/UserEditProfile'
+import ChangePassword from './UserPages/ChangePassword'
+import UserEditFlight from './UserPages/UserEditFlight'
 import UserConfirmBooking from './UserPages/UserConfirmBooking'
+import PassengersDetails from './UserPages/PassengersDetails'
+import UserUpdateBooking from './UserPages/UserUpdateBooking'
+
 
 import ReservationHomePage from './UserPages/ReservationHomePage'
 
@@ -47,10 +52,16 @@ ReactDOM.render(
                     <Route exact path="/UserSearchFlight" component={UserSearchFlight} />
                     <Route exact path="/UserManageBooking" component={UserManageBooking} />
                     <Route exact path="/UserConfirmBooking" component={UserConfirmBooking} />
+                    <Route exact path="/UserUpdateBooking" component={UserUpdateBooking} />
+
 
                     <Route exact path="/UserEditProfile" component={UserEditProfile} />
-                    
+                    <Route exact path="/ChangePassword" component={ChangePassword} />
+
+                    <Route exact path="/UserEditFlight" component={UserEditFlight} />
                     <Route exact path="/ReservationHomePage" component={ReservationHomePage} />
+                    <Route exact path="/PassengersDetails" component={PassengersDetails} />
+
                     
                 </Switch>
             </BrowserRouter>

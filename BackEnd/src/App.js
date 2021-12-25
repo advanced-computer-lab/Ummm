@@ -109,12 +109,15 @@ app.post('/createnewReservation',authenticateToken ,userController.createnewRese
 app.post('/GetUserInfo',authenticateToken ,userController.GetUserInfo)
 app.post('/userinfo',authenticateToken ,userController.userinfo)
 app.put('/updateuser',authenticateToken ,userController.updateuser)
+app.put('/updatepassword',authenticateToken ,userController.updatepassword)
 app.post('/reservationinfo',authenticateToken ,userController.reservationinfo)
 app.post('/flightmap',authenticateToken ,userController.flightmap)
 app.put('/updateseats',authenticateToken ,userController.updateseats)
 app.put('/updatereservationseats',authenticateToken ,userController.updatereservationseats)
 app.delete('/deletereservation',authenticateToken ,userController.deletereservation)
 app.post('/usersearchflight' ,userController.usersearchflight)
+app.post('/searchflightid',authenticateToken,userController.searchflightid)
+
 
 
 
