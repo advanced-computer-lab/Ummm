@@ -10,7 +10,7 @@ const today = moment().startOf('day');
 // const App = require('../src/App.js');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const cookieParser = require('cookie-parser');
+
 
 
 // let refreshTokens = []
@@ -51,19 +51,44 @@ exports.createnewReservation = (req, res) => {
 };
 
 
-exports.createuseraccount = (req, res) => {
+exports.createuseraccount = async (req, res) => {
   console.log(req.body);
 
-  const User = new Users(req.body)
-  User.save()
+  var user = req.body; 
+    const takenUsername =await Users.findOne({Username: user.Username.toLowerCase()});
+    const takenEmail = await Users.findOne({Email: user.Email.toLowerCase()});
+    if (takenUsername){
+      res.status(401).send("Username has already been taken!");  //res.json({message:"Username or email has already been taken"})
+    }
+    else if(takenEmail){
+      res.status(403).send("Email already exist, Login!");
+    }
+    else{ 
+      user.Password = await bcrypt.hash(req.body.Password, 10) 
+      console.log(user.Password)
+      user.Username = user.Username.toLowerCase()
+      user.Email = user.Email.toLowerCase()
+      const Data = new Users(user)
+      Data.save()
     .then(result => {
-      res.send(result);
+      res.status(200).send(result); //res.json({message: "Success"}) 
       console.log("added");
     })
     .catch(err => {
       res.status(400).send();
       console.log(err);
     });
+    }
+  // const User = new Users(req.body)
+  // User.save()
+  //   .then(result => {
+  //     res.send(result);
+  //     console.log("added");
+  //   })
+  //   .catch(err => {
+  //     res.status(400).send();
+  //     console.log(err);
+  //   });
 };
 
 
@@ -116,13 +141,9 @@ exports.userinfo = (req,res)=>
 
 exports.viewflights = (req,res)=>
 {
-  console.log("Hereeee")
-
   Flights.find().then((result)=>{
-        res.header("Content-Type",'application/json');
-        // res.writeHead(200, {'Content-Type': req.AAA});
-        res.send({FlightData: result, AccessToken: req.AccessToken})
-        // res.send();
+    res.header("Content-Type",'application/json');
+    res.send(JSON.stringify(result, null, 4));
     });
 };
 
@@ -327,8 +348,9 @@ exports.usersearchflight = (req, res) => {
      }
      
    });
-   console.log(search)
-
+ 
+   console.log(search);
+ 
  Flights.find(search)
  .then(result => {
        res.send(result);
@@ -339,6 +361,54 @@ exports.usersearchflight = (req, res) => {
      });
  };
  
+
+
+// const search ={};
+
+// Object.keys(req.body).forEach(key => {
+//  if (req.body[key]!==null) {
+//     search[key] = {$regex: '^' + req.body[key],     $options: 'ix'};
+//   }
+//   else {
+//    search[key] = {$regex: '' +"    "};
+//   }
+// });
+
+
+
+// exports.loginpage =  (req, res) => {
+//   // const authHeader = req.headers['authorization']
+//   // console.log(authHeader);
+
+//     if(Object.keys(req.body).length === 0){    
+//       return res.status(400).send();
+//     }
+//          const search ={};
+
+//     Object.keys(req.body).forEach(key => {
+//     if (req.body[key]!==null) {
+//         search[key] = {$regex: '^' + req.body[key]};
+//       }
+//     });
+//   Admins.find(search)
+//  .then(result => { 
+//       if(result.length != 0){
+//        res.send(result);
+//        console.log(result);
+//       }
+//        else 
+//        res.status(400).send();
+//       })
+//      .catch(err => {
+//       console.log(err);
+//      });
+
+    
+//  };
+
+
+
+
  exports.userlogin = (req, res) => {
 
   console.log(req.body);
@@ -379,13 +449,7 @@ exports.reservationinfo = (req,res)=>{
 
 }
 
-async function authenticateToken(req, res, next) {
-
-  console.log("innnnnn")
-  next()
 
 
-
- }
 
 

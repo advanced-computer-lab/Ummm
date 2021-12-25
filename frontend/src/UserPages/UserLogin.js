@@ -51,11 +51,16 @@ const UserLogin = () => {
     if(Data.Username!==''&& Data.Password!==''){
    // prevent reloading the page
     axios.post('http://localhost:8000/userlogin', criteria)
-    .then(response => {
-      console.log(response.status);
-      sessionStorage.setItem("AuthenticationState", "UserAuthenticated");
-      sessionStorage.setItem("Username", criteria.Username);
-      console.log(sessionStorage.getItem("Username"));
+    .then(res => {
+      console.log(res.status);
+      localStorage.setItem("AuthenticationState", "UserAuthenticated")
+      localStorage.setItem("AccessToken", res.data.AccessToken);
+      localStorage.setItem("RefreshToken", res.data.RefreshToken);
+      localStorage.setItem("UserID", res.data.UserID)
+      localStorage.setItem("UserInfo", res.data)
+
+
+      console.log(localStorage)
       // console.log(sessionStorage.getItem("AuthenticationState"))
       // console.log(sessionStorage.getItem("Username"))
 
@@ -68,9 +73,12 @@ const UserLogin = () => {
           });
 
           success(Data.Username);
-       }).catch(error => {
-         warning();
-        console.log(error);
+       }).catch(err => {
+        console.log(err.response.status);
+        console.log(err.response)
+           var msg = err.response.data
+         warning(msg);
+         console.log(err)
     })
   }
   else if(Data.Username=='' ){
@@ -109,8 +117,8 @@ const UserLogin = () => {
 
 
 
-  const warning = () => {
-    message.warning('Incorrect Username or Password!');
+  const warning = (msg) => {
+    message.warning(msg);
   }
 
   const warning1 = () => {

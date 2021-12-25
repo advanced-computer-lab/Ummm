@@ -4,11 +4,11 @@ import axios from 'axios'
 import { Route, Redirect } from 'react-router'
 import { Link, Switch } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
+import Cookies from "js-cookies";
 import {
   Button,
 
 } from 'antd';
-import Cookies from "js-cookies";
 
 // import {Redirect} from 'react-router-dom';
 // import LNSelect from "../LNSelect/LNSelect";
@@ -37,36 +37,31 @@ function App() {
 //  }
   const history = useHistory();
   const[flights,Setflights]=useState([]);
-  // axios.defaults.withCredentials = true;
 
   useEffect(() => {
     
-    const headers = {
-      'AccessToken': localStorage.getItem('AccessToken'),
-      'RefreshToken': localStorage.getItem('RefreshToken'),
-      // 'UserID': localStorage.getItem('UserID')
-    }    
-    console.log(headers)
+    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken')//,{expires: 1/5760}
+      )
+    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken')//,{expires: 1/100060}
+      )
 
-    axios.get('http://localhost:8000/viewflights',{
-      headers: headers
-  }  ,{ withCredentials: true })
+    axios.get('http://localhost:8000/viewflights',{withCredentials: true})
     .then((result)=>
     {
-      console.log("resultoooo")
-      // Cookies.setItem("authToken", Token); // no need it's done automatically.
-      console.log(Cookies.getItem("testttt"))
-      localStorage.setItem('AccessToken', 'Bearer ' + result.data.AccessToken)
+      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
       console.log(result.data);
-        Setflights(result.data.FlightData);
+        Setflights(result.data);
     })
     .catch(err => {
-      if(err.response.status == 403){
-        console.log("Please LogIn Again") //Redirect la Login Hanaaa
+      if(err.response.status==403){
+        history.push({
+          pathname: '/LoginPage'
+        });
       }
-      console.log("erroroooo")
-      console.log(err.response.status)
-    console.log(err.response.data)
+      console.log(err)
     })
   
   },[]);
@@ -90,23 +85,29 @@ function App() {
           "Do you really want to delete this Flight?"
         )
         if (confirmBox === true) {
-          const headers = {
-            'AccessToken': localStorage.getItem('AccessToken'),
-            'RefreshToken': localStorage.getItem('RefreshToken')
-          }    
-          axios.delete('http://localhost:8000/deleteflight', {data: {var1:del}},{
-            headers: headers
-            })
+
+         Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+         Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+          
+          axios.delete('http://localhost:8000/deleteflight', {data: {var1:del}}, {withCredentials: true})
           .then(response => {
+            localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+            document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            
               console.log(response);
                }).catch(error => {
+                if(error.response.status==403){
+                  history.push({
+                    pathname: '/LoginPage'
+                  });
+                }
               console.log(error); //Handle Flight_No exsit 
             })
            window.location.reload(false);
         }
         };
   
-
 
   return (
     

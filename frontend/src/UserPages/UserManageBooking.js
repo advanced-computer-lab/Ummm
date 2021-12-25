@@ -16,6 +16,8 @@ import swal from 'sweetalert2'
 import '../css/BoardingPass.scss';
 import '../css/pass.scss';
  import '../css/headerfinal.css';
+ import Cookies from "js-cookies";
+
 
 
 import moment from "moment";
@@ -140,6 +142,10 @@ $(document).ready(function() {
 
 const UserManageBooking = () => {
 
+  if (localStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
+    window.open("UserLogin", "_self");
+ }
+
  const history = useHistory();
  const [isLoading, setLoading] = useState(true);
 
@@ -171,12 +177,25 @@ const UserManageBooking = () => {
   useEffect(() => {
 
     // if(Guard === true){
-      axios.post('http://localhost:8000/reservationinfo',criteria).then((result)=>
+
+      Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+      Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+
+      axios.post('http://localhost:8000/reservationinfo',criteria, {withCredentials: true}).then((result)=>
       {    
+         localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         // console.log("ssss")
        setallReservation(result.data);
       //  console.log(Reservations);
-        } )
+        } ).catch((error) => {
+          if(error.response.status==403){
+            history.push({
+              pathname: '/UserLogin'
+            });
+          }
+        })
       // };
 
 
@@ -412,11 +431,25 @@ console.log(rows)
    const flightmapHandler = (id) => {
      console.log("your id")
      console.log(id)
+     Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+     Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
 
-    axios.post('http://localhost:8000/flightmap',{data: {var1 : id} }).then((result)=>
+    axios.post('http://localhost:8000/flightmap',{data: {var1 : id} }, {withCredentials: true}).then((result)=>
     {    
+      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       // setData2(result.data[0].Available_Seats);
-  })};
+  })
+  .catch((error)=> {
+    if(error.response.status==403){
+      history.push({
+        pathname: '/UserLogin'
+      });
+    }
+  })
+
+};
 
 
   const AboutUs = () => { // e will contain the reservation number 
@@ -460,10 +493,12 @@ console.log(rows)
       }
     })
   };
+
   const LogOutHandler = () => {
-    sessionStorage.clear()
+    var userid = localStorage.getItem('UserID')
+    axios.delete('http://localhost:8000/logout',{data: {ID: userid}})
+    localStorage.clear()
     window.open("UserLogin", "_self");
-  
   
   };
 
@@ -484,9 +519,20 @@ console.log(rows)
         if (res.isConfirmed) {
           var del =Reservationid;
           del.trim();
-          axios.delete('http://localhost:8000/deletereservation', {data: {var1:del}})
+          Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+          Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+
+          axios.delete('http://localhost:8000/deletereservation', {data: {var1:del}}, {withCredentials: true})
           .then(response => {
-                      }).catch(error => {
+            localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+            document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                      }).catch(error => { 
+                        if(error.response.status==403){
+                        history.push({
+                          pathname: '/UserLogin'
+                        });
+                      }
               console.log(error); //Handle Flight_No excite 
             })
 
@@ -509,8 +555,18 @@ console.log(rows)
 
           var Refund = RefundedAmount;
           var mail = "ahmed.eltawel35@gmail.com";
-          axios.post("http://localhost:8000/sendmail", {data: {var1:Refund,var2:mail}}).then(response => {
+          Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+          Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+          axios.post("http://localhost:8000/sendmail", {data: {var1:Refund,var2:mail}}, {withCredentials: true}).then(response => {
+             localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+            document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
           }).catch(error => {
+            if(error.response.status==403){
+              history.push({
+                pathname: '/UserLogin'
+              });
+            }
 })
 
 
@@ -567,11 +623,23 @@ const parentToChild = (res,from) => {
    ID = res.Flight_IDTo
  
 
-  axios.post('http://localhost:8000/flightmap',{data: {var1 : ID} })
+   Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+   Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+  axios.post('http://localhost:8000/flightmap',{data: {var1 : ID} }, {withCredentials: true})
   .then((result)=> {
+    localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+    document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     setreserv({reserv: res,from: from, Available:result.data[0].Available_Seats});
       // setAvailable(result.data[0].Available_Seats);
       // console.log(Available)
+    })
+    .catch((error) => {
+      if(error.response.status==403){
+        history.push({
+          pathname: '/UserLogin'
+        });
+      }
     })
 
    
@@ -766,7 +834,7 @@ const Editreturnhandler = (res) => {
   }).then((result) => {
     // if (result.isConfirmed) {
   
-    //   if (sessionStorage.getItem('AuthenticationState') === "UserAuthenticated") {
+    //   if (localStorage.getItem('AuthenticationState') === "UserAuthenticated") {
     //               history.push({
     //                 pathname: '/UserConfirmBooking',
     //               state: {

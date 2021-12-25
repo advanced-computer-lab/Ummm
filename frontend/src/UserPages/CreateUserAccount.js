@@ -7,6 +7,8 @@ import '../css/EditUser.css';
 import '../css/EditUser1.css';
 import '../css/swal.css';
 import Swal from 'sweetalert2'
+import Cookies from "js-cookies";
+
 
 import moment from "moment";
 import {
@@ -56,7 +58,6 @@ const CreateUserAccount = () => {
 
 
   const submitHandler = (e) => {
-    success();
     e.preventDefault();    // prevent reloading the page
    var mailformat =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
    
@@ -75,6 +76,7 @@ else { // will post normally
     axios.post('http://localhost:8000/createuseraccount', Data)
     .then(response => {
       console.log(response.status);
+      success();
       setState({
         FirstName: "",
         LastName: "",  
@@ -87,11 +89,22 @@ else { // will post normally
         // data succ added less go
       
       }).catch(error => {
+        console.log("errorrr")
+        if(error.response.status==401){
+          var msg = error.response.data
+          warning9(msg);
+        }
+        else if(error.response.status==403){
+          var msg = error.response.data
+          warning9(msg);
+        }
+
+
+        else
         if(!Data.Email.match(mailformat)){
           warning11()
          } 
-         else
-        warning9();
+       
         //console.log(error);
     })
   }
@@ -192,8 +205,8 @@ else { // will post normally
   const warning12 = () => {
     message.warning('"Passport No" Must be Filled!');
   };
-  const warning9 = () => {
-    message.warning('Username/Email already Exists!');
+  const warning9 = (msg) => {
+    message.warning(msg);
   };
   
   const LoginHandler = event => {
@@ -203,6 +216,7 @@ else { // will post normally
     });
  };
 
+ 
 
 //  Swal.fire({
 //   title: 'Error!',
@@ -210,6 +224,8 @@ else { // will post normally
 //   icon: 'error',
 //   confirmButtonText: 'Cool'
 // })
+
+
 
 
 
@@ -228,21 +244,10 @@ else { // will post normally
   <div class="box d2">
 
   
-  <script src="sweetalert2.all.min.js"></script>
-  <script src="sweetalert2.min.js"></script>
-<link rel="stylesheet" href="sweetalert2.min.css"/>
+  
 
-<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
-<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css"/>
-<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css"/>
-<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css"/>
-<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css"/>
-<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css"/>
-<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css"/>
-<link rel="stylesheet" type="text/css" href="css/util.css"/>
-<link rel="stylesheet" type="text/css" href="css/main.css"/>
+
+
 
   <div class="limiter">
   <div class="container-login100" >
@@ -395,16 +400,7 @@ else { // will post normally
 </div>
 
 
-<div id="dropDownSelect1"></div>
-<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<script src="vendor/animsition/js/animsition.min.js"></script>
-<script src="vendor/bootstrap/js/popper.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="vendor/select2/select2.min.js"></script>
-<script src="vendor/daterangepicker/moment.min.js"></script>
-<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<script src="vendor/countdowntime/countdowntime.js"></script>
-<script src="js/main.js"></script>
+
 </div>
 
 
@@ -424,4 +420,5 @@ else { // will post normally
     </>
   );
 };
+
 export default CreateUserAccount;

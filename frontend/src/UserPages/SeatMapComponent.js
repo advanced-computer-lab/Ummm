@@ -4,6 +4,8 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import SeatPicker from "react-seat-picker";
 import axios from 'axios';
+import Cookies from "js-cookies";
+
 
 import "./styles.css";
 import { Button } from "react-scroll";
@@ -221,14 +223,38 @@ class SeatMap extends React.Component {
 
 
       if(this.state.maxSeats===this.state.choosenseats.length){
+        Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+        Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
         axios.put('http://localhost:8000/updateseats',{data: {var1 : this.state.flightID, var2 : this.state.flightAvailableSeats} 
+      },{withCredentials: true}).then((result)=>
+      {    
+        localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+        document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      })
+      .catch((error) => {
+        if(error.response.status==403){
+          window.open("UserLogin", "_self");
+        }
       })
 
+
+      Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+      Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
       axios.put('http://localhost:8000/updatereservationseats', {data: {var1:this.state.reserv['_id'], var2:this.state.reserv}
+      },{withCredentials: true}).then((result)=>
+      {    
+        localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+        document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      })
+      .catch((error) => {
+        if(error.response.status==403){
+        window.open("UserLogin", "_self");
+        }
       })
 
-     
-      }
+    }
 
     // console.log(this.state.seats)
     // console.log(this.state.track.length)

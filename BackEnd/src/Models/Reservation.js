@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const reservationSchema = new Schema({
-  
+
   Flight_IDFrom: {
     type: String,
     required: true,
@@ -47,14 +47,6 @@ const reservationSchema = new Schema({
     type: Number,
    required: true
   },
-  // PriceFrom: {
-  //   type: Number,
-  //  required: true
-  // },
-  // PriceTo: {
-  //   type: Number,
-  //  required: true
-  // },
   SeatsChoosenFrom: {
     type: [String],
   }, 
@@ -63,12 +55,12 @@ const reservationSchema = new Schema({
   }, 
   SeatsChoosenFromID: {
     type: [Number],
-    
+
   },
-   
+
   SeatsChoosenToID: {
     type: [Number],
-    
+
   }, 
 
   Children: {
@@ -79,7 +71,7 @@ const reservationSchema = new Schema({
     type: Number,
    required: true
   },
-  
+
   Username: {
     type: String,
     required: true,
@@ -87,7 +79,7 @@ const reservationSchema = new Schema({
   Email: {
     type: String,
     required: true,
-},  
+},
  
 
 

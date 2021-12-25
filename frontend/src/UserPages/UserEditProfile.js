@@ -19,6 +19,8 @@ import Swal from 'sweetalert2'
 import '../css/BoardingPass.scss';
 
 import '../css/header.css';
+import Cookies from "js-cookies";
+
 
 
 
@@ -45,16 +47,18 @@ import {
 
 
 const UserEditProfile = () => {
-
-//   if (sessionStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
-//     window.open("UserLogin", "_self");
-//  }
- const LogOutHandler = (e) => {
-  sessionStorage.clear()
-  history.push({
-    pathname: '/UserLogin'
-  });
+  if (localStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
+    window.open("UserLogin", "_self");
+ }
+const LogOutHandler = (e) => {
+  var userid = localStorage.getItem('UserID')
+ axios.delete('http://localhost:8000/logout',{data: {ID: userid}})
+ localStorage.clear()
+ history.push({
+   pathname: '/UserLogin'
+ });
 };
+
   const [componentSize, setComponentSize] = useState('default');
 
   const history = useHistory();
@@ -77,12 +81,26 @@ const UserEditProfile = () => {
   
   useEffect(() => {
     if(Guard === true){
-    axios.post('http://localhost:8000/userinfo',criteria).then((result)=>
+      Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+      Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+    axios.post('http://localhost:8000/userinfo',criteria, {withCredentials: true}).then((result)=>
     {    
+      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
        console.log("ssss")
      console.log(result.data[0])
      setResult(result.data[0]);
-      } )};
+      } ).catch ((error) => {
+        if(error.response.status==403){
+          history.push({
+            pathname: '/UserLogin'
+          });
+        }
+      })
+    
+    
+    };
    
      if(Result1){ 
        setState(
@@ -122,11 +140,22 @@ const UserEditProfile = () => {
     var update =user.Username;
     var update1=user.Email;
 
-    axios.put('http://localhost:8000/updateuser', {data: {var1:update, var2:Data,var3:update1}})
+    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+
+    axios.put('http://localhost:8000/updateuser', {data: {var1:update, var2:Data,var3:update1}}, {withCredentials: true})
     .then(response => {
+      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         history.push('/Usersearchflight')
       success(); // data succ added less go
        }).catch(error => {
+        if(error.response.status==403){
+          history.push({
+            pathname: '/UserLogin'
+          });
+        }
       console.log(error);
     })
 
@@ -199,7 +228,7 @@ const UserEditProfile = () => {
       state: { detail: 'some_value' }
   });
 };
-    // if (sessionStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
+    // if (localStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
     //   window.open("UserHomePage", "_self");
     //   warning2();
     // }

@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css'; 
 import '../css/App.css';
+import Cookies from "js-cookies";
+
 
 import moment from "moment";
 import {
@@ -111,8 +113,16 @@ const SearchFlight = () => {
     console.log(criteria);
 
    // prevent reloading the page
-    axios.post('http://localhost:8000/SearchFlight', criteria)
+
+   Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+   Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+
+    axios.post('http://localhost:8000/SearchFlight', criteria, {withCredentials: true})
     .then(response => {
+      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
       setResult(response.data);
        console.log(Result);
        setLoading(false);
@@ -136,6 +146,11 @@ const SearchFlight = () => {
     First_Price: "",
         })
        }).catch(error => {
+        if(error.response.status==403){
+          history.push({
+            pathname: '/LoginPage'
+          });
+        }
       console.log(error);
     })
 
