@@ -772,6 +772,7 @@ else { // will post normally
 
 
 
+
   // const warning1 = () => {
   //   message.warning('Please enter departure city');
   // };
@@ -1236,9 +1237,21 @@ else { // will post normally
       }
     })
 
-    
 
   };
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
 
   const showModal = () => {
     setIsModalVisible(true);
