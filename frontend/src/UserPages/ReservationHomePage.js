@@ -768,13 +768,6 @@ else { // will post normally
   };
 
 
-  const LogOutHandler = () => {
-    var userid = localStorage.getItem('UserID')
-    axios.delete('http://localhost:8000/logout', { data: { ID: userid } })
-    localStorage.clear()
-    window.open("UserLogin", "_self");
-
-  };
 
 
 
@@ -1243,18 +1236,20 @@ else { // will post normally
       }
     })
 
-    const showModal = () => {
-      setIsModalVisible(true);
-    };
-  
-    const handleOk = () => {
-      setIsModalVisible(false);
-    };
-  
-    const handleCancel = () => {
-      setIsModalVisible(false);
-    };
 
+  };
+
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
   };
 
 
