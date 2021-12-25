@@ -57,6 +57,9 @@ const UserLogin = () => {
       localStorage.setItem("AccessToken", res.data.AccessToken);
       localStorage.setItem("RefreshToken", res.data.RefreshToken);
       localStorage.setItem("UserID", res.data.UserID)
+      localStorage.setItem("UserInfo", res.data)
+
+
       console.log(localStorage)
       // console.log(sessionStorage.getItem("AuthenticationState"))
       // console.log(sessionStorage.getItem("Username"))
