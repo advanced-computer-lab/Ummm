@@ -1253,17 +1253,6 @@ else { // will post normally
   };
 
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
 
 
   const [isModalVisible, setIsModalVisible] = useState(false);
