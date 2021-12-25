@@ -53,11 +53,12 @@ const UserLogin = () => {
     axios.post('http://localhost:8000/userlogin', criteria)
     .then(res => {
       console.log(res.status);
+      console.log(res.data);
       localStorage.setItem("AuthenticationState", "UserAuthenticated")
       localStorage.setItem("AccessToken", res.data.AccessToken);
       localStorage.setItem("RefreshToken", res.data.RefreshToken);
       localStorage.setItem("UserID", res.data.UserID)
-      localStorage.setItem("UserInfo", res.data)
+      localStorage.setItem("Username", Data.Username.toLowerCase())
 
 
       console.log(localStorage)

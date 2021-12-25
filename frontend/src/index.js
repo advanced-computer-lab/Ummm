@@ -17,6 +17,8 @@ import UserSearchFlight from './UserPages/UserSearchFlight'
 import UserManageBooking from './UserPages/UserManageBooking'
 import UserEditProfile from './UserPages/UserEditProfile'
 import UserConfirmBooking from './UserPages/UserConfirmBooking'
+import PassengersDetails from './UserPages/PassengersDetails'
+
 
 import ReservationHomePage from './UserPages/ReservationHomePage'
 
@@ -51,6 +53,8 @@ ReactDOM.render(
                     <Route exact path="/UserEditProfile" component={UserEditProfile} />
                     
                     <Route exact path="/ReservationHomePage" component={ReservationHomePage} />
+                    <Route exact path="/PassengersDetails" component={PassengersDetails} />
+
                     
                 </Switch>
             </BrowserRouter>

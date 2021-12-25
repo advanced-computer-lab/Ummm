@@ -106,7 +106,9 @@ const UserConfirmBooking = () => {
   const Flight2 = history.location.state?.flight2;
   const Adults = history.location.state?.Adults;
   const Children = history.location.state?.Children;
-  const User = localStorage.getItem("UserInfo")
+  const Passengers = history.location.state?.Passengers;
+
+  // const User = localStorage.getItem("UserInfo")
 
 
   const [Data, setState] = useState({
@@ -132,17 +134,17 @@ const UserConfirmBooking = () => {
     SeatsChoosenToID: "",
 
 
-    FirstName: User.FirstName,
-    LastName: User.LastName,
-    PassPort_No: User.PassPort_No,
-    Username: User.Username,
-    Email: User.Email,
+    FirstName: localStorage.getItem("FirstName"),
+    LastName: localStorage.getItem("LastName"),
+    PassPort_No: localStorage.getItem("PassPort_No"),
+    Username: localStorage.getItem("Username"),
+    Email: localStorage.getItem("Email"),
     ReservationOwner: true,
     isChild: false,
     Adults: Adults,
     Children: Children,
 
-    TotalPrice: (Flight1.Price * Adults) + (Flight1.Price * Children * 0.8) + (Flight2.Price * Adults) + (Flight2.Price * Children * 0.8),
+    TotalPrice: +(Math.round(((Flight1.Price * Adults) + (Flight1.Price * Children * 0.8) + (Flight2.Price * Adults) + (Flight2.Price * Children * 0.8) )* 100) / 100).toFixed(2),
   });
  
   console.log(Data);
@@ -170,7 +172,8 @@ const UserConfirmBooking = () => {
   //     document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   //     console.log(response.data[0].Email);
   //     setState( prevData => {
-  //       return {...prevData ,['Email']: response.data[0].Email}});
+  //       return {...prevData ,['Email']: response.data[0].Email}, 
+  //           ['FirstName']: response.data[0].FirstName});
   //     // console.log(Data.Email);
   //     //  window.location.reload(false);
   //     //  form.resetFields();
@@ -223,19 +226,51 @@ const UserConfirmBooking = () => {
   const BookFlightHandler = (e) => {
     e.preventDefault();    // prevent reloading the page
 
-    for (let index = 0; index < array.length; index++) {
-      const element = array[index];
-      
-    
+      console.log(Data)
+      console.log(Passengers)
+
+
+    for (let i = 0; i < Data.Adults; i++) {   
+      var criteria1 = {}; 
+
+      if(i===0){
+        criteria1 = Data
+        console.log("testtt")
+      }
+      else{
+      Object.keys(Data).forEach(key => {
+          if (key == "FirstName") {
+            criteria1[key] = Passengers[i].FirstName
+          }
+         else if (key == "LastName") {
+            criteria1[key] = Passengers[i].LastName
+          }
+          else if (key == "PassPort_No") {
+            criteria1[key] = Passengers[i].PassPort_No
+          }
+          else if (key == "ReservationOwner") {
+            criteria1[key] = false
+          }
+          else if (key == "isChild") {
+            criteria1[key] = false
+          }
+          else
+            criteria1[key] = Data[key];
+      });
+
+    }
+
+      console.log(criteria1)
+
     Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
     Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
-    axios.post('http://localhost:8000/createnewReservation', Data, {withCredentials: true})
+    axios.post('http://localhost:8000/createnewReservation', criteria1, {withCredentials: true})
     .then(response => {
       localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
       document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-      console.log(Data);
-      success();
+      // console.log(Data);
+      // success();
       //  window.location.reload(false);
       //  form.resetFields();
       //   success(); // data succ added less go
@@ -251,6 +286,71 @@ const UserConfirmBooking = () => {
 
 
   }
+
+
+
+
+  for (let i = Data.Adults; i < Data.Adults + Data.Children; i++) {   
+    var criteria1 = {}; 
+
+
+    Object.keys(Data).forEach(key => {
+        if (key == "FirstName") {
+          criteria1[key] = Passengers[i].FirstName
+        }
+       else if (key == "LastName") {
+          criteria1[key] = Passengers[i].LastName
+        }
+        else if (key == "PassPort_No") {
+          criteria1[key] = Passengers[i].PassPort_No
+        }
+        else if (key == "ReservationOwner") {
+          criteria1[key] = false
+        }
+        else if (key == "isChild") {
+          criteria1[key] = true
+        }
+        else if(key == "FromPrice"){
+          criteria1[key] = +(Math.round((Flight1.Price * 0.8) * 100) / 100).toFixed(2)
+        }
+        else if(key == "ToPrice") {
+          criteria1[key] = +(Math.round((Flight2.Price * 0.8) * 100) / 100).toFixed(2)
+        }
+        else
+          criteria1[key] = Data[key];
+    });
+
+
+    console.log(criteria1)
+
+  Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+  Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+  axios.post('http://localhost:8000/createnewReservation', criteria1, {withCredentials: true})
+  .then(response => {
+    localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+    document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    // console.log(Data);
+    // success();
+    //  window.location.reload(false);
+    //  form.resetFields();
+    //   success(); // data succ added less go
+    }).catch(error => {
+      if(error.response.status==403){
+        history.push({
+          pathname: '/LoginPage'
+        });
+      }
+      console.log("asdfasfsafdsafsadf")
+      console.log(error);
+  })
+
+
+}
+
+
+success();
+
 
 
     // setState({
@@ -589,3 +689,4 @@ return (
 
 };
 export default UserConfirmBooking;
+
