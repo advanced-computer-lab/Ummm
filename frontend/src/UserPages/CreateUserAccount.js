@@ -217,6 +217,8 @@ else { // will post normally
 
 
 
+
+
   var now = new Date();
   now.setFullYear(now.getFullYear()-18);
   var now2 =  moment().subtract(18, 'years')
@@ -231,21 +233,10 @@ else { // will post normally
   <div class="box d2">
 
   
-  <script src="sweetalert2.all.min.js"></script>
-  <script src="sweetalert2.min.js"></script>
-<link rel="stylesheet" href="sweetalert2.min.css"/>
+  
 
-<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"/>
-<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
-<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css"/>
-<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css"/>
-<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css"/>
-<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css"/>
-<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css"/>
-<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css"/>
-<link rel="stylesheet" type="text/css" href="css/util.css"/>
-<link rel="stylesheet" type="text/css" href="css/main.css"/>
+
+
 
   <div class="limiter">
   <div class="container-login100" >
@@ -398,16 +389,7 @@ else { // will post normally
 </div>
 
 
-<div id="dropDownSelect1"></div>
-<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<script src="vendor/animsition/js/animsition.min.js"></script>
-<script src="vendor/bootstrap/js/popper.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="vendor/select2/select2.min.js"></script>
-<script src="vendor/daterangepicker/moment.min.js"></script>
-<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<script src="vendor/countdowntime/countdowntime.js"></script>
-<script src="js/main.js"></script>
+
 </div>
 
 
@@ -427,4 +409,5 @@ else { // will post normally
     </>
   );
 };
+
 export default CreateUserAccount;
