@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 
 const reservationSchema = new Schema({
 
+
+  
+
+//Flight From Info
+
   Flight_IDFrom: {
     type: String,
     required: true,

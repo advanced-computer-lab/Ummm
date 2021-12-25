@@ -70,7 +70,7 @@ console.log(localStorage.getItem("UserInfo"))
         Password: "",
         })
         history.push({
-          pathname: '/ReservationHomePage'
+            pathname: '/ReservationHomePage' //Pass to 
           });
 
           success(Data.Username);
