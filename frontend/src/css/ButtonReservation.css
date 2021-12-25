@@ -175,8 +175,8 @@
 .booking-form2 {
 	position: relative;
 	max-width: 642px;
-	width: 100%;
-    max-width: 1500px;
+	width: 90%;
+    max-width: 100%;
 	margin: auto;
 	/* change the padding left after press expand  to be 240 px */
 	padding-left: 40px ;
@@ -193,7 +193,7 @@
 .booking-form2::before {
 	content: '';
     width: 100%;
-	position: absolute;
+	position: relative;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -426,7 +426,8 @@
 	font-weight: 700;
 	height: 60px;
 	padding: 10px 30px;
-	width: 400px;
+	width: 30%;
+	margin-left: 19%;
 	border-radius: 40px;
 	border: none;
 	text-transform: uppercase;
