@@ -234,6 +234,13 @@
     grid-gap: 20px;
     background: rgb(255, 255, 255);
 }
+
+.grid-container3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  background: rgb(255, 255, 255);
+}
   .label-input100 {
    
     font-size: 14px;

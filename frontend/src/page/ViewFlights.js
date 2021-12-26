@@ -5,6 +5,8 @@ import { Route, Redirect } from 'react-router'
 import { Link, Switch } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import Cookies from "js-cookies";
+import '../css/App.css';
+import '../css/main.css';
 import {
   Button,
 
@@ -109,147 +111,169 @@ function App() {
         };
   
 
-  return (
-    
-    <div className="">
-      <div className="content">
-           <h1>All Flights </h1>
-           
-          
-         
-          <br/>
-          <table id="customers">
-    <thead>
-        <tr>
-            <th id="customers">Flight_no</th>
-            <th id="customers">From</th>
-            <th id="customers">To</th>
-            <th id="customers">Flight&nbsp;Date</th>
-            <th id="customers">Duration</th>
-            <th id="customers">Terminal</th>
-
-            <th id="customers">Seats&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-            {/* <th id="customers">Business Seats</th>
-            <th id="customers">First Seats</th> */}
-
-            <th id="customers">Baggages</th>
-            {/* <th id="customers">Business Baggage</th>
-            <th id="customers">First Baggage</th> */}
-
-            <th id="customers">Prices&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-            {/* <th id="customers">Business Price</th>
-            <th id="customers">First Price</th> */}
-
-            <th id="customers"></th>
-        </tr>
-    </thead>
-  
-
-    {flights.map(flight =>
-         
-       
-        
-        <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.Flight_No}</span>
+        return (
+          <>
+      
+      <div class="box d2">
+      <div class="limiter">
+        <div class="container-login100" >
+          <div class="wrap-login199 p-l-55 p-r-55 p-t-65 p-b-54">
+            <form class="login100-form validate-form">
+              <span class="login100-form-title p-b-49">
+                Admin View All Flights
+              </span>
+      
+      
+      
               
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.From}</span>
-                
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.To}</span>
-                
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{moment(flight.Flight_Date).format("YYYY-MM-DD  HH:mm")}</span>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+         
+      
+      
+      
+            
+               {flights.map(flight =>
+                         <>
+      
+      
+      
+      
+      
+      <table class="fl-table">
+              <thead>
+              <tr>
+                  <th>Flight Number</th>
+                  <th>From</th>
+                  <th>To</th>
+                  <th>Flight Date</th>
+                  <th>Duration</th>
+                  <th>Terminal</th>
+                  <th>Eco Seats</th>
+                  <th>Buss Seats</th>
+                  <th>First Seats</th>
+                  <th>Eco Baggage</th>
+                  <th>Buss Baggage</th>
+                  <th>First Baggage</th>
+                  <th>Eco Price</th>
+                  <th>Buss Price</th>
+                  <th>Fisrt Price</th>
+          
+              </tr>
+              </thead>
+          
+              <tr>
+                  <td>{flight.Flight_No}</td>
+                  <td>{flight.From}</td>
+                  <td>{flight.To}</td>
+                  <td>{moment(flight.Flight_Date).format("YYYY-MM-DD  HH:mm")}</td>
+                  <td>{flight.Flight_Duration}</td>
+                  <td>{flight.Terminal}</td>
+                  <td>Eco: {flight.Economy_Seats}</td>
+                  <td>Buss: {flight.Business_Seats}</td>
+                  <td>First: {flight.First_Seats}</td>
+                  <td>Eco: {flight.Economy_Baggage}</td>
+                  <td>Buss: {flight.Business_Baggage}</td>
+                  <td>First: {flight.First_Baggage}</td>
+                  <td>Eco: ${flight.Economy_Price}</td>
+                  <td>Buss: ${flight.Business_Price}</td>
+                  <td>First: ${flight.First_Price}</td>
+                  <td> <a class="button-60 center20" role="button">Back</a> <a class="button-60 center20" role="button">Back</a></td>
+
+              </tr>
+             
+      
+          
+          </table>
+       
+      
+      
+      
+      
+      
+      </>
+      
+      
+      
+      
+      
+               )}
+      
+      <>
+      
+      
+      
+      
+      
+        
+      
+        
+      
+      
+      
+      
+      
+      
+      
                
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.Flight_Duration}</span>
-            </td>
-            
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">{flight.Terminal}</span>
+        
+               </>
+              
+      
+             
+      
+          
+             
+             
+      
+      
+      
+                      
+      
+      
+      
+      
+      
            
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Eco: {flight.Economy_Seats}</span>
-                <br></br>
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Buss: {flight.Business_Seats}</span>
-                <br></br>
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">First: {flight.First_Seats}</span>
-            </td>
-            
-            
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Eco: {flight.Economy_Baggage}</span>
-                <br></br>
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Buss: {flight.Business_Baggage}</span>
-                <br></br>
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">First: {flight.First_Baggage}</span>
-                
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Eco: ${flight.Economy_Price}</span>
-                <br></br>
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Buss: ${flight.Business_Price}</span>
-                <br></br>
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">First: ${flight.First_Price}</span>
-                <span class="rounded bg-green-400 py-1 px-3 text-xs font-bold"></span>
-            </td>
-          
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                <button class="w3-button w3-border w3-hover-cyan" name={flight._id}  onClick={() => editHandler(flight)}> <b>Update </b>  </button>
-                <button class="w3-button w3-border w3-hover-red" name={flight._id}  onClick={() => deleteHandler(flight)}> <b>Delete </b>  </button>
-            </td>
-        </tr>
-         )}
- 
-</table>
-<br/>
-<Button onClick={(e) => LogOutHandler(e)}>Log Out</Button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<Button onClick={() => history.goBack()}>Back</Button>
-<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+             
           
             
-          
-
-
-
-
-
-          
+      
+      
+      
+            </form>
+      
+            
+            
+              <a class="button-60 center20" role="button" onClick={() => history.goBack()}>Back</a>
+              <a class="button-60 center20" role="button" onClick={(e) => LogOutHandler(e)}>Log Out </a>
+          </div>
+        </div>
       </div>
-    </div>
-    
-
-  );
+      
+      
+      
+      </div>
+      
+      
+      
+      
+      
+            
+           
+      
+          
+      
+          
+          </>
+        );
 }
 
 export default App;
