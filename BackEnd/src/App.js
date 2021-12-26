@@ -1,20 +1,6 @@
 
 // External variables
 const express = require("express");
-<<<<<<< HEAD
-<<<<<<< HEAD
-const mongoose = require('mongoose');
-const userController = require('./Routes/userController');
-
-=======
-const nodemailer = require('nodemailer');
-const mongoose = require('mongoose');
-const userController = require('./Routes/userController');
->>>>>>> fd86f7b21554bb498349975741d95e00695903f1
-const cors = require('cors')
-const dotenv = require("dotenv")
-dotenv.config();
-=======
 const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
 
@@ -33,7 +19,6 @@ var Cookies = require('cookies')
 
 
 
->>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 
 
 // // app.js
@@ -41,19 +26,13 @@ var Cookies = require('cookies')
 // // Connect Database
 // connectDB();
 
-<<<<<<< HEAD
-=======
 // let refreshTokens = []
->>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 
 
 //App variables
 const app = express();
 const port = process.env.PORT || "8000";
 // #Importing the userController
-<<<<<<< HEAD
-app.use(cors())
-=======
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -62,7 +41,6 @@ app.use(
   })
 );
 app.use(cookieParser())
->>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 app.use(express.urlencoded({extended: true}));
 app.use(express.json()) // To parse the incoming requests with JSON payloads// configurations
 const MongoURI = 
@@ -73,11 +51,6 @@ mongoose.connect(MongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 .catch(err => console.log(err));
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 
 var transporter = nodemailer.createTransport({
   service: 'Gmail',
@@ -93,15 +66,6 @@ subject: "Reservation Cancellation",
 text: "Email Test Has Passed"
 }
 
-<<<<<<< HEAD
-=======
-var mailoptions2={
-  to: 'ahmed.eltawel35@gmail.com',
-  subject: "Reservation Confirmation",
-  text: "Email Test Has Passed"
-  }
-
->>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 // transporter.sendMail(mailoptions, function (error, info, callback){
 // if(error){
 //   console.log(error);
@@ -110,25 +74,10 @@ var mailoptions2={
 // }
 // });
 
-<<<<<<< HEAD
->>>>>>> fd86f7b21554bb498349975741d95e00695903f1
-=======
->>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 app.get("/home", (req, res) => {
     res.status(200).send("You have everything installed !");
   });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-// #Routing to usercontroller here
-
-
-=======
-  app.post("/sendmail", (req, res) => {
-    console.log("we have reached hereeee")
-    mailoptions.to=req.body.data.var2
-    mailoptions.text='Hello Dear Customer,\nYour Reservation has been successfully cancelled and you will be refunded with $'.concat(req.body.data.var1)+'\nHope to see you fly with us again,\nFly Nawww.';
-=======
   app.post("/sendmail", (req, res) => {
     console.log("we have reached hereeee")
     mailoptions.to=req.body.data.var2
@@ -138,7 +87,6 @@ app.get("/home", (req, res) => {
     '<body>'+
 
   '<h2>  Reservation Info  </h2>' +
-
    ' <ul>'+
       '<li>UserName: ' + reserv.Username +'</li>'+
     ' <li>First Name: '+ reserv.FirstName +'</li>'+
@@ -155,7 +103,6 @@ app.get("/home", (req, res) => {
   '  </body>' +
    ' </html>'
 
->>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
     transporter.sendMail(mailoptions, function (error, info, callback){
       if(error){
         console.log(error);
@@ -165,76 +112,6 @@ app.get("/home", (req, res) => {
       });
 
   });
-<<<<<<< HEAD
-//Flight and admin
->>>>>>> fd86f7b21554bb498349975741d95e00695903f1
-app.post('/createflight', userController.createflight)
-app.get('/viewflights',userController.viewflights)
-app.delete('/deleteflight',userController.deleteflight)
-app.put('/updateflight',userController.updateflight)
-app.post('/searchflight',userController.searchflight)
-app.post('/loginpage',userController.loginpage)
-
-<<<<<<< HEAD
-=======
-//User
-app.post('/createuseraccount', userController.createuseraccount)
-app.post('/userlogin',userController.userlogin)
-app.post('/createnewReservation',userController.createnewReservation)
-app.post('/GetUserInfo',userController.GetUserInfo)
-app.post('/userinfo',userController.userinfo)
-app.put('/updateuser',userController.updateuser)
-app.post('/reservationinfo',userController.reservationinfo)
-app.post('/flightmap',userController.flightmap)
-app.put('/updateseats',userController.updateseats)
-app.put('/updatereservationseats',userController.updatereservationseats)
-app.delete('/deletereservation',userController.deletereservation)
-
->>>>>>> fd86f7b21554bb498349975741d95e00695903f1
-=======
-
-
-
-
-  app.post("/sendmailconfirm", (req, res) => {
-    console.log("we have reached hereeee")
-    mailoptions2.to=req.body.data.var2
-  const reserv= req.body.data.var3;
-  console.log(reserv)
-  mailoptions2.html= '<html>' +
-    '<body>'+
-
-  '<h2>  Reservation Info  </h2>' +
-
-   ' <ul>'+
-      '<li>UserName: ' + reserv.Username +'</li>'+
-    ' <li>First Name: '+ reserv.FirstName +'</li>'+
-    ' <li>Last Name: '+ reserv.LastName +'</li>'+
-    ' <li> Round Trip Flight From: ' + reserv.Flight_From +'  To: ' + reserv.Flight_To +'</li>'+
-     ' <li>Depart Flight Number: ' + reserv.Flight_NoFrom +'</li>'+
-      '<li>Return Flight Number: ' + reserv.Flight_NoTo +'</li>'+
-      '<li>Depart Flight Date: ' + reserv.Flight_DateFrom +'</li>'+
-      '<li>Return Flight Date: ' + reserv.Flight_DateTo +'</li>'+
-      ' <li>Depart Flight Seat: ' + reserv.SeatsChoosenFrom  +'</li>'+
-      ' <li>Return Flight Seat: ' + reserv.SeatsChoosenTo  +'</li>'+
-      ' <li>Reservation ID: ' + reserv._id  +'</li>'+
-
-    '</ul>' +
-    '<h3>Your personal reservation has been confirmed and paid with an amount of $'+reserv.TotalPrice+'</h3>'
-  '  </body>' +
-   ' </html>'
-
-    transporter.sendMail(mailoptions2, function (error, info, callback){
-      if(error){
-        console.log(error);
-      }else{
-        console.log('Message sent: ' + info.response);
-      }
-      });
-
-  });
-
-
 //Flight and admin
 app.post('/createflight',authenticateToken ,userController.createflight)
 app.get('/viewflights' ,authenticateToken ,userController.viewflights )
@@ -256,14 +133,12 @@ app.post('/userinfo',authenticateToken ,userController.userinfo)
 app.put('/updateuser',authenticateToken ,userController.updateuser)
 app.put('/updatepassword',authenticateToken ,userController.updatepassword)
 app.post('/reservationinfo',authenticateToken ,userController.reservationinfo)
-app.post('/flightmap' ,authenticateToken,userController.flightmap)
-app.put('/updateseats' ,authenticateToken,userController.updateseats)
-app.put('/updatereservationseats' ,authenticateToken,userController.updatereservationseats)
-app.delete('/deletereservation' ,authenticateToken,userController.deletereservation)
+app.post('/flightmap',authenticateToken ,userController.flightmap)
+app.put('/updateseats',authenticateToken ,userController.updateseats)
+app.put('/updatereservationseats',authenticateToken ,userController.updatereservationseats)
+app.delete('/deletereservation',authenticateToken ,userController.deletereservation)
 app.post('/usersearchflight' ,userController.usersearchflight)
 app.post('/searchflightid',authenticateToken,userController.searchflightid)
-app.put('/updateeditflight',authenticateToken,userController.updateeditflight)
-
 
 
 
@@ -450,9 +325,8 @@ function authenticateToken(req, res, next) {
    var AccessToken = req.cookies.AccessToken
    const RefreshToken = req.cookies.RefreshToken
 
-   console.log(AccessToken)
+  //  console.log(AccessToken)
    const token = AccessToken && AccessToken.split(' ')[1]
-   console.log(AccessToken)
    if (token == null) return  res.status(403).send("Access Token Not Found!")
  else{
    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
@@ -506,7 +380,6 @@ function authenticateToken(req, res, next) {
  }
 
 
->>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 
 
 // Starting server
