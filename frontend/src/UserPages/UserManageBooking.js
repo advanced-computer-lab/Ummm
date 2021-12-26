@@ -438,6 +438,8 @@ const Editreturnhandler = (res) => {
           var Refund = RefundedAmount;
           var mail = "anasnemr25@gmail.com";
           var reservation2= reservation
+
+
           Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
           Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
           axios.post("http://localhost:8000/sendmail", {data: {var1:Refund,var2:mail,var3:reservation2}}, {withCredentials: true}).then(response => {
