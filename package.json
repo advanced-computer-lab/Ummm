@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ahmedalaaseif/ACL_Tasks#readme",
   "dependencies": {
+<<<<<<< HEAD
     "body-parser": "^1.19.0",
     "config": "^3.3.6",
     "cors": "^2.8.5",
@@ -31,5 +32,23 @@
     "mongose": "0.0.2-security",
     "nodemailer": "^6.7.2"
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "config": "^3.3.6",
+    "cookie": "^0.4.1",
+    "cookie-parser": "^1.4.6",
+    "cookies": "^0.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "mongoose": "^6.0.13",
+    "mongose": "0.0.2-security",
+    "nodemailer": "^6.7.2",
+    "stripe": "^8.195.0",
+    "uuid": "^8.3.2"
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   }
 }

@@ -4,6 +4,8 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import SeatPicker from "react-seat-picker";
 import axios from 'axios';
+import Cookies from "js-cookies";
+
 
 import "./styles.css";
 import { Button } from "react-scroll";
@@ -33,9 +35,17 @@ class SeatMap extends React.Component {
     super(props);
   this.state = {
     loading: false,
-    data:[],
-    seats: 0,
-    track:[],
+
+    flightID:'',
+
+    reserv:'',
+
+    from:'',
+    flightAvailableSeats:'',
+
+    choosenseatsID: [],
+    choosenseats: [],
+    maxSeats: 0,
     };
     this.UpdateAll = this.UpdateAll.bind(this);}
 
@@ -47,6 +57,8 @@ class SeatMap extends React.Component {
   //  console.log(e)
 
   // };
+
+
   addSeatCallbackContinousCase = (
     { row, number, id },
     addCb,
@@ -58,23 +70,76 @@ class SeatMap extends React.Component {
         loading: true
       },
       async () => {
+
         if (removeCb) {
-          await new Promise(resolve => setTimeout(resolve, 250));
+          await new Promise(resolve => setTimeout(resolve, 750));
           console.log(
             `Removed seat ${params.number}, row ${params.row}, id ${params.id}`
           );
           removeCb(params.row, params.number);
         }
-        await new Promise(resolve => setTimeout(resolve, 250));
+        await new Promise(resolve => setTimeout(resolve, 750));
         console.log(`Added seat ${number}, row ${row}, id ${id}`);
-        const newTooltip = `tooltip for id-${id} added by callback`;
+       
+        var flag = true;
+        // if(this.state.from){
+        //     if(this.state.choosenseatsID.length==0 && this.state.reserv['SeatsChoosenFromID'].length!==0){
+        //       console.log(this.state.reserv['SeatsChoosenFromID']);
+        //     this.state.choosenseatsID = this.state.reserv['SeatsChoosenFromID']
+        //     this.state.choosenseats = this.state.reserv['SeatsChoosenFrom']
+
+        //     // for(var i=1;i<this.state.choosenseatsID.length;i++){
+        //     //   if(id==this.state.choosenseatsID[i])
+        //     //     flag = false;
+        //     //   const newTooltip = `Seat number `+row+number+' is selected!';
+        //     //   var r = this.state.choosenseats[i].substring(0,1);
+        //     //   var n = parseInt(this.state.choosenseats[i].substring(1));
+        //     //   console.log(r)
+        //     //   console.log(n)
+        //     //   console.log(this.state.choosenseatsID[i])
+        //     //   addCb(r, n, this.state.choosenseatsID[i], newTooltip);
+        //     //   // await new Promise(resolve => setTimeout(resolve, 750));
+        //     //   // removeCb(this.state.choosenseats[0].substring(0,1), parseInt(this.state.choosenseats[0].substring(1)));
+        //     // }
+
+
+        //   }
+        // }
+        // else{
+        //   if(this.state.choosenseatsID.length==0 && this.state.reserv['SeatsChoosenToID'].length!==0){
+        //     console.log(this.state.reserv['SeatsChoosenToID']);
+        //   this.state.choosenseatsID = this.state.reserv['SeatsChoosenToID']
+        //   this.state.choosenseats = this.state.reserv['SeatsChoosenTo']
+        //   for(var i=1;i<this.state.choosenseatsID.length;i++){
+        //     if(id==this.state.choosenseatsID[i])
+        //       flag = false;
+        //     const newTooltip = `Seat number `+row+number+' is selected!';
+        //     var r = this.state.choosenseats[i].substring(0,1);
+        //     var n = parseInt(this.state.choosenseats[i].substring(1));
+        //     addCb(r, n, this.state.choosenseatsID[i], newTooltip);
+        //     // await new Promise(resolve => setTimeout(resolve, 750));
+        //     // removeCb(this.state.choosenseats[0].substring(0,1), parseInt(this.state.choosenseats[0].substring(1)));
+        //   }
+        // }
+        // }
+
+        if(flag){
+        const newTooltip = `Seat number `+row+number+' is selected!';
         addCb(row, number, id, newTooltip);
-        //this.changeHander(id);
+        var seatName = ''+row+number;
+        this.setState(prevState => ({
+          choosenseats: [seatName]
+        }))
         this.addpeople(id)
+        }
+      
+       
         this.setState({ loading: false });
       }
     );
   };
+
+
 
   removeSeatCallback = ({ row, number, id }, removeCb) => {
     this.setState(
@@ -82,7 +147,7 @@ class SeatMap extends React.Component {
         loading: true
       },
       async () => {
-        await new Promise(resolve => setTimeout(resolve, 250));
+        await new Promise(resolve => setTimeout(resolve, 500));
         console.log(`Removed seat ${number}, row ${row}, id ${id}`);
         // A value of null will reset the tooltip to the original while '' will hide the tooltip
         const newTooltip = ["A", "B", "C"].includes(row) ? null : "";
@@ -93,143 +158,224 @@ class SeatMap extends React.Component {
     );
   };
 
-  removePeople(e) {
-    var array = [...this.state.track]; // make a separate copy of the array
-    var index = array.indexOf(e)
+  removePeople(id) {
+    var array = [...this.state.choosenseatsID]; // make a separate copy of the array
+    var array2 = [...this.state.choosenseats]; 
+    var index = array.indexOf(id)
     
     if (index !== -1) {
       array.splice(index, 1);
-      this.setState({track: array});
+      array2.splice(index,1)
+      this.setState({choosenseatsID: array});
+      this.setState({choosenseats: array2})
     }
-    if(array.length>4){
-    array.splice(0,1)
-    this.setState({track: array});}
+     
+    
     }
 
-  addpeople(e){
-    var array = [...this.state.track]; 
-    if(array.length>4){
-      array.splice(0,1)
-      this.setState({track: array});}
+  addpeople(id){
+    var array = [this.state.choosenseatsID]; 
+    var array2 = [this.state.choosenseats]; 
+    // if(array.length>=this.state.maxSeats){
+    //   array.splice(0,1)
+    //   this.setState({choosenseatsID: array});
+
+    //   array2.splice(0,1)
+    //   this.setState({choosenseats: array2});
+    // }
+    // this.setState(prevState => ({
+    //   choosenseatsID: [...prevState.choosenseatsID, id]
+    // }))
 
     this.setState(prevState => ({
-      track: [...prevState.track, e]
+      choosenseatsID: [id]
     }))
 
   }
+
+
+
+
+
   UpdateAll(){
-    if(this.state.seats===this.state.track.length){
-    const data1=this.props.parentToChild;
-    var n = this.state.seats;
-    for(var i=0;i<n;i++){
-  this.state.data[this.state.track[i]]=true;
-    }
-    if(data1){
-      var id=data1["g"]
-      var seats=this.state.data;
-      var tracker=this.state.track;
-      var username=sessionStorage.getItem("Username")
-      var date=data1["date"]
-      console.log(seats);
-      console.log(id);
-    axios.put('http://localhost:8000/updateseats',{data: {var1 : id, var2 : seats} })
-    .then((result)=> {
-              console.log("Successful")
-    
-        }).catch(error => {
-        console.log(error); })
-    
-    if(data1["from"]==true){
-      axios.put('http://localhost:8000/updatereservationseats',{data: {var1 : id, var2 : tracker,var3:username,var4:true,var5:date} })
-    .then((result)=> {
-              console.log("Successful")
-    
-        }).catch(error => {
-        console.log(error); })
 
-    }
-    else{
-      axios.put('http://localhost:8000/updatereservationseats',{data: {var1 : id, var2 : tracker,var3:username,var4:false,var5:date} })
-      .then((result)=> {
-                console.log("Successful")
+   
+
+    console.log(this.state.choosenseatsID.length);
+    console.log(this.state.flightAvailableSeats);
+    for(var i=0;i<this.state.choosenseatsID.length;i++){
+      console.log(this.state.choosenseatsID[i]);
+      console.log(this.state.flightAvailableSeats[this.state.choosenseatsID[i]]);
+      this.state.flightAvailableSeats[this.state.choosenseatsID[i]]=false;
+        }
+
+      // this.state.reserv['Available'] = this.state.Available;
+      if(this.state.from){
+        this.state.reserv['SeatsChoosenFrom'] = this.state.choosenseats;
+        this.state.reserv['SeatsChoosenFromID'] = this.state.choosenseatsID;
+      }
+      else{
+        this.state.reserv['SeatsChoosenTo'] = this.state.choosenseats;
+        this.state.reserv['SeatsChoosenToID'] = this.state.choosenseatsID;
+      }
+
+      console.log(this.state.reserv)
+      console.log(this.state.flightAvailableSeats)
+
+
+      // if(this.state.maxSeats===this.state.choosenseats.length){
+        Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+        Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+        axios.put('http://localhost:8000/updateseats',{data: {var1 : this.state.flightID, var2 : this.state.flightAvailableSeats} 
+      },{withCredentials: true}).then((result)=>
+      {    
+        localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+        // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      })
+      .catch((error) => {
+        if(error.response.status==403){
+          window.open("UserLogin", "_self");
+        }
+      })
+
+
+      Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+      Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+      axios.put('http://localhost:8000/updatereservationseats', {data: {var1:this.state.reserv['_id'], var2:this.state.reserv}
+      },{withCredentials: true}).then((result)=>
+      {    
+        localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+        // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      })
+      .catch((error) => {
+        if(error.response.status==403){
+        window.open("UserLogin", "_self");
+        }
+      })
+
+    // }
+
+    // console.log(this.state.seats)
+    // console.log(this.state.track.length)
+    // console.log(this.state.track)
+
+    // if(this.state.maxSeats===this.state.choosenseats.length){
+
+    // const data1=this.props.parentToChild;
+    // var n = this.state.seats;
+    
+    // if(data1){
+    //   var id=data1["g"]
+    //   var seats=this.state.data;
+    //   console.log(seats)
+    //   var tracker=this.state.track;
+    //   var username=sessionStorage.getItem("Username")
+    //   var date=data1["date"]
+    //   console.log(seats);
+    //   console.log(id);
+    // axios.put('http://localhost:8000/updateseats',{data: {var1 : id, var2 : seats} })
+    // .then((result)=> {
+    //           console.log("Successful")
+    
+    //     }).catch(error => {
+    //     console.log(error); })
+
+    //     if(this.state.from==true){
+    //       axios.put('http://localhost:8000/updatereservationseats',{data: {var1 : id, var2 : tracker,var3:username,var4:true,var5:date} })
+    //     .then((result)=> {
+    //               console.log("Successful")
+        
+    //         }).catch(error => {
+    //         console.log(error); })
+    
+    //     }
+    //     else{
+    //       axios.put('http://localhost:8000/updatereservationseats',{data: {var1 : id, var2 : tracker,var3:username,var4:false,var5:date} })
+    //       .then((result)=> {
+    //                 console.log("Successful")
+          
+    //           }).catch(error => {
+    //           console.log(error); })
       
-          }).catch(error => {
-          console.log(error); })
-  
-    }
-    
-    }
+    //     }
+    // }
+    // }
 
-    }
     }
 
 
-  componentDidMount() {
-    const data=this.props.parentToChild;
-    if(data){
-     var seats = data["e"] + data["f"]
-     var id=data["g"]
-    axios.post('http://localhost:8000/flightmap',{data: {var1 : id} })
-    .then((result)=> {
-        const Available = result.data[0].Available_Seats;
-        console.log(Available)
-        this.setState({ seats: seats,data: Available,track: []});
-      })}
-  }
+  // componentDidMount() {
+  //   const data=this.props.parentToChild;
+  //   console.log(data);
+  //   if(data){
+  //    var seats = data["e"] + data["f"]
+  //    var id=data["g"]
+  //   axios.post('http://localhost:8000/flightmap',{data: {var1 : id} })
+  //   .then((result)=> {
+  //     console.log(result) 
+  //       // const Available = result.data[0].Available_Seats;
+  //       // console.log(Available) 
+  //       this.setState({ seats: seats,track: []});
+  //     })}
+  // }
 
 
 
   
   render() {
      
+    const data=this.props.parentToChild;
 
-    const rows = new Array(26);
-   
-  for (var i = 0; i < rows.length; i++) {
-    if(i<6){
-      rows[i] = new Array(4);
-    }
-    else{
-      rows[i] = new Array(6);
-    }
-   
-  }
-   
-  for(let i=0;i<26;i++){
-    for(let j=0;j<8;j++){
-      if(j>1 && j<6 && i<5){
-        rows[i][j] = null;
-      }
-   else if(i<5){
-     if(j>5)
-      rows[i][j] = { id: ((i*4)+j-4+1), number: j+1-4, isReserved:  this.state.data[((i*4)+j-4+1)]} ;
-      else
-      rows[i][j] = { id: ((i*4)+j+1), number: j+1, isReserved:  this.state.data[((i*4)+j+1)]} ;
-      console.log(  this.state.data[((i*4)+j-4+1)]);    
-  }
-  else {
-    if(j>2 && j<5){
-      rows[i][j] = null;
-    }
- else if(j>4)
- rows[i][j] = { id: ((20+((i-5)*6)+j-2)+1), number: j+1-2, isReserved:  this.state.data[((20+((i-5)*6)+j-2)+1)]} ;
-       else
-       rows[i][j] = { id: ((20+((i-5)*6)+j)+1), number: j+1, isReserved:  this.state.data[((20+((i-5)*6)+j)+1)]} ;
-  }
-    }
-}
+    console.log(data)
+    var rows = new Array(26);
+    var Available = "";
 
+    if(data){
+    // console.log(data['rows']);
+    rows = data['rows'];
+    this.state.reserv = data['myreserv'];
+    this.state.flightID = data['ID'];
+    this.state.flightAvailableSeats = data['Available'];
+    this.state.maxSeats = data['Adults_No'] + data['Children_No'];
+    this.state.from = data['from'];
+    console.log(this.state.maxSeats);
+    console.log(this.state.choosenseatsID);
+    console.log(this.state.choosenseats);
+
+    // if(this.state.from){
+    //   this.state.choosenseatsID = this.state.reserv['SeatsChoosenFromID']
+    // }
+    // else{
+    //   this.state.choosenseatsID = this.state.reserv['SeatsChoosenToID']
+    // }
+
+    console.log(this.state.choosenseatsID);
+
+
+
+
+
+    console.log(this.state.reserv);
+    
+    //  console.log(rows);
+    // Available=data['Available'];
+    }
+  //   console.log(rows);
+  
+  // console.log(rows)
     const { loading } = this.state;
     return ( 
     <>
     <div>
       </div><div>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '240vh' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '250vh' }}>
             <SeatPicker
               addSeatCallback={this.addSeatCallbackContinousCase}
               removeSeatCallback={this.removeSeatCallback}
               rows={rows}
-              maxReservableSeats={this.state.seats}
+              maxReservableSeats={1}
               alpha
               visible
               selectedByDefault
@@ -258,4 +404,6 @@ const rootElement = document.getElementById("root");
 ReactDOM.render(<SeatMap />, rootElement);
 
 export default SeatMap;
+
+
 

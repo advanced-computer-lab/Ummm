@@ -2,6 +2,7 @@
 color: rgb(255, 255, 255);
 }
 
+<<<<<<< HEAD
 html {
   
   line-height: 1.15;
@@ -12,16 +13,21 @@ html {
 
   /* 2 */
 }
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 
 /* Sections
    ========================================================================== */
 /**
  * Remove the margin in all browsers (opinionated).
  */
+<<<<<<< HEAD
 body {
   background: #ff0000;
   margin: 0;
 }
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 
 /**
  * Add the correct display in IE 9-.
@@ -1571,6 +1577,26 @@ span.flatpickr-weekday {
 }
 
 .s011 {
+<<<<<<< HEAD
+=======
+  background: rgba(0, 0, 0, 0.8);
+  min-height: 10%;
+  display: -ms-flexbox;
+  display: grid;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  background-size: cover;
+  background-position: center center;
+  padding: 15px;
+  font-family: 'Lato', sans-serif;
+  /* background-image: url('https://www.maxpixel.net/static/photo/1x/Plane-Soft-Travel-White-Airplane-Flight-Blue-Sky-4125770.jpg'); */
+}
+
+
+.s011-reservation {
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   
   min-height: 100vh;
   display: -ms-flexbox;
@@ -1614,13 +1640,36 @@ span.flatpickr-weekday {
 
 .s011 form .inner-form header .travel-type-wrap .item {
   color: #555;
+<<<<<<< HEAD
   border-radius: 3px;
+=======
+  border-radius: px;
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   background: #fff;
   margin-right: 5px;
   padding: 18px 20px;
   transition: all .3s;
   cursor: pointer;
   text-align: center;
+<<<<<<< HEAD
+=======
+  width:300px ;
+  height:94px ;
+  border-radius:110px ;
+}
+
+.item99 {
+  color: #555;
+  border-radius: px;
+  background: #fff;
+  margin-right: 5px;
+  padding: 18px 20px;
+  transition: all .3s;
+  cursor: pointer;
+  text-align: center;
+  width:101px ;
+  height:94px ;
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 }
 
 .s011 form .inner-form header .travel-type-wrap .item .group-icon {
@@ -1646,7 +1695,11 @@ span.flatpickr-weekday {
 
 .s011 form .inner-form header .travel-type-wrap .item.active {
   color: #fff;
+<<<<<<< HEAD
   background: #2c6ed5;
+=======
+  background: #e35e0a;
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 }
 
 .s011 form .inner-form header .travel-type-wrap .item.active svg {
@@ -1657,7 +1710,11 @@ span.flatpickr-weekday {
 
  /* adasdasd */
 .s011 form .inner-form header .travel-type-wrap .item:hover, .s011 form .inner-form header .travel-type-wrap .item:focus {
+<<<<<<< HEAD
   background: #2c6ed5;
+=======
+  background: #e35e0a;
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   color: #fff;
 }
 
@@ -1957,6 +2014,34 @@ background-color: rgba(202, 80, 4, 0.884);
 background-color: rgba(202, 80, 4, 0.884);
 }
 
+<<<<<<< HEAD
+=======
+.btn-search3 {
+  color: #fff;
+	background-color: #e35e0a;
+	font-weight: 700;
+	height: 60px;
+	
+  margin-top: 3%;
+  margin-left: 60%;
+	width: 80%;
+	border-radius: 40px;
+	border: none;
+  display: none; 
+	
+	font-size: 16px;
+	letter-spacing: 1.3px;
+	-webkit-transition: 0.2s all;
+	transition: 0.2s all;
+}
+
+ .btn-search3:hover {
+background-color: rgba(202, 80, 4, 0.884);
+}
+
+
+
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 @media screen and (max-width: 767px) {
   .s011 form .inner-form header {
     overflow: hidden;

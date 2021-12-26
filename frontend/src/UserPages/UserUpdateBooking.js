@@ -7,8 +7,6 @@ import '../css/popup.css';
 import '../css/swal.css';
 import Swal from 'sweetalert2'
 import Cookies from "js-cookies";
-
-
 import '../css/main.css';
 import '../css/guest.css';
 import '../css/creditCard.css';
@@ -79,24 +77,10 @@ $('#card-ccv').on('focus', function(){
 });
 
 
-/*--------------------
-CodePen Tile Preview
---------------------*/
-
 });
    
 
-const UserConfirmBooking = () => {
-  // console.log(sessionStorage.getItem('AuthenticationState'));
-  // console.log(sessionStorage.getItem('Username'));
- 
-
-  if (localStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
-    window.open("UserLogin", "_self");
- }
-//   if (sessionStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
-//     Login();
-//  }
+const UserUpdateBooking = () => {
 
   
  const history = useHistory();
@@ -106,10 +90,6 @@ const UserConfirmBooking = () => {
   const Flight2 = history.location.state?.flight2;
   const Adults = history.location.state?.Adults;
   const Children = history.location.state?.Children;
-  const Passengers = history.location.state?.Passengers;
-
-  // const User = localStorage.getItem("UserInfo")
-  const Update = history.location.state?.Update;
   const reserv = history.location.state?.reserv;
   const CabinFrom = history.location.state?.CabinFrom;
   const CabinTo = history.location.state?.CabinTo;
@@ -117,48 +97,11 @@ const UserConfirmBooking = () => {
   const SeatsFrom = history.location.state?.SeatsFrom;
   const SeatsToID = history.location.state?.SeatsToID;
   const SeatsFromID = history.location.state?.SeatsFromID;
-  const User = localStorage.getItem("UserInfo")
+console.log(CabinFrom)
 
-
+ 
   const [Data, setState] = useState({
     Username: localStorage.getItem('Username'),
-    Email: localStorage.getItem('Email'),
-
-    Flight_IDFrom: Flight1._id,
-    Flight_NoFrom: Flight1.Flight_No,
-    Flight_DateFrom: Flight1.Flight_Date,
-    Flight_From: Flight1.From,
-    FromPrice: Flight1.Price,
-    CabinFrom: history.location.state?.CabinFrom,
-    SeatsChoosenFrom: "",
-    SeatsChoosenFromID: "",
-
-
-    Flight_IDTo: Flight2._id,
-    Flight_NoTo: Flight2.Flight_No,
-    Flight_DateTo: Flight2.Flight_Date,
-    Flight_To: Flight1.To,
-    ToPrice: Flight2.Price,
-    CabinTo: history.location.state?.CabinTo,
-    SeatsChoosenTo: "",
-    SeatsChoosenToID: "",
-
-
-    FirstName: localStorage.getItem("FirstName"),
-    LastName: localStorage.getItem("LastName"),
-    PassPort_No: localStorage.getItem("PassPort_No"),
-    Username: localStorage.getItem("Username"),
-    Email: localStorage.getItem("Email"),
-    ReservationOwner: true,
-    isChild: false,
-    Adults: Adults,
-    Children: Children,
-
-    TotalPrice: +(Math.round(((Flight1.Price * Adults) + (Flight1.Price * Children * 0.8) + (Flight2.Price * Adults) + (Flight2.Price * Children * 0.8) )* 100) / 100).toFixed(2),
-  });
- 
-  const [Data2, setState2] = useState({
-    Username: sessionStorage.getItem('Username'),
     Email: "",
 
     Flight_IDFrom: Flight1._id,
@@ -183,48 +126,40 @@ const UserConfirmBooking = () => {
 
     TotalPrice: (Flight1[CabinFrom + "_Price" ]* Adults) + (Flight1[CabinFrom + "_Price" ]* Children * 0.8) + (Flight2[CabinTo + "_Price"]* Adults) + (Flight2[CabinTo + "_Price" ]* Children * 0.8),
   });
-  console.log(Data);
- 
-
 
   useEffect(() => {
    
-  //   console.log(Data['Username'])
+    console.log(Data['Username'])
 
-  //   const criteria = {};
-  //   Object.keys(Data).forEach(key => {
-  //  if (key==="Username") {
-  //       criteria[key] = Data[key];
-  //     }
-  //   });
+    const criteria = {};
+    Object.keys(Data).forEach(key => {
+   if (key==="Username") {
+        criteria[key] = Data[key];
+      }
+    });
 
-  //   console.log(criteria)
-  //   Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
-  //   Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
-  //   axios.post('http://localhost:8000/GetUserInfo', criteria, {withCredentials: true})
-  //   .then(response => {
-  //     localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-  //     document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  //     document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  //     console.log(response.data[0].Email);
-  //     setState( prevData => {
-  //       return {...prevData ,['Email']: response.data[0].Email}, 
-  //           ['FirstName']: response.data[0].FirstName});
-  //     // console.log(Data.Email);
-  //     //  window.location.reload(false);
-  //     //  form.resetFields();
-  //     //   success(); // data succ added less go
-  //     }).catch(error => {
-  //       if(error.response.status==403){
-  //         history.push({
-  //           pathname: '/LoginPage'
-  //         });
-  //       }
-  //       console.log(error);
-  //   })
-
-
-  // },[]);
+    console.log(criteria)
+    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+    axios.post('http://localhost:8000/GetUserInfo', criteria, {withCredentials: true})
+    .then(response => {
+        localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+        document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      console.log(response.data[0].Email);
+      setState( prevData => {
+        return {...prevData ,['Email']: response.data[0].Email}});
+      // console.log(Data.Email);
+      //  window.location.reload(false);
+      //  form.resetFields();
+      //   success(); // data succ added less go
+      }).catch(error => {
+        if(error.response.status==403){
+            history.push({
+              pathname: '/UserLogin'
+            });}
+        console.log(error);
+    })
 
 
   },[]);
@@ -244,14 +179,6 @@ const UserConfirmBooking = () => {
               console.log('confirm');
               history.push({
                 pathname: '/UserManageBooking',
-              // state: {
-              //   flight1: isdepart,
-              //   flight2: isreturn,
-              //   CabinFrom: Data.CabinDepart,
-              //   CabinTo: Data.CabinDepart,
-              //   Adults: Data.Adults,
-              //   Children: Data.Children,
-              // }
               });
                
           }    
@@ -262,268 +189,32 @@ const UserConfirmBooking = () => {
   
   const BookFlightHandler = (e) => {
     e.preventDefault();    // prevent reloading the page
-
-    var Refund = Data.TotalPrice;
-    var mail = "anasnemr25@gmail.com";
-    var reservation2= Data
+    console.log(Flight1)
+    console.log(Data)
     Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
     Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
-    axios.post("http://localhost:8000/sendmailconfirm", {data: {var1:Refund,var2:mail,var3:reservation2}}, {withCredentials: true}).then(response => {
-       localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-      // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-      // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }).catch(error => {
-      if(error.response.status==403){
-        history.push({
-          pathname: '/UserLogin'
-        });
-      }
-})
-
-
-
-
-      console.log(Data)
-      console.log(Passengers)
-
-
-    for (let i = 0; i < Data.Adults; i++) {   
-      var criteria1 = {}; 
-
-      if(i===0){
-        criteria1 = Data
-        console.log("testtt")
-      }
-      else{
-      Object.keys(Data).forEach(key => {
-          if (key == "FirstName") {
-            criteria1[key] = Passengers[i].FirstName
-          }
-         else if (key == "LastName") {
-            criteria1[key] = Passengers[i].LastName
-          }
-          else if (key == "PassPort_No") {
-            criteria1[key] = Passengers[i].PassPort_No
-          }
-          else if (key == "ReservationOwner") {
-            criteria1[key] = false
-          }
-          else if (key == "isChild") {
-            criteria1[key] = false
-          }
-          else
-            criteria1[key] = Data[key];
-      });
-
-    }
-
-      console.log(criteria1)
-
-// if(!Update){
-   
-    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
-    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
-    axios.post('http://localhost:8000/createnewReservation', criteria1, {withCredentials: true})
+    axios.put('http://localhost:8000/updateeditflight', {data: {var1:reserv._id, var2:Data}}, {withCredentials: true})
     .then(response => {
-      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-      // console.log(Data);
-      // success();
-      //  window.location.reload(false);
-      //  form.resetFields();
-      //   success(); // data succ added less go
-      }).catch(error => {
+        localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+        document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        history.push('/UserManageBooking')
+      success(); // data succ added less go
+       }).catch(error => {
         if(error.response.status==403){
-          history.push({
-            pathname: '/LoginPage'
-          });
-        }
-        console.log("asdfasfsafdsafsadf")
-        console.log(error);
-    })
-  }
-
-
-
-
-  for (let i = Data.Adults; i < Data.Adults + Data.Children; i++) {   
-    var criteria1 = {}; 
-
-
-    Object.keys(Data).forEach(key => {
-        if (key == "FirstName") {
-          criteria1[key] = Passengers[i].FirstName
-        }
-       else if (key == "LastName") {
-          criteria1[key] = Passengers[i].LastName
-        }
-        else if (key == "PassPort_No") {
-          criteria1[key] = Passengers[i].PassPort_No
-        }
-        else if (key == "ReservationOwner") {
-          criteria1[key] = false
-        }
-        else if (key == "isChild") {
-          criteria1[key] = true
-        }
-        else if(key == "FromPrice"){
-          criteria1[key] = +(Math.round((Flight1.Price * 0.8) * 100) / 100).toFixed(2)
-        }
-        else if(key == "ToPrice") {
-          criteria1[key] = +(Math.round((Flight2.Price * 0.8) * 100) / 100).toFixed(2)
-        }
-        else
-          criteria1[key] = Data[key];
-    });
-
-
-    console.log(criteria1)
-
-  Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
-  Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
-  axios.post('http://localhost:8000/createnewReservation', criteria1, {withCredentials: true})
-  .then(response => {
-    localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-    document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    // console.log(Data);
-    // success();
-    //  window.location.reload(false);
-    //  form.resetFields();
-    //   success(); // data succ added less go
-    }).catch(error => {
-      if(error.response.status==403){
-        history.push({
-          pathname: '/LoginPage'
-        });
-      }
-      console.log("asdfasfsafdsafsadf")
+            history.push({
+              pathname: '/UserLogin'
+            });}
       console.log(error);
-  })
-
-
-}
-
-
-success();
-
-
-
-    // setState({
-    //   Flight_No: "",
-    //   From: "",  
-    //   To: "",
-    //   Flight_Date: "", // Data type date
-    //   Terminal: "",
-    //   Flight_Duration: "",
-    //   Economy_Seats: "",
-    //   Business_Seats: "",
-    //   First_Seats: "",
-    //   Economy_Baggage: "",
-    //   Business_Baggage: "",
-    //   First_Baggage: "",
-    //   Economy_Price: "",
-    //   Business_Price: "",s
-    //   First_Price: "",
-    //   Available_Seats: "",
-    //   })
-   
-  // };
-
+    })
   };
 
 
 
 return (
   <>
-    {/* {isdepart ? <p>Length is 1</p>:null} */}
- {/* adasdas */}
-
   <script src="js/extention/choices.js"></script>   
 
-  {/* asdasdas */}
-        
-  
-
-{/* <div class="box d">
-<label class="center">Depart Flight</label>
-  <div class="box f">
-{/* 
-  {Display1.map(flight =>
-      
-  <div class="listing-item">
-      <figure class="image">
-          <img src="https://s3.eu-central-1.amazonaws.com/cmstests3.flynas.com/media/1514/artboard-1.jpg" alt="image"></img>
-          <figcaption>
-            <div class="caption">
-              <h1>{flight.Price}</h1>
-              <p>{flight.To }</p>
-              </div>
-          </figcaption>
-      </figure>
-      <div class="listing">
-          <h4>From: {flight.From}</h4>
-          <h4>To:{flight.To}</h4>
-          <h4>Flight Date:{moment(flight.Flight_Date).format("YYYY-MM-DD")}</h4>
-          <h4>Flight time:{moment(flight.Flight_Date).format("HH:mm")}</h4>
-         
-          {/* <a class="pricing-button" name={flight._id}  onClick={() => departHandler(flight)} >BOOK NOW!</a> */}
-          {/* <button class="button-79" role="button" name={flight._id} onClick={() => departHandler(flight)}>BOOK NOW!</button> */}
-      {/* </div>
-  </div> */}
- 
-  
-
-
-        {/* )} } */}
-
-  {/* </div> */}
-  
-
- {/* <button class="button-79" role="button" name={flight._id} onClick={() => returnHandler(flight)}>Reserve Flight</button> */}
-
-  {/* <a href="#modal-opened" class="link-1" id="modal-closed">Reserve Flight</a> */}
-
-  {/* < div class="modal-container" id="modal-opened">
-   <div class="modal">
-
-      <div>
-      <div class="modal__details">
-      <h4 class="modal__title">Depart Flight Details</h4>
-      <p class="modal__description">  Flight Number: {isdepart.Flight_No}     Duration:{isdepart.To}    </p>
-      <p class="modal__description"> From : {isdepart.From}     To:{isdepart.To}    </p>
-      <p class="modal__description">  Date:{moment(isdepart.Flight_Date).format("YYYY-MM-DD")}  Departure Time:{moment(isdepart.Flight_Date).format("HH:mm")}    </p>
-      <p class="modal__description">  Price : {isdepart.Price}      Baggage:{isdepart.Baggage}    </p>
-      <p class="modal__description">  Cabin: {"First"}       </p>   
-      </div>
-
-      <div class="modal__details">
-     
-      <h1 class="modal__title"  >Return Flight Details</h1>
-      <p class="modal__description">  Flight Number: {isreturn.Flight_No}     Duration:{isreturn.To}    </p>
-      <p class="modal__description"> From : {isreturn.From}     To:{isreturn.To}    </p>
-      <p class="modal__description">  Date:{moment(isreturn.Flight_Date).format("YYYY-MM-DD")}  Departure Time:{moment(isdepart.Flight_Date).format("HH:mm")}    </p>
-      <p class="modal__description">  Price : {isreturn.Price}      Baggage:{isreturn.Baggage}    </p>
-      <p class="modal__description">  Cabin: {"First"}      </p>   
-    
-      <button class="modal__btn">Confirm &rarr;</button>
-     <a href="#modal-closed" class="link-2"></a>
-     </div>
-      
-      
-     </div> 
-   
-      
-     </div>
-  
-          
-
-     
-
-</div> */}
-
-{/* </div> */} 
 <div class="box d2">
 
   
@@ -548,29 +239,6 @@ return (
         Payment
         </span>
 
-                 
-
-
-
-
-
-                  
-
-
-
-
-                 
-
-
-
-        {/* <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
-        
-        </div>
-
-        <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
-
-              
-        </div> */}
 <div class="checkout">
   <div class="credit-card-box">
     <div class="flip">
@@ -745,4 +413,4 @@ return (
 
 
 };
-export default UserConfirmBooking;
+export default UserUpdateBooking;

@@ -3,10 +3,15 @@ const Schema = mongoose.Schema;
 
 //Id .....
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     // unique : true,
     // dropDups: true
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+    // unique : true,
+    // dropDups: true
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 
 const flightsSchema = new Schema({
 
@@ -17,10 +22,13 @@ const flightsSchema = new Schema({
     type: String,
     required: true,
 <<<<<<< HEAD
+<<<<<<< HEAD
     unique : true,
     dropDups: true
 =======
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   },   
   From: {
     type: String,
@@ -35,23 +43,32 @@ const flightsSchema = new Schema({
    required: true,
   },
 <<<<<<< HEAD
+<<<<<<< HEAD
   // Cabin: {
   //   type: String,
   //  required: true
   // },
 =======
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   Terminal: {
     type: String,
    required: true
   },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   Flight_Duration: {
     type: String,
    required: true
   },
+<<<<<<< HEAD
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   Economy_Seats: {
     type: Number,
    required: true
@@ -64,8 +81,11 @@ const flightsSchema = new Schema({
     type: Number,
    required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
   }
 =======
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   },
   Economy_Baggage: {
     type: Number,
@@ -94,7 +114,10 @@ const flightsSchema = new Schema({
   Available_Seats: {
     type: [Boolean],
   },
+<<<<<<< HEAD
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 
 }, { timestamps: true });
 

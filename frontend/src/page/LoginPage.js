@@ -4,6 +4,12 @@ import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css'; 
 import '../css/App.css';
+<<<<<<< HEAD
+=======
+import Cookies from "js-cookies";
+
+
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 
 import moment from "moment";
 import {
@@ -53,39 +59,79 @@ const LoginPage = () => {
       }
     });
 
+<<<<<<< HEAD
    // prevent reloading the page
     axios.post('http://localhost:8000/LoginPage', criteria)
     .then(response => {
       console.log(response.status);
+=======
+    // const headers = {
+    //   'Content-Type': 'application/json',
+    //   'Authorization': 'JWT fefege...'
+    // }    
+
+   // prevent reloading the page
+    axios.post('http://localhost:8000/LoginPage', criteria, {
+    // headers: headers
+    })
+    .then(res => {
+      console.log(res.status);
+      localStorage.setItem("AuthenticationState", "AdminAuthenticated")
+      localStorage.setItem("AccessToken", res.data.AccessToken);
+      localStorage.setItem("RefreshToken", res.data.RefreshToken);
+      localStorage.setItem("UserID", res.data.UserID)
+      console.log(localStorage)
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
       setState({
         Username: "",  
         Password: "",
         })
+<<<<<<< HEAD
         sessionStorage.setItem("AuthenticationState", "AdminAuthenticated");
         sessionStorage.setItem("Username", criteria.Username);
         // console.log(sessionStorage.getItem("AuthenticationState"))
         // console.log(sessionStorage.getItem("Username"))
   
 
+=======
+        // sessionStorage.setItem("AuthenticationState", "AdminAuthenticated");
+        // sessionStorage.setItem("Username", criteria.Username);
+        // console.log(sessionStorage.getItem("AuthenticationState"))
+        // console.log(sessionStorage.getItem("Username"))
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
                 
                 //This authentication key will expire in 1 hour.
        // sessionStorage.setItem("AuthenticationExpires", Date.now.addHours(1));
         history.push({
             pathname: '/homepage'
           });
+<<<<<<< HEAD
        }).catch(error => {
          warning();
         console.log(error);
+=======
+       }).catch(err => {
+        console.log(err.response.status);
+           var msg = err.response.data
+         warning(msg);
+         console.log(err)
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
     })
 
   };
   
+<<<<<<< HEAD
   const warning = () => {
     message.warning('Incorrect Username or Password!');
+=======
+  const warning = (msg) => {
+    message.warning(msg);
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   }
 
 
 
+<<<<<<< HEAD
 
     return (
 
@@ -125,11 +171,18 @@ const LoginPage = () => {
         </Form.Item>
   
         </Form> */}
+=======
+    return (
+
+      <>
+     
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 
         <div class="box d2">
 
   
   
+<<<<<<< HEAD
 <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
@@ -141,6 +194,9 @@ const LoginPage = () => {
 <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css"/>
 <link rel="stylesheet" type="text/css" href="css/util.css"/>
 <link rel="stylesheet" type="text/css" href="css/main.css"/>
+=======
+
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 
   <div class="limiter">
   <div class="container-login100" >
@@ -209,6 +265,7 @@ const LoginPage = () => {
 </div>
 
 
+<<<<<<< HEAD
 <div id="dropDownSelect1"></div>
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="vendor/animsition/js/animsition.min.js"></script>
@@ -219,6 +276,8 @@ const LoginPage = () => {
 <script src="vendor/daterangepicker/daterangepicker.js"></script>
 <script src="vendor/countdowntime/countdowntime.js"></script>
 <script src="js/main.js"></script>
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 </div>
 
 

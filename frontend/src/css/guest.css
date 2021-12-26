@@ -442,14 +442,53 @@ figcaption p{
     color: #444;
     padding: 20px;
   }
+<<<<<<< HEAD
+=======
+
+  
+
+
+  /* chnage background color */
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   .box {
     background-color: #444;
     color: #fff;
     border-radius: 5px;
     padding: 20px;
     font-size: 150%;
+<<<<<<< HEAD
 
   }
+=======
+    
+
+  }
+
+  .box2 {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+    display: none;
+
+  }
+  .box2 .box {
+    background-color: #ccc;
+    color: #444;
+    padding: 20px;
+  }
+
+  /* .box- {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+    display: none;
+
+  } */
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   
 
   

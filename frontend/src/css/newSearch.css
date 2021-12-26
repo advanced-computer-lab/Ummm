@@ -220,11 +220,24 @@
 .booking-form .submit-btn:focus {
 	opacity: 0.9;
 }
+<<<<<<< HEAD
 .row {
+=======
+
+
+
+
+/* .row {
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
     display: flex;
     flex-direction: row;
     justify-content: start;
     padding: 8px;
     grid-gap: 59px;
     gap: 70px;
+<<<<<<< HEAD
 }
+=======
+} */                 
+
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40

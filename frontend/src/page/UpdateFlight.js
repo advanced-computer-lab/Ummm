@@ -3,6 +3,11 @@ import axios from 'axios'
 import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css'; 
+<<<<<<< HEAD
+=======
+import Cookies from "js-cookies";
+
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 
 import moment from "moment";
 import {
@@ -12,12 +17,18 @@ import {
   Radio,
   Select,
 <<<<<<< HEAD
+<<<<<<< HEAD
   Cascader,
 =======
   Space,
   Cascader,
   TimePicker,
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+  Space,
+  Cascader,
+  TimePicker,
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   message,
   DatePicker,
   InputNumber,
@@ -27,6 +38,7 @@ import {
 
 
 const UpdateFlight = () => {
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
   const LogOutHandler = (e) => {
@@ -45,25 +57,50 @@ const UpdateFlight = () => {
 //        window.open("AccessDenied.html", "_self");
 //  }
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+
+  const LogOutHandler = (e) => {
+  var userid = localStorage.getItem('UserID')
+ axios.delete('http://localhost:8000/logout',{data: {ID: userid}})
+ localStorage.clear()
+ history.push({
+   pathname: '/LoginPage'
+ });
+};
+if (localStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
+  window.open("LoginPage", "_self");
+}
+ //Is their authentication token still valid?
+//  else if (Date.now > new Date(localStorage.getItem('AuthenticationExpires'))) {
+//        window.open("AccessDenied.html", "_self");
+//  }
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 
   const [componentSize, setComponentSize] = useState('default');
   const history = useHistory();
   const [form] = Form.useForm();
 <<<<<<< HEAD
+<<<<<<< HEAD
   const UpFlight = history.location.state?.data
 
 
 =======
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   const format = 'HH:mm';
   
   const UpFlight = history.location.state?.data
 
+<<<<<<< HEAD
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   const [Data, setState] = useState({
     Flight_No: UpFlight.Flight_No,
     From: UpFlight.From,  
     To: UpFlight.To,
     Flight_Date: UpFlight.Flight_Date, // Data type date
+<<<<<<< HEAD
 <<<<<<< HEAD
     Terminal: UpFlight.Terminal,
     Economy_Seats: UpFlight.Economy_Seats,
@@ -71,6 +108,8 @@ const UpdateFlight = () => {
     First_Seats: UpFlight.First_Seats
   });
 =======
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
     Flight_Duration: UpFlight.Flight_Duration,
     Flight_DHour: parseInt(UpFlight.Flight_Duration.substring(0, UpFlight.Flight_Duration.indexOf(':'))),
     Flight_DMin: parseInt(UpFlight.Flight_Duration.substring(UpFlight.Flight_Duration.indexOf(':')+1)),
@@ -95,7 +134,10 @@ const UpdateFlight = () => {
 
   // },[Data]);
 
+<<<<<<< HEAD
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   
   
 
@@ -124,11 +166,14 @@ const UpdateFlight = () => {
        });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
    
     if(Data.Flight_No.length==5 &Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date!==null 
       &&Data.Terminal!==''&& Data.Economy_Seats!==''&& Data.First_Seats!==''&& Data.Business_Seats!=='' ){
     axios.put('http://localhost:8000/UpdateFlight', {data: {var1:update, var2:Data}})
 =======
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
        var Data1 = {};
 
     Object.keys(Data).forEach(key => {
@@ -146,15 +191,37 @@ const UpdateFlight = () => {
    
     if(Data.Flight_No.length==5 &Data.From.length==3 && Data.To.length==3 &&Data.Flight_Date!==null 
       &&Data.Terminal!==''&& Data.Economy_Seats!==''&& Data.First_Seats!==''&& Data.Business_Seats!=='' ){
+<<<<<<< HEAD
     axios.put('http://localhost:8000/UpdateFlight', {data: {var1:update, var2:Data1}})
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
     .then(response => {
+=======
+
+        Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+        Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+    axios.put('http://localhost:8000/UpdateFlight', {data: {var1:update, var2:Data1}}, {withCredentials: true})
+    .then(response => {
+      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
         history.push('/ViewFlights')
       console.log(response);
       form.resetFields();
       success(); // data succ added less go
+<<<<<<< HEAD
        }).catch(error => {
       console.log(error);
+=======
+       }).catch(err => {
+        if(err.response.status==403){
+          history.push({
+            pathname: '/LoginPage'
+          });
+        }
+      console.log(err);
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
     })
 
   }
@@ -296,7 +363,10 @@ const warning9 = () => {
         </Form.Item>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 
         <Form.Item 
          rules={[
@@ -317,7 +387,10 @@ const warning9 = () => {
 
 
 
+<<<<<<< HEAD
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
         <Form.Item 
         rules={[
           {
@@ -335,11 +408,17 @@ const warning9 = () => {
         </Form.Item>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         
 
 
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+        
+
+
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
         <Form.Item 
         rules={[
           {
@@ -348,10 +427,14 @@ const warning9 = () => {
           },
         ]} label="Economy Seats">         
 <<<<<<< HEAD
+<<<<<<< HEAD
           <InputNumber type="Number" name="Economy_Seats" value={Data.Economy_Seats} max={500} placeholder="500 Max" onChange={(number) => setState(prevData => {
 =======
           <InputNumber type="Number" name="Economy_Seats" value={Data.Economy_Seats} min={0} max={78} placeholder="78 Max" onChange={(number) => setState(prevData => {
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+          <InputNumber type="Number" name="Economy_Seats" value={Data.Economy_Seats} min={0} max={78} placeholder="78 Max" onChange={(number) => setState(prevData => {
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
               return {...prevData ,Economy_Seats: number}}) 
           }/>
         </Form.Item>
@@ -365,10 +448,14 @@ const warning9 = () => {
           },
         ]} label="Business Seats">   
 <<<<<<< HEAD
+<<<<<<< HEAD
           <InputNumber type="Number" name="Business_Seats" value={Data.Business_Seats} max={500} placeholder="500 Max" onChange={(number) => setState(prevData => {
 =======
           <InputNumber type="Number" name="Business_Seats" value={Data.Business_Seats} min={0} max={42} placeholder="42 Max" onChange={(number) => setState(prevData => {
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+          <InputNumber type="Number" name="Business_Seats" value={Data.Business_Seats} min={0} max={42} placeholder="42 Max" onChange={(number) => setState(prevData => {
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
               return {...prevData ,Business_Seats: number}}) 
           }/>
         </Form.Item>
@@ -381,6 +468,7 @@ const warning9 = () => {
           },
         ]} label="First Seats">   
 <<<<<<< HEAD
+<<<<<<< HEAD
           <InputNumber type="Number" name="First_Seats" value={Data.First_Seats} max={500} placeholder="500 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,First_Seats: number}}) 
           }/>
@@ -389,6 +477,8 @@ const warning9 = () => {
         <Form.Item>
         &nbsp;&nbsp;&nbsp;&nbsp;
 =======
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
           <InputNumber type="Number" name="First_Seats" value={Data.First_Seats} min={0} max={20} placeholder="20 Max" onChange={(number) => setState(prevData => {
               return {...prevData ,First_Seats: number}}) 
           }/>
@@ -501,7 +591,10 @@ const warning9 = () => {
         <Form.Item>
         <Button onClick={(e) => LogOutHandler(e)}>Log Out</Button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<<<<<<< HEAD
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
         <Button onClick={() => history.goBack()}>Back</Button>
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

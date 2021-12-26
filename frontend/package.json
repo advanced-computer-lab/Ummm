@@ -9,12 +9,22 @@
     "antd": "^4.16.13",
     "axios": "^0.24.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     "create-react-class": "^15.7.0",
     "jquery": "^3.6.0",
     "node-sass": "^6.0.1",
     "nodemailer": "^6.7.2",
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+    "create-react-class": "^15.7.0",
+    "jest": "^26.6.0",
+    "jquery": "^3.6.0",
+    "js-cookie": "^3.0.1",
+    "js-cookies": "^1.0.4",
+    "node-sass": "^6.0.1",
+    "nodemailer": "^6.7.2",
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
     "react": "^17.0.2",
     "react-datepicker": "^4.3.0",
     "react-dom": "^17.0.2",
@@ -23,19 +33,31 @@
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "react-select": "^5.2.0",
     "react-table": "^7.7.0",
 =======
+=======
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
     "react-scroll": "^1.8.4",
     "react-seat-picker": "^1.5.3",
     "react-seatmap": "^0.1.2",
     "react-select": "^5.2.0",
+<<<<<<< HEAD
+=======
+    "react-stripe-checkout": "^2.6.3",
+    "react-swal": "^3.0.0",
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
     "react-table": "^7.7.0",
     "react-tooltip": "^4.2.21",
     "sass": "^1.44.0",
     "scss": "^0.2.4",
     "sweetalert2": "^11.2.2",
+<<<<<<< HEAD
 >>>>>>> fd86f7b21554bb498349975741d95e00695903f1
+=======
+    "universal-cookie": "^4.0.4",
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -61,5 +83,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+<<<<<<< HEAD
   }
+=======
+  },
+  "devDependencies": {}
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 }

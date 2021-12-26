@@ -1,6 +1,10 @@
 
 import { Layout, Menu,Button } from 'antd';
 import React, { Component } from 'react';
+<<<<<<< HEAD
+=======
+import axios from 'axios'
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
 import ReactDOM from 'react-dom'
 import 'antd/dist/antd.css'; 
 import '../css/App.css';
@@ -29,6 +33,7 @@ const { Header, Sider, Content } = Layout;
 
 class HomePage extends React.Component {
 
+<<<<<<< HEAD
    LogOutHandler = () => {
     sessionStorage.clear()
     window.open("LoginPage", "_self");
@@ -36,6 +41,19 @@ class HomePage extends React.Component {
     
   };
 
+=======
+
+
+   LogOutHandler = () => {
+    var userid = localStorage.getItem('UserID')
+   axios.delete('http://localhost:8000/logout',{data: {ID: userid}})
+   localStorage.clear()
+    window.open("LoginPage", "_self");
+  };
+
+
+
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   
   state = {
     collapsed: true,
@@ -55,11 +73,19 @@ class HomePage extends React.Component {
   // };
 
   render() {
+<<<<<<< HEAD
     if (sessionStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
       window.open("LoginPage", "_self");
    }
    //Is their authentication token still valid?
   //  else if (Date.now > new Date(sessionStorage.getItem('AuthenticationExpires'))) {
+=======
+    if (localStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
+      window.open("LoginPage", "_self");
+   }
+   //Is their authentication token still valid?
+  //  else if (Date.now > new Date(localStorage.getItem('AuthenticationExpires'))) {
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   //        window.open("AccessDenied.html", "_self");
   //  }
     return (

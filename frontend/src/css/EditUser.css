@@ -44,6 +44,13 @@
   h1,h2,h3,h4,h5,h6 {
       margin: 0px;
   }
+<<<<<<< HEAD
+=======
+
+  h12{
+    margin: 5px;
+  }
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   
   p {
       
@@ -157,6 +164,30 @@
    /* background-image: url('https://static.vecteezy.com/system/resources/thumbnails/002/795/005/small/airplane-dotted-flight-background-above-world-map-illustration-free-vector.jpg'); */
 
   }
+<<<<<<< HEAD
+=======
+
+  .container-PopUp {
+    width: 100%;  
+    max-height: 30%;
+    /* min-height: 100vh; */
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* padding: 15px; */
+    margin-top: -70px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+   /* background-image: url('https://static.vecteezy.com/system/resources/thumbnails/002/795/005/small/airplane-dotted-flight-background-above-world-map-illustration-free-vector.jpg'); */
+
+  }
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   
   .wrap-login100 {
     width: 700px;
@@ -164,6 +195,16 @@
     border-radius: 10px;
     overflow: hidden;
   }
+<<<<<<< HEAD
+=======
+
+  .wrap-login11100 {
+    width: 900px;
+    background:#ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   
   
   /*------------------------------------------------------------------
@@ -202,6 +243,23 @@
     border-bottom: 2px solid #d9d9d9;
   }
   
+<<<<<<< HEAD
+=======
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    background: rgb(255, 255, 255);
+}
+
+.grid-container3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  background: rgb(255, 255, 255);
+}
+>>>>>>> 6a85d8e1defe9d6fc684467f269a3878da128f40
   .label-input100 {
    
     font-size: 14px;
