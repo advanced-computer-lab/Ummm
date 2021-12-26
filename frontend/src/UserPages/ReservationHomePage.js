@@ -26,14 +26,14 @@ import '../css/main.css';
 import Cookies from "js-cookies";
 
 
- import '../css/FinalPopUp.css';
- import '../css/ButtonReservation.css';
- 
- import '../css/NewBoardingPass.css';
+import '../css/FinalPopUp.css';
+import '../css/ButtonReservation.css';
 
- import '../css/Adds.css';
+import '../css/NewBoardingPass.css';
 
- import PopUp from './PopUp.js' ;
+import '../css/Adds.css';
+
+import PopUp from './PopUp.js';
 
 import moment from "moment";
 import {
@@ -146,14 +146,14 @@ $('body').on('click', '.learn-more', function () {//delegated
     // $(".arrowDown").css("display", "none");
     $('.arrowDown2').toggleClass('arrowDown2 arrowDown1');
 
- 
+
   }
   ToggleBetween++;
 });
 
-$('body').on('click', '.submit-btn2', function(){//delegated
+$('body').on('click', '.submit-btn2', function () {//delegated
 
-  $(".box2").css("display", "grid"); 
+  $(".box2").css("display", "grid");
 });
 $('body').on('click', '.submit-btn3', function () {//delegated
   $('.submit-btn3').toggleClass('submit-btn3 submit-btn3-rotate');
@@ -256,7 +256,7 @@ $('body').on('click', '.flight-card', function () {//delegated
 
 const ReservationHomePage = () => {
   // const warning101 = () => {
-    
+
   //   message.warning('Remember You Must Log In to Manage Flights Or Edit Profile!');
   // };
   // const GuestLogin = (e) => {
@@ -264,11 +264,11 @@ const ReservationHomePage = () => {
   // }
   // GuestLogin('Guest');
   // warning101();
-  
-  
-//   if (localStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
-//     window.open("UserLogin", "_self");
-//  }
+
+
+  //   if (localStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
+  //     window.open("UserLogin", "_self");
+  //  }
   //   if (localStorage.getItem('AuthenticationState') !== "UserAuthenticated") {
   //     window.open("UserLogin", "_self");
   //  }
@@ -320,7 +320,7 @@ const ReservationHomePage = () => {
 
   const [Data2, setState2] = useState({
     FirstName: "",
-    LastName: "",  
+    LastName: "",
     Email: "",
     Date_of_Birth: "", // Data type date
     PassPort_No: "",
@@ -330,90 +330,90 @@ const ReservationHomePage = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();    // prevent reloading the page
-   var mailformat =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-   
-    if(Data2.Date_of_Birth!==null &&Data2.FirstName!==''&& Data2.LastName!==''&& Data2.Email!==''&& Data2.Username!==''&& Data2.Password!==''&&  Data2.PassPort_No!==''){
-        if(Data2.FirstName.trim().includes(" ")){ // means space name of contian space between username
-          warning14();
-        }
-       else if(Data2.LastName.trim().includes(" ")){ // means space name of contian space between username
-          warning15();
-        }
-        else if(Data2.Username.trim().includes(" ")){ // means space name of contian space between username
-          warning13();
-        }
- 
-else { // will post normally
-    axios.post('http://localhost:8000/createuseraccount', Data2)
-    .then(response => {
-      console.log(response.status);
-      success();
-      setState({
-        FirstName: "",
-        LastName: "",  
-        Email: "",
-        Date_of_Birth: "", // Data type date
-        PassPort_No: "",
-        Username: "",
-        Password: "",
-        })
-        // data succ added less go
-      
-      }).catch(error => {
-        console.log("errorrr")
-        if(error.response.status==401){
-          var msg = error.response.data
-          warning9(msg);
-        }
-        else if(error.response.status==403){
-          var msg = error.response.data
-          warning9(msg);
-        }
+    var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if (Data2.Date_of_Birth !== null && Data2.FirstName !== '' && Data2.LastName !== '' && Data2.Email !== '' && Data2.Username !== '' && Data2.Password !== '' && Data2.PassPort_No !== '') {
+      if (Data2.FirstName.trim().includes(" ")) { // means space name of contian space between username
+        warning14();
+      }
+      else if (Data2.LastName.trim().includes(" ")) { // means space name of contian space between username
+        warning15();
+      }
+      else if (Data2.Username.trim().includes(" ")) { // means space name of contian space between username
+        warning13();
+      }
+
+      else { // will post normally
+        axios.post('http://localhost:8000/createuseraccount', Data2)
+          .then(response => {
+            console.log(response.status);
+            success();
+            setState({
+              FirstName: "",
+              LastName: "",
+              Email: "",
+              Date_of_Birth: "", // Data type date
+              PassPort_No: "",
+              Username: "",
+              Password: "",
+            })
+            // data succ added less go
+
+          }).catch(error => {
+            console.log("errorrr")
+            if (error.response.status == 401) {
+              var msg = error.response.data
+              warning9(msg);
+            }
+            else if (error.response.status == 403) {
+              var msg = error.response.data
+              warning9(msg);
+            }
 
 
-        else
-        if(!Data2.Email.match(mailformat)){
-          warning11()
-         } 
-       
-        //console.log(error);
-    })
-  }
-   
-  }
+            else
+              if (!Data2.Email.match(mailformat)) {
+                warning11()
+              }
 
-  
+            //console.log(error);
+          })
+      }
+
+    }
 
 
-  else if(Data2.FirstName=="" ){
-    warning4();
-  }
-  else if(Data2.LastName=="" ){
-    warning5();
-  }
-  else if(Data2.Date_of_Birth==''){
-    warning7();
-  }
-  else if(Data2.PassPort_No==''){
-    warning12();
-  }
-  else if(Data2.Email=='' ){
-    warning6();
-  }
- else if(!Data2.Email.match(mailformat)){
-    warning11()
-   } 
-  else if(Data2.Username=='' ){
-    warning8();
-  }
-  else if(Data2.Password=='' ){
-    warning10();
-  }
-  
-  else {
-    warning();
-  }
-  
+
+
+    else if (Data2.FirstName == "") {
+      warning4();
+    }
+    else if (Data2.LastName == "") {
+      warning5();
+    }
+    else if (Data2.Date_of_Birth == '') {
+      warning7();
+    }
+    else if (Data2.PassPort_No == '') {
+      warning12();
+    }
+    else if (Data2.Email == '') {
+      warning6();
+    }
+    else if (!Data2.Email.match(mailformat)) {
+      warning11()
+    }
+    else if (Data2.Username == '') {
+      warning8();
+    }
+    else if (Data2.Password == '') {
+      warning10();
+    }
+
+    else {
+      warning();
+    }
+
   };
 
   const warning = (msg) => {
@@ -526,7 +526,7 @@ else { // will post normally
 
 
   useEffect(() => {
-   
+
 
     const criteria = {};
 
@@ -534,49 +534,49 @@ else { // will post normally
     criteria["Username"] = localStorage.getItem("Username").toLowerCase()
 
     console.log(criteria)
-    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
-    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
-    axios.post('http://localhost:8000/GetUserInfo', criteria, {withCredentials: true})
-    .then(response => {
+    Cookies.setItem("AccessToken", localStorage.getItem('AccessToken'))
+    Cookies.setItem("RefreshToken", localStorage.getItem('RefreshToken'))
+    axios.post('http://localhost:8000/GetUserInfo', criteria, { withCredentials: true })
+      .then(response => {
 
-      // var UserInfo = {};
+        // var UserInfo = {};
 
-      // Object.keys(response.data[0]).forEach(element => {
-      //   if (element !== "Password") 
-      //     UserInfo[element] = response.data[0][element]
-      // })
+        // Object.keys(response.data[0]).forEach(element => {
+        //   if (element !== "Password") 
+        //     UserInfo[element] = response.data[0][element]
+        // })
 
-      // console.log(UserInfo)
+        // console.log(UserInfo)
 
-      localStorage.setItem("FirstName",response.data[0].FirstName)
-      localStorage.setItem("LastName",response.data[0].LastName)
-      localStorage.setItem("PassPort_No",response.data[0].PassPort_No)
-      localStorage.setItem("Email",response.data[0].Email)
-      
-
-      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        localStorage.setItem("FirstName", response.data[0].FirstName)
+        localStorage.setItem("LastName", response.data[0].LastName)
+        localStorage.setItem("PassPort_No", response.data[0].PassPort_No)
+        localStorage.setItem("Email", response.data[0].Email)
 
 
-      // console.log(response.data[0].Email);
-      // setState( prevData => {
-      //   return {...prevData ,['Email']: response.data[0].Email}});
-      // // console.log(Data.Email);
-      // //  window.location.reload(false);
-      // //  form.resetFields();
-      // //   success(); // data succ added less go
+        localStorage.setItem("AccessToken", Cookies.getItem("AccessToken"))
+        document.cookie = 'AccessToken' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'RefreshToken' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+
+        // console.log(response.data[0].Email);
+        // setState( prevData => {
+        //   return {...prevData ,['Email']: response.data[0].Email}});
+        // // console.log(Data.Email);
+        // //  window.location.reload(false);
+        // //  form.resetFields();
+        // //   success(); // data succ added less go
       }).catch(error => {
-        if(error.response.status==403){
+        if (error.response.status == 403) {
           history.push({
             pathname: '/LoginPage'
           });
         }
         console.log(error);
-    })
+      })
 
 
-  },[]);
+  }, []);
 
 
 
@@ -768,7 +768,7 @@ else { // will post normally
   };
 
 
- 
+
 
 
 
@@ -861,6 +861,8 @@ else { // will post normally
         // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 
+        console.log(response.data)
+
         setResult1(response.data);
         //  console.log(Result1);
       }).catch(error => {
@@ -880,6 +882,7 @@ else { // will post normally
         // localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
         // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        console.log(response.data)
         setResult2(response.data);
         //  console.log(Result2);
       }).catch(error => {
@@ -1171,7 +1174,7 @@ else { // will post normally
       confirmButtonColor: '#ff8300',
       // confirmButtonColor: '#00D100', //GREEN WALA ORANGEEE ?
 
- 
+
     }).then((result) => {
       if (result.isConfirmed) {
         console.log("confirmeddd")
@@ -1233,7 +1236,7 @@ else { // will post normally
         result.dismiss === Swal.DismissReason.cancel
       ) {
 
-   
+
       }
     })
 
@@ -1263,96 +1266,96 @@ else { // will post normally
 
 
 
-    const loginHandler = (e) => {
-      
-      e.preventDefault(); 
-    
-      const criteria = {};
-      Object.keys(Data).forEach(key => {
-     if (Data[key]!=="") {
-          criteria[key] = Data[key];
-        }
-      });
-  
-      if(Data.Username!==''&& Data.Password!==''){
-     // prevent reloading the page
+  const loginHandler = (e) => {
+
+    e.preventDefault();
+
+    const criteria = {};
+    Object.keys(Data).forEach(key => {
+      if (Data[key] !== "") {
+        criteria[key] = Data[key];
+      }
+    });
+
+    if (Data.Username !== '' && Data.Password !== '') {
+      // prevent reloading the page
       axios.post('http://localhost:8000/userlogin', criteria)
-      .then(res => {
-        console.log(res.status);
-        localStorage.setItem("AuthenticationState", "UserAuthenticated")
-        localStorage.setItem("AccessToken", res.data.AccessToken);
-        localStorage.setItem("RefreshToken", res.data.RefreshToken);
-        localStorage.setItem("UserID", res.data.UserID)
-        localStorage.setItem("UserInfo", res.data)
-        localStorage.setItem("Username", res.data.Username)
-        localStorage.setItem("Email", res.data.Email)
-  
-  
-        console.log(localStorage)
-        // console.log(sessionStorage.getItem("AuthenticationState"))
-        // console.log(sessionStorage.getItem("Username"))
-  
-        setState({
-          Username: "",  
-          Password: "",
+        .then(res => {
+          console.log(res.status);
+          localStorage.setItem("AuthenticationState", "UserAuthenticated")
+          localStorage.setItem("AccessToken", res.data.AccessToken);
+          localStorage.setItem("RefreshToken", res.data.RefreshToken);
+          localStorage.setItem("UserID", res.data.UserID)
+          localStorage.setItem("UserInfo", res.data)
+          localStorage.setItem("Username", res.data.Username)
+          localStorage.setItem("Email", res.data.Email)
+
+
+          console.log(localStorage)
+          // console.log(sessionStorage.getItem("AuthenticationState"))
+          // console.log(sessionStorage.getItem("Username"))
+
+          setState({
+            Username: "",
+            Password: "",
           })
           history.push({
-              pathname: '/ReservationHomePage' //Pass to 
-            });
-  
-            success99(Data.Username);
-            setIsModalVisible(false);
-         }).catch(err => {
+            pathname: '/ReservationHomePage' //Pass to 
+          });
+
+          success99(Data.Username);
+          setIsModalVisible(false);
+        }).catch(err => {
           console.log(err.response.status);
           console.log(err.response)
-             var msg = err.response.data
-           warning(msg);
-           console.log(err)
-      })
+          var msg = err.response.data
+          warning(msg);
+          console.log(err)
+        })
     }
-    else if(Data.Username=='' ){
+    else if (Data.Username == '') {
       warning1();
     }
-    else if(Data.Password=='' ){
+    else if (Data.Password == '') {
       warning2();
-    } 
-    };
-
-    const LogOutHandler = (e) => {
-      var userid = localStorage.getItem('UserID')
-     axios.delete('http://localhost:8000/logout',{data: {ID: userid}})
-     localStorage.clear()
-     history.push({
-       pathname: '/UserLogin'
-     });
-    };
-
-    const warning1 = () => {
-      message.warning('"Username" Must be Filled!');
-    };
-    const warning2 = () => {
-      message.warning(' "Password" Must be Filled!');
-    };
-
-    const success99 = (e) => {
-      message.success('Welcome Back to Fly Nawww '.concat(e));
     }
+  };
 
-    const createHandler = (e) => {
-   
-   
-      e.preventDefault();  
-          history.push({
-              pathname: '/CreateUserAccount'
-            });
-    };
+  const LogOutHandler = (e) => {
+    var userid = localStorage.getItem('UserID')
+    axios.delete('http://localhost:8000/logout', { data: { ID: userid } })
+    localStorage.clear()
+    history.push({
+      pathname: '/UserLogin'
+    });
+  };
 
-    const ReservedFlightsHandler = event => {
-      history.push({
-          pathname: '/UserManageBooking',
-          state: { detail: 'some_value' }
-      });
-   };
+  const warning1 = () => {
+    message.warning('"Username" Must be Filled!');
+  };
+  const warning2 = () => {
+    message.warning(' "Password" Must be Filled!');
+  };
+
+  const success99 = (e) => {
+    message.success('Welcome Back to Fly Nawww '.concat(e));
+  }
+
+  const createHandler = (e) => {
+
+
+    e.preventDefault();
+    history.push({
+      pathname: '/CreateUserAccount'
+    });
+  };
+
+  const ReservedFlightsHandler = event => {
+    history.push({
+      pathname: '/UserManageBooking',
+      state: { detail: 'some_value' }
+    });
+  };
 
 
 
@@ -1360,135 +1363,118 @@ else { // will post normally
 
 
 
-    // if(bothselected){
-    return(
-      <>
+  // if(bothselected){
+  return (
+    <>
 
 
       <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}
-      
-      width={600}
-      height={100}
-      footer={null}
-      
-     >
-        
 
+        width={600}
+        height={100}
+        footer={null}
 
-  
+      >
 
-  
-
-
- 
-  <div class="container-PopUp" >
-    <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-      <form class="login100-form validate-form">
-        <span class="login100-form-title p-b-49">
-         User Log In 
-        </span>
-
-                 
+        <div class="container-PopUp" >
+          <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+            <form class="login100-form validate-form">
+              <span class="login100-form-title p-b-49">
+                User Log In
+              </span>
 
 
 
 
 
-                  
+
+
+
+              <div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
+                <div class="grid-container-EditUser">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                  </svg>
+                  <span >
+                    Username
+                  </span>
+                </div>
+                <input class="input100" name="Username" placeholder="Type your Username" value={Data.Username} onChange={(e) => changeHander(e)}></input>
+                <span class="focus-input100" ></span>
+              </div>
+
+              <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
+
+                <div class="grid-container-EditUser"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
+                  <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                </svg>
+                  <span >
+                    Password
+                  </span>
+                </div>
+                <input class="input100" type="password" name="Password" placeholder="Type your Password" value={Data.Password} onChange={(e) => changeHander(e)}></input>
+                <span class="focus-input100" ></span>
+              </div>
+
+
+              <a class="button-60 center20" role="button" onClick={(e) => loginHandler(e)}>Log In</a>
 
 
 
 
-                 
+              <div class="flex-col-c p-t-155">
 
 
 
-        <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
-                  <div class="grid-container-EditUser">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-</svg>
-<span >
-         Username
-        </span>
-                  </div>
-          <input class="input100"  name="Username" placeholder="Type your Username" value={Data.Username} onChange={(e) => changeHander(e)}></input>
-                      <span class="focus-input100" ></span>
+              </div>
+            </form>
+          </div>
         </div>
-
-        <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
-
-                  <div class="grid-container-EditUser"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
-<path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-</svg>
-<span >
-         Password
-        </span>
-                  </div>
-          <input class="input100" type="password" name="Password" placeholder="Type your Password" value={Data.Password} onChange={(e) => changeHander(e)}></input>
-          <span class="focus-input100" ></span>
-        </div>
-        
-        
-                  <a  class="button-60 center20" role="button"  onClick={(e) => loginHandler(e)}>Log In</a>
-                 
-       
-        
-
-        <div class="flex-col-c p-t-155">
-          
-
-          
-        </div>
-      </form>
-    </div>
-  </div>
-
-
-
-
-
-
-
 
       </Modal>
-<header >
-  <nav>
-    <div class="logo"></div>
-    <ul>
-    {/* <div class="group-icon">
+
+
+
+
+
+      
+      <header >
+        <nav>
+          <div class="logo"></div>
+          <ul>
+            {/* <div class="group-icon">
               <svg width="20px" height="20px" viewBox="0 0 58.568 58.568" xmlns="http://www.w3.org/2000/svg">
   <path id="flight_plane" data-name="flight plane" d="M1023.994,672.006c2.4-3.218,3.843-6.559,3.85-8.946a3.323,3.323,0,0,0-.453-1.828,1.706,1.706,0,0,0-.578-.584,3.265,3.265,0,0,0-1.852-.466c-2.381,0-5.723,1.442-8.942,3.849a77.166,77.166,0,0,0-8.806,8.487q-.917.966-1.934,2.031l-6.976-2.091.02-.02a1.566,1.566,0,0,0-.005-2.2l-1.259-1.261a1.571,1.571,0,0,0-1.11-.461,1.541,1.541,0,0,0-1.1.458l-1.885,1.886-1-.3a1.563,1.563,0,0,0-.125-2.063l-1.266-1.265a1.568,1.568,0,0,0-1.109-.457,1.534,1.534,0,0,0-1.1.458l-1.73,1.73-7.094-2.125a1.775,1.775,0,0,0-.507-.072,1.875,1.875,0,0,0-1.311.531l-2.494,2.494a1.463,1.463,0,0,0-.439,1.029,1.433,1.433,0,0,0,.761,1.284l14.918,8.334a2.607,2.607,0,0,1,.362.275l4.253,4.252c-3.978,4.191-7.522,8.25-10.284,11.781-.258.328-.5.649-.742.965l-11.541-1.048a1.573,1.573,0,0,0-.2-.012,2.127,2.127,0,0,0-1.429.591l-1.163,1.161a1.449,1.449,0,0,0-.446,1.029,1.418,1.418,0,0,0,.839,1.3l8.119,3.857a1.843,1.843,0,0,1,.311.223l.674.668a4.938,4.938,0,0,0-.325,1.561,2.053,2.053,0,0,0,.567,1.5l.029.026.008.005a2.056,2.056,0,0,0,1.493.56,4.964,4.964,0,0,0,1.548-.322l.684.682a1.956,1.956,0,0,1,.212.3l3.848,8.1a1.435,1.435,0,0,0,1.294.851h.008a1.446,1.446,0,0,0,1.026-.432l1.192-1.2a2.132,2.132,0,0,0,.569-1.426c0-.066,0-.117-.005-.144l-1.051-11.581c.317-.238.636-.484.965-.739,3.536-2.766,7.6-6.313,11.779-10.286l4.256,4.26a2.314,2.314,0,0,1,.278.365l8.318,14.891a1.451,1.451,0,0,0,2.322.342l2.512-2.51a1.9,1.9,0,0,0,.514-1.31,1.769,1.769,0,0,0-.069-.491l-2.125-7.095,1.729-1.733a1.563,1.563,0,0,0,0-2.205l-1.268-1.267a1.559,1.559,0,0,0-2.062-.129l-.3-.995,1.887-1.886a1.577,1.577,0,0,0,.455-1.107,1.54,1.54,0,0,0-.455-1.1l-1.262-1.262a1.563,1.563,0,0,0-2.217,0l-.013.012-2.089-6.976q1.082-1.032,2.062-1.96C1019.32,677.193,1022.053,674.6,1023.994,672.006Z" transform="translate(-969.276 -660.182)"/>
 </svg>   
                 </div> */}
-      {/* <li><a href="#">Log out</a></li> */}
-      <li><a href="#"  onClick={(e) => createHandler(e)}>Sign Up</a></li>
-      <li><a href="#" onClick={showModal}>Login In</a></li>
-      <li><a href="#" onClick={() => LogOutHandler()}>Log Out</a></li>
-    </ul>
-  </nav>
-  <header>
-    <div class="headline">
-      <div class="inner">
+            {/* <li><a href="#">Log out</a></li> */}
+            <li><a href="#" onClick={(e) => createHandler(e)}>Sign Up</a></li>
+            <li><a href="#" onClick={showModal}>Login In</a></li>
+            <li><a href="#" onClick={() => LogOutHandler()}>Log Out</a></li>
+          </ul>
+        </nav>
+        <header>
+          <div class="headline">
+            <div class="inner">
 
-      <div class="textNext">
-          <a class="first">Riyadh To Cairo</a>
-        </div>
-        {/* <a class="textNext">Hello</a> */}
-        
-        <div class="textNext2">
-          <a class="first">Daily direct flights starting from 199.99$</a>
-        </div>
-        
-        <div>
-  {/* <p class="first">My name is <span class="emphasis">(pick a name!)</span>.</p> */}
-</div>
-
-            
+              <div class="textNext">
+                <a class="first">Riyadh To Cairo</a>
+              </div>
               {/* <a class="textNext">Hello</a> */}
 
-             
+              <div class="textNext2">
+                <a class="first">Daily direct flights starting from 199.99$</a>
+              </div>
+
+              <div>
+                {/* <p class="first">My name is <span class="emphasis">(pick a name!)</span>.</p> */}
+              </div>
+
+
+              {/* <a class="textNext">Hello</a> */}
+
+
 
               <div>
                 {/* <p class="first">My name is <span class="emphasis">(pick a name!)</span>.</p> */}
@@ -1506,82 +1492,82 @@ else { // will post normally
       <div class="s011">
         <form>
           <fieldset>
-          
+
           </fieldset>
           <div class="inner-form">
             <header>
-          
+
               <div class="travel-type-wrap">
-             
-                <button  type="button" class="item active">
-                <div class="group-icon">
-                <svg width="70px" height="70px" viewBox="0 0 58.568 58.568" xmlns="http://www.w3.org/2000/svg">
-                    <path id="flight_plane" data-name="flight plane" d="M1023.994,672.006c2.4-3.218,3.843-6.559,3.85-8.946a3.323,3.323,0,0,0-.453-1.828,1.706,1.706,0,0,0-.578-.584,3.265,3.265,0,0,0-1.852-.466c-2.381,0-5.723,1.442-8.942,3.849a77.166,77.166,0,0,0-8.806,8.487q-.917.966-1.934,2.031l-6.976-2.091.02-.02a1.566,1.566,0,0,0-.005-2.2l-1.259-1.261a1.571,1.571,0,0,0-1.11-.461,1.541,1.541,0,0,0-1.1.458l-1.885,1.886-1-.3a1.563,1.563,0,0,0-.125-2.063l-1.266-1.265a1.568,1.568,0,0,0-1.109-.457,1.534,1.534,0,0,0-1.1.458l-1.73,1.73-7.094-2.125a1.775,1.775,0,0,0-.507-.072,1.875,1.875,0,0,0-1.311.531l-2.494,2.494a1.463,1.463,0,0,0-.439,1.029,1.433,1.433,0,0,0,.761,1.284l14.918,8.334a2.607,2.607,0,0,1,.362.275l4.253,4.252c-3.978,4.191-7.522,8.25-10.284,11.781-.258.328-.5.649-.742.965l-11.541-1.048a1.573,1.573,0,0,0-.2-.012,2.127,2.127,0,0,0-1.429.591l-1.163,1.161a1.449,1.449,0,0,0-.446,1.029,1.418,1.418,0,0,0,.839,1.3l8.119,3.857a1.843,1.843,0,0,1,.311.223l.674.668a4.938,4.938,0,0,0-.325,1.561,2.053,2.053,0,0,0,.567,1.5l.029.026.008.005a2.056,2.056,0,0,0,1.493.56,4.964,4.964,0,0,0,1.548-.322l.684.682a1.956,1.956,0,0,1,.212.3l3.848,8.1a1.435,1.435,0,0,0,1.294.851h.008a1.446,1.446,0,0,0,1.026-.432l1.192-1.2a2.132,2.132,0,0,0,.569-1.426c0-.066,0-.117-.005-.144l-1.051-11.581c.317-.238.636-.484.965-.739,3.536-2.766,7.6-6.313,11.779-10.286l4.256,4.26a2.314,2.314,0,0,1,.278.365l8.318,14.891a1.451,1.451,0,0,0,2.322.342l2.512-2.51a1.9,1.9,0,0,0,.514-1.31,1.769,1.769,0,0,0-.069-.491l-2.125-7.095,1.729-1.733a1.563,1.563,0,0,0,0-2.205l-1.268-1.267a1.559,1.559,0,0,0-2.062-.129l-.3-.995,1.887-1.886a1.577,1.577,0,0,0,.455-1.107,1.54,1.54,0,0,0-.455-1.1l-1.262-1.262a1.563,1.563,0,0,0-2.217,0l-.013.012-2.089-6.976q1.082-1.032,2.062-1.96C1019.32,677.193,1022.053,674.6,1023.994,672.006Z" transform="translate(-969.276 -660.182)"/>
-                       </svg>   
+
+                <button type="button" class="item active">
+                  <div class="group-icon">
+                    <svg width="70px" height="70px" viewBox="0 0 58.568 58.568" xmlns="http://www.w3.org/2000/svg">
+                      <path id="flight_plane" data-name="flight plane" d="M1023.994,672.006c2.4-3.218,3.843-6.559,3.85-8.946a3.323,3.323,0,0,0-.453-1.828,1.706,1.706,0,0,0-.578-.584,3.265,3.265,0,0,0-1.852-.466c-2.381,0-5.723,1.442-8.942,3.849a77.166,77.166,0,0,0-8.806,8.487q-.917.966-1.934,2.031l-6.976-2.091.02-.02a1.566,1.566,0,0,0-.005-2.2l-1.259-1.261a1.571,1.571,0,0,0-1.11-.461,1.541,1.541,0,0,0-1.1.458l-1.885,1.886-1-.3a1.563,1.563,0,0,0-.125-2.063l-1.266-1.265a1.568,1.568,0,0,0-1.109-.457,1.534,1.534,0,0,0-1.1.458l-1.73,1.73-7.094-2.125a1.775,1.775,0,0,0-.507-.072,1.875,1.875,0,0,0-1.311.531l-2.494,2.494a1.463,1.463,0,0,0-.439,1.029,1.433,1.433,0,0,0,.761,1.284l14.918,8.334a2.607,2.607,0,0,1,.362.275l4.253,4.252c-3.978,4.191-7.522,8.25-10.284,11.781-.258.328-.5.649-.742.965l-11.541-1.048a1.573,1.573,0,0,0-.2-.012,2.127,2.127,0,0,0-1.429.591l-1.163,1.161a1.449,1.449,0,0,0-.446,1.029,1.418,1.418,0,0,0,.839,1.3l8.119,3.857a1.843,1.843,0,0,1,.311.223l.674.668a4.938,4.938,0,0,0-.325,1.561,2.053,2.053,0,0,0,.567,1.5l.029.026.008.005a2.056,2.056,0,0,0,1.493.56,4.964,4.964,0,0,0,1.548-.322l.684.682a1.956,1.956,0,0,1,.212.3l3.848,8.1a1.435,1.435,0,0,0,1.294.851h.008a1.446,1.446,0,0,0,1.026-.432l1.192-1.2a2.132,2.132,0,0,0,.569-1.426c0-.066,0-.117-.005-.144l-1.051-11.581c.317-.238.636-.484.965-.739,3.536-2.766,7.6-6.313,11.779-10.286l4.256,4.26a2.314,2.314,0,0,1,.278.365l8.318,14.891a1.451,1.451,0,0,0,2.322.342l2.512-2.51a1.9,1.9,0,0,0,.514-1.31,1.769,1.769,0,0,0-.069-.491l-2.125-7.095,1.729-1.733a1.563,1.563,0,0,0,0-2.205l-1.268-1.267a1.559,1.559,0,0,0-2.062-.129l-.3-.995,1.887-1.886a1.577,1.577,0,0,0,.455-1.107,1.54,1.54,0,0,0-.455-1.1l-1.262-1.262a1.563,1.563,0,0,0-2.217,0l-.013.012-2.089-6.976q1.082-1.032,2.062-1.96C1019.32,677.193,1022.053,674.6,1023.994,672.006Z" transform="translate(-969.276 -660.182)" />
+                    </svg>
                   </div>
                   <span>Reserve Flight</span>
                 </button>
 
-                <button class="item"  type="button"  onClick={(e) => ReservedFlightsHandler(e)} >
-                <svg  width="50" height="35"viewBox="0 0 32 32" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg">
-                      <defs>
-      
-    </defs>
-    <path class="cls-1" d="M26,6a2,2,0,0,0-2-2H8A2,2,0,0,0,6,6V26a2,2,0,0,0,2,2h8V26H8V6H24v6h2Z" transform="translate(0 0)"/>
-    <rect x="10" y="18" width="6" height="2"/>
-    <rect x="10" y="14" width="12" height="2"/>
-    <path class="cls-1" d="M22,10v2H10V10Z" transform="translate(0 0)"/>
-    <path width="40" height="40" class="cls-1" d="M25,23l5,2V23l-5-2.5V18a1,1,0,0,0-2,0v2.5L18,23v2l5-2v3.5L21,28v1l3-1,3,1V28l-2-1.5Z" transform="translate(0 0)"/>
-    <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-2" width="32" height="32"/>
-  </svg>
+                <button class="item" type="button" onClick={(e) => ReservedFlightsHandler(e)} >
+                  <svg width="50" height="35" viewBox="0 0 32 32" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+
+                    </defs>
+                    <path class="cls-1" d="M26,6a2,2,0,0,0-2-2H8A2,2,0,0,0,6,6V26a2,2,0,0,0,2,2h8V26H8V6H24v6h2Z" transform="translate(0 0)" />
+                    <rect x="10" y="18" width="6" height="2" />
+                    <rect x="10" y="14" width="12" height="2" />
+                    <path class="cls-1" d="M22,10v2H10V10Z" transform="translate(0 0)" />
+                    <path width="40" height="40" class="cls-1" d="M25,23l5,2V23l-5-2.5V18a1,1,0,0,0-2,0v2.5L18,23v2l5-2v3.5L21,28v1l3-1,3,1V28l-2-1.5Z" transform="translate(0 0)" />
+                    <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-2" width="32" height="32" />
+                  </svg>
                   <div class="group-icon">
-  
-                  <span>Manage Flights</span>
+
+                    <span>Manage Flights</span>
                   </div>
-                  
+
                 </button>
 
-                <button  type="button" class="item" onClick={(e) => EditProfileHendler(e)}>
+                <button type="button" class="item" onClick={(e) => EditProfileHendler(e)}>
                   <div class="group-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
-    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
-  </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                      <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" />
+                    </svg>
                   </div>
                   <span>Edit Profile</span>
                 </button>
-                </div>
-                </header>
-                </div>
-              </form>
+              </div>
+            </header>
+          </div>
+        </form>
+      </div>
+
+
+      <form>
+        <fieldset>
+
+        </fieldset>
+        <div class="inner-form">
+
+
+          {/* SDD    THE MAIN FORM THAT MUST BE REPLACED EACH TIME*/}
+          <div class="main-form-search" id="main-form">
+
+
+
+
+
+            <div class="booking-form2">
+              <div class="form-header">
+                <h1>Make your reservation</h1>
               </div>
 
-
-    <form>
-      <fieldset>
-      
-      </fieldset>
-      <div class="inner-form">
-      
-
-        {/* SDD    THE MAIN FORM THAT MUST BE REPLACED EACH TIME*/}
-        <div class="main-form-search" id="main-form">     
-      
-	
-	
-		
-			
-					<div class="booking-form2"> 
-						<div class="form-header">
-							<h1>Make your reservation</h1>
-						</div>
-						
-            <div class="row-New">
-								<div class="col-md-6">
-									<div class="form-group-stay">
-										<input class="form-control2" type="text" name="From" maxLength="3"  placeholder="Select Depart Flight"  id="left" value={Data.From} onChange={(e) => changeHander(e)}/>
-										<span class="form-label">From</span>
-									</div>
-								</div>
+              <div class="row-New">
+                <div class="col-md-6">
+                  <div class="form-group-stay">
+                    <input class="form-control2" type="text" name="From" maxLength="3" placeholder="Select Depart Flight" id="left" value={Data.From} onChange={(e) => changeHander(e)} />
+                    <span class="form-label">From</span>
+                  </div>
+                </div>
 
                 <button type="button" class="submit-btn3" onClick={() => switchText()}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
@@ -1945,7 +1931,7 @@ else { // will post normally
 
 
 
-   
+
                     <span class="detail">{flight.CabinDepart}</span>
                   </div>
                 </div>
@@ -1984,35 +1970,35 @@ else { // will post normally
 
 
       <main class="page-content">
-  <div class="card">
-    <div class="content">
-      <h2 class="title">Mountain View</h2>
-      <p class="copy">Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p>
-      <button class="btn">View Trips</button>
-    </div>
-  </div>
-  <div class="card">
-    <div class="content">
-      <h2 class="title">To The Beach</h2>
-      <p class="copy">Plan your next beach trip with these fabulous destinations</p>
-      <button class="btn">View Trips</button>
-    </div>
-  </div>
-  <div class="card">
-    <div class="content">
-      <h2 class="title">Desert Destinations</h2>
-      <p class="copy">It's the desert you've always dreamed of</p>
-      <button class="btn">Book Now</button>
-    </div>
-  </div>
-  <div class="card">
-    <div class="content">
-      <h2 class="title">Explore The Galaxy</h2>
-      <p class="copy">Seriously, straight up, just blast off into outer space today</p>
-      <button class="btn">Book Now</button>
-    </div>
-  </div>
-</main>
+        <div class="card">
+          <div class="content">
+            <h2 class="title">Mountain View</h2>
+            <p class="copy">Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p>
+            <button class="btn">View Trips</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="content">
+            <h2 class="title">To The Beach</h2>
+            <p class="copy">Plan your next beach trip with these fabulous destinations</p>
+            <button class="btn">View Trips</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="content">
+            <h2 class="title">Desert Destinations</h2>
+            <p class="copy">It's the desert you've always dreamed of</p>
+            <button class="btn">Book Now</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="content">
+            <h2 class="title">Explore The Galaxy</h2>
+            <p class="copy">Seriously, straight up, just blast off into outer space today</p>
+            <button class="btn">Book Now</button>
+          </div>
+        </div>
+      </main>
 
 
 

@@ -130,8 +130,8 @@ console.log(isReturn)
         axios.post('http://localhost:8000/flightmap',{data: {var1 : reserv.Flight_IDTo} }, {withCredentials: true})
     .then((result)=> {
         localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-        document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
           setFlightbooked(result.data[0])
           console.log(isFlightbooked)
         }).catch(error => {
@@ -148,8 +148,8 @@ console.log(isReturn)
     axios.post('http://localhost:8000/flightmap',{data: {var1 : reserv.Flight_IDFrom} }, {withCredentials: true})
     .then((result)=> {
         localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-        document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
          setFlightbooked(result.data[0]);
          }).catch(error => {
             if(error.response.status==403){
@@ -190,13 +190,16 @@ console.log(isReturn)
     axios.post('http://localhost:8000/usersearchflight', criteria, {withCredentials: true})
     .then(response => {
         localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-        document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       setResult(response.data);
        console.log(Result);
        setLoading(false);
 
        }).catch(error => {
+        console.log(error.response.status)
+        console.log(error.response.data)
+
         if(error.response.status==403){
             history.push({
               pathname: '/UserLogin'
@@ -454,7 +457,7 @@ const success = () => {
     }).then((result) => {
       if (result.isConfirmed) {
     //    setState(Dest)
-        if (sessionStorage.getItem('AuthenticationState') === "UserAuthenticated") {
+        if (localStorage.getItem('AuthenticationState') === "UserAuthenticated") {
             if(moment(isFlight.Flight_Date).isSameOrAfter(moment(isFlightbooked.Flight_Date)))
                warning()
                     history.push({
@@ -698,7 +701,7 @@ const success = () => {
   }).then((result) => {
     if (result.isConfirmed) {
   
-      if (sessionStorage.getItem('AuthenticationState') === "UserAuthenticated") {
+      if (localStorage.getItem('AuthenticationState') === "UserAuthenticated") {
         if(moment(isFlight.Flight_Date).isSameOrBefore(moment(isFlightbooked.Flight_Date)))
         warning1()
         history.push({

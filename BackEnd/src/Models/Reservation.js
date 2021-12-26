@@ -33,10 +33,10 @@ const reservationSchema = new Schema({
    required: true
   },
   SeatsChoosenFrom: {
-    type: String,
+    type: [String],
   }, 
   SeatsChoosenFromID: {
-    type: Number,
+    type: [Number],
   },
 
 
@@ -71,10 +71,10 @@ const reservationSchema = new Schema({
    required: true
   },
   SeatsChoosenTo: {
-    type: String,
+    type: [String],
   }, 
   SeatsChoosenToID: {
-    type: Number,
+    type: [Number],
   }, 
 
 
