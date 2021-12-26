@@ -1438,7 +1438,7 @@ const ReservationHomePage = () => {
 
 
 
-      
+
       <header >
         <nav>
           <div class="logo"></div>
@@ -1968,7 +1968,7 @@ const ReservationHomePage = () => {
       </div>
 
 
-
+{/* 
       <main class="page-content">
         <div class="card">
           <div class="content">
@@ -1999,7 +1999,7 @@ const ReservationHomePage = () => {
           </div>
         </div>
       </main>
-
+ */}
 
 
 
