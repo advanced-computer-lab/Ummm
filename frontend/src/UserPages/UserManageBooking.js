@@ -706,7 +706,7 @@ const Editreturnhandler = (res) => {
 
           var Refund = RefundedAmount;
           var mail = "anasnemr25@gmail.com";
-          var reservation2= reservation
+          // var reservation2= reservation
 
 
           Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
