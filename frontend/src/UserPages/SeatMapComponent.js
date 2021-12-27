@@ -71,9 +71,6 @@ class SeatMap extends React.Component {
       },
       async () => {
 
-
-
-
         if (removeCb) {
           await new Promise(resolve => setTimeout(resolve, 750));
           console.log(
@@ -85,54 +82,55 @@ class SeatMap extends React.Component {
         console.log(`Added seat ${number}, row ${row}, id ${id}`);
        
         var flag = true;
-        if(this.state.from){
-            if(this.state.choosenseatsID.length==0 && this.state.reserv['SeatsChoosenFromID'].length!==0){
-              console.log(this.state.reserv['SeatsChoosenFromID']);
-            this.state.choosenseatsID = this.state.reserv['SeatsChoosenFromID']
-            this.state.choosenseats = this.state.reserv['SeatsChoosenFrom']
-            for(var i=1;i<this.state.choosenseatsID.length;i++){
-              if(id==this.state.choosenseatsID[i])
-                flag = false;
-              const newTooltip = `Seat number `+row+number+' is selected!';
-              var r = this.state.choosenseats[i].substring(0,1);
-              var n = parseInt(this.state.choosenseats[i].substring(1));
-              // console.log(r)
-              // console.log(n)
-              // console.log(this.state.choosenseatsID[i])
-              addCb(r, n, this.state.choosenseatsID[i], newTooltip);
-              // await new Promise(resolve => setTimeout(resolve, 750));
-              // removeCb(this.state.choosenseats[0].substring(0,1), parseInt(this.state.choosenseats[0].substring(1)));
-            }
-          }
-        }
-        else{
-          if(this.state.choosenseatsID.length==0 && this.state.reserv['SeatsChoosenToID'].length!==0){
-            console.log(this.state.reserv['SeatsChoosenToID']);
-          this.state.choosenseatsID = this.state.reserv['SeatsChoosenToID']
-          this.state.choosenseats = this.state.reserv['SeatsChoosenTo']
-          for(var i=1;i<this.state.choosenseatsID.length;i++){
-            if(id==this.state.choosenseatsID[i])
-              flag = false;
-            const newTooltip = `Seat number `+row+number+' is selected!';
-            var r = this.state.choosenseats[i].substring(0,1);
-            var n = parseInt(this.state.choosenseats[i].substring(1));
-            addCb(r, n, this.state.choosenseatsID[i], newTooltip);
-            // await new Promise(resolve => setTimeout(resolve, 750));
-            // removeCb(this.state.choosenseats[0].substring(0,1), parseInt(this.state.choosenseats[0].substring(1)));
-          }
-        }
-        }
+        // if(this.state.from){
+        //     if(this.state.choosenseatsID.length==0 && this.state.reserv['SeatsChoosenFromID'].length!==0){
+        //       console.log(this.state.reserv['SeatsChoosenFromID']);
+        //     this.state.choosenseatsID = this.state.reserv['SeatsChoosenFromID']
+        //     this.state.choosenseats = this.state.reserv['SeatsChoosenFrom']
 
-        
+        //     // for(var i=1;i<this.state.choosenseatsID.length;i++){
+        //     //   if(id==this.state.choosenseatsID[i])
+        //     //     flag = false;
+        //     //   const newTooltip = `Seat number `+row+number+' is selected!';
+        //     //   var r = this.state.choosenseats[i].substring(0,1);
+        //     //   var n = parseInt(this.state.choosenseats[i].substring(1));
+        //     //   console.log(r)
+        //     //   console.log(n)
+        //     //   console.log(this.state.choosenseatsID[i])
+        //     //   addCb(r, n, this.state.choosenseatsID[i], newTooltip);
+        //     //   // await new Promise(resolve => setTimeout(resolve, 750));
+        //     //   // removeCb(this.state.choosenseats[0].substring(0,1), parseInt(this.state.choosenseats[0].substring(1)));
+        //     // }
+
+
+        //   }
+        // }
+        // else{
+        //   if(this.state.choosenseatsID.length==0 && this.state.reserv['SeatsChoosenToID'].length!==0){
+        //     console.log(this.state.reserv['SeatsChoosenToID']);
+        //   this.state.choosenseatsID = this.state.reserv['SeatsChoosenToID']
+        //   this.state.choosenseats = this.state.reserv['SeatsChoosenTo']
+        //   for(var i=1;i<this.state.choosenseatsID.length;i++){
+        //     if(id==this.state.choosenseatsID[i])
+        //       flag = false;
+        //     const newTooltip = `Seat number `+row+number+' is selected!';
+        //     var r = this.state.choosenseats[i].substring(0,1);
+        //     var n = parseInt(this.state.choosenseats[i].substring(1));
+        //     addCb(r, n, this.state.choosenseatsID[i], newTooltip);
+        //     // await new Promise(resolve => setTimeout(resolve, 750));
+        //     // removeCb(this.state.choosenseats[0].substring(0,1), parseInt(this.state.choosenseats[0].substring(1)));
+        //   }
+        // }
+        // }
+
         if(flag){
         const newTooltip = `Seat number `+row+number+' is selected!';
         addCb(row, number, id, newTooltip);
         var seatName = ''+row+number;
         this.setState(prevState => ({
-          choosenseats: [...prevState.choosenseats, seatName]
+          choosenseats: [seatName]
         }))
         this.addpeople(id)
-        
         }
       
        
@@ -176,18 +174,21 @@ class SeatMap extends React.Component {
     }
 
   addpeople(id){
-    var array = [...this.state.choosenseatsID]; 
-    var array2 = [...this.state.choosenseats]; 
-    if(array.length>=this.state.maxSeats){
-      array.splice(0,1)
-      this.setState({choosenseatsID: array});
+    var array = [this.state.choosenseatsID]; 
+    var array2 = [this.state.choosenseats]; 
+    // if(array.length>=this.state.maxSeats){
+    //   array.splice(0,1)
+    //   this.setState({choosenseatsID: array});
 
-      array2.splice(0,1)
-      this.setState({choosenseats: array2});
-    }
+    //   array2.splice(0,1)
+    //   this.setState({choosenseats: array2});
+    // }
+    // this.setState(prevState => ({
+    //   choosenseatsID: [...prevState.choosenseatsID, id]
+    // }))
 
     this.setState(prevState => ({
-      choosenseatsID: [...prevState.choosenseatsID, id]
+      choosenseatsID: [id]
     }))
 
   }
@@ -222,15 +223,15 @@ class SeatMap extends React.Component {
       console.log(this.state.flightAvailableSeats)
 
 
-      if(this.state.maxSeats===this.state.choosenseats.length){
+      // if(this.state.maxSeats===this.state.choosenseats.length){
         Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
         Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
         axios.put('http://localhost:8000/updateseats',{data: {var1 : this.state.flightID, var2 : this.state.flightAvailableSeats} 
       },{withCredentials: true}).then((result)=>
       {    
         localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-        document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       })
       .catch((error) => {
         if(error.response.status==403){
@@ -245,8 +246,8 @@ class SeatMap extends React.Component {
       },{withCredentials: true}).then((result)=>
       {    
         localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-        document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       })
       .catch((error) => {
         if(error.response.status==403){
@@ -254,7 +255,7 @@ class SeatMap extends React.Component {
         }
       })
 
-    }
+    // }
 
     // console.log(this.state.seats)
     // console.log(this.state.track.length)
@@ -374,7 +375,7 @@ class SeatMap extends React.Component {
               addSeatCallback={this.addSeatCallbackContinousCase}
               removeSeatCallback={this.removeSeatCallback}
               rows={rows}
-              maxReservableSeats={this.state.maxSeats}
+              maxReservableSeats={1}
               alpha
               visible
               selectedByDefault

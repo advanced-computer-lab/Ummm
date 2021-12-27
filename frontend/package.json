@@ -33,6 +33,7 @@
     "sass": "^1.44.0",
     "scss": "^0.2.4",
     "sweetalert2": "^11.2.2",
+    "universal-cookie": "^4.0.4",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

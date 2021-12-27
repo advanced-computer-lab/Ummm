@@ -101,7 +101,7 @@ console.log(CabinFrom)
 
  
   const [Data, setState] = useState({
-    Username: sessionStorage.getItem('Username'),
+    Username: localStorage.getItem('Username'),
     Email: "",
 
     Flight_IDFrom: Flight1._id,

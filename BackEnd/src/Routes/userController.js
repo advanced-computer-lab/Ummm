@@ -464,8 +464,10 @@ exports.usersearchflight = (req, res) => {
 
 exports.reservationinfo = (req,res)=>{
   const key2="Username"
+  // const key3="ReservationOwner"
   const search ={};
  search[key2]= {$regex: '^' + req.body[key2],$options: 'ix'};
+//  search[key3]= true;
   Reservations.find(search).then(result =>{
       console.log(result);
       res.send(result);

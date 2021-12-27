@@ -1,5 +1,5 @@
 import '../css/App.css';
-import { Component, useState,useEffect, useReducer } from 'react';
+import { Component, useState, useEffect, useReducer } from 'react';
 import axios from 'axios'
 import { Route, Redirect } from 'react-router'
 import { Link, Switch } from "react-router-dom";
@@ -23,16 +23,16 @@ import moment from "moment";
 function App() {
   if (localStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
     window.open("LoginPage", "_self");
- }
+  }
 
- const LogOutHandler = (e) => {
-  var userid = localStorage.getItem('UserID')
- axios.delete('http://localhost:8000/logout',{data: {ID: userid}})
- localStorage.clear()
- history.push({
-   pathname: '/LoginPage'
- });
-};
+  const LogOutHandler = (e) => {
+    var userid = localStorage.getItem('UserID')
+    axios.delete('http://localhost:8000/logout', { data: { ID: userid } })
+    localStorage.clear()
+    history.push({
+      pathname: '/LoginPage'
+    });
+  };
 
 
 const homepage = (e) => {
@@ -46,47 +46,47 @@ const homepage = (e) => {
 //        window.open("AccessDenied.html", "_self");
 //  }
   const history = useHistory();
-  const[flights,Setflights]=useState([]);
+  const [flights, Setflights] = useState([]);
 
   useEffect(() => {
-    
-    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken')//,{expires: 1/5760}
-      )
-    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken')//,{expires: 1/100060}
-      )
 
-    axios.get('http://localhost:8000/viewflights',{withCredentials: true})
-    .then((result)=>
-    {
-      localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    Cookies.setItem("AccessToken", localStorage.getItem('AccessToken')//,{expires: 1/5760}
+    )
+    Cookies.setItem("RefreshToken", localStorage.getItem('RefreshToken')//,{expires: 1/100060}
+    )
 
-      console.log(result.data);
+    axios.get('http://localhost:8000/viewflights', { withCredentials: true })
+      .then((result) => {
+        localStorage.setItem("AccessToken", Cookies.getItem("AccessToken"))
+        document.cookie = 'AccessToken' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'RefreshToken' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+        console.log(result.data);
         Setflights(result.data);
-    })
-    .catch(err => {
-      if(err.response.status==403){
-        history.push({
-          pathname: '/LoginPage'
-        });
-      }
-      console.log(err)
-    })
-  
-  },[]);
+      })
+      .catch(err => {
+        if (err.response.status == 403) {
+          history.push({
+            pathname: '/LoginPage'
+          });
+        }
+        console.log(err)
+      })
+
+  }, []);
 
   const editHandler = (flight) => {
     history.push({
       pathname: '/UpdateFlight',
-    state: {
-      data: flight}
+      state: {
+        data: flight
+      }
     });
     console.log(flight.Flight_Duration);
-    console.log(flight.Flight_Duration.substring(flight.Flight_Duration.indexOf(':')+1));
+    console.log(flight.Flight_Duration.substring(flight.Flight_Duration.indexOf(':') + 1));
 
 
-    };
+  };
 
     const deleteHandler = (flight) => {
       console.log(flight)
@@ -146,6 +146,36 @@ const homepage = (e) => {
             });
         };
   
+  // const deleteHandler = (flight) => {
+  //   var del = flight._id;
+  //   del.trim();
+  //   const confirmBox = window.confirm(
+  //     "Do you really want to delete this Flight?"
+  //   )
+  //   if (confirmBox === true) {
+
+  //     Cookies.setItem("AccessToken", localStorage.getItem('AccessToken'))
+  //     Cookies.setItem("RefreshToken", localStorage.getItem('RefreshToken'))
+
+  //     axios.delete('http://localhost:8000/deleteflight', { data: { var1: del } }, { withCredentials: true })
+  //       .then(response => {
+  //         localStorage.setItem("AccessToken", Cookies.getItem("AccessToken"))
+  //         document.cookie = 'AccessToken' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  //         document.cookie = 'RefreshToken' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+  //         console.log(response);
+  //       }).catch(error => {
+  //         if (error.response.status == 403) {
+  //           history.push({
+  //             pathname: '/LoginPage'
+  //           });
+  //         }
+  //         console.log(error); //Handle Flight_No exsit 
+  //       })
+  //     window.location.reload(false);
+  //   }
+  // };
+
 
         return (
           <>

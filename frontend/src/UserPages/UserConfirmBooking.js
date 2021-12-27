@@ -128,6 +128,7 @@ const UserConfirmBooking = () => {
     Flight_NoFrom: Flight1.Flight_No,
     Flight_DateFrom: Flight1.Flight_Date,
     Flight_From: Flight1.From,
+    FromPrice: Flight1.Price,
     CabinFrom: history.location.state?.CabinFrom,
     SeatsChoosenFrom: "",
     SeatsChoosenFromID: "",
@@ -137,6 +138,7 @@ const UserConfirmBooking = () => {
     Flight_NoTo: Flight2.Flight_No,
     Flight_DateTo: Flight2.Flight_Date,
     Flight_To: Flight1.To,
+    ToPrice: Flight2.Price,
     CabinTo: history.location.state?.CabinTo,
     SeatsChoosenTo: "",
     SeatsChoosenToID: "",
@@ -260,6 +262,26 @@ const UserConfirmBooking = () => {
   
   const BookFlightHandler = (e) => {
     e.preventDefault();    // prevent reloading the page
+
+    var Refund = Data.TotalPrice;
+    var mail = "anasnemr25@gmail.com";
+    var reservation2= Data
+    Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
+    Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
+    axios.post("http://localhost:8000/sendmailconfirm", {data: {var1:Refund,var2:mail,var3:reservation2}}, {withCredentials: true}).then(response => {
+       localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+      // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }).catch(error => {
+      if(error.response.status==403){
+        history.push({
+          pathname: '/UserLogin'
+        });
+      }
+})
+
+
+
 
       console.log(Data)
       console.log(Passengers)
