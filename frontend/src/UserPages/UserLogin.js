@@ -108,6 +108,11 @@ console.log(localStorage.getItem("UserInfo"))
             pathname: '/ReservationHomePage'
           });
   };
+  const Flighthome = (e) => {
+    history.push({
+      pathname: '/'
+    });
+   };
   
 
 
@@ -213,6 +218,7 @@ console.log(localStorage.getItem("UserInfo"))
                   <a class="button-50 center21" role="button" onClick={(e) => createHandler(e)}>Create Account</a>
                   <a  class="button-50 center21" role="button" onClick={(e) => GuestHandler(e)}>Continue as Guest</a>
                  </div>
+                 <a  class="button-60 center20" role="button"  onClick={() => Flighthome()}>Flight Home</a>
         <div class="txt1 text-center p-t-54 p-b-20">
           
         </div>

@@ -98,6 +98,11 @@ const LoginPage = () => {
   const warning = (msg) => {
     message.warning(msg);
   }
+  const Flighthome = (e) => {
+    history.push({
+      pathname: '/'
+    });
+   };
 
 
 
@@ -154,10 +159,8 @@ const LoginPage = () => {
                
                   <a  class="button-60 center20" role="button" onClick={(e) => loginHandler(e)}>Log In</a>
   
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <a  class="button-60 center20" role="button"  onClick={() => history.goBack()}>Back</a>
+                 
+                  <a  class="button-60 center20" role="button"  onClick={() => Flighthome()}>Flight Home</a>
 
                   <div class="grid-container-buttonCreate">
                  

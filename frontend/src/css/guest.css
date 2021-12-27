@@ -2,6 +2,9 @@
 body{
   background: #ffffff;
   font-family: 'Source Sans Pro', sans-serif;
+  background-repeat: repeat;
+ height: auto;
+    background-size: 100% ;
 }
 #title{
   text-align: center;
@@ -80,9 +83,66 @@ body{
       -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.10);
     -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.10);
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.10);
-   
+}
+
+.listing-item-admin {
+  display: block;
+  width:100%;
+ margin-bottom:20px;
+ margin-right:19px;
+   float: left;
+   background: #fff;
+   border-radius:10px;
+   z-index:0;
+ cursor:pointer;
+   -webkit-transition: all 0.3s ease;
+   -moz-transition: all 0.3s ease;
+   transition: all 0.3s ease;
+     -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.10);
+   -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.10);
+   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.10);
+  width:32% ;
 
 }
+
+.listing-item-admin:hover{
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+    transform: scale(1.03);
+    -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  z-index:2;
+
+}
+.listing-ite-admin .listing{
+    padding:20px;
+    position:relative;  
+}
+.listing-item-admin .listing:before{
+    content:"";
+  position:relative;
+  top:-15px;
+  left:-o-calc(50% - 15px);
+  left:-moz-calc(50% - 15px);
+  left:-webkit-calc(50% - 15px);
+  left:calc(50% - 15px);
+  border-bottom:20px solid #fff;
+  border-left:10px solid transparent;
+  border-right:10px solid transparent;
+}
+
+
+/* @media only screen and (min-width:540px){
+  .listing-item-admin {
+   display: block;
+   width: -webkit-calc(100%/3);
+   width: -moz-calc(100%/3);
+    width: calc(100%/3);
+  }
+} */
+
+
 
 .listing-item:hover,  .listing-item.active{
   -webkit-transform: scale(1.03);
@@ -316,6 +376,16 @@ figcaption p{
     text-align: center;
 
   }
+  .center {
+    
+    width: 50%;
+    font-size: 20px;
+    text-align: center;
+    color: #ff8300;
+   
+    text-align: center;
+
+  }
 
   .center20 {
     margin: 10px;
@@ -472,6 +542,20 @@ figcaption p{
     padding: 20px;
   }
 
+
+  .box200 {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+
+  }
+
+  
+  
   /* .box- {
     background-color: #444;
     color: #fff;
@@ -576,6 +660,81 @@ figcaption p{
   .button-70:not(:disabled):active {
     transform: translateY(.125rem);
   }
+
+
+  .button-200 {
+    width: auto;
+    align-content: center;
+    
+    margin:35px;
+     backface-visibility: hidden;
+     background:#ff8300;
+     border: 0;
+     border-radius: .375rem;
+     box-sizing: border-box;
+     color: #fff;
+     cursor: pointer;
+     display: inline-block;
+     font-family: Circular,Helvetica,sans-serif;
+     font-size: 1.125rem;
+     font-weight: 700;
+     letter-spacing: -.01em;
+     line-height: 1.3;
+     padding: 1rem 1.25rem;
+     position: relative;
+     text-align: left;
+     text-decoration: none;
+     transform: translateZ(0) scale(1);
+     transition: transform .2s;
+     text-align: center;
+     
+   }
+   .center-button{
+   
+   padding-left: 25px;
+
+   }
+   
+   .button-200:disabled {
+     background:#ff8300;
+     color: #787878;
+     cursor: auto;
+   }
+   
+   .button-200:not(:disabled):hover {
+     background:#ff8300;
+     color: #fff;
+     transform: scale(1.05);
+   }
+   
+   .button-200:not(:disabled):hover:active {
+     background:#ff8300;
+     transform: scale(1.05) translateY(.125rem);
+   }
+   
+   .button-200:focus {
+     background:#ff8300;
+     outline: 0 solid transparent;
+   }
+   
+   .button-200:focus:before {
+     border-width: .125rem;
+     content: "";
+     left: calc(-1*.375rem);
+     pointer-events: none;
+     position: absolute;
+     top: calc(-1*.375rem);
+     transition: border-radius;
+     user-select: none;
+   }
+   
+   .button-200:focus:not(:focus-visible) {
+     outline: 0 solid transparent;
+   }
+   
+   .button-200:not(:disabled):active {
+     transform: translateY(.125rem);
+   }
 
 
 
@@ -855,6 +1014,7 @@ figcaption p{
   .button-79:not(:disabled):active {
     transform: translateY(.125rem);
   }
+  
 
 
 
@@ -995,6 +1155,24 @@ figcaption p{
   .cls-2 {
     fill: none;
   }
+
+  .grid-flight img {
+   
+    text-align: center;
+    display: block;
+ 
+  }
+
+  .img-container-block {
+    text-align: center;
+  }
+  .img-container-block header{
+    text-align: center;
+    color: rgb(194, 0, 0);
+    font-weight: 800;
+ 
+  }
+ 
   /* .box{
     background: rgba(0, 0, 0, 0.8);
     box-shadow: 0px 8px 20px 0px;

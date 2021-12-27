@@ -299,6 +299,11 @@ const ReservationHomePage = () => {
   const [Display1, setDisplay1] = useState([]);
   const [Display2, setDisplay2] = useState([]);
 
+  const [Data99, setState99] = useState({
+    Username: "",  
+    Password: "",
+  }); 
+
 
   const [Data, setState] = useState({
     Flight_No: "",
@@ -487,11 +492,16 @@ else { // will post normally
   });
 
   const changeHander = (e) => {
-    console.log(moment(Data.Flight_Date));
+    // console.log(moment(Data.Flight_Date));
 
     setState(prevData => {
       return { ...prevData, [e.target.name]: e.target.value }
     })
+  };
+
+  const changeHander99 = (e) => {
+    setState99( prevData => {
+     return {...prevData ,[e.target.name]: e.target.value}})
   };
 
   const departHandler = (flight) => {
@@ -1268,13 +1278,13 @@ else { // will post normally
       e.preventDefault(); 
     
       const criteria = {};
-      Object.keys(Data).forEach(key => {
-     if (Data[key]!=="") {
-          criteria[key] = Data[key];
+      Object.keys(Data99).forEach(key => {
+     if (Data99[key]!=="") {
+          criteria[key] = Data99[key];
         }
       });
   
-      if(Data.Username!==''&& Data.Password!==''){
+      if(Data99.Username!==''&& Data99.Password!==''){
      // prevent reloading the page
       axios.post('http://localhost:8000/userlogin', criteria)
       .then(res => {
@@ -1292,7 +1302,7 @@ else { // will post normally
         // console.log(sessionStorage.getItem("AuthenticationState"))
         // console.log(sessionStorage.getItem("Username"))
   
-        setState({
+        setState99({
           Username: "",  
           Password: "",
           })
@@ -1300,7 +1310,7 @@ else { // will post normally
               pathname: '/ReservationHomePage' //Pass to 
             });
   
-            success99(Data.Username);
+            success99(Data99.Username);
             setIsModalVisible(false);
          }).catch(err => {
           console.log(err.response.status);
@@ -1310,10 +1320,10 @@ else { // will post normally
            console.log(err)
       })
     }
-    else if(Data.Username=='' ){
+    else if(Data99.Username=='' ){
       warning1();
     }
-    else if(Data.Password=='' ){
+    else if(Data99.Password=='' ){
       warning2();
     } 
     };
@@ -1413,7 +1423,7 @@ else { // will post normally
          Username
         </span>
                   </div>
-          <input class="input100"  name="Username" placeholder="Type your Username" value={Data.Username} onChange={(e) => changeHander(e)}></input>
+          <input class="input100"  name="Username" placeholder="Type your Username" value={Data99.Username} onChange={(e) => changeHander99(e)}></input>
                       <span class="focus-input100" ></span>
         </div>
 
@@ -1426,7 +1436,7 @@ else { // will post normally
          Password
         </span>
                   </div>
-          <input class="input100" type="password" name="Password" placeholder="Type your Password" value={Data.Password} onChange={(e) => changeHander(e)}></input>
+          <input class="input100" type="password" name="Password" placeholder="Type your Password" value={Data99.Password} onChange={(e) => changeHander99(e)}></input>
           <span class="focus-input100" ></span>
         </div>
         
@@ -1464,7 +1474,7 @@ else { // will post normally
                 </div> */}
       {/* <li><a href="#">Log out</a></li> */}
       <li><a href="#"  onClick={(e) => createHandler(e)}>Sign Up</a></li>
-      <li><a href="#" onClick={showModal}>Login In</a></li>
+      <li><a href="#" onClick={showModal}>Log In</a></li>
       <li><a href="#" onClick={() => LogOutHandler()}>Log Out</a></li>
     </ul>
   </nav>
@@ -1983,7 +1993,7 @@ else { // will post normally
 
 
 
-      <main class="page-content">
+      {/* <main class="page-content">
   <div class="card">
     <div class="content">
       <h2 class="title">Mountain View</h2>
@@ -2012,7 +2022,7 @@ else { // will post normally
       <button class="btn">Book Now</button>
     </div>
   </div>
-</main>
+</main> */}
 
 
 

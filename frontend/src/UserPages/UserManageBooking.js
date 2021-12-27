@@ -39,6 +39,7 @@ import {
 } from 'antd';
 import $ from "jquery"; 
 import {findDOMNode} from 'react-dom'
+import { Modal } from 'antd';
 
 // $(document).ready(function() {
 //   var qrWidth, qrHeight; 
@@ -214,7 +215,7 @@ var current="" ;
     // document.getElementById("Selected-Seat").appendChild(node);
 
 
-    var dateSpan = document.createElement('span')
+var dateSpan = document.createElement('span')
 dateSpan.innerHTML = "SEAT";
 // var li = document.createElement('li');
 // li.appendChild(dateSpan);
@@ -303,6 +304,12 @@ const UserManageBooking = () => {
 
   const [flight1, setflight1] = useState();
   const [flight2, setflight2] = useState();
+
+  const [Data99, setState99] = useState({
+    Username: "",  
+    Password: "",
+  }); 
+
 
 
   // const [allReservation, setReservation] = useState({
@@ -522,6 +529,7 @@ else if(j>4)
       }
   }
 
+  
 
  
     
@@ -643,8 +651,25 @@ console.log(rows)
   
   };
 
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
 
-  const ConfirmDelete = (Reservationid,RefundedAmount,Useremail,reservation) => { // e will contain the reservation number 
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+
+
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+
+  const ConfirmDelete = (Reservationid,RefundedAmount,Useremail) => { // e will contain the reservation number 
     Swal.fire(
       {
       title: 'Delete Reservation',
@@ -695,12 +720,10 @@ console.log(rows)
           }, 4000);
 
           var Refund = RefundedAmount;
-          var mail = "anasnemr25@gmail.com";
-          var reservation2= reservation;
-
+          var mail = "ahmed.eltawel35@gmail.com";
           Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
           Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
-          axios.post("http://localhost:8000/sendmail", {data: {var1:Refund,var2:mail,var3:reservation2}}, {withCredentials: true}).then(response => {
+          axios.post("http://localhost:8000/sendmail", {data: {var1:Refund,var2:mail}}, {withCredentials: true}).then(response => {
              localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
             document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
             document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -718,10 +741,10 @@ console.log(rows)
   };
 
   const warning1 = () => {
-    message.warning('Please enter departure city');
+    message.warning('"Username" Must be Filled!');
   };
   const warning2 = () => {
-    message.warning('Please enter a destination.');
+    message.warning(' "Password" Must be Filled!');
   };
   const warning3 = () => {
     message.warning('Please enter departure date.');
@@ -742,6 +765,15 @@ const EditProfileHendler = event => {
       state: { detail: 'some_value' }
   });
 };
+const createHandler = (e) => {
+   
+   
+  e.preventDefault();  
+      history.push({
+          pathname: '/CreateUserAccount'
+        });
+};
+
 
 
 const senddata = (reserv) => {
@@ -1026,11 +1058,79 @@ const Editreturnhandler = (res) => {
 
 
 
+    const loginHandler = (e) => {
+      
+      e.preventDefault(); 
+    
+      const criteria = {};
+      Object.keys(Data99).forEach(key => {
+     if (Data99[key]!=="") {
+          criteria[key] = Data99[key];
+        }
+      });
+  
+      if(Data99.Username!==''&& Data99.Password!==''){
+     // prevent reloading the page
+      axios.post('http://localhost:8000/userlogin', criteria)
+      .then(res => {
+        console.log(res.status);
+        localStorage.setItem("AuthenticationState", "UserAuthenticated")
+        localStorage.setItem("AccessToken", res.data.AccessToken);
+        localStorage.setItem("RefreshToken", res.data.RefreshToken);
+        localStorage.setItem("UserID", res.data.UserID)
+        localStorage.setItem("UserInfo", res.data)
+        localStorage.setItem("Username", res.data.Username)
+        localStorage.setItem("Email", res.data.Email)
+  
+  
+        console.log(localStorage)
+        // console.log(sessionStorage.getItem("AuthenticationState"))
+        // console.log(sessionStorage.getItem("Username"))
+  
+        setState99({
+          Username: "",  
+          Password: "",
+          })
+          history.push({
+              pathname: '/ReservationHomePage' //Pass to 
+            });
+  
+            success99(Data99.Username);
+            setIsModalVisible(false);
+         }).catch(err => {
+          console.log(err.response.status);
+          console.log(err.response)
+             var msg = err.response.data
+           warning(msg);
+           console.log(err)
+      })
+    }
+    else if(Data99.Username=='' ){
+      warning1();
+    }
+    else if(Data99.Password=='' ){
+      warning2();
+    } 
+    };
+    const warning = (msg) => {
+      message.warning(msg);
+    }
+    const success99 = (e) => {
+      message.success('Welcome Back to Fly Nawww '.concat(e));
+    }
 
 
 
 
+    // const changeHander = (e) => {
+    //   setState( prevData => {
+    //    return {...prevData ,[e.target.name]: e.target.value}})
+    // };
 
+    const changeHander99 = (e) => {
+      setState99( prevData => {
+       return {...prevData ,[e.target.name]: e.target.value}})
+    };
 
 
 
@@ -1043,6 +1143,94 @@ const Editreturnhandler = (res) => {
     return(
       <>
 
+<Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}
+      
+      width={600}
+      height={100}
+      footer={null}
+      
+     >
+        
+
+
+  
+
+  
+
+
+ 
+  <div class="container-PopUp" >
+    <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+      <form class="login100-form validate-form">
+        <span class="login100-form-title p-b-49">
+         User Log In 
+        </span>
+
+                 
+
+
+
+
+
+                  
+
+
+
+
+                 
+
+
+
+        <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                  <div class="grid-container-EditUser">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+</svg>
+<span >
+         Username
+        </span>
+                  </div>
+          <input class="input100"  name="Username" placeholder="Type your Username" value={Data99.Username} onChange={(e) => changeHander99(e)}></input>
+                      <span class="focus-input100" ></span>
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
+
+                  <div class="grid-container-EditUser"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
+<path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+</svg>
+<span >
+         Password
+        </span>
+                  </div>
+          <input class="input100" type="password" name="Password" placeholder="Type your Password" value={Data99.Password} onChange={(e) => changeHander99(e)}></input>
+          <span class="focus-input100" ></span>
+        </div>
+        
+        
+                  <a  class="button-60 center20" role="button"  onClick={(e) => loginHandler(e)}>Log In</a>
+                 
+       
+        
+
+        <div class="flex-col-c p-t-155">
+          
+
+          
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+      </Modal>
 
 
 
@@ -1056,7 +1244,6 @@ const Editreturnhandler = (res) => {
 </div> */}
 
 <header >
-  
   <nav>
     <div class="logo"></div>
     <ul>
@@ -1066,9 +1253,9 @@ const Editreturnhandler = (res) => {
 </svg>   
                 </div> */}
       {/* <li><a href="#">Log out</a></li> */}
-      <li><a href="#">Item 2</a></li>
-      <li><a href="#">Item 3</a></li>
-      <li><a href="#">Item 4</a></li>
+      <li><a href="#"  onClick={(e) => createHandler(e)}>Sign Up</a></li>
+      <li><a href="#" onClick={showModal}>Log In</a></li>
+      <li><a href="#" onClick={() => LogOutHandler()}>Log Out</a></li>
     </ul>
   </nav>
   <header>
@@ -1088,16 +1275,23 @@ const Editreturnhandler = (res) => {
   {/* <p class="first">My name is <span class="emphasis">(pick a name!)</span>.</p> */}
 </div>
 
+            
+              {/* <a class="textNext">Hello</a> */}
+
+             
+
+              <div>
+                {/* <p class="first">My name is <span class="emphasis">(pick a name!)</span>.</p> */}
+              </div>
 
 
 
 
+            </div>
+          </div>
+        </header>
 
-      </div>
-    </div>
-  </header>
-  
-    
+
       </header>
 
              <div class="s011">
@@ -1227,7 +1421,7 @@ const Editreturnhandler = (res) => {
   
   {/* on click will send reservation number + total price refunded */}
   <div class="listing-item99">
-  <button  type="button" onClick={() => ConfirmDelete(reserv._id,reserv.TotalPrice,reserv.Email,reserv)} class="button-70" > 
+  <button  type="button" onClick={() => ConfirmDelete(reserv._id,reserv.TotalPrice,reserv.Email)} class="button-70" > 
   <div class="center">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -1838,7 +2032,7 @@ const Editreturnhandler = (res) => {
     
     {/* on click will send reservation number + total price refunded */}
     <div class="listing-item99">
-    <button  type="button" onClick={() => ConfirmDelete(reserv._id,reserv.TotalPrice,reserv.Email,reserv)} class="button-70" > 
+    <button  type="button" onClick={() => ConfirmDelete(reserv._id,reserv.TotalPrice,reserv.Email)} class="button-70" > 
     <div class="center">
       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>

@@ -146,6 +146,12 @@ const CreateUserAccount = () => {
 
   };
 
+  const Flighthome = (e) => {
+    history.push({
+      pathname: '/'
+    });
+   };
+
 
 
   const success = () => {
@@ -309,7 +315,21 @@ const CreateUserAccount = () => {
                     </span>
                   </div >
 
-                  <DatePicker type="date" format="DD-MM-YYYY"
+                  <DatePicker 
+                  style={{ 
+                    borderTopColor:"transparent",
+                    borderBottomColor:"transparent",
+                    borderLeftColor:"transparent",
+                    borderRightColor:"transparent",
+                    // forcedColorAdjust:"red",
+                    // stopColor: "#ccc",
+                    // stopColor: "rgb(255, 255, 255)",
+                minWidth:"600px",
+                imageWidth:"250px",
+            marginTop: "25px", 
+            backgroundColor:"transparent",
+            Color:"white",    
+          }}type="date" format="DD-MM-YYYY"
                     defaultPickerValue={now2} disabledDate={d => d.isAfter(now)} value={Data.Date_of_Birth} name="Date_of_Birth" onChange={(date) => setState(prevData => {
                       return { ...prevData, Date_of_Birth: date }
                     })
@@ -387,9 +407,15 @@ const CreateUserAccount = () => {
                 </div>
 
 
+              
+              
+                <a class="button-60 center20" role="button" onClick={(e) => submitHandler(e)}>Create Account</a>
+               
                 <div class="grid-container">
                 <a class="button-60 center20" role="button" onClick={() => LoginHandler()}>Log In</a>
-                <a class="button-60 center20" role="button" onClick={(e) => submitHandler(e)}>Create Account</a>
+                <a  class="button-60 center20" role="button"  onClick={() => Flighthome()}>Flight Home</a>
+
+
                 </div>
                 <div class="txt1 text-center p-t-54 p-b-20">
 

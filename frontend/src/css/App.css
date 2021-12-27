@@ -74,14 +74,14 @@
    button2{
     position: absolute;
     border: 2px solid white;
-    background: transparent;
+    background-color: rgba(365,365,365,0.5);
     font-family: 'Roboto', sans-serif;
-    color: white;
+    color: #ff8300;
     width: 230px;
     height: 56px;
     font-size: 2em;
-    border-radius: 5px;
-    opacity: .5;
+    border-radius: 295px;
+    opacity: 1;
     top: 60vh;
     bottom: 0px;
     left: -300px;
@@ -104,14 +104,14 @@
   button3{
       position: absolute;
       border: 2px solid white;
-      background: transparent;
+      background-color: rgba(365,365,365,0.5);
       font-family: 'Roboto', sans-serif;
-      color: white;
+      color: #ff8300;
       width: 230px;
       height: 56px;
       font-size: 2em;
-      border-radius: 5px;
-      opacity: .5;
+      border-radius: 295px;
+      opacity: 1;
       top: 60vh;
       bottom: 0px;
       left: 300px;
@@ -119,6 +119,7 @@
       margin:auto;
       transition: .3s;
       text-align: center;
+      font-weight: 500;
     }
     
      button3:hover{

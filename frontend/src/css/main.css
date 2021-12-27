@@ -1615,6 +1615,16 @@ span.flatpickr-weekday {
   display: flex;
 }
 
+.s011 form .inner-form header .travel-type-wrap999 {
+  text-align: center;
+  display: -ms-flexbox;
+  display: grid;
+  grid-template-columns:1fr 1fr ;
+  column-gap: 20px;
+  row-gap: 119px;
+  margin-bottom:120px;
+}
+
 .s011 form .inner-form header .travel-type-wrap .item {
   color: #555;
   border-radius: px;
@@ -1627,6 +1637,21 @@ span.flatpickr-weekday {
   width:300px ;
   height:94px ;
   border-radius:110px ;
+}
+
+.s011 form .inner-form header .travel-type-wrap999 .item {
+  color: #555;
+  border-radius: px;
+  background: #fff;
+  margin-right: 5px;
+  padding: 18px 20px;
+  transition: all .3s;
+  cursor: pointer;
+  text-align: center;
+  width:100% ;
+  height:200% ;
+  border-radius:110px ;
+  
 }
 
 .item99 {
@@ -1651,7 +1676,23 @@ span.flatpickr-weekday {
   margin-bottom: 10px;
 }
 
+.s011 form .inner-form header .travel-type-wrap999 .item .group-icon {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -ms-flex-pack: center;
+      justify-content: center;
+  margin-bottom: 10px;
+}
+
 .s011 form .inner-form header .travel-type-wrap .item .group-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: #555;
+  margin: 0 4px;
+}
+
+.s011 form .inner-form header .travel-type-wrap999 .item .group-icon svg {
   width: 20px;
   height: 20px;
   fill: #555;
@@ -1663,12 +1704,25 @@ span.flatpickr-weekday {
   font-weight: bold;
 }
 
+.s011 form .inner-form header .travel-type-wrap999 .item span {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .s011 form .inner-form header .travel-type-wrap .item.active {
+  color: #fff;
+  background: #e35e0a;
+}
+.s011 form .inner-form header .travel-type-wrap999 .item.active {
   color: #fff;
   background: #e35e0a;
 }
 
 .s011 form .inner-form header .travel-type-wrap .item.active svg {
+  fill: #fff;
+}
+
+.s011 form .inner-form header .travel-type-wrap999 .item.active svg {
   fill: #fff;
 }
 
@@ -1681,6 +1735,16 @@ span.flatpickr-weekday {
 }
 
 .s011 form .inner-form header .travel-type-wrap .item:hover .group-icon svg, .s011 form .inner-form header .travel-type-wrap .item:focus .group-icon svg {
+  fill: #fff;
+}
+
+
+.s011 form .inner-form header .travel-type-wrap999 .item:hover, .s011 form .inner-form header .travel-type-wrap999 .item:focus {
+  background: #e35e0a;
+  color: #fff;
+}
+
+.s011 form .inner-form header .travel-type-wrap999 .item:hover .group-icon svg, .s011 form .inner-form header .travel-type-wrap999 .item:focus .group-icon svg {
   fill: #fff;
 }
  /* HEEEEEEEEEEEEEEEEEEEEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE  CHNAGE THE WIDTH OF FORM THE BLACK*/ 
@@ -2009,6 +2073,15 @@ background-color: rgba(202, 80, 4, 0.884);
     overflow-x: auto;
   }
   .s011 form .inner-form header .travel-type-wrap .item {
+    width: 100%;
+    min-width: 170px;
+  }
+
+
+  .s011 form .inner-form header .travel-type-wrap999 {
+    overflow-x: auto;
+  }
+  .s011 form .inner-form header .travel-type-wrap999 .item {
     width: 100%;
     min-width: 170px;
   }
