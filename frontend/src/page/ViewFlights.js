@@ -58,8 +58,8 @@ const homepage = (e) => {
     axios.get('http://localhost:8000/viewflights', { withCredentials: true })
       .then((result) => {
         localStorage.setItem("AccessToken", Cookies.getItem("AccessToken"))
-        document.cookie = 'AccessToken' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        document.cookie = 'RefreshToken' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // document.cookie = 'AccessToken' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // document.cookie = 'RefreshToken' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 
         console.log(result.data);
         Setflights(result.data);
@@ -97,16 +97,18 @@ const homepage = (e) => {
 
          Cookies.setItem("AccessToken",localStorage.getItem('AccessToken'))
          Cookies.setItem("RefreshToken",localStorage.getItem('RefreshToken'))
-          
-          axios.delete('http://localhost:8000/deleteflight', {data: {var1:del}}, {withCredentials: true})
+         console.log(localStorage)
+          axios.delete('http://localhost:8000/deleteflight',{ withCredentials: true,data: {var1:del}})
           .then(response => {
-            // localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
+            localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
             // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-            // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';         
+            // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';   
+            // console.log(localStorage)      
               console.log(response);
                }).catch(error => {
                 if(error.response.status==403){
-                  console.log("eeeeeeeerrrror")
+                  console.log(localStorage)
+                  console.log(error.response.data)
                   history.push({
                     // pathname: '/LoginPage'
                   });

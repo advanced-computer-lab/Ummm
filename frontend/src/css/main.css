@@ -1569,6 +1569,7 @@ span.flatpickr-weekday {
   background-position: center center;
   padding: 15px;
   font-family: 'Lato', sans-serif;
+  text-align: center;
   /* background-image: url('https://www.maxpixel.net/static/photo/1x/Plane-Soft-Travel-White-Airplane-Flight-Blue-Sky-4125770.jpg'); */
 }
 
@@ -2002,7 +2003,7 @@ span.flatpickr-weekday {
 	height: 60px;
 	
   margin-bottom: 50px;
-  margin-left: 85px;
+  /* margin-left: 85px; */
 	width: 80%;
 	border-radius: 40px;
 	border: none;
@@ -2104,5 +2105,82 @@ background-color: rgba(202, 80, 4, 0.884);
 }
 
 /*# sourceMappingURL=Searchs_011.css.map */
+
+.ant-picker-input > input {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+  padding: 4px 11px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  line-height: 1.5715;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  transition: all 0.3s;
+  flex: auto;
+  min-width: 1px;
+  height: auto;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+.wrap-input100 .ant-picker-input > input {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+  padding: 4px 11px;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  line-height: 1.5715;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  transition: all 0.3s;
+  flex: auto;
+  min-width: 1px;
+  height: auto;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+.ant-input-number-input {
+  width: 100%;
+  height: 30px;
+  padding: 0 11px;
+  text-align: left;
+  color: #fff;
+  background-color: transparent;
+  border: 0;
+  border-radius: 2px;
+  outline: 0;
+  transition: all 0.3s linear;
+  -webkit-appearance: textfield !important;
+  -moz-appearance: textfield !important;
+  appearance: textfield !important;
+}
+
+
+.wrap-input100 .ant-input-number-input {
+  width: 100%;
+  height: 30px;
+  padding: 0 11px;
+  text-align: left;
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+  border: 0;
+  border-radius: 2px;
+  outline: 0;
+  transition: all 0.3s linear;
+  -webkit-appearance: textfield !important;
+  -moz-appearance: textfield !important;
+  appearance: textfield !important;
+}
 
 

@@ -22,6 +22,7 @@ import UserConfirmBooking from './UserPages/UserConfirmBooking'
 import PassengersDetails from './UserPages/PassengersDetails'
 import UserUpdateBooking from './UserPages/UserUpdateBooking'
 import UserBoarding from './UserPages/UserBoarding'
+import UserSelectSeat from './UserPages/UserSelectSeat'
 
 
 
@@ -64,7 +65,7 @@ ReactDOM.render(
                     <Route exact path="/ReservationHomePage" component={ReservationHomePage} />
                     <Route exact path="/PassengersDetails" component={PassengersDetails} />
                     <Route exact path="/UserBoarding" component={UserBoarding} />
-
+                    <Route exact path="/UserSelectSeat" component={UserSelectSeat} />
 
                     
                 </Switch>

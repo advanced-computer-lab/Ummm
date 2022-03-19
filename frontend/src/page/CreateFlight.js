@@ -209,8 +209,8 @@ const homepage = (e) => {
           axios.post('http://localhost:8000/createflight', Data1, {withCredentials: true})
           .then(response => {
             localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-            document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-            document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       
             console.log(response.status);
             //  window.location.reload(false);

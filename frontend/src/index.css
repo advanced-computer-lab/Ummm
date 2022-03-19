@@ -58,13 +58,54 @@
   font-weight: 100;
 }
 
-.row {
+.booking-form2 .row {
+  display: flex;
+  grid-template-columns: 1fr 1fr 1fr 1fr ;
+  flex-direction: row;
+  justify-content: center;
+ min-width: 100%;
+  /* padding-left: 8px; */
+  /* margin-left: auto; */
+  gap: 10px;
+  /* margin-bottom: 20px; */
+}
+
+.row-New {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  grid-gap: 59px;
+  gap: 10px;
+   min-width: 100%;
+
+}
+
+.row-Ads {
+  display: flex;
+  grid-template-columns: 1fr 1fr 1fr 1fr ;
+  flex-direction: row;
+  justify-content: center;
+ min-width: 100%;
+  /* padding-left: 8px; */
+  /* margin-left: auto; */
+  gap: 90px;
+  margin-top:-40px ;
+  /* padding-top: -15px; */
+  /* margin-bottom: 20px; */
+}
+
+
+
+
+/* .row-New {
   display: flex;
   flex-direction: row;
   justify-content: start;
-  padding: 8px;
-  gap: 30px;
-}
+  grid-gap: 59px;
+  gap: 10px;
+  min-width: 1500px;
+
+} */
 
 ul {
   width: max-content;

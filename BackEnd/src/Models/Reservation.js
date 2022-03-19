@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const reservationSchema = new Schema({
 
 
-  
+
 
 //Flight From Info
 
@@ -33,10 +33,10 @@ const reservationSchema = new Schema({
    required: true
   },
   SeatsChoosenFrom: {
-    type: [String],
+    type: String,
   }, 
   SeatsChoosenFromID: {
-    type: [Number],
+    type: Number,
   },
 
 
@@ -71,10 +71,10 @@ const reservationSchema = new Schema({
    required: true
   },
   SeatsChoosenTo: {
-    type: [String],
+    type: String,
   }, 
   SeatsChoosenToID: {
-    type: [Number],
+    type: Number,
   }, 
 
 
@@ -98,7 +98,7 @@ const reservationSchema = new Schema({
     type: String,
     required: true,
   },
-  
+
   Username: {
     type: String,
     required: true,
@@ -106,7 +106,7 @@ const reservationSchema = new Schema({
   Email: {
     type: String,
     required: true,
-  },  
+  },
   ReservationOwner: {
     type: Boolean,
     required: true,
@@ -134,4 +134,3 @@ const reservationSchema = new Schema({
 mongoose.models = {}
 const Reservation = mongoose.model('Reservation', reservationSchema);
 module.exports = Reservation;
-

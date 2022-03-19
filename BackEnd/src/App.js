@@ -15,6 +15,10 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const cookieParser = require('cookie-parser');
 var Cookies = require('cookies')
+
+const stripe = require("stripe")("sk_test_51KBY7kLBghzABh1ILN26WMFLExKqTfFcranEkFtxli7skrYogVnddRJVeKmMcCBZXxbj6w04tNErfCnqwz4wQc9i00cNo7Smgg");
+const uuid = require("uuid").v4;
+
 // import {cookie} from "cookie"
 
 
@@ -71,6 +75,34 @@ var mailoptions2={
   subject: "Reservation Confirmation",
   text: "Email Test Has Passed"
   }
+  app.post("/payment", (req, res) => {
+    const { product, token } = req.body;
+    // console.log("PRODUCT ", product);
+    // console.log("PRICE ", product.price);
+    // console.log(token);
+    // const idempontency_Key = uuid();
+
+    return stripe.customers
+      .create({
+        email: token.email,
+        source: token.id
+      })
+      .then(customer => {
+        stripe.charges.create(
+          {
+            amount: product.price * 100,
+            currency: "usd",
+            customer: customer.id,
+            receipt_email: token.email,
+            description:' purchase of ${product.name}'
+          }
+        );
+      })
+      .then(result => res.status(200).json(result))
+      .catch(err => console.log("err"));
+  });
+
+ 
 
 // transporter.sendMail(mailoptions, function (error, info, callback){
 // if(error){
@@ -119,6 +151,8 @@ app.get("/home", (req, res) => {
       });
 
   });
+
+  
 
 
 
@@ -183,6 +217,7 @@ app.post('/userinfo',authenticateToken ,userController.userinfo)
 app.put('/updateuser',authenticateToken ,userController.updateuser)
 app.put('/updatepassword',authenticateToken ,userController.updatepassword)
 app.post('/reservationinfo',authenticateToken ,userController.reservationinfo)
+app.post('/reservationinfoforpass',authenticateToken ,userController.reservationinfoforpass)
 app.post('/flightmap' ,authenticateToken,userController.flightmap)
 app.put('/updateseats' ,authenticateToken,userController.updateseats)
 app.put('/updatereservationseats' ,authenticateToken,userController.updatereservationseats)
@@ -214,7 +249,7 @@ app.post('/userlogin' ,  async (req, res) => {
          id: dbUser._id, 
          username: dbUser.Username, 
     } 
-   const AccessToken =  jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: (10)*60}) //15 mins
+   const AccessToken =  jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: (100)*60}) //15 mins
     jwt.sign(payload,process.env.REFRESH_TOKEN_SECRET, {expiresIn: (12)*60*60},
         (err, token) => { 
           if (err) return res.json({message: err}) 
@@ -385,7 +420,7 @@ function authenticateToken(req, res, next) {
    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
      if(!err){
             console.log("AccessToken Usedddddddd")
-            next() 
+           return next() 
      }
      if (err) {
       console.log("AccessToken Expireddddd")
@@ -412,7 +447,7 @@ function authenticateToken(req, res, next) {
           username: user.username, 
      } 
     //  console.log(payload)
-     AccessToken =  jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: 10}) //15 mins
+     AccessToken =  jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: 3000}) //15 mins
      console.log("Access Token Updated!")
     //  console.log(AccessToken)
      res.cookie("AccessToken","Bearer " + AccessToken,{
@@ -420,7 +455,7 @@ function authenticateToken(req, res, next) {
       httpOnly: false,
       // maxAge: (1000) * 15
     })
-      next() 
+     return next() ;
         }
       })
         }

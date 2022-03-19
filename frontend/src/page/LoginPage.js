@@ -67,6 +67,7 @@ const LoginPage = () => {
     })
     .then(res => {
       console.log(res.status);
+      localStorage.clear();
       localStorage.setItem("AuthenticationState", "AdminAuthenticated")
       localStorage.setItem("AccessToken", res.data.AccessToken);
       localStorage.setItem("RefreshToken", res.data.RefreshToken);

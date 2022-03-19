@@ -31,7 +31,7 @@
 }
 
 .booking-form::before {
-	content: '';
+	/* content: ''; */
     width: 100%;
 	position: absolute;
 	left: 0;
@@ -39,6 +39,7 @@
 	bottom: 0;
 	top: 0;
     max-width: 800;
+	
    
 	/* border-left: 10px solid transparent;
   border-right: 10px solid transparent;
@@ -63,13 +64,18 @@
 }
 
 .booking-form .form-group {
-	position: relative;
-	margin-bottom: 30px;
+	/* position: relative; */
+	/* margin-bottom: 30px; */
+	width: 40%;
+	float: left;
+	/* margin-left: 10px; */
+	margin:18px 39px;
 }
+
 
 .booking-form .form-control {
 	background-color: rgba(255, 255, 255, 0.2);
-    width:350px;
+    width:100%;
 	height: 60px;
 	padding: 0px 40px;
 	border: none;
@@ -108,7 +114,7 @@
 
 .booking-form input[type="text"].form-control+.form-label {
 	opacity: 1;
-	top: 10px;
+	/* top: 10px; */
 }
 
 .booking-form input[type="date"].form-control {
@@ -136,8 +142,8 @@
 
 .booking-form select.form-control+.select-arrow {
 	position: absolute;
-	right: 1px;
-	top: 50%;
+	right: 98px;
+	top: 285px;
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
 	width: 32px;
@@ -160,7 +166,7 @@
 	color: #000;
 }
 
-.booking-form .form-label {
+ .form-label1 {
 	position: absolute;
 	top: -10px;
 	left: 25px;
@@ -176,10 +182,57 @@
 	transition: 0.2s all;
 }
 
- .date-form {
+
+
+ .date-form1{
 	position: absolute;
-	top: 8px;
-	left: 25px;
+	top: 256px;
+	left: 97px;
+	color: #ff8846;
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1.3px;
+	height: 15px;
+	line-height: 15px;
+	-webkit-transition: 0.2s all;
+	transition: 0.2s all;
+}
+
+.date-form2{
+	position: absolute;
+	top: 256px;
+	left: 491px;
+	color: #ff8846;
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1.3px;
+	height: 15px;
+	line-height: 15px;
+	-webkit-transition: 0.2s all;
+	transition: 0.2s all;
+}
+
+.date-form3{
+	position: absolute;
+	top: 163px;
+	left: 97px;
+	color: #ff8846;
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1.3px;
+	height: 15px;
+	line-height: 15px;
+	-webkit-transition: 0.2s all;
+	transition: 0.2s all;
+}
+
+.date-form4{
+	position: absolute;
+	top: 163px;
+	left: 491px;
 	color: #ff8846;
 	font-size: 11px;
 	font-weight: 700;
@@ -197,7 +250,12 @@
 
 .booking-form .form-group.input-not-empty .form-label {
 	opacity: 1;
-	top: 10px;
+	/* top: 10px; */
+}
+
+.form-label1{
+
+	top:10px
 }
 
 .booking-form .submit-btn {
@@ -231,5 +289,25 @@
     padding: 8px;
     grid-gap: 59px;
     gap: 70px;
-} */                 
+} */     
+
+.ant-picker {
+    box-sizing: border-box;
+    margin-left: -21px;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    list-style: none;
+    font-feature-settings: 'tnum', "tnum";
+    padding: 4px 11px 4px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    transition: border 0.3s, box-shadow 0.3s;
+}
 

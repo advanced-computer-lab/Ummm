@@ -89,6 +89,7 @@
     margin:auto;
     transition: .3s;
     text-align: center;
+    font-weight: 400;
   }
   
   button2:hover{
@@ -119,7 +120,8 @@
       margin:auto;
       transition: .3s;
       text-align: center;
-      font-weight: 500;
+      font-weight: 400;
+      
     }
     
      button3:hover{
@@ -528,5 +530,36 @@
             border-radius: 10px;
             overflow: hidden;
           }
+
+          /* .swal2-popup {
+            display: none;
+            position: relative;
+            box-sizing: border-box;
+            grid-template-columns: minmax(0,100%);
+            width: 32em;
+            min-width: 20%;
+            min-height: 50%;
+            padding: 0 0 1.25em;
+            border: none;
+            border-radius: 5px;
+            background: #fff;
+            color: #545454;
+            font-family: inherit;
+            font-size: 1rem;
+        } */
+
+        .swal2-title {
+          position: relative;
+          max-width: 100%;
+          margin: 0;
+          padding: 0.8em 1em 0;
+          color: inherit;
+          font-size: 2em !important;
+          font-weight: 600;
+          text-align: center;
+          text-transform: none;
+          word-wrap: break-word;
+      
+      }
           
       

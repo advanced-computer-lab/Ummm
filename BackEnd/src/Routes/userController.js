@@ -287,7 +287,7 @@ console.log(newP)
 console.log(realP)
 console.log(ID)
 
-bcrypt.
+
   bcrypt.compare(oldP, realP) 
   .then(isCorrect => {
     if (isCorrect) {
@@ -464,12 +464,12 @@ exports.usersearchflight = (req, res) => {
 
 exports.reservationinfo = (req,res)=>{
   const key2="Username"
-  // const key3="ReservationOwner"
+  const key3="ReservationOwner"
   const search ={};
  search[key2]= {$regex: '^' + req.body[key2],$options: 'ix'};
-//  search[key3]= true;
+ search[key3]= true;
   Reservations.find(search).then(result =>{
-      console.log(result);
+      // console.log(result);
       res.send(result);
   }).catch(err => {
       console.log(err);
@@ -478,6 +478,24 @@ exports.reservationinfo = (req,res)=>{
 }
 
 
+
+exports.reservationinfoforpass = (req,res)=>{
+  // console.log(req.body[1])
+  const key2="Username"
+  const key3= req.body["word"]
+  const keyid = req.body[key3]
+  const search ={};
+ search[key2]= {$regex: '^' + req.body[key2],$options: 'ix'};
+ search[key3]= {$regex: '^' + keyid,$options: 'ix'};
+//  search[key3]= req.body["word"]
+  Reservations.find(search).then(result =>{
+      // console.log(result);
+      res.send(result);
+  }).catch(err => {
+      console.log(err);
+    });
+
+}
 
 
 

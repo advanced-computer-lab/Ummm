@@ -148,8 +148,8 @@ if (localStorage.getItem('AuthenticationState') !== "AdminAuthenticated") {
     axios.put('http://localhost:8000/UpdateFlight', {data: {var1:update, var2:Data1}}, {withCredentials: true})
     .then(response => {
       localStorage.setItem("AccessToken",Cookies.getItem("AccessToken"))
-      document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-      document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      // document.cookie = 'AccessToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      // document.cookie = 'RefreshToken' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 
         history.push('/ViewFlights')
       console.log(response);

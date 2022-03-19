@@ -74,7 +74,7 @@ nav a:hover {
   color: #ededed;
 }
 
-.logo {
+nav .logo {
   height: 130px;
   /* width: 75px; */
   content: url('https://i.ibb.co/WF15sbf/150d1a074a5848b189f739680d1a97ca-2-removebg-preview.png');

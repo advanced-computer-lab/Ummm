@@ -173,21 +173,48 @@
 }
 
 .booking-form2 {
-	position: relative;
-	max-width: 642px;
-	width: 90%;
+	/* display: flex; */
+	flex-direction: row;
+	justify-content: start;
+	position: center;
+	/* max-width: 642px; */
+	/* width: 90%; */
     max-width: 100%;
-	margin: auto;
+	/* margin: auto; */
 	/* change the padding left after press expand  to be 240 px */
-	padding-left: 40px ;
+	/* padding-left: 14vw ; */
 	padding-top: 40px ;
-	padding-bottom: 40px ;
-	padding-right: 40px ;
+	padding-bottom: 70px ;
+	/* padding-right: 40px ; */
 	overflow: hidden;
 
 	background-size: cover;
 	border-radius: 5px;
 	z-index: 20;
+	margin-left:0% !important
+}
+
+
+.booking-form2-footer {
+	/* display: flex; */
+	flex-direction: row;
+	justify-content: start;
+	position: center;
+	/* max-width: 642px; */
+	/* width: 90%; */
+    max-width: 100%;
+	/* margin: auto; */
+	/* change the padding left after press expand  to be 240 px */
+	/* padding-left: 14vw ; */
+	padding-top: 40px ;
+	padding-bottom: 70px ;
+	/* padding-right: 40px ; */
+	overflow: hidden;
+
+	background-size: cover;
+	border-radius: 5px;
+	z-index: 20;
+	margin-left:0% !important
 }
 
 
@@ -217,6 +244,7 @@
 .booking-form2 .form-group-stay {
 	position: relative;
 	margin-bottom: 30px;
+	display: flex;
 
 }
 
@@ -379,15 +407,7 @@
 .booking-form2 .submit-btn:focus {
 	opacity: 0.9;
 }
-.row-New {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    grid-gap: 59px;
-    gap: 10px;
-    min-width: 1500px;
-	
-}
+
 
 .row-HiddenThenVisable {
     display: flex;
@@ -410,7 +430,7 @@
 	height: 60px;
 	padding: 10px 30px;
 	width: 30%;
-	margin-left: 19%;
+	margin-left: 0%;
 	border-radius: 40px;
 	border: none;
 	text-transform: uppercase;
@@ -456,8 +476,9 @@
 	background-color: #e35e0a;
 	font-weight: 700;
 	height: 60px;
-	padding: 10px 30px;
-	width: 400px;
+	/* padding: 10px 30px; */
+	margin-bottom: 10px;
+	width: 30%;
 	border-radius: 40px;
 	border: none;
 	text-transform: uppercase;
@@ -465,7 +486,7 @@
 	letter-spacing: 1.3px;
 	-webkit-transition: 0.2s all;
 	transition: 0.2s all;
-	margin-left:300px ;
+	/* margin-left:300px ; */
 	/* display: none;                     */
 }
 
@@ -588,7 +609,7 @@
 
 
   .arrow{
-	  padding: 10px;
+	  /* padding: 10px; */
 	  animation: bounce 0.6s;
 	  animation-direction: alternate;
 	  animation-iteration-count: infinite;
@@ -634,11 +655,12 @@
 
 
  .circle {
+
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
   position: relative;
-  display: block;
-  margin-left: 488px;
-  margin-top: 0px;
+ 
+  /* margin-left: 488px;
+  margin-top: 0px; */
   width: 3rem;
   height: 3rem;
   
@@ -649,12 +671,13 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  margin: auto;
+  margin-left: -2px;
+  margin-top: 10px;
   background: #fff;
 }
  .icon.arrow {
   transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  left: 0.625rem;
+  left: 0;
   width: 1.125rem;
   height: 0.125rem;
   background: none;
@@ -676,12 +699,12 @@
 
 .icon.arrowDown1 {
 	transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-	left: 0.625rem;
+	/* left: 0.625rem; */
 	width: 1.125rem;
 	height: 0.125rem;
 	background: none;
   }
-
+/* 
 .arrowDown1::before {
 	margin-right: 532px;
 	position: absolute;
@@ -694,19 +717,19 @@
 	border-right: 0.125rem solid #fff;
 	transform: rotate(315deg);
 	display:none ;
-  }
+  } */
   
 
   .icon.arrowDown2 {
 	transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-	left: 0.625rem;
+	/* left: 0.625rem; */
 	width: 1.125rem;
 	height: 0.125rem;
 	background: none;
   }
 
-.arrowDown2::before {
-	margin-right: 532px;
+ .arrowDown2::before {
+	margin-right: 15px;
 	position: absolute;
 	content: "";
 	top: -0.25rem;
@@ -717,7 +740,7 @@
 	border-right: 0.125rem solid #fff;
 	transform: rotate(315deg);
 	display:inline ;
-  }
+  } 
   
 
 /* rotate the arrow */
