@@ -58,7 +58,7 @@ After running the files, the website will run smoothly with all errors handled.
 Standard Js style as it is the easiest to enforce quality in projects.
 
 ## Visual Representation
-![Demo!]([https://cdn.discordapp.com/attachments/904470120624160771/924422851153522758/Login.png](https://drive.google.com/drive/u/1/home))
+![Demo!](https://drive.google.com/drive/u/1/home)
 
 
 
